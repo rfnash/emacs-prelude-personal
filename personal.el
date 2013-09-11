@@ -16,10 +16,15 @@
 
 ;;; Code:
 
-(disable-theme 'zenburn)
-
 (prelude-require-packages '(color-theme-solarized color-theme-buffer-local))
+
+;;; Visual changes
+
 (require 'color-theme)
+(require 'color-theme-buffer-local)
+(disable-theme 'zenburn)                ; remove some remnants on zenburn
+(color-theme-solarized-light)
+(set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
 
 ;;; Included for historical interest:
 
@@ -41,9 +46,6 @@
 ;;            (elscreen-start)))
 
 (global-set-key (kbd "C-x c o") 'helm-occur)
-
-(color-theme-solarized-light)
-(require 'color-theme-buffer-local)
 
 ;;; My org config
 ;;; TODO: was naively copied into my prelude config, check for redundancy

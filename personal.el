@@ -223,5 +223,37 @@
 ;; Allow refile to create parent tasks with confirmation
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
 
+;;; packages only availible through el-get
+
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil t)
+  (url-retrieve
+   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
+   (lambda (s)
+     (end-of-buffer)
+     (eval-print-last-sexp))))
+
+;; now either el-get is `require'd already, or have been `load'ed by the
+;; el-get installer.
+
+;; set local recipes
+(setq
+ el-get-sources
+ '((:name el-get)          ; el-get is self-hosting
+   (:name nxhtml)          ; for html emails and wrap-to-file-column-mode
+   ;; (:name o-blog)       ; version in package.el doesn't work
+   (:name pwsafe :after (setq pwsafe-primary-database "~/Dropbox/pwsafe.dat"))
+   (:name ledger-mode)
+   (:name emacs-http-server)))
+
+
+;; Adds packages from local recipes above
+(setq my:el-get-packages
+      (loop for src in el-get-sources collect (el-get-source-name src)))
+
+;; install new packages and init already installed packages
+(el-get 'sync my:el-get-packages)
+
 (provide 'personal)
 ;;; personal.el ends here

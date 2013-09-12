@@ -6,7 +6,7 @@
 ;; Maintainer: Robert F. Nash <robert@robertnash.net>
 ;; Created: 11 Sept 2013
 ;; Version: 20130911-1
-;;  LocalWords:  robertnash robert emacs LocalWords smex ido
+;;  LocalWords:  robertnash robert emacs LocalWords smex ido flycheck
 
 ;;; Commentary:
 
@@ -95,6 +95,10 @@
 ;;; TODO: was naively copied into my prelude config, check for redundancy
 
 (require 'org)
+(require 'org-agenda)
+(require 'org-mobile)
+(require 'org-habit)
+(require 'org-capture)
 (require 'remember)
 (setq org-modules                     ; http://orgmode.org/worg/org-contrib/
       (quote (
@@ -132,7 +136,7 @@
               ;; http://orgmode.org/worg/org-contrib/org-track.html
               org-track              ;
               ;; http://orgmode.org/worg/org-contrib/org-velocity.html
-              org-velocity           ;
+              ;; org-velocity           ; TODO: error on load
               )))
 (setq
  org-directory "~/Documents/OrgMode"
@@ -182,12 +186,13 @@
  org-agenda-skip-scheduled-if-done t
  org-agenda-span (quote day)
  org-enforce-todo-dependencies t
- org-velocity-bucket "~/Documents/OrgMode/notes.org")
+ ;; org-velocity-bucket "~/Documents/OrgMode/notes.org" ; FIXME
+ )
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
-(global-set-key (kbd "C-c v") 'org-velocity-read)
+;; (global-set-key (kbd "C-c v") 'org-velocity-read) ; FIXME
 (global-set-key (kbd "C-c F") 'oog)
 (require 'org-publish)
 (setq org-publish-project-alist
@@ -227,6 +232,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
+(require 'el-get)                       ; to appease flycheck
 (unless (require 'el-get nil t)
   (url-retrieve
    "https://github.com/dimitri/el-get/raw/master/el-get-install.el"

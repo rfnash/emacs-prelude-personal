@@ -16,7 +16,7 @@
 
 ;;; Code:
 
-(prelude-require-packages '(color-theme-solarized color-theme-buffer-local))
+(prelude-require-packages '(color-theme-solarized color-theme-buffer-local org))
 
 ;;; Visual changes
 

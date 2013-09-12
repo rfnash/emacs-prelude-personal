@@ -6,7 +6,7 @@
 ;; Maintainer: Robert F. Nash <robert@robertnash.net>
 ;; Created: 11 Sept 2013
 ;; Version: 20130911-1
-;;  LocalWords:  robertnash robert emacs LocalWords
+;;  LocalWords:  robertnash robert emacs LocalWords smex ido
 
 ;;; Commentary:
 
@@ -25,6 +25,23 @@
 (disable-theme 'zenburn)                ; remove some remnants on zenburn
 (color-theme-solarized-light)
 (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
+
+;;; Configure helm
+
+(require 'helm-config)
+
+;; Doesn't override ido for find files, but does for C-h f, so perfect
+(helm-mode 1)
+
+;; I prefer helm over smex
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+;; not sure if I really want to enable or not
+;; (add-hook 'eshell-mode-hook
+;;           #'(lambda ()
+;;               (define-key eshell-mode-map
+;;                 [remap eshell-pcomplete]
+;;                 'helm-esh-pcomplete)))
 
 ;;; Included for historical interest:
 

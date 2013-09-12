@@ -149,7 +149,13 @@
                                ((agenda "")
                                 (todo "TODO")))
                               ("v" "Videos to watch"
-                               tags "CATEGORY=\"ToWatch\"" nil)))
+                               tags "CATEGORY=\"ToWatch\"" nil))
+ org-agenda-dim-blocked-tasks (quote invisible)
+ org-agenda-skip-scheduled-if-deadline-is-shown t
+ org-agenda-skip-scheduled-if-done t
+ org-agenda-span (quote day)
+ org-enforce-todo-dependencies t
+ org-velocity-bucket "~/Documents/OrgMode/notes.org")
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)

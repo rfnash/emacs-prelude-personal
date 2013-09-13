@@ -52,5 +52,19 @@
  '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
  '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))
 
+;;; Included for historical interest:
+
+;;I rarely use emacs in a terminal.
+;;(if window-system
+;;    (color-theme-solarized-light)
+;;  (color-theme-solarized-dark))))
+
+;; Newer version of solarized color-theme; don't care for
+;; (solarized-theme
+;;  (progn
+;;       (if window-system
+;;           (load-theme 'solarized-light t)
+;;         (load-theme 'solarized-dark t))))
+
 (provide 'rfnash-color-theme)
 ;;; rfnash-color-theme ends here

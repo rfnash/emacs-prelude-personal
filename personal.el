@@ -18,6 +18,8 @@
 
 (prelude-require-packages '(color-theme-solarized color-theme-buffer-local org))
 
+;; (setq default-directory "~")
+
 ;;; Visual changes
 
 (require 'color-theme)

@@ -176,8 +176,9 @@
                    (concat org-directory "/notes.org")
                    (concat org-directory "/busybox.org")
                    (concat org-directory "/plover.org"))
- org-agenda-custom-commands '(("n" "Agenda and all TODO's"
+ org-agenda-custom-commands '(("n" "Agenda and all TODO's and NEXT actions"
                                ((agenda "")
+                                (todo "NEXT")
                                 (todo "TODO")))
                               ("v" "Videos to watch"
                                tags "CATEGORY=\"ToWatch\"" nil))

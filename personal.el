@@ -11,7 +11,7 @@
 
 ;;; Code:
 
-;; (setq default-directory "~")
+(setq default-directory "~")
 
 ;; I no longer use elscreen
 ;; (elscreen

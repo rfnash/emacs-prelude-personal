@@ -2,6 +2,8 @@
 
 ;;; Commentary:
 
+;; Based on http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/
+
 ;;; Code:
 
 (require 'prelude-mode)

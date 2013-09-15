@@ -66,23 +66,33 @@
  org-mobile-inbox-for-pull (concat org-directory "from-mobile.org")
  org-habit-graph-column 50
  org-capture-templates '(("b" "Bookmarks to file"
-                          entry ( file+olp org-default-notes-file "TODO To File")
+                          entry ( file+olp org-default-notes-file
+                                           "Reference"
+                                           "TODO To File")
                           "* %a %?\n%U")
                          ("t" "Task"
-                          entry ( file+olp org-default-notes-file "Tasks")
+                          entry ( file+olp org-default-notes-file
+                                           "Reference"
+                                           "TODO To File")
                           "* TODO %?\n%U")
                          ("d" "Design Examples"
                           entry (file+olp org-default-notes-file
-                                          "Health" "Mental" "Learning" "Writing"
+                                          "Health"
+                                          "Mental"
+                                          "Learning"
+                                          "Writing"
                                           "Publishing/Typesetting"
-                                          "Web" "Examples")
+                                          "Web"
+                                          "Examples")
                           "* %a %? :GoodDesign:\n%U")
                          ("k" "Book to read"
-                          entry ( file+olp org-default-notes-file "Projects"
+                          entry ( file+olp org-default-notes-file
+                                           "Projects"
                                            "Books to Read")
                           "* TODO %?\n%U")
                          ("w" "To Watch"
-                          entry ( file+olp org-default-notes-file "Projects"
+                          entry ( file+olp org-default-notes-file
+                                           "Projects"
                                            "To Watch")
                           "* TODO %?\n%U"))
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")

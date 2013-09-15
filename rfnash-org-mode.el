@@ -77,6 +77,7 @@
                           "* TODO %?\n%U")
                          ("d" "Design Examples"
                           entry (file+olp org-default-notes-file
+                                          "Reference"
                                           "Health"
                                           "Mental"
                                           "Learning"
@@ -93,7 +94,8 @@
                          ("w" "To Watch"
                           entry ( file+olp org-default-notes-file
                                            "Projects"
-                                           "To Watch")
+                                           "Consume"
+                                           "Videos To Watch")
                           "* TODO %?\n%U")
                          ("s" "Scratch"
                           entry ( file+olp org-default-notes-file

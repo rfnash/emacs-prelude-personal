@@ -94,7 +94,11 @@
                           entry ( file+olp org-default-notes-file
                                            "Projects"
                                            "To Watch")
-                          "* TODO %?\n%U"))
+                          "* TODO %?\n%U")
+                         ("s" "Scratch"
+                          entry ( file+olp org-default-notes-file
+                                           "Scratch")
+                          "* %a %?\n%U"))
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
  ;; "* %^{Title}  :blog:
  ;;  :PROPERTIES:

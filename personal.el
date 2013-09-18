@@ -13,6 +13,11 @@
 
 (setq default-directory "~")
 
+(prelude-require-package 'smart-tab)
+(require 'smart-tab)
+(global-smart-tab-mode 1)
+(define-key read-expression-map [(tab)] 'hippie-expand)
+
 ;; I no longer use elscreen
 ;; (elscreen
 ;;  (progn (require 'elscreen)

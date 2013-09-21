@@ -70,6 +70,14 @@ if not, use 'switch-to-buffer-other-window'"
 (define-key prelude-mode-map (kbd "C-c s") 'rfnash-visit-scratch-buffer)
 (define-key prelude-mode-map (kbd "C-c S") 'prelude-swap-windows)
 
+
+;; Use C-h instead of backspace, because I disable backspace in xbindkeys
+;; Long story, but purpose was to stop its use in aldo
+;; TODO: this probable is a horrible idea and should be removed
+(global-unset-key (kbd "C-h"))
+(define-key prelude-mode-map (kbd "C-h") 'backward-delete-char-untabify)
+(define-key helm-map (kbd "C-h") 'backward-delete-char)
+
 ;; (global-set-key "\C-cT" 'rfnash-visit-term-buffer)
 ;; (global-set-key "\C-ct" 'rfnash-visit-eshell-buffer)
 

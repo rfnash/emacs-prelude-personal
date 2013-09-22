@@ -77,6 +77,7 @@ if not, use 'switch-to-buffer-other-window'"
 (global-unset-key (kbd "C-h"))
 (define-key prelude-mode-map (kbd "C-h") 'backward-delete-char-untabify)
 (define-key helm-map (kbd "C-h") 'backward-delete-char)
+(define-key isearch-mode-map (kbd "C-h") 'backward-delete-char)
 
 ;; (global-set-key "\C-cT" 'rfnash-visit-term-buffer)
 ;; (global-set-key "\C-ct" 'rfnash-visit-eshell-buffer)

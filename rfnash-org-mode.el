@@ -117,7 +117,7 @@
                                 (todo "TODO")))
                               ("v" "Videos to watch"
                                tags "CATEGORY=\"ToWatch\"" nil))
- ;; org-agenda-dim-blocked-tasks (quote invisible)
+ org-agenda-dim-blocked-tasks t
  org-agenda-skip-scheduled-if-deadline-is-shown t
  org-agenda-skip-scheduled-if-done t
  org-agenda-span (quote day)

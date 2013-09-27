@@ -13,7 +13,9 @@
 
 ;;; Code:
 
-(prelude-require-package 'org)
+;; TODO: replace with explicitly installing with el-get
+;; prelude uses old built-in version by default
+;; and ELPA version won't load correctly
 (require 'org)
 (require 'org-agenda)
 (require 'org-mobile)

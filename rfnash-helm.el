@@ -11,6 +11,7 @@
 
 ;;; Code:
 
+(require 'helm)
 (require 'helm-config)
 
 ;; Doesn't override ido for find files, but does for C-h f, so perfect
@@ -28,5 +29,7 @@
 
 (global-set-key (kbd "C-x c o") 'helm-occur)
 
-(provide 'personal)
+(setq helm-split-window-in-side-p t)
+
+(provide 'rfnash-helm.el)
 ;;; rfnash-helm.el ends here

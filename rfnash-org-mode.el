@@ -101,7 +101,13 @@
                          ("s" "Scratch"
                           entry ( file+olp org-default-notes-file
                                            "Scratch")
-                          "* %a %?\n%U"))
+                          "* %a %?\n%U")
+                         ("h" "Habbit"
+                          entry ( file+olp org-default-notes-file
+                                           "Habits"
+                                           "Other")
+                          "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
+                         )
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
  ;; "* %^{Title}  :blog:
  ;;  :PROPERTIES:

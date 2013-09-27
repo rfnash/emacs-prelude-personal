@@ -28,3 +28,9 @@
 ;; (setq erc-autojoin-channels-alist
 ;;       '(("***REMOVED***.com" "#lesbian" "#sub/Dom" "#sluts_craving_humiliation")))
 ;; 	;;("oftc.net" "#bitlbee")))
+
+(add-to-list 'load-path "~/.emacs.d/personal")
+(require 'rfnash-el-get)
+(require 'znc)
+(require 'erc)
+(require 'erc-nicklist)

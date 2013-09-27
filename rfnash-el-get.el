@@ -31,6 +31,8 @@
    (:name nxhtml)          ; for html emails and wrap-to-file-column-mode
    ;; (:name o-blog)       ; version in package.el doesn't work
    (:name pwsafe :after (setq pwsafe-primary-database "~/Dropbox/pwsafe.dat"))
+   (:name org-mode)
+   (:name erc-extras)
    (:name ledger-mode)
    (:name emacs-http-server)))
 
@@ -42,5 +44,5 @@
 ;; install new packages and init already installed packages
 (el-get 'sync my:el-get-packages)
 
-(provide 'personal)
+(provide 'rfnash-el-get)
 ;;; rfnash-el-get.el ends here

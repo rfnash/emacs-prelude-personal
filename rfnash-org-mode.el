@@ -16,7 +16,9 @@
 ;; TODO: replace with explicitly installing with el-get
 ;; prelude uses old built-in version by default
 ;; and ELPA version won't load correctly
+(require 'rfnash-el-get)
 (require 'org)
+(org-reload)
 (require 'org-agenda)
 (require 'org-mobile)
 (require 'org-habit)

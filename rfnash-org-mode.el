@@ -19,7 +19,7 @@
 (require 'rfnash-el-get)
 (require 'org)
 (org-reload)
-(require 'org-agenda)
+(require 'org-agenda)                 ; add (load-library "org-compat")
 (require 'org-mobile)
 (require 'org-habit)
 (require 'org-capture)

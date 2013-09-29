@@ -29,7 +29,8 @@
 
 (global-set-key (kbd "C-x c o") 'helm-occur)
 
-(setq helm-split-window-in-side-p t)
+;; Doesn't play well with gnus
+;;(setq helm-split-window-in-side-p t)
 
 (provide 'rfnash-helm.el)
 ;;; rfnash-helm.el ends here

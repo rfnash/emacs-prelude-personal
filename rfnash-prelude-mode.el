@@ -77,6 +77,10 @@ if not, use 'switch-to-buffer-other-window'"
 (global-unset-key (kbd "C-h"))
 (define-key prelude-mode-map (kbd "C-h") 'backward-delete-char-untabify)
 (define-key helm-map (kbd "C-h") 'backward-delete-char)
+
+;; TODO: kind of works, but usually ends up deleting characters
+;; in the buffer I'm searching in, and not from the search string,
+;; yet pressing backspace works as expected. Figure out why.
 (define-key isearch-mode-map (kbd "C-h") 'backward-delete-char)
 
 ;; (global-set-key "\C-cT" 'rfnash-visit-term-buffer)

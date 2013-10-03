@@ -23,5 +23,7 @@
 ;;  (progn (require 'elscreen)
 ;;            (elscreen-start)))
 
+(prelude-require-package 'switch-window)
+(global-set-key (kbd "C-x o") 'switch-window)
 (provide 'personal)
 ;;; personal.el ends here

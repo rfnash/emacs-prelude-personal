@@ -5,6 +5,11 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(fci-rule-color "#383838")
+ '(gnus-group-default-list-level 3)
+ '(gnus-save-duplicate-list t)
+ '(gnus-summary-line-format "%U%R%z{%i}%I%(%[%4L: %-23,23f%]%) %s
+")
+ '(gnus-suppress-duplicates t)
  '(org-refile-use-cache t)
  '(prelude-clean-whitespace-on-save nil)
  '(prelude-whitespace nil)

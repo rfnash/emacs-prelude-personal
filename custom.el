@@ -10,7 +10,10 @@
  '(gnus-summary-line-format "%U%R%z[%i]%I%(%[%4L: %-23,23f%]%) %s
 ")
  '(gnus-suppress-duplicates t)
+ '(org-blank-before-new-entry (quote ((heading) (plain-list-item))))
+ '(org-insert-heading-respect-content t)
  '(org-refile-use-cache t)
+ '(org-return-follows-link t)
  '(prelude-clean-whitespace-on-save nil)
  '(prelude-whitespace nil)
  '(vc-annotate-background "#2B2B2B")

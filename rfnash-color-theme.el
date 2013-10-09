@@ -47,7 +47,7 @@
  '(term-color-blue ((t (:background "#002b36" :foreground "#268bd2"))))
  '(term-color-cyan ((t (:background "#002b36" :foreground "#2aa198"))))
  '(term-color-green ((t (:background "#002b36" :foreground "#859900"))))
- '(term-color-magenta ((t (:background "black" :foreground "#d33682"))))
+ '(term-color-magenta ((t (:background "#002b36" :foreground "#d33682"))))
  '(term-color-red ((t (:background "#002b36" :foreground "#dc322f"))))
  '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
  '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))

@@ -7,7 +7,7 @@
  '(fci-rule-color "#383838")
  '(gnus-group-default-list-level 3)
  '(gnus-save-duplicate-list t)
- '(gnus-summary-line-format "%U%R%z{%i}%I%(%[%4L: %-23,23f%]%) %s
+ '(gnus-summary-line-format "%U%R%z[%i]%I%(%[%4L: %-23,23f%]%) %s
 ")
  '(gnus-suppress-duplicates t)
  '(org-refile-use-cache t)

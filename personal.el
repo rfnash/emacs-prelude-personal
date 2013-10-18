@@ -25,5 +25,13 @@
 
 (prelude-require-package 'switch-window)
 (global-set-key (kbd "C-x o") 'switch-window)
+
+(prelude-require-package 'emagician-fix-spell-memory)
+(require 'emagician-fix-spell-memory)
+
+(add-to-list 'load-path "/home/shared/.local/share/emacs/site-lisp")
+(add-to-list 'load-path "/home/shared/.local/share/emacs/site-lisp/edb")
+(require 'elip)
+
 (provide 'personal)
 ;;; personal.el ends here

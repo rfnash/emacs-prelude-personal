@@ -92,11 +92,13 @@
                           "* %a %? :GoodDesign:\n%U")
                          ("k" "Book to read"
                           entry ( file+olp org-default-notes-file
+                                           "Agenda"
                                            "Projects"
                                            "Books to Read")
                           "* TODO %?\n%U")
                          ("w" "To Watch"
                           entry ( file+olp org-default-notes-file
+                                           "Agenda"
                                            "Projects"
                                            "Videos To Watch")
                           "* TODO %?\n%U")

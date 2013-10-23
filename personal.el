@@ -33,5 +33,9 @@
 (add-to-list 'load-path "/home/shared/.local/share/emacs/site-lisp/edb")
 (require 'elip)
 
+(prelude-require-package 'yasnippet)
+(require 'yasnippet)
+(yas-global-mode 1)
+
 (provide 'personal)
 ;;; personal.el ends here

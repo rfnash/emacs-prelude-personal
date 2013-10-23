@@ -70,6 +70,8 @@ if not, use 'switch-to-buffer-other-window'"
 (define-key prelude-mode-map (kbd "C-c s") 'rfnash-visit-scratch-buffer)
 (define-key prelude-mode-map (kbd "C-c S") 'prelude-swap-windows)
 
+(define-key gnus-article-mode-map (kbd "i") 'gnus-article-show-images)
+(define-key gnus-summary-mode-map (kbd "i") 'gnus-article-show-images)
 
 ;; Use C-h instead of backspace, because I disable backspace in xbindkeys
 ;; Long story, but purpose was to stop its use in aldo

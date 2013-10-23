@@ -108,6 +108,7 @@
                           "* %a %?\n%U")
                          ("h" "Habbit"
                           entry ( file+olp org-default-notes-file
+                                           "Agenda"
                                            "Habits"
                                            "Other")
                           "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")

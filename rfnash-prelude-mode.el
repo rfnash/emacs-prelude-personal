@@ -70,6 +70,12 @@ if not, use 'switch-to-buffer-other-window'"
 (define-key prelude-mode-map (kbd "C-c s") 'rfnash-visit-scratch-buffer)
 (define-key prelude-mode-map (kbd "C-c S") 'prelude-swap-windows)
 
+(define-key oog-map (kbd "C-n") 'oog-next-line)
+(define-key oog-map (kbd "C-p") 'oog-previous-line)
+(define-key oog-map (kbd "C-v") 'oog-previous-page)
+(define-key oog-map (kbd "M-v") 'oog-next-page)
+
+(require 'gnus-art)
 (define-key gnus-article-mode-map (kbd "i") 'gnus-article-show-images)
 (define-key gnus-summary-mode-map (kbd "i") 'gnus-article-show-images)
 

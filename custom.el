@@ -17,7 +17,7 @@
  '(org-drill-optimal-factor-matrix nil)
  '(org-expiry-inactive-timestamps t)
  '(org-id-link-to-org-use-id (quote create-if-interactive-and-no-custom-id))
- '(org-modules (quote (org-bibtex org-crypt org-ctags org-gnus org-habit org-id org-mouse org-protocol org-w3m org-annotate-file org-bookmark org-bullets org-checklist org-choose org-collector org-drill org-eval-light org-eval org-expiry org-favtable org-invoice org-panel org-registry org-secretary org-toc org-track org-velocity org-json)))
+ '(org-modules (quote (org-bbdb org-bibtex org-ctags org-gnus org-habit org-id org-info org-inlinetask org-mouse org-protocol org-w3m org-annotate-file org-bookmark org-checklist org-choose org-collector org-drill org-elisp-symbol org-eshell org-eval-light org-eval org-expiry org-favtable org-git-link org-learn org-man org-mtags org-panel org-registry org-secretary org-toc org-track org-wikinodes org-json org-learn org-mouse org-protocol org-registry org-secretary org-toc org-track)))
  '(org-refile-use-cache t)
  '(org-return-follows-link t)
  '(prelude-clean-whitespace-on-save nil)

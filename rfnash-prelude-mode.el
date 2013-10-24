@@ -55,10 +55,10 @@ if not, use 'switch-to-buffer-other-window'"
   (if (get-buffer "*scratch*")
       (rfnash-switch-buffer "*scratch*")
     (if (fboundp 'elscreen-create)
-	(elscreen-create)
+        (elscreen-create)
       (progn
-	(switch-to-buffer (get-buffer-create "*scratch*"))
-	(lisp-interaction-mode)))))
+        (switch-to-buffer (get-buffer-create "*scratch*"))
+        (lisp-interaction-mode)))))
 
 (define-key prelude-mode-map (kbd "C-c i") 'prelude-ido-goto-symbol)
 (define-key prelude-mode-map (kbd "C-c o") 'rfnash-visit-org-notes-buffer)

@@ -94,13 +94,15 @@
                           entry ( file+olp org-default-notes-file
                                            "Agenda"
                                            "Projects"
-                                           "Books to Read")
+                                           "Consumption"
+                                           "Books")
                           "* TODO %?\n%U")
                          ("w" "To Watch"
                           entry ( file+olp org-default-notes-file
                                            "Agenda"
                                            "Projects"
-                                           "Videos To Watch")
+                                           "Consumption"
+                                           "Videos")
                           "* TODO %?\n%U")
                          ("s" "Scratch"
                           entry ( file+olp org-default-notes-file
@@ -176,6 +178,9 @@
 
 ;; Allow refile to create parent tasks with confirmation
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
+
+(require 'org-expiry)
+(org-expiry-insinuate)
 
 (provide 'rfnash-org-mode)
 ;;; rfnash-org-mode.el ends here

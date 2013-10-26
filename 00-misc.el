@@ -45,8 +45,6 @@
 
 ;; (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
 
-;; (electric-pair-mode +1)
-;; (electric-indent-mode +1)
 
 ;; ;; From emacsredux
 ;; (defun eval-and-replace ()

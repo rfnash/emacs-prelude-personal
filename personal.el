@@ -42,5 +42,8 @@
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
+(electric-pair-mode +1)
+(electric-indent-mode +1)
+
 (provide 'personal)
 ;;; personal.el ends here

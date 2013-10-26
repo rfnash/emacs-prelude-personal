@@ -37,5 +37,10 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+(prelude-require-package 'paredit)
+(add-hook 'lisp-interaction-mode-hook 'paredit-mode)
+(add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+
 (provide 'personal)
 ;;; personal.el ends here

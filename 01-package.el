@@ -51,11 +51,6 @@
 ;;		      (puppet-mode)
 ;;		      (bitlbee (require 'bitlbee))
 ;;		      (rainbow-delimiters (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-;;		      (paredit
-;;		       (progn
-;;			 (add-hook 'lisp-interaction-mode-hook 'paredit-mode)
-;;			 (add-hook 'clojure-mode-hook 'paredit-mode)
-;;			 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)))
 ;;		      (powerline)
 ;;		      (htmlize)	                      ; required by org-mode html export
 ;;		      (helm-ag)

@@ -13,6 +13,7 @@
  '(gnus-summary-line-format "%U%R%z[%i]%I%(%[%4L: %-23,23f%]%) %s
 ")
  '(gnus-suppress-duplicates t)
+ '(helm-m-occur-idle-delay 0.5 nil nil "Increased from 0.1 to 0.5 (the value used by org-occur-goto) because of the long time it takes to search")
  '(org-blank-before-new-entry (quote ((heading) (plain-list-item))))
  '(org-drill-optimal-factor-matrix nil)
  '(org-expiry-inactive-timestamps t)

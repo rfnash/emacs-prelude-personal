@@ -71,13 +71,15 @@
  org-habit-graph-column 50
  org-capture-templates '(("b" "Bookmarks to file"
                           entry ( file+olp org-default-notes-file
-                                           "Reference"
-                                           "TODO To File")
+                                           "Agenda"
+                                           "Tasks"
+                                           "Filing")
                           "* %a %?\n%U")
                          ("t" "Task"
                           entry ( file+olp org-default-notes-file
-                                           "Reference"
-                                           "TODO To File")
+                                           "Agenda"
+                                           "Tasks"
+                                           "Todo")
                           "* TODO %?\n%U")
                          ("d" "Design Examples"
                           entry (file+olp org-default-notes-file
@@ -114,6 +116,14 @@
                                            "Habits"
                                            "Other")
                           "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
+                         ("j" "Datetree entry"
+                          entry ( file+datetree org-default-notes-file)
+                          "* %a %?\n%U")
+                         ("c" "Clocked entry"
+                          entry ( file+datetree org-default-notes-file)
+                          "* %a %?\n%U"
+                          :clock-in t
+                          :clock-keep t)
                          )
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
  ;; "* %^{Title}  :blog:

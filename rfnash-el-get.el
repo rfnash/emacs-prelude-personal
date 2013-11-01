@@ -34,6 +34,7 @@
    (:name org-mode)
    (:name erc-extras)
    (:name ledger-mode)
+   (:name babel)
    (:name emacs-http-server)))
 
 

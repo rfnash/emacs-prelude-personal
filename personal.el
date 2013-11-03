@@ -190,7 +190,7 @@
 ;; (setq show-trailing-whitespace t)
 
 (defun set-browser (browser)
-"Prompt for browser to set as default"
+"Prompt for BROWSER to set as default."
 (interactive "sBrowser: ")
 (setq browse-url-browser-function
 'browse-url-generic browse-url-generic-program browser))

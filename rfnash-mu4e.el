@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(add-to-list 'load-path "~/.emacs.d/personal/mu/mu4e")
+(add-to-list 'load-path (expand-file-name "mu/mu4e" prelude-vendor-dir))
 (require 'mu4e)
 (setq mu4e-mu-binary "/usr/local/bin/mu"   ;; use local version of mu
       mu4e-maildir       "~/Maildir"       ;; top-level Maildir

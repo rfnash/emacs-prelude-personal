@@ -1,3 +1,0 @@
-
-[mu]
-checkout = git clone 'git://github.com/djcb/mu.git' 'mu'

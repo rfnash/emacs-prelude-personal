@@ -28,7 +28,11 @@
 (require 'color-theme)
 (require 'color-theme-buffer-local)
 (disable-theme 'zenburn)                ; remove some remnants on zenburn
-(color-theme-solarized-light)
+
+(if window-system
+   (color-theme-solarized-light)
+ (color-theme-solarized-dark))
+
 (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
 
 ;;; ansi-term solarized settings
@@ -62,20 +66,6 @@
  '(term-color-red ((t (:background "#002b36" :foreground "#dc322f"))))
  '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
  '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))
-
-;;; Included for historical interest:
-
-;;I rarely use emacs in a terminal.
-;;(if window-system
-;;    (color-theme-solarized-light)
-;;  (color-theme-solarized-dark))))
-
-;; Newer version of solarized color-theme; don't care for
-;; (solarized-theme
-;;  (progn
-;;       (if window-system
-;;           (load-theme 'solarized-light t)
-;;         (load-theme 'solarized-dark t))))
 
 (provide 'rfnash-color-theme)
 ;;; rfnash-color-theme ends here

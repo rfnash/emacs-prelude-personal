@@ -4,6 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(Info-additional-directory-list (quote ("/home/shared/.local/share/info/")))
+ '(color-theme-is-global nil)
  '(custom-enabled-themes (quote (solarized-light)))
  '(custom-safe-themes (quote ("6a0f78c5c03bd65901f855f8f3e6fdb122856f641e0eed943cbefe828cdb871e" "b1f88f7e05e9e09e9c354b0b4ed9e5e4d7c9851069bf5ce898309340bf1b6d33" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" default)))
  '(fci-rule-color "#383838")

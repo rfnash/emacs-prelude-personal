@@ -69,63 +69,63 @@
  org-mobile-directory "~/Dropbox/MobileOrg"
  org-mobile-inbox-for-pull (concat org-directory "from-mobile.org")
  org-habit-graph-column 65
- ;; org-capture-templates '(
- ;;                         ;; ("b" "Bookmarks to file"
- ;;                         ;;  entry ( file+olp org-default-notes-file
- ;;                         ;;                   "Agenda"
- ;;                         ;;                   "Tasks"
- ;;                         ;;                   "Filing")
- ;;                         ;;  "* FILE %a %?\n%U")
- ;;                         ;; ("t" "Task"
- ;;                         ;;  entry ( file+olp org-default-notes-file
- ;;                         ;;                   "Agenda"
- ;;                         ;;                   "Tasks"
- ;;                         ;;                   "Todo")
- ;;                         ;;  "* TODO %?\n%U")
- ;;                         ;; ("d" "Design Examples"
- ;;                         ;;  entry (file+olp org-default-notes-file
- ;;                         ;;                  "Reference"
- ;;                         ;;                  "Health"
- ;;                         ;;                  "Mental"
- ;;                         ;;                  "Learning"
- ;;                         ;;                  "Writing"
- ;;                         ;;                  "Publishing/Typesetting"
- ;;                         ;;                  "Web"
- ;;                         ;;                  "Examples")
- ;;                         ;;  "* %a %? :GoodDesign:\n%U")
- ;;                         ;; ("k" "Book to read"
- ;;                         ;;  entry ( file+olp org-default-notes-file
- ;;                         ;;                   "Agenda"
- ;;                         ;;                   "Projects"
- ;;                         ;;                   "Consumption"
- ;;                         ;;                   "Books")
- ;;                         ;;  "* SOMEDAY %?\n%U")
- ;;                         ;; ("w" "To Watch"
- ;;                         ;;  entry ( file+olp org-default-notes-file
- ;;                         ;;                   "Agenda"
- ;;                         ;;                   "Projects"
- ;;                         ;;                   "Consumption"
- ;;                         ;;                   "Videos")
- ;;                         ;;  "* TODO %?\n%U")
- ;;                         ;; ("s" "Scratch"
- ;;                         ;;  entry ( file+olp org-default-notes-file
- ;;                         ;;                   "Scratch")
- ;;                         ;;  "* %a %?\n%U")
- ;;                         ;; ("h" "Habbit"
- ;;                         ;;  entry ( file+olp org-default-notes-file
- ;;                         ;;                   "Agenda"
- ;;                         ;;                   "Habits"
- ;;                         ;;                   "Other")
- ;;                         ;;  "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
- ;;                         ;; ("j" "Datetree entry"
- ;;                         ;;  entry ( file+datetree org-default-notes-file)
- ;;                         ;;  "* %a %?\n%U")
- ;;                         ;; ("c" "Clocked entry"
- ;;                         ;;  entry ( file+datetree org-default-notes-file)
- ;;                         ;;  "* %a %?\n%U"
- ;;                         ;;  :clock-in t
- ;;                         ;;  :clock-keep t)
- ;;                         )
+ org-capture-templates '(
+                         ("b" "Bookmarks to file"
+                          entry ( file+olp "~/Documents/OrgMode/notes.org"
+                                           "Agenda"
+                                           "Tasks"
+                                           "Filing")
+                          "* FILE %a %?\n%U")
+                         ("t" "Task"
+                          entry ( file+olp "~/Documents/OrgMode/notes.org"
+                                           "Agenda"
+                                           "Tasks"
+                                           "Todo")
+                          "* TODO %?\n%U")
+                         ("d" "Design Examples"
+                          entry (file+olp "~/Documents/OrgMode/notes.org"
+                                          "Reference"
+                                          "Health"
+                                          "Mental"
+                                          "Learning"
+                                          "Writing"
+                                          "Publishing/Typesetting"
+                                          "Web"
+                                          "Examples")
+                          "* %a %? :GoodDesign:\n%U")
+                         ("k" "Book to read"
+                          entry ( file+olp "~/Documents/OrgMode/notes.org"
+                                           "Agenda"
+                                           "Projects"
+                                           "Consumption"
+                                           "Books")
+                          "* SOMEDAY %?\n%U")
+                         ("w" "To Watch"
+                          entry ( file+olp "~/Documents/OrgMode/notes.org"
+                                           "Agenda"
+                                           "Projects"
+                                           "Consumption"
+                                           "Videos")
+                          "* TODO %?\n%U")
+                         ("s" "Scratch"
+                          entry ( file+olp "~/Documents/OrgMode/notes.org"
+                                           "Scratch")
+                          "* %a %?\n%U")
+                         ("h" "Habbit"
+                          entry ( file+olp "~/Documents/OrgMode/notes.org"
+                                           "Agenda"
+                                           "Habits"
+                                           "Other")
+                          "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
+                         ("j" "Datetree entry"
+                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          "* %a %?\n%U")
+                         ("c" "Clocked entry"
+                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          "* %a %?\n%U"
+                          :clock-in t
+                          :clock-keep t)
+                         )
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
  ;; "* %^{Title}  :blog:
  ;;  :PROPERTIES:

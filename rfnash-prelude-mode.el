@@ -77,6 +77,7 @@ if not, use 'switch-to-buffer-other-window'"
 (define-key prelude-mode-map (kbd "C-c G") 'prelude-google)
 (define-key prelude-mode-map (kbd "C-c s") 'rfnash-visit-scratch-buffer)
 (define-key prelude-mode-map (kbd "C-c S") 'prelude-swap-windows)
+(define-key prelude-mode-map (kbd "C-c ;") 'comment-region)
 
 (define-key oog-map (kbd "C-n") 'oog-next-line)
 (define-key oog-map (kbd "C-p") 'oog-previous-line)

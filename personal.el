@@ -45,6 +45,9 @@
 (electric-pair-mode +1)
 (electric-indent-mode +1)
 
+;; Homepage: https://github.com/swannodette/ob-sml
+(prelude-require-package 'ob-sml)
+
 ;;; Old init.el for historical reference
 
 ;;(mapc 'load (directory-files "~/.emacs.d/conf.d/" t "^[^#!].*\.el$"))

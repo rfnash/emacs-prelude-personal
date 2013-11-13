@@ -16,6 +16,7 @@
  '(gnus-suppress-duplicates t)
  '(helm-m-occur-idle-delay 0.5 nil nil "Increased from 0.1 to 0.5 (the value used by org-occur-goto) because of the long time it takes to search")
  '(org-blank-before-new-entry (quote ((heading) (plain-list-item))))
+ '(org-capture-templates (quote (("c" "Clocked entry" entry (file+datetree "org-default-notes-file") "* %a %?\\n%U" :clock-in t :clock-keep t) ("j" "Datetree entry" entry (file+datetree "org-default-notes-file") "* %a %?\\n%U") ("h" "habit" entry (file+olp "org-default-notes-file" "Agenda" "Habits" "Other") "* HABIT %?\\n:PROPERTIES:\\n:STYLE: habit\\n:END:") ("s" "Scratch" entry (file+olp "org-default-notes-file" "Scratch") "* %a %?\\n%U") ("w" "To Watch" entry (file+olp "org-default-notes-file" "Agenda" "Projects" "Consumption" "Videos") "* TODO %?\\n%U") ("k" "Book to read" entry (file+olp "org-default-notes-file" "Agenda" "Projects" "Consumption" "Books") "* SOMEDAY %?\\n%U") ("d" "Design Examples" entry (file+olp "org-default-notes-file" "Reference" "Health" "Mental" "Learning" "Writing" "Publishing/Typesetting" "Web" "Examples") "* SOMEDAY %?\\n%U") ("t" "Task" entry (file+olp "org-default-notes-file" "Agenda" "Tasks" "Todo") "* TODO %?\\n%U") ("b" "Bookmarks to file" entry (file+olp "org-default-notes-file" "Agenda" "Tasks" "Filing") "* FILE %a %?\\n%U"))))
  '(org-drill-optimal-factor-matrix nil)
  '(org-expiry-inactive-timestamps t)
  '(org-id-link-to-org-use-id (quote create-if-interactive-and-no-custom-id))

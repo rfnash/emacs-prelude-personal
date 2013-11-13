@@ -49,6 +49,13 @@ if not, use 'switch-to-buffer-other-window'"
       (rfnash-switch-buffer "*Group*")
     (gnus)))
 
+(defun rfnash-visit-mu4e-buffer ()
+  "Create or visit mu4e's main buffer."
+  (interactive)
+  (if (get-buffer "*mu4e-main*")
+      (rfnash-switch-buffer "*mu4e-main*")
+    (mu4e)))
+
 (defun rfnash-visit-scratch-buffer ()
   "Visit *scratch* buffer."
   (interactive)
@@ -66,6 +73,7 @@ if not, use 'switch-to-buffer-other-window'"
 (define-key prelude-mode-map (kbd "C-c h") 'rfnash-visit-org-agenda-buffer)
 (define-key prelude-mode-map (kbd "C-x c h") 'helm-prelude)
 (define-key prelude-mode-map (kbd "C-c g") 'rfnash-visit-gnus-buffer)
+(define-key prelude-mode-map (kbd "C-c m") 'rfnash-visit-mu4e-buffer)
 (define-key prelude-mode-map (kbd "C-c G") 'prelude-google)
 (define-key prelude-mode-map (kbd "C-c s") 'rfnash-visit-scratch-buffer)
 (define-key prelude-mode-map (kbd "C-c S") 'prelude-swap-windows)

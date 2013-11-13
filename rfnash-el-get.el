@@ -13,7 +13,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-(require 'el-get)                       ; to appease flycheck
+(require 'el-get nil t)                       ; to appease flycheck
 (unless (require 'el-get nil t)
   (url-retrieve
    "https://github.com/dimitri/el-get/raw/master/el-get-install.el"

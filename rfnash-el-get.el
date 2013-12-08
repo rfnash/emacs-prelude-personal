@@ -35,6 +35,7 @@
    (:name erc-extras)
    (:name ledger-mode)
    (:name babel)
+   (:name erc-nick-notify)
    (:name emacs-http-server)))
 
 

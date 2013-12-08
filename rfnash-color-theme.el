@@ -29,7 +29,7 @@
 (require 'color-theme-buffer-local)
 (disable-theme 'zenburn)                ; remove some remnants on zenburn
 
-(if window-system
+(if (display-graphic-p)
    (color-theme-solarized-light)
  (color-theme-solarized-dark))
 

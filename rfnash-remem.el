@@ -6,6 +6,7 @@
 
 (require 'prelude-mode)
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 (define-key prelude-mode-map (kbd "C-c r") nil)
 (define-key global-map (kbd "C-c r") nil)
 ;; (setq remem-scopes-list '(("mail" 6 5 500)

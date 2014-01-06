@@ -15,6 +15,9 @@
 ")
  '(gnus-suppress-duplicates t)
  '(helm-m-occur-idle-delay 0.5 nil nil "Increased from 0.1 to 0.5 (the value used by org-occur-goto) because of the long time it takes to search")
+ '(ido-ignore-buffers
+   (quote
+    ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf")) nil nil "set to same as helm-c-boring-buffer-regexp")
  '(org-agenda-dim-blocked-tasks (quote invisible))
  '(org-blank-before-new-entry (quote ((heading) (plain-list-item))))
  '(org-drill-optimal-factor-matrix nil)

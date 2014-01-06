@@ -42,6 +42,11 @@
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
+(prelude-require-packages '(helm-orgcard helm-descbinds helm-backup helm-helm-commands))
+
+(add-to-list 'load-path (expand-file-name "helm-mu" prelude-vendor-dir))
+(require 'helm-mu)
+
 (electric-pair-mode +1)
 (electric-indent-mode +1)
 

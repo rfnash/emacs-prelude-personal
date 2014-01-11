@@ -44,6 +44,7 @@
               org-choose             ;
               ;; http://orgmode.org/worg/org-contrib/org-collector.html
               org-collector          ;
+              org-contacts           ;
               org-ctags              ;
               org-gnus               ;
               org-habit              ;

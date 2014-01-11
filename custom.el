@@ -22,6 +22,7 @@
     ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf")) nil nil "set to same as helm-c-boring-buffer-regexp")
  '(org-agenda-dim-blocked-tasks (quote invisible))
  '(org-blank-before-new-entry (quote ((heading) (plain-list-item))))
+ '(org-contacts-birthday-format "Birthday: %h (%Y)")
  '(org-drill-optimal-factor-matrix nil)
  '(org-expiry-inactive-timestamps t)
  '(org-extend-today-until 5)

@@ -73,8 +73,6 @@
  org-capture-templates '(
                          ("b" "Bookmarks to file"
                           entry ( file+olp "~/Documents/OrgMode/notes.org"
-                                           "Agenda"
-                                           "Tasks"
                                            "Filing")
                           "* FILE %a %?\n%U")
                          ("t" "Task"

@@ -81,6 +81,12 @@
                                            "Tasks"
                                            "Todo")
                           "* TODO %?\n%U")
+                         ("n" "Task - Next"
+                          entry ( file+olp "~/Documents/OrgMode/notes.org"
+                                           "Agenda"
+                                           "Tasks"
+                                           "Next")
+                          "* NEXT %?\n%U")
                          ("d" "Design Examples"
                           entry (file+olp "~/Documents/OrgMode/notes.org"
                                           "Reference"
@@ -124,6 +130,12 @@
                           "* %a %?\n%U"
                           :clock-in t
                           :clock-keep t)
+                         ("T" "Scheduled Task"
+                          entry ( file+olp "~/Documents/OrgMode/notes.org"
+                                           "Agenda"
+                                           "Tasks"
+                                           "Scheduled")
+                          "* SCHED %?\nSCHEDULED: %t")
                          )
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
  ;; "* %^{Title}  :blog:

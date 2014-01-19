@@ -24,6 +24,7 @@
 (require 'org-habit)
 (require 'org-capture)
 (require 'remember)
+(require 'org-contacts)
 (setq org-modules                     ; http://orgmode.org/worg/org-contrib/
       (quote (
               ;; http://julien.danjou.info/projects/emacs-packages#org-contacts

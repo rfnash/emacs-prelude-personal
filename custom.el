@@ -16,6 +16,17 @@
  '(gnus-summary-line-format "%U%R%z[%i]%I%(%[%4L: %-23,23f%]%) %s
 ")
  '(gnus-suppress-duplicates t)
+ '(helm-completing-read-handlers-alist
+   (quote
+    ((describe-function . helm-completing-read-symbols)
+     (describe-variable . helm-completing-read-symbols)
+     (debug-on-entry . helm-completing-read-symbols)
+     (find-function . helm-completing-read-symbols)
+     (find-tag . helm-completing-read-with-cands-in-buffer)
+     (ffap-alternate-file)
+     (tmm-menubar)
+     (find-file . ido)
+     (switch-to-buffer . ido))) nil nil "added (find-file . ido) as I prefer ido's find-file interface to helm's, but like helm better for everything else.")
  '(helm-m-occur-idle-delay 0.5 nil nil "Increased from 0.1 to 0.5 (the value used by org-occur-goto) because of the long time it takes to search")
  '(ido-ignore-buffers
    (quote
@@ -59,7 +70,10 @@
      (320 . "#8CD0D3")
      (340 . "#94BFF3")
      (360 . "#DC8CC3"))))
- '(vc-annotate-very-old-color "#DC8CC3"))
+ '(vc-annotate-very-old-color "#DC8CC3")
+ '(yas-snippet-dirs
+   (quote
+    ("~/.emacs.d/prelude/personal/snippits" "/home/rfnash/.emacs.d/prelude/elpa/yasnippet-20140106.1009/snippets")) nil (yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

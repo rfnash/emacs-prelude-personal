@@ -45,3 +45,5 @@
 ;;(setq org-completion-use-ido nil)
 ;;(setq ido-max-directory-size 100000)
 ;;(ido-mode (quote both))
+
+;; (load-file "/usr/share/emacs/24.3/lisp/ido.el.gz")

@@ -36,8 +36,16 @@
    (:name ledger-mode)
    (:name babel)
    (:name erc-nick-notify)
-   (:name emacs-http-server)))
-
+   (:name emacs-http-server)
+   ;;(:name bbdb-vcard)
+   ;; (:name bbdb (progn
+   ;;      		 (setq bbdb-file "~/.emacs.d/bbdb")
+   ;;      		 (require 'bbdb)
+   ;;      		 (bbdb-initialize 'gnus 'message)
+   ;;      		 (bbdb-insinuate-message)
+   ;;      		 (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
+   ;;                     (add-hook 'kill-emacs-hook 'bbdb-save)))
+   ))
 
 ;; Adds packages from local recipes above
 (setq my:el-get-packages

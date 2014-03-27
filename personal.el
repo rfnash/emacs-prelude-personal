@@ -44,6 +44,17 @@
 
 (prelude-require-packages '(helm-orgcard helm-descbinds helm-backup helm-helm-commands))
 
+(prelude-require-packages '(ag helm-ag helm-ag-r))
+
+(prelude-require-package 'bbdb)
+(setq bbdb-file "~/.emacs.d/bbdb")
+(require 'bbdb)
+(bbdb-initialize 'gnus 'message)
+(bbdb-insinuate-message)
+(add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
+(add-hook 'kill-emacs-hook 'bbdb-save)
+;;(prelude-require-package 'bbdb-vcard)
+
 (add-to-list 'load-path (expand-file-name "helm-mu" prelude-vendor-dir))
 (require 'helm-mu)
 
@@ -58,19 +69,19 @@
 ;;(mapc 'load (directory-files "~/.emacs.d/conf.d/" t "^[^#!].*\.el$"))
 ;;(server-start)
 ;;(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+;; custom-set-variables was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
 ;; '(debug-on-error t)
 ;; '(helm-adaptative-mode t nil (helm-adaptative))
 ;; '(helm-adaptive-history-length 1000)
 ;; '(helm-ff-file-name-history-use-recentf t)
 ;;(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+;; custom-set-faces was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
 ;; '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
 ;; '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
 
@@ -117,7 +128,7 @@
 ;; (require 'dired-x)
 
 (setq browse-url-browser-function
-'browse-url-generic browse-url-generic-program "firefox")
+      'browse-url-generic browse-url-generic-program "firefox")
 
 ;; (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
 
@@ -198,10 +209,10 @@
 ;; (setq show-trailing-whitespace t)
 
 (defun set-browser (browser)
-"Prompt for BROWSER to set as default."
-(interactive "sBrowser: ")
-(setq browse-url-browser-function
-'browse-url-generic browse-url-generic-program browser))
+  "Prompt for BROWSER to set as default."
+  (interactive "sBrowser: ")
+  (setq browse-url-browser-function
+        'browse-url-generic browse-url-generic-program browser))
 
 ;; (defun htop ()
 ;;   "Start htop in its own buffer."
@@ -212,6 +223,8 @@
 ;;   "Start alsamixer in its own buffer"
 ;;   (interactive)
 ;;   (ansi-term "alsamixer" "mixer"))
+
+;;(require 'org-page)
 
 (provide 'personal)
 ;;; personal.el ends here

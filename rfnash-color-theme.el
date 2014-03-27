@@ -17,21 +17,12 @@
 
 ;;; Code:
 
-(require 'prelude-packages)
-(prelude-require-packages '(color-theme-solarized color-theme-buffer-local))
+(prelude-require-packages '(solarized-theme load-theme-buffer-local color-theme color-theme-buffer-local))
 
-;;; To use new deftheme instead of color-theme
-
-;; (prelude-require-packages '(solarized-theme load-theme-buffer-local))
-;;(load-theme 'solarized-light t)
-
-(require 'color-theme)
-(require 'color-theme-buffer-local)
-(disable-theme 'zenburn)                ; remove some remnants on zenburn
-
+(setq light t)           ; setting to t works and remove undefined var error
 (if (display-graphic-p)
-   (color-theme-solarized-light)
- (color-theme-solarized-dark))
+    (load-theme 'solarized-light t)
+  (load-theme 'solarized-dark t))
 
 (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
 
@@ -45,10 +36,14 @@
                          ;;                          (current-buffer)
                          ;;                          t)))
 
-                         (color-theme-buffer-local
-                          (quote color-theme-solarized-dark)
-                          (current-buffer))))
-            term-scroll-to-bottom-on-output t)
+                         ;; (color-theme-buffer-local
+                         ;;  (quote color-theme-solarized-dark)
+                         ;;  (current-buffer))
+                         (setq-local dark t)
+                         (load-theme-buffer-local
+                          'solarized-dark
+                          (current-buffer) t nil)))
+      term-scroll-to-bottom-on-output t)
 
 ;; TODO: is probably a bad idea to set this here. Find a better way.
 (custom-set-faces

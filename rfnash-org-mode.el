@@ -13,9 +13,8 @@
 
 ;;; Code:
 
-;; TODO: replace with explicitly installing with el-get
-;; prelude uses old built-in version by default
-;; and ELPA version won't load correctly
+;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
+(prelude-require-packages '(org-dotemacs org-pomodoro org-trello))
 (require 'rfnash-el-get)
 (require 'org)
 (org-reload)
@@ -24,7 +23,12 @@
 (require 'org-habit)
 (require 'org-capture)
 (require 'remember)
-(require 'org-contacts)
+;; (require 'org-contacts)
+
+;; org-toodledo is installed via git
+(add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
+(require 'org-toodledo)
+
 (setq org-modules                     ; http://orgmode.org/worg/org-contrib/
       (quote (
               ;; http://julien.danjou.info/projects/emacs-packages#org-contacts
@@ -45,12 +49,12 @@
               org-choose             ;
               ;; http://orgmode.org/worg/org-contrib/org-collector.html
               org-collector          ;
-              org-contacts           ;
+              ;; org-contacts           ;
               org-ctags              ;
               org-gnus               ;
               org-habit              ;
               org-id                 ;
-              org-json               ;
+              ;; org-json               ;
               org-learn              ;
               org-mouse              ;
               ;; http://orgmode.org/worg/org-contrib/org-protocol.html
@@ -148,7 +152,8 @@
  org-agenda-files (list     ; Can be set using C-c [ and C-c ] in org-mode
                    (concat org-directory "/notes.org")
                    (concat org-directory "/busybox.org")
-                   (concat org-directory "/plover.org"))
+                   (concat org-directory "/plover.org")
+                   (concat org-directory "/Toodledo.org"))
  org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"
                                ((agenda "")
                                 (todo "NEXT")))

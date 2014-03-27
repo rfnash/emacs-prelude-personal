@@ -77,20 +77,13 @@
  org-habit-graph-column 65
  org-capture-templates '(
                          ("b" "Bookmarks to file"
-                          entry ( file+olp "~/Documents/OrgMode/notes.org"
-                                           "Filing")
-                          "* FILE %a %?\n%U")
+                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          "* FILE %?\n%U")
                          ("t" "Task"
-                          entry ( file+olp "~/Documents/OrgMode/notes.org"
-                                           "Agenda"
-                                           "Tasks"
-                                           "Todo")
+                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
                           "* TODO %?\n%U")
                          ("n" "Task - Next"
-                          entry ( file+olp "~/Documents/OrgMode/notes.org"
-                                           "Agenda"
-                                           "Tasks"
-                                           "Next")
+                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
                           "* NEXT %?\n%U")
                          ("d" "Design Examples"
                           entry (file+olp "~/Documents/OrgMode/notes.org"
@@ -102,7 +95,7 @@
                                           "Publishing/Typesetting"
                                           "Web"
                                           "Examples")
-                          "* %a %? :GoodDesign:\n%U")
+                          "* %? :GoodDesign:\n%U")
                          ("k" "Book to read"
                           entry ( file+olp "~/Documents/OrgMode/notes.org"
                                            "Agenda"
@@ -117,22 +110,27 @@
                                            "Consumption"
                                            "Videos")
                           "* TODO %?\n%U")
-                         ("s" "Scratch"
+                         ("S" "Sent to Kindle"
                           entry ( file+olp "~/Documents/OrgMode/notes.org"
-                                           "Scratch")
-                          "* %a %?\n%U")
+                                           "Agenda"
+                                           "Projects"
+                                           "Consumption"
+                                           "Kindle")
+                          "* TODO %?\n%U")
+                         ("s" "Scratch"
+                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          "* %? :SCRATCH:\n%U")
                          ("h" "Habbit"
                           entry ( file+olp "~/Documents/OrgMode/notes.org"
                                            "Agenda"
-                                           "Habits"
-                                           "Other")
+                                           "Habits")
                           "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
                          ("j" "Datetree entry"
                           entry ( file+datetree "~/Documents/OrgMode/notes.org")
-                          "* %a %?\n%U")
+                          "* %?\n%U")
                          ("c" "Clocked entry"
                           entry ( file+datetree "~/Documents/OrgMode/notes.org")
-                          "* %a %?\n%U"
+                          "* %?\n%U"
                           :clock-in t
                           :clock-keep t)
                          ("T" "Scheduled Task"
@@ -141,6 +139,15 @@
                                            "Tasks"
                                            "Scheduled")
                           "* SCHED %?\nSCHEDULED: %t")
+                         ("p" "Person"
+                          entry ( id "fbefa010-a0a4-4915-bc7e-ce1844a5e3a5")
+                          "* %?\n%U")
+                         ("N" "Non-profit"
+                          entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")
+                          "* %?\n%U")
+                         ("o" "Toodledo Task"
+                          entry ( id "bbd1b4a1-3f1a-4e97-ac45-7719edbaf700")
+                          "* NEXT %?\n%U")
                          )
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
  ;; "* %^{Title}  :blog:
@@ -158,7 +165,10 @@
                                ((agenda "")
                                 (todo "NEXT")))
                               ("v" "Videos to watch"
-                               tags "CATEGORY=\"ToWatch\"" nil))
+                               tags "CATEGORY=\"ToWatch\"" nil)
+                              ;; TODO: consider only including those not under the appropriate level 1 heading
+                              ("f" "Bookmarks to file"
+                               ((todo "FILE"))))
  org-agenda-dim-blocked-tasks t
  org-agenda-skip-scheduled-if-deadline-is-shown t
  org-agenda-skip-scheduled-if-done t

@@ -67,6 +67,26 @@ if not, use 'switch-to-buffer-other-window'"
         (switch-to-buffer (get-buffer-create "*scratch*"))
         (lisp-interaction-mode)))))
 
+;; From http://stackoverflow.com/a/1249665
+(defun my-horizontal-recenter ()
+  "Make the point horizontally centered in the window."
+  (interactive)
+  (let ((mid (/ (window-width) 2))
+        (line-len (save-excursion (end-of-line) (current-column)))
+        (cur (current-column)))
+    (if (< mid cur)
+        (set-window-hscroll (selected-window)
+                            (- cur mid)))))
+
+(defun rfnash-scroll-left-edge ()
+  "Like `my-horizontal-recenter', but place point at the left edge of the window."
+  (interactive)
+  (set-window-hscroll (selected-window) (current-column)))
+
+(global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
+(global-set-key (kbd "C-L") 'rfnash-scroll-left-edge)
+
+
 (define-key prelude-mode-map (kbd "C-c i") 'prelude-ido-goto-symbol)
 (define-key prelude-mode-map (kbd "C-c o") 'rfnash-visit-org-notes-buffer)
 (define-key prelude-mode-map (kbd "C-c O") 'prelude-open-with)

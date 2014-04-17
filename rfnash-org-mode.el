@@ -148,6 +148,9 @@
                          ("o" "Toodledo Task"
                           entry ( id "bbd1b4a1-3f1a-4e97-ac45-7719edbaf700")
                           "* NEXT %?\n%U")
+                         ("P" "Personal"
+                          entry ( id "5baf8be5-b956-421a-950c-6e39c8e6d52e")
+                          "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          )
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
  ;; "* %^{Title}  :blog:

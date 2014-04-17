@@ -78,13 +78,13 @@
  org-capture-templates '(
                          ("b" "Bookmarks to file"
                           entry ( file+datetree "~/Documents/OrgMode/notes.org")
-                          "* FILE %?\n%U")
+                          "* FILE %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("t" "Task"
                           entry ( file+datetree "~/Documents/OrgMode/notes.org")
-                          "* TODO %?\n%U")
+                          "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("n" "Task - Next"
                           entry ( file+datetree "~/Documents/OrgMode/notes.org")
-                          "* NEXT %?\n%U")
+                          "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("d" "Design Examples"
                           entry (file+olp "~/Documents/OrgMode/notes.org"
                                           "Reference"
@@ -95,31 +95,31 @@
                                           "Publishing/Typesetting"
                                           "Web"
                                           "Examples")
-                          "* %? :GoodDesign:\n%U")
+                          "* %? :GoodDesign:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("k" "Book to read"
                           entry ( file+olp "~/Documents/OrgMode/notes.org"
                                            "Agenda"
                                            "Projects"
                                            "Consumption"
                                            "Books")
-                          "* SOMEDAY %?\n%U")
+                          "* SOMEDAY %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("w" "To Watch"
                           entry ( file+olp "~/Documents/OrgMode/notes.org"
                                            "Agenda"
                                            "Projects"
                                            "Consumption"
                                            "Videos")
-                          "* TODO %?\n%U")
+                          "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("S" "Sent to Kindle"
                           entry ( file+olp "~/Documents/OrgMode/notes.org"
                                            "Agenda"
                                            "Projects"
                                            "Consumption"
                                            "Kindle")
-                          "* TODO %?\n%U")
+                          "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("s" "Scratch"
                           entry ( file+datetree "~/Documents/OrgMode/notes.org")
-                          "* %? :SCRATCH:\n%U")
+                          "* %? :SCRATCH:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("h" "Habbit"
                           entry ( file+olp "~/Documents/OrgMode/notes.org"
                                            "Agenda"
@@ -127,7 +127,7 @@
                           "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
                          ("j" "Datetree entry"
                           entry ( file+datetree "~/Documents/OrgMode/notes.org")
-                          "* %?\n%U")
+                          "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("c" "Clocked entry"
                           entry ( file+datetree "~/Documents/OrgMode/notes.org")
                           "* %?\n%U"
@@ -141,13 +141,13 @@
                           "* SCHED %?\nSCHEDULED: %t")
                          ("p" "Person"
                           entry ( id "fbefa010-a0a4-4915-bc7e-ce1844a5e3a5")
-                          "* %?\n%U")
+                          "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("N" "Non-profit"
                           entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")
-                          "* %?\n%U")
+                          "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("o" "Toodledo Task"
                           entry ( id "bbd1b4a1-3f1a-4e97-ac45-7719edbaf700")
-                          "* NEXT %?\n%U")
+                          "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("P" "Personal"
                           entry ( id "5baf8be5-b956-421a-950c-6e39c8e6d52e")
                           "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")

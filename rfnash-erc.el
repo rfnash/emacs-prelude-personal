@@ -41,7 +41,6 @@
 (require 'erc-nicklist)
 (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
                                          (freenode "rfnash/freenode" "***REMOVED***")
-                                         (***REMOVED*** "rfnash/***REMOVED***" "***REMOVED***")
                                          (bitlbee "rfnash/bitlbee" "***REMOVED***")))))
 (setq erc-nicklist-voiced-position 'top)
 

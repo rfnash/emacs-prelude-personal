@@ -32,5 +32,10 @@
 ;; Doesn't play well with gnus
 ;;(setq helm-split-window-in-side-p t)
 
+(require 'ido)
+(setq ido-everywhere t)
+(setq ido-ignore-buffers helm-boring-buffer-regexp-list)
+(ido-mode 1)
+
 (provide 'rfnash-helm.el)
 ;;; rfnash-helm.el ends here

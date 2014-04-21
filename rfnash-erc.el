@@ -26,13 +26,13 @@
 ;; ;; This happens even on different screen in elscreen
 ;; (setq erc-auto-query 'buffer)
 ;; (add-hook 'erc-after-connect
-;; 	  (lambda (server nick)
-;; 	    (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
+;;        (lambda (server nick)
+;;          (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
 
 ;; ;; Doesn't seem to work
 ;; (setq erc-autojoin-channels-alist
 ;;       '(("***REMOVED***.com" "#lesbian" "#sub/Dom" "#sluts_craving_humiliation")))
-;; 	;;("oftc.net" "#bitlbee")))
+;;      ;;("oftc.net" "#bitlbee")))
 
 (add-to-list 'load-path "~/.emacs.d/prelude/personal")
 (require 'rfnash-el-get)

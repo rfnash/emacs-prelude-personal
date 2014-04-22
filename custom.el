@@ -12,18 +12,6 @@
  '(debug-on-error t)
  '(fci-rule-color "#383838")
  '(fill-flowed-display-column nil t)
- '(helm-completing-read-handlers-alist
-   (quote
-    ((describe-function . helm-completing-read-symbols)
-     (describe-variable . helm-completing-read-symbols)
-     (debug-on-entry . helm-completing-read-symbols)
-     (find-function . helm-completing-read-symbols)
-     (find-tag . helm-completing-read-with-cands-in-buffer)
-     (ffap-alternate-file)
-     (tmm-menubar)
-     (find-file . ido)
-     (switch-to-buffer . ido))) nil nil "added (find-file . ido) as I prefer ido's find-file interface to helm's, but like helm better for everything else.")
- '(helm-m-occur-idle-delay 0.5 t nil "Increased from 0.1 to 0.5 (the value used by org-occur-goto) because of the long time it takes to search")
  '(magit-use-overlays nil)
  '(op/personal-disqus-shortname "rfnash")
  '(op/personal-github-link "https://github.com/rfnash")

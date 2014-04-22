@@ -32,10 +32,20 @@
 ;; Doesn't play well with gnus
 ;;(setq helm-split-window-in-side-p t)
 
+
+;; added (find-file . ido) as I prefer ido's find-file interface to helm's,
+;; but prefer helm for everything else.
+(add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
+(add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
+
+;; Increased from 0.1 to 0.5 (the value used by org-occur-goto)
+;; because of the long time it takes to search
+(setq helm-m-occur-idle-delay 0.5)
+
 (require 'ido)
 (setq ido-everywhere t)
 (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
 (ido-mode 1)
 
-(provide 'rfnash-helm.el)
+(provide 'rfnash-helm)
 ;;; rfnash-helm.el ends here

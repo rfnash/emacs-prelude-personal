@@ -12,12 +12,6 @@
  '(debug-on-error t)
  '(fci-rule-color "#383838")
  '(fill-flowed-display-column nil t)
- '(gnus-group-default-list-level 3)
- '(gnus-save-duplicate-list t)
- '(gnus-summary-line-format "%U%R%z[%i]%I%(%[%4L: %-23,23f%]%) %s
-")
- '(gnus-suppress-duplicates t)
- '(gnus-view-pseudos (quote not-confirm))
  '(helm-completing-read-handlers-alist
    (quote
     ((describe-function . helm-completing-read-symbols)

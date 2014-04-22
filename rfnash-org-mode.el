@@ -23,6 +23,8 @@
 (require 'org-habit)
 (require 'org-capture)
 (require 'remember)
+(require 'org-drill)
+(require 'org-expiry)
 ;; (require 'org-contacts)
 
 ;; org-toodledo is installed via git
@@ -218,8 +220,8 @@
                                (search category-keep))
  org-enforce-todo-dependencies t
  org-blank-before-new-entry '((heading) (plain-list-item))
- org-contacts-birthday-format "Birthday: %h (%Y)" t
- org-drill-optimal-factor-matrix nil
+ org-contacts-birthday-format "Birthday: %h (%Y)"
+ ;; org-drill-optimal-factor-matrix nil
  org-expiry-inactive-timestamps t
  ;; I had this set at 5, but setting Emac's timezone off by a few hours works better in practice,
  ;; because using this method, the completion day of habits is still recorded as when I actually did them,

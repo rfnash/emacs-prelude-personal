@@ -28,6 +28,24 @@
 ;; org-toodledo is installed via git
 (add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
 (require 'org-toodledo)
+(setq
+ org-toodledo-password "Qho]cp;t(,52y@o}S+Y?Pq+CMH@6:K9V]$Ht)5XL"
+ org-toodledo-preserve-drawers t
+ org-toodledo-userid "td52fa891b12039")
+
+(setq
+ op/personal-disqus-shortname "rfnash"
+ op/personal-github-link "https://github.com/rfnash"
+ op/repository-directory "~/git/blog.git/"
+ op/repository-html-branch "gh-pages"
+ op/repository-org-branch "source"
+ op/site-domain "http://robertnash.net/"
+ op/site-main-title "Robert Nash's Blog"
+ op/site-sub-title "A sedomly updated blog")
+
+'(org-refile-use-cache t)
+'(org-return-follows-link t)
+'(org-sort-agenda-notime-is-late nil)
 
 (setq org-modules                     ; http://orgmode.org/worg/org-contrib/
       (quote (
@@ -42,31 +60,46 @@
               ;; org-search-goto
               ;; http://www.emacswiki.org/emacs/org-search-goto-ml.el
               ;; org-search-goto-ml
-              org-annotate-file      ;
-              org-bibtex             ; export bibtex fragments
-              org-bookmark           ;
+              org-annotate-file         ;
+              org-bibtex                ; export bibtex fragments
+              org-bbdb                  ;
+              org-bookmark              ;
+              org-checklist             ;
               ;; http://orgmode.org/worg/org-contrib/org-choose.html
-              org-choose             ;
+              org-choose                ;
               ;; http://orgmode.org/worg/org-contrib/org-collector.html
-              org-collector          ;
+              org-collector             ;
               ;; org-contacts           ;
-              org-ctags              ;
-              org-gnus               ;
-              org-habit              ;
-              org-id                 ;
+              org-ctags                 ;
+              org-drill                 ;
+              org-elisp-symbol          ;
+              org-eshell                ;
+              org-eval                  ;
+              org-eval-light            ;
+              org-expiry                ;
+              org-git-link              ;
+              org-gnus                  ;
+              org-habit                 ;
+              org-id                    ;
+              org-info                  ;
+              org-inlinetask            ;
               ;; org-json               ;
-              org-learn              ;
-              org-mouse              ;
+              org-learn                 ;
+              org-man                   ;
+              org-mouse                 ;
               ;; http://orgmode.org/worg/org-contrib/org-protocol.html
-              org-protocol           ;
-              org-registry           ;
+              org-panal                 ;
+              org-protocol              ;
+              org-mtags                 ;
+              org-registry              ;
               ;; http://juanreyero.com/article/emacs/org-teams.html
-              org-secretary          ;
-              org-toc                ;
+              org-secretary             ;
+              org-toc                   ;
               ;; http://orgmode.org/worg/org-contrib/org-track.html
-              org-track              ;
+              org-track                 ;
               ;; http://orgmode.org/worg/org-contrib/org-velocity.html
               ;; org-velocity           ; TODO: error on load
+              org-w3m                   ;
               )))
 (setq
  org-directory "~/Documents/OrgMode"
@@ -175,8 +208,29 @@
  org-agenda-dim-blocked-tasks t
  org-agenda-skip-scheduled-if-deadline-is-shown t
  org-agenda-skip-scheduled-if-done t
- org-agenda-span (quote day)
+ org-agenda-span 'day
+ org-refile-use-cache t
+ org-return-follows-link t
+ org-sort-agenda-notime-is-late nil
+ org-agenda-sorting-strategy '((agenda time-up habit-down priority-down category-keep)
+                               (todo priority-down category-keep)
+                               (tags priority-down category-keep)
+                               (search category-keep))
  org-enforce-todo-dependencies t
+ org-blank-before-new-entry '((heading) (plain-list-item))
+ org-contacts-birthday-format "Birthday: %h (%Y)" t
+ org-drill-optimal-factor-matrix nil
+ org-expiry-inactive-timestamps t
+ ;; I had this set at 5, but setting Emac's timezone off by a few hours works better in practice,
+ ;; because using this method, the completion day of habits is still recorded as when I actually did them,
+ ;; not yesterday at 23:59
+ org-extend-today-until 0
+ org-habit-following-days 1
+ org-habit-graph-column 71
+ org-habit-preceding-days 7
+ org-habit-show-all-today nil
+ org-habit-show-done-always-green t
+ org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
  ;; org-velocity-bucket "~/Documents/OrgMode/notes.org" ; FIXME
  )
 (global-set-key "\C-cl" 'org-store-link)

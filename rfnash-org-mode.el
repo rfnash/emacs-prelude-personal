@@ -214,6 +214,10 @@
  org-refile-use-cache t
  org-return-follows-link t
  org-sort-agenda-notime-is-late nil
+ org-agenda-time-grid '((daily today require-timed)
+                        #("----------------" 0 16
+                          (org-heading t))
+                        (800 1000 1200 1400 1600 1800 2000 2200 2259 2300))
  org-agenda-sorting-strategy '((agenda time-up habit-down priority-down category-keep)
                                (todo priority-down category-keep)
                                (tags priority-down category-keep)

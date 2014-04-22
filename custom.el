@@ -12,12 +12,6 @@
  '(fci-rule-color "#383838")
  '(fill-flowed-display-column nil t)
  '(magit-use-overlays nil)
- '(org-agenda-time-grid
-   (quote
-    ((daily today require-timed)
-     #("----------------" 0 16
-       (org-heading t))
-     (800 1000 1200 1400 1600 1800 2000 2200 2259 2300))))
  '(prelude-clean-whitespace-on-save nil)
  '(prelude-whitespace nil)
  '(vc-annotate-background "#2B2B2B")

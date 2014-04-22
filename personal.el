@@ -73,7 +73,6 @@
 ;; If you edit it by hand, you could mess it up, so be careful.
 ;; Your init file should contain only one such instance.
 ;; If there is more than one, they won't work right.
-;; '(debug-on-error t)
 ;; '(helm-adaptative-mode t nil (helm-adaptative))
 ;; '(helm-adaptive-history-length 1000)
 ;; '(helm-ff-file-name-history-use-recentf t)
@@ -227,6 +226,8 @@
 ;;(require 'org-page)
 
 (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
+
+(debug-on-error t)
 
 (provide 'personal)
 ;;; personal.el ends here

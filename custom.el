@@ -24,9 +24,6 @@
      (find-file . ido)
      (switch-to-buffer . ido))) nil nil "added (find-file . ido) as I prefer ido's find-file interface to helm's, but like helm better for everything else.")
  '(helm-m-occur-idle-delay 0.5 t nil "Increased from 0.1 to 0.5 (the value used by org-occur-goto) because of the long time it takes to search")
- '(ido-ignore-buffers
-   (quote
-    ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf")) nil nil "set to same as helm-c-boring-buffer-regexp")
  '(magit-use-overlays nil)
  '(op/personal-disqus-shortname "rfnash")
  '(op/personal-github-link "https://github.com/rfnash")

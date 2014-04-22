@@ -64,7 +64,7 @@
  '(org-return-follows-link t)
  '(org-sort-agenda-notime-is-late nil)
  '(org-toodledo-password "Qho]cp;t(,52y@o}S+Y?Pq+CMH@6:K9V]$Ht)5XL")
- '(org-toodledo-preserve-drawers t t)
+ '(org-toodledo-preserve-drawers t)
  '(org-toodledo-userid "td52fa891b12039")
  '(prelude-clean-whitespace-on-save nil)
  '(prelude-whitespace nil)

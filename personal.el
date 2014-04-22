@@ -226,5 +226,7 @@
 
 ;;(require 'org-page)
 
+(setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
+
 (provide 'personal)
 ;;; personal.el ends here

@@ -227,7 +227,7 @@
 
 (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
 
-(debug-on-error t)
+(setq debug-on-error t)
 
 (provide 'personal)
 ;;; personal.el ends here

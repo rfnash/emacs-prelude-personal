@@ -64,9 +64,8 @@
 
 ;; This is needed to allow msmtp to do its magic:
 (setq message-sendmail-f-is-evil 't)
-;; (setq sentmail-program "/usr/bin/msmtp")
-;; (setq message-sendmail-extra-arguments '("-t" "-a" "nash"))
-
+(setq sendmail-program "msmtp")
+(setq message-sendmail-extra-arguments '("--read-envelope-from" "-t"))
 
 ;;(setq message-send-mail-function 'smtpmail-send-it
 ;;      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))

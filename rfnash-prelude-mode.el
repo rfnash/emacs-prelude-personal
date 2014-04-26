@@ -26,7 +26,7 @@ if not, use 'switch-to-buffer-other-window'"
   (interactive)
   (if (get-buffer "*Org Agenda*")
       (rfnash-switch-buffer "*Org Agenda*")
-    (org-agenda)))
+    (org-agenda nil "n")))
 
 (defun rfnash-visit-term-buffer ()
   "Create or visit term buffer."

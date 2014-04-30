@@ -86,9 +86,9 @@
 (defun my-fmt ()
   "Wash Gnus Articles by wrapping words to my liking."
   (interactive)
-  (gnus-article-fill-cited-article (my-fmt-width))
-  (gnus-article-strip-trailing-space)
-  (goto-char (point-min)))
+  (save-excursion
+    (gnus-article-fill-cited-article (my-fmt-width))
+    (gnus-article-strip-trailing-space)))
 (define-key gnus-article-mode-map (kbd "\\") 'my-fmt)
 
 (defun rfnash-gnus-article-mode-hook ()

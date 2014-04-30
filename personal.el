@@ -229,5 +229,8 @@
 
 (setq debug-on-error t)
 
+(require 'server)
+(if (not (server-running-p server-name)) (server-start))
+
 (provide 'personal)
 ;;; personal.el ends here

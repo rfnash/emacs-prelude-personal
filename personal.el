@@ -64,6 +64,8 @@
 ;; Homepage: https://github.com/swannodette/ob-sml
 (prelude-require-package 'ob-sml)
 
+(prelude-require-package 'paradox)
+
 ;;; Old init.el for historical reference
 
 ;;(mapc 'load (directory-files "~/.emacs.d/conf.d/" t "^[^#!].*\.el$"))

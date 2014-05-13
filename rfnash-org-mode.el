@@ -30,10 +30,7 @@
 ;; org-toodledo is installed via git
 (add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
 (require 'org-toodledo)
-(setq
- org-toodledo-password "Qho]cp;t(,52y@o}S+Y?Pq+CMH@6:K9V]$Ht)5XL"
- org-toodledo-preserve-drawers t
- org-toodledo-userid "td52fa891b12039")
+(setq org-toodledo-preserve-drawers t)
 
 (setq
  op/personal-disqus-shortname "rfnash"

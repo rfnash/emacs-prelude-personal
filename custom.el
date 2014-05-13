@@ -12,7 +12,6 @@
  '(fill-flowed-display-column nil)
  '(magit-use-overlays nil)
  '(paradox-automatically-star t)
- '(paradox-github-token "ca379b948b202014e73b3d1b92f5c1fb8806b293")
  '(prelude-clean-whitespace-on-save nil)
  '(prelude-whitespace nil)
  '(vc-annotate-background "#2B2B2B")

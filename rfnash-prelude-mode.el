@@ -86,6 +86,12 @@ if not, use 'switch-to-buffer-other-window'"
 (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
 (global-set-key (kbd "C-L") 'rfnash-scroll-left-edge)
 
+(defun browse-weather ()
+  "Look up the current weather on forecast.io."
+  (interactive)
+  (browse-url "http://forecast.io/"))
+
+(define-key prelude-mode-map (kbd "C-x F") 'browse-weather)
 
 (define-key prelude-mode-map (kbd "C-c i") 'prelude-ido-goto-symbol)
 (define-key prelude-mode-map (kbd "C-c o") 'rfnash-visit-org-notes-buffer)

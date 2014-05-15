@@ -159,10 +159,7 @@
                           :clock-in t
                           :clock-keep t)
                          ("T" "Scheduled Task"
-                          entry ( file+olp "~/Documents/OrgMode/notes.org"
-                                           "Agenda"
-                                           "Tasks"
-                                           "Scheduled")
+                          entry ( id "79c8de14-8039-4d8c-b87e-f8c499860694")
                           "* SCHED %?\nSCHEDULED: %t")
                          ("p" "Person"
                           entry ( id "fbefa010-a0a4-4915-bc7e-ce1844a5e3a5")

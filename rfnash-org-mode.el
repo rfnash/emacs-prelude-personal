@@ -31,6 +31,21 @@
 (add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
 (require 'org-toodledo)
 (setq org-toodledo-preserve-drawers t)
+(setq org-toodledo-folder-support-mode 'heading)
+(setq org-toodledo-preserve-drawers t)
+(setq org-toodledo-sync-new-completed-tasks t)
+(setq org-toodledo-status-to-org-map
+ '(("Active" . "TODO")
+   ("None" . "TODO")
+   ("Next Action" . "NEXT")
+   ("Planning" . "TODO")
+   ("Delegated" . "DELEGATED")
+   ("Waiting" . "WAITING")
+   ("Someday" . "SOMEDAY")
+   ("Hold" . "SOMEDAY")
+   ("Postponed" . "SOMEDAY")
+   ("Canceled" . "CANCELED")
+   ("Reference" . "REFERENCE")))
 
 (setq
  op/personal-disqus-shortname "rfnash"

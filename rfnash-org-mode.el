@@ -127,10 +127,10 @@
                           entry ( file+datetree "~/Documents/OrgMode/notes.org")
                           "* FILE %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("t" "Task"
-                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          entry ( file+datetree "~/Documents/OrgMode/Toodledo.org")
                           "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("n" "Task - Next"
-                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          entry ( file+datetree "~/Documents/OrgMode/Toodledo.org")
                           "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("d" "Design Examples"
                           entry (id  "2d9bf65f-6b2b-4e8a-81f5-b2faf22f8a6f")

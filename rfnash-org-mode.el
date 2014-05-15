@@ -210,6 +210,7 @@
                                (tags priority-down category-keep)
                                (search category-keep))
  org-enforce-todo-dependencies t
+ org-track-ordered-property-with-tag t
  org-blank-before-new-entry '((heading) (plain-list-item))
  org-contacts-birthday-format "Birthday: %h (%Y)"
  ;; org-drill-optimal-factor-matrix nil

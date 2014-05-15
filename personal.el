@@ -129,7 +129,7 @@
 ;; (require 'dired-x)
 
 (setq browse-url-browser-function
-      'browse-url-generic browse-url-generic-program "firefox")
+      'browse-url-generic browse-url-generic-program "vimb")
 
 ;; (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
 

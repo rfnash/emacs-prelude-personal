@@ -52,7 +52,7 @@
 ;;(prelude-require-package 'bbdb-vcard)
 
 (add-to-list 'load-path (expand-file-name "helm-mu" prelude-vendor-dir))
-(require 'helm-mu)
+;;(require 'helm-mu)
 
 (electric-pair-mode +1)
 (electric-indent-mode +1)

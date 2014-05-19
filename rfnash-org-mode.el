@@ -32,7 +32,6 @@
 (require 'org-toodledo)
 (setq org-toodledo-preserve-drawers t)
 (setq org-toodledo-folder-support-mode 'heading)
-(setq org-toodledo-preserve-drawers t)
 (setq org-toodledo-sync-new-completed-tasks t)
 (setq org-toodledo-status-to-org-map
  '(("Active" . "TODO")

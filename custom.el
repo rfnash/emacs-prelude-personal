@@ -11,6 +11,7 @@
  '(fci-rule-color "#383838")
  '(fill-flowed-display-column nil)
  '(magit-use-overlays nil)
+ '(org-toodledo-folder-support-mode nil)
  '(paradox-automatically-star t)
  '(prelude-clean-whitespace-on-save nil)
  '(prelude-whitespace nil)

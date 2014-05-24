@@ -94,7 +94,7 @@
 (defun rfnash-gnus-article-mode-hook ()
   "Increase font size and set wrap-to-fill-column-mode for Gnus Articles."
   (interactive)
-  (text-scale-set 2)
+  (text-scale-set 3)
   (set-fill-column (floor (* (frame-width) 0.72 )))
   (wrap-to-fill-column-mode t))
 

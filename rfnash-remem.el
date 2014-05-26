@@ -12,7 +12,7 @@
 ;; (setq remem-scopes-list '(("mail" 6 5 500)
 ;;                           ("notes" 2 5 500)))
 (setq remem-scopes-list '(("mail" 6 5 500)))
-(load "remem")
+;;(load "remem")
 
 (provide 'rfnash-remem)
 ;;; rfnash-remem.el ends here

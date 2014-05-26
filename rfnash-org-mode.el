@@ -25,6 +25,7 @@
 (require 'remember)
 (require 'org-drill)
 (require 'org-expiry)
+(require 'org-protocol)
 ;; (require 'org-contacts)
 
 ;; org-toodledo is installed via git
@@ -249,7 +250,6 @@
          :auto-sitemap t
          )
         ("org" :components ("org-contents"))))
-(require 'org-protocol)
 ;; org-refiling - http://kangtu.me/~kangtu/pavilion.html
 ;; Targets include this file
 ;; and any file contributing to the agenda - up to 9 levels deep

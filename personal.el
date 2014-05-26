@@ -29,8 +29,8 @@
 (prelude-require-package 'emagician-fix-spell-memory)
 (require 'emagician-fix-spell-memory)
 
-(add-to-list 'load-path "/home/shared/.local/share/emacs/site-lisp")
-(add-to-list 'load-path "/home/shared/.local/share/emacs/site-lisp/edb")
+(add-to-list 'load-path "~/.local/share/emacs/site-lisp")
+(add-to-list 'load-path "~/.local/share/emacs/site-lisp/edb")
 (require 'elip)
 
 (prelude-require-package 'paredit)

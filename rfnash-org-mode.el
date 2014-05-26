@@ -268,19 +268,19 @@
 (require 'org-expiry)
 (org-expiry-insinuate)
 
-(defvar rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
-(defun org-agenda-hide-blocked-tasks ()
-  "Toggle dimming/hiding blocked tasks."
-  (interactive)
-  (if rfnash-hide-blocked-tasks
-      (progn
-        (setq rfnash-hide-blocked-tasks nil)
-        (org-agenda-dim-blocked-tasks)
-        )
-    (progn
-      (setq rfnash-hide-blocked-tasks t)
-      (org-agenda-dim-blocked-tasks t))))
-(define-key org-agenda-mode-map (kbd "#") 'org-agenda-hide-blocked-tasks)
+;; (defvar rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
+;; (defun org-agenda-hide-blocked-tasks ()
+;;   "Toggle dimming/hiding blocked tasks."
+;;   (interactive)
+;;   (if rfnash-hide-blocked-tasks
+;;       (progn
+;;         (setq rfnash-hide-blocked-tasks nil)
+;;         (org-agenda-dim-blocked-tasks)
+;;         )
+;;     (progn
+;;       (setq rfnash-hide-blocked-tasks t)
+;;       (org-agenda-dim-blocked-tasks t))))
+;; (define-key org-agenda-mode-map (kbd "#") 'org-agenda-hide-blocked-tasks)
 
 (provide 'rfnash-org-mode)
 ;;; rfnash-org-mode.el ends here

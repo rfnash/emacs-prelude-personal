@@ -188,7 +188,7 @@
                    (concat org-directory "/Toodledo.org"))
  org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"
                                ((agenda "")
-                                (todo "NEXT")))
+                                (tags-todo "NEXT|TODO=\"NEXT\"" nil)))
                               ("v" "Videos to watch"
                                tags "CATEGORY=\"ToWatch\"" nil)
                               ;; TODO: consider only including those not under the appropriate level 1 heading

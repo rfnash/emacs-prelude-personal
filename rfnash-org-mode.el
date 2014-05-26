@@ -194,7 +194,7 @@
                               ;; TODO: consider only including those not under the appropriate level 1 heading
                               ("f" "Bookmarks to file"
                                ((todo "FILE"))))
- org-agenda-dim-blocked-tasks t
+ org-agenda-dim-blocked-tasks 'invisible
  org-agenda-skip-scheduled-if-deadline-is-shown t
  org-agenda-skip-scheduled-if-done t
  org-agenda-span 'day
@@ -210,7 +210,6 @@
                                (tags priority-down category-keep)
                                (search category-keep))
  org-enforce-todo-dependencies t
- org-track-ordered-property-with-tag t
  org-blank-before-new-entry '((heading) (plain-list-item))
  org-contacts-birthday-format "Birthday: %h (%Y)"
  ;; org-drill-optimal-factor-matrix nil

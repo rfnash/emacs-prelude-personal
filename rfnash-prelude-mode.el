@@ -84,7 +84,7 @@ if not, use 'switch-to-buffer-other-window'"
   (set-window-hscroll (selected-window) (current-column)))
 
 (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
-(global-set-key (kbd "C-L") 'rfnash-scroll-left-edge)
+(global-set-key (kbd "C-S-L") 'rfnash-scroll-left-edge)
 
 (defun browse-weather ()
   "Look up the current weather on forecast.io."

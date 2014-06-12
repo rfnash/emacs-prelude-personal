@@ -223,6 +223,9 @@
 
 ;;(require 'org-page)
 
+(prelude-require-package 'nix-mode)
+(require 'nix-mode)
+
 (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
 
 (setq debug-on-error t)

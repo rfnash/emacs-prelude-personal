@@ -15,18 +15,10 @@
 
 ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
 (prelude-require-packages '(org-dotemacs org-pomodoro org-trello))
+
 (require 'rfnash-el-get)
 (require 'org)
-(org-reload)
-(require 'org-agenda)                 ; add (load-library "org-compat")
-(require 'org-mobile)
-(require 'org-habit)
-(require 'org-capture)
-(require 'remember)
-(require 'org-drill)
-(require 'org-expiry)
-(require 'org-protocol)
-;; (require 'org-contacts)
+(require 'rfnash-org-modules)
 
 ;; org-toodledo is installed via git
 (add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
@@ -61,60 +53,6 @@
 '(org-return-follows-link t)
 '(org-sort-agenda-notime-is-late nil)
 
-(setq org-modules                     ; http://orgmode.org/worg/org-contrib/
-      (quote (
-              ;; http://julien.danjou.info/projects/emacs-packages#org-contacts
-              ;; org-contacts
-              ;; http://orgmode.org/worg/org-contrib/org-depend.html
-              ;; org-depend
-              ;; http://orgmode.org/worg/org-contrib/org-index.html
-              ;; org-index
-              ;; http://www.emacswiki.org/emacs/org-search-goto.el
-              ;; org-occur-goto
-              ;; org-search-goto
-              ;; http://www.emacswiki.org/emacs/org-search-goto-ml.el
-              ;; org-search-goto-ml
-              org-annotate-file         ;
-              org-bibtex                ; export bibtex fragments
-              org-bbdb                  ;
-              org-bookmark              ;
-              org-checklist             ;
-              ;; http://orgmode.org/worg/org-contrib/org-choose.html
-              org-choose                ;
-              ;; http://orgmode.org/worg/org-contrib/org-collector.html
-              org-collector             ;
-              ;; org-contacts           ;
-              org-ctags                 ;
-              org-drill                 ;
-              org-elisp-symbol          ;
-              org-eshell                ;
-              org-eval                  ;
-              org-eval-light            ;
-              org-expiry                ;
-              org-git-link              ;
-              org-gnus                  ;
-              org-habit                 ;
-              org-id                    ;
-              org-info                  ;
-              org-inlinetask            ;
-              ;; org-json               ;
-              org-learn                 ;
-              org-man                   ;
-              org-mouse                 ;
-              ;; http://orgmode.org/worg/org-contrib/org-protocol.html
-              org-panal                 ;
-              org-protocol              ;
-              org-mtags                 ;
-              org-registry              ;
-              ;; http://juanreyero.com/article/emacs/org-teams.html
-              org-secretary             ;
-              org-toc                   ;
-              ;; http://orgmode.org/worg/org-contrib/org-track.html
-              org-track                 ;
-              ;; http://orgmode.org/worg/org-contrib/org-velocity.html
-              ;; org-velocity           ; TODO: error on load
-              org-w3m                   ;
-              )))
 (setq
  org-directory "~/Documents/OrgMode"
  org-default-notes-file (concat org-directory "/notes.org")

@@ -173,6 +173,9 @@
                          ("P" "Personal"
                           entry ( id "5baf8be5-b956-421a-950c-6e39c8e6d52e")
                           "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                         ("a" "Article"
+                          entry (id "1c5d07ad-8ba3-4db9-b3ae-3f4441cf51ca")
+                          "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          )
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
  ;; "* %^{Title}  :blog:

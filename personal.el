@@ -62,6 +62,20 @@
 
 (prelude-require-package 'paradox)
 
+(add-to-list 'load-path (expand-file-name "lib" prelude-personal-dir))
+(require 'rfnash-color-theme)
+(require 'rfnash-el-get)
+(require 'rfnash-erc)
+(require 'rfnash-gnus)
+(require 'rfnash-helm)
+(require 'rfnash-mu4e)
+(require 'rfnash-newsticker)
+(require 'rfnash-org-mode-to-appt)
+(require 'rfnash-org-mode)
+(require 'rfnash-org-modules)
+(require 'rfnash-prelude-mode)
+(require 'rfnash-remem)
+
 ;;; Old init.el for historical reference
 
 ;;(mapc 'load (directory-files "~/.emacs.d/conf.d/" t "^[^#!].*\.el$"))

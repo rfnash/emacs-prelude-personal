@@ -38,7 +38,7 @@
 (require 'rfnash-el-get)
 (require 'znc)
 (require 'erc)
-(require 'erc-nicklist)
+;;(require 'erc-nicklist)
 (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
                                          (freenode "rfnash/freenode" "***REMOVED***")
                                          (bitlbee "rfnash/bitlbee" "***REMOVED***")))))

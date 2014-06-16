@@ -227,13 +227,13 @@
  org-habit-show-all-today nil
  org-habit-show-done-always-green t
  org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
- ;; org-velocity-bucket "~/Documents/OrgMode/notes.org" ; FIXME
+ org-velocity-bucket "~/Documents/OrgMode/notes.org"
  )
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
-;; (global-set-key (kbd "C-c v") 'org-velocity-read) ; FIXME
+(global-set-key (kbd "C-c v") 'org-velocity-read)
 (global-set-key (kbd "C-c F") 'oog)
 (require 'org-publish)
 (setq org-publish-project-alist

@@ -271,6 +271,8 @@
 (require 'org-expiry)
 (org-expiry-insinuate)
 
+;;(require 'rfnash-org-mode-to-appt)
+
 ;; (defvar rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
 ;; (defun org-agenda-hide-blocked-tasks ()
 ;;   "Toggle dimming/hiding blocked tasks."

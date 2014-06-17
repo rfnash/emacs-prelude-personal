@@ -271,6 +271,7 @@
 (require 'org-expiry)
 (org-expiry-insinuate)
 
+(add-to-list 'load-path (expand-file-name "rfnash" prelude-personal-dir))
 ;;(require 'rfnash-org-mode-to-appt)
 
 ;; (defvar rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")

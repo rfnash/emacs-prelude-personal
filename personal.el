@@ -13,6 +13,18 @@
 
 (setq default-directory "~")
 
+(add-to-list 'load-path (expand-file-name "rfnash" prelude-personal-dir))
+(require 'rfnash-color-theme)
+(require 'rfnash-el-get)
+(require 'rfnash-erc)
+(require 'rfnash-gnus)
+(require 'rfnash-helm)
+(require 'rfnash-mu4e)
+(require 'rfnash-newsticker)
+(require 'rfnash-org-mode)
+(require 'rfnash-prelude-mode)
+(require 'rfnash-remem)
+
 (prelude-require-package 'smart-tab)
 (require 'smart-tab)
 (global-smart-tab-mode 1)

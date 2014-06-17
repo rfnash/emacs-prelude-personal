@@ -69,3 +69,4 @@
     ("Zack Shapiro" "http://feeds.feedburner.com/zackshapiro/glGU" nil nil nil)
     ("Send More Paramedics" "http://blog.fogus.me/feed/" nil nil nil))))
 ;;(newsticker-start)
+(provide 'rfnash-newsticker)

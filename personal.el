@@ -11,6 +11,8 @@
 
 ;;; Code:
 
+(load (expand-file-name "prelude-modules.el" (expand-file-name "rfnash" prelude-personal-dir)))
+
 (setq default-directory "~")
 
 (prelude-require-package 'smart-tab)
@@ -225,6 +227,19 @@
 
 (prelude-require-package 'nix-mode)
 (require 'nix-mode)
+
+(add-to-list 'load-path (expand-file-name "rfnash" prelude-personal-dir))
+(require 'rfnash-erc)
+(require 'rfnash-color-theme)
+(require 'rfnash-el-get)
+(require 'rfnash-erc)
+(require 'rfnash-gnus)
+(require 'rfnash-helm)
+(require 'rfnash-mu4e)
+(require 'rfnash-newsticker)
+(require 'rfnash-org-mode)
+(require 'rfnash-prelude-mode)
+(require 'rfnash-remem)
 
 (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
 

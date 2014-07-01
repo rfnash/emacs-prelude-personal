@@ -94,7 +94,7 @@ if not, use 'switch-to-buffer-other-window'"
 (define-key prelude-mode-map (kbd "C-x F") 'browse-weather)
 
 (define-key prelude-mode-map (kbd "C-c i") 'prelude-ido-goto-symbol)
-(define-key prelude-mode-map (kbd "C-c o") 'rfnash-visit-org-notes-buffer)
+(define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list))))
 (define-key prelude-mode-map (kbd "C-c O") 'prelude-open-with)
 (define-key prelude-mode-map (kbd "C-c h") 'rfnash-visit-org-agenda-buffer)
 (define-key prelude-mode-map (kbd "C-x c h") 'helm-prelude)

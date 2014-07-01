@@ -16,6 +16,8 @@
 ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
 (prelude-require-packages '(org-dotemacs org-pomodoro org-trello))
 (require 'rfnash-el-get)
+;;(add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
+(add-to-list 'load-path "~/.emacs.d/org-mode/contrib/lisp")
 (require 'org)
 (require 'rfnash-org-modules)
 

@@ -236,7 +236,6 @@
 (require 'rfnash-helm)
 (require 'rfnash-mu4e)
 (require 'rfnash-newsticker)
-(require 'rfnash-org-mode-to-appt)
 (require 'rfnash-org-mode)
 (require 'rfnash-org-modules)
 (require 'rfnash-prelude-mode)

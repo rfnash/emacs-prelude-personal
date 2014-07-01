@@ -72,6 +72,12 @@
                          ("t" "Task"
                           entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                         ("B" "Bookmarks to file (with link annotation)"
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                          "* FILE %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                         ("T" "Task (with link annotation)"
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                          "* TODO %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("n" "Task - Next"
                           entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
@@ -96,7 +102,7 @@
                          ("j" "Datetree entry"
                           entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                         ("c" "Clocked entry"
+                         ("J" "Clocked entry"
                           entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* %?\n%U"
                           :clock-in t
@@ -119,7 +125,9 @@
                          ("a" "Article"
                           entry (id "1c5d07ad-8ba3-4db9-b3ae-3f4441cf51ca")
                           "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                         )
+                         ("u" "Quote"
+                          entry (id "67e35685-d8e5-488d-8ab2-ac36a7ee3c9a")
+                          "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:"))
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
  ;; "* %^{Title}  :blog:
  ;;  :PROPERTIES:

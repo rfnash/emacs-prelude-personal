@@ -299,6 +299,15 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:27]
    :END:
+** Quicklisp
+   Added manually as per quicklisp instructed after running ~(ql:quickload "quicklisp-slime-helper")~ in sbcl
+   #+begin_src emacs-lisp
+     (load (expand-file-name "~/quicklisp/slime-helper.el"))
+     (setq inferior-lisp-program "sbcl")
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-07-01 Tue 14:35]
+   :END:
 ** Personal.el
 This is the contents that was previously personal.el
 #+begin_src emacs-lisp

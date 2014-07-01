@@ -50,9 +50,13 @@
  op/site-main-title "Robert Nash's Blog"
  op/site-sub-title "A sedomly updated blog")
 
-'(org-refile-use-cache t)
-'(org-return-follows-link t)
-'(org-sort-agenda-notime-is-late nil)
+(setq
+ org-log-into-drawer t
+ org-refile-use-cache t
+ org-return-follows-link t
+ org-sort-agenda-notime-is-late nil
+
+ org-journal-dir "~/Documents/OrgMode/journal/")
 
 (setq
  org-directory "~/Documents/OrgMode"

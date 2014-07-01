@@ -229,6 +229,20 @@
 
 ;;(require 'rfnash-org-mode-to-appt)
 
+;; These don't seem to be working for me
+;; I want something that will only close the frame if it was created by org-protocol
+(defadvice org-capture-finalize
+  (after delete-capture-frame activate)
+  "Advise capture-finalize to close the frame."
+  (if (equal "capture" (frame-parameter nil 'name))
+      (delete-frame)))
+
+(defadvice org-capture-kill
+  (after delete-capture-frame activate)
+  "Advise capture-kill to close the frame."
+  (if (equal "capture" (frame-parameter nil 'name))
+      (delete-frame)))
+
 ;; (defvar rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
 ;; (defun org-agenda-hide-blocked-tasks ()
 ;;   "Toggle dimming/hiding blocked tasks."

@@ -67,13 +67,13 @@
  org-habit-graph-column 65
  org-capture-templates '(
                          ("b" "Bookmarks to file"
-                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* FILE %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("t" "Task"
-                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("n" "Task - Next"
-                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("d" "Design Examples"
                           entry (id  "2d9bf65f-6b2b-4e8a-81f5-b2faf22f8a6f")
@@ -88,16 +88,16 @@
                           entry ( id "baef29b1-40b5-4704-bf28-24b1898c41c9")
                           "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("s" "Scratch"
-                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* %? :SCRATCH:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("h" "Habbit"
                           entry ( id "b8e8b020-2772-4028-b209-1a52d3cb2fe6")
                           "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
                          ("j" "Datetree entry"
-                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("c" "Clocked entry"
-                          entry ( file+datetree "~/Documents/OrgMode/notes.org")
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* %?\n%U"
                           :clock-in t
                           :clock-keep t)
@@ -131,7 +131,12 @@
                    (concat org-directory "/notes.org")
                    (concat org-directory "/busybox.org")
                    (concat org-directory "/plover.org")
-                   (concat org-directory "/Toodledo.org"))
+                   (concat org-directory "/Toodledo.org")
+                   (concat org-directory "/reference.org")
+                   (concat org-directory "/entertainment.org")
+                   (concat org-directory "/filing.org")
+                   (concat org-directory "/agenda.org")
+                   )
  org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"
                                ((agenda "")
                                 (tags-todo "NEXT|TODO=\"NEXT\"" nil)))

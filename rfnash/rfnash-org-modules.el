@@ -35,7 +35,7 @@
 (require 'org-man)
 (require 'org-mobile)
 (require 'org-mouse)
-(require 'org-mtags)
+;;(require 'org-mtags)
 ;; (require org-occur-goto)                ; http://www.emacswiki.org/emacs/org-search-goto.el
 ;;(require 'org-panal)
 (require 'org-protocol)

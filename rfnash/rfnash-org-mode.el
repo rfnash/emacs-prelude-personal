@@ -183,7 +183,7 @@
  org-habit-show-all-today nil
  org-habit-show-done-always-green t
  org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
- org-velocity-bucket "~/Documents/OrgMode/notes.org"
+ org-velocity-bucket "~/Documents/OrgMode/reference.org"
  )
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)

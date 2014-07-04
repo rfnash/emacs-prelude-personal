@@ -127,7 +127,11 @@
                           "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("u" "Quote"
                           entry (id "67e35685-d8e5-488d-8ab2-ac36a7ee3c9a")
-                          "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:"))
+                          "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                         ("m" "Good Song"
+                          table-line (id "b3a14888-312d-432e-8062-4ed352866729")
+                          " | %^{Title} | %^{Artist} |"
+                          :immediate-finish t))
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
  ;; "* %^{Title}  :blog:
  ;;  :PROPERTIES:

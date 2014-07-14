@@ -16,7 +16,7 @@
 (require 'mu4e-utils)
 
 
-(setq gnus-select-method '(nntp "localhost"))
+(setq gnus-select-method '(nntp "news.gwene.org"))
 
 (add-to-list 'gnus-secondary-select-methods
              '(nnimap "rfnash@openmailbox.org"
@@ -31,9 +31,6 @@
                       (nnimap-server-port 143)
                       (nnimap-user "robertnash@openmailbox.org")
                       (nnimap-stream starttls)))
-
-(add-to-list 'gnus-secondary-select-methods
-             '(nntp "news.gwene.org"))
 
 (add-to-list 'gnus-secondary-select-methods
              '(nnimap "musicmaker1118@gmail.com"

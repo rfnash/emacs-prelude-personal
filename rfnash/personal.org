@@ -419,10 +419,10 @@ old ELPA package config for historical interest
       (prelude-require-package 'paradox)
     #+end_src
 *** Default browser
-    Set the default browser to vimb.
+    Set the default browser to firefox.
     #+begin_src emacs-lisp
       (setq browse-url-browser-function
-            'browse-url-generic browse-url-generic-program "vimb")
+            'browse-url-generic browse-url-generic-program "firefox")
     #+end_src
 *** TODO set-browser
     A function to easily interactively change the default browser.

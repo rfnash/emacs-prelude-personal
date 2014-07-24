@@ -589,6 +589,20 @@ old ELPA package config for historical interest
     #+begin_src emacs-lisp :tangle no
       (require 'org-page)
     #+end_src
+*** babel
+    #+begin_src emacs-lisp
+      (prelude-require-package 'babel)
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2014-07-24 Thu 10:09]
+    :END:
+*** ledger-mode
+    #+begin_src emacs-lisp
+      (prelude-require-package 'ledger-mode)
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2014-07-24 Thu 10:09]
+    :END:
 *** nix-mode
     #+begin_src emacs-lisp
       (prelude-require-package 'nix-mode)

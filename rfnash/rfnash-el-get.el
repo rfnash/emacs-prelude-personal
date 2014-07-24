@@ -33,8 +33,6 @@
    (:name pwsafe :after (setq pwsafe-primary-database "~/Dropbox/pwsafe.dat"))
    ;; (:name org-mode)
    (:name erc-extras)
-   (:name ledger-mode)
-   (:name babel)
    (:name erc-nick-notify)
    (:name emacs-http-server)
    ;;(:name bbdb-vcard)

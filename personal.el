@@ -11,6 +11,7 @@
 
 ;;; Code:
 
+(prelude-require-package 'org)
 (require 'org-install)
 (require 'ob-tangle)
 (org-babel-load-file (expand-file-name

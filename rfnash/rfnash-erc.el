@@ -36,7 +36,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/prelude/personal")
 (require 'rfnash-el-get)
-(require 'znc)
+(prelude-require-package 'znc)
 (require 'erc)
 ;;(require 'erc-nicklist)
 (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")

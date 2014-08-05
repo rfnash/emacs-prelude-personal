@@ -372,7 +372,7 @@ old ELPA package config for historical interest
     (require 'emagician-fix-spell-memory)
     #+end_src
 *** elip
-    #+begin_src emacs-lisp
+    #+begin_src emacs-lisp :tangle no
       (add-to-list 'load-path "~/.local/share/emacs/site-lisp")
       (add-to-list 'load-path "~/.local/share/emacs/site-lisp/edb")
       (require 'elip)

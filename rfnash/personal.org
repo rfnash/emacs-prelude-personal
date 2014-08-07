@@ -356,10 +356,8 @@ old ELPA package config for historical interest
       (define-key read-expression-map [(tab)] 'hippie-expand)
     #+end_src
 *** elscreen (no longer used)
-    #+begin_src emacs-lisp :tangle no
-      (elscreen
-       (progn (require 'elscreen)
-                 (elscreen-start)))
+    #+begin_src emacs-lisp
+      (prelude-require-package 'elscreen)
     #+end_src
 *** switch-window
     #+begin_src emacs-lisp

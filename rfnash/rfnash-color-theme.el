@@ -17,13 +17,17 @@
 
 ;;; Code:
 
-(prelude-require-packages '(solarized-theme load-theme-buffer-local color-theme color-theme-buffer-local))
+(prelude-require-packages '(solarized-theme load-theme-buffer-local color-theme color-theme-buffer-local color-theme-solarized))
 
 (setq light t)           ; setting to t works and remove undefined var error
-(load-theme 'solarized-light t)
+;;(load-theme 'solarized-light t)
 ;;(if (display-graphic-p)
 ;;    (load-theme 'solarized-light t)
 ;;  (load-theme 'solarized-dark t))
+
+(disable-theme 'zenburn)
+(require 'color-theme)
+(color-theme-solarized-light)
 
 (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
 

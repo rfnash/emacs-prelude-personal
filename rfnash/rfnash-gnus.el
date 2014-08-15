@@ -18,38 +18,28 @@
 
 (setq gnus-select-method '(nntp "news.gwene.org"))
 
-(add-to-list 'gnus-secondary-select-methods
-             '(nnimap "rfnash@openmailbox.org"
-                      (nnimap-address "imap.openmailbox.org")
-                      (nnimap-server-port 143)
-                      (nnimap-user "rfnash@openmailbox.org")
-                      (nnimap-stream starttls)))
-
-(add-to-list 'gnus-secondary-select-methods
-             '(nnimap "robertnash@openmailbox.org"
-                      (nnimap-address "imap.openmailbox.org")
-                      (nnimap-server-port 143)
-                      (nnimap-user "robertnash@openmailbox.org")
-                      (nnimap-stream starttls)))
-
-(add-to-list 'gnus-secondary-select-methods
-             '(nnimap "musicmaker1118@gmail.com"
-                      (nnimap-address "imap.gmail.com")
-                      (nnimap-user "musicmaker1118@gmail.com")))
-
-(add-to-list 'gnus-secondary-select-methods
-             '(nnimap "localhost"
-                      (nnimap-stream ssl)))
-
-(add-to-list 'gnus-secondary-select-methods
-             '(nnimap "outlook"
-                      (nnimap-address "imap-mail.outlook.com")
-                      (nnimap-user "rfnash@outlook.com")))
-
-(add-to-list 'gnus-secondary-select-methods
-             '(nnimap "robertnash.net"
-                      (nnimap-address "imap.gmail.com")
-                      (nnimap-user "robert@nash.co.vu")))
+(setq gnus-secondary-select-methods
+      '((nnimap "rfnash@openmailbox.org"
+                (nnimap-address "imap.openmailbox.org")
+                (nnimap-server-port 143)
+                (nnimap-user "rfnash@openmailbox.org")
+                (nnimap-stream starttls))
+        (nnimap "robertnash@openmailbox.org"
+                (nnimap-address "imap.openmailbox.org")
+                (nnimap-server-port 143)
+                (nnimap-user "robertnash@openmailbox.org")
+                (nnimap-stream starttls))
+        (nnimap "musicmaker1118@gmail.com"
+                (nnimap-address "imap.gmail.com")
+                (nnimap-user "musicmaker1118@gmail.com"))
+        (nnimap "localhost"
+                (nnimap-stream ssl))
+        (nnimap "outlook"
+                (nnimap-address "imap-mail.outlook.com")
+                (nnimap-user "rfnash@outlook.com"))
+        (nnimap "robertnash.net"
+                (nnimap-address "imap.gmail.com")
+                (nnimap-user "robert@nash.co.vu"))))
 
 ;;(setq message-send-mail-function 'smtpmail-send-it
 ;;      smtpmail-auth-credentials '(("localhost" 25 "rfnash" nil))
@@ -97,6 +87,7 @@
 
 (add-hook 'gnus-article-mode-hook 'rfnash-gnus-article-mode-hook)
 ;;(add-hook 'gnus-get-top-new-news-hook (lambda () (mu4e-update-mail-and-index nil)))
+
 (setq nnmail-expiry-wait 'immediate)
 (setq gnus-group-default-list-level 3)
 (setq gnus-save-duplicate-list t)

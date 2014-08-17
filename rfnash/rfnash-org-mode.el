@@ -66,36 +66,21 @@
  org-mobile-inbox-for-pull (concat org-directory "from-mobile.org")
  org-habit-graph-column 65
  org-capture-templates '(
+                         ("a" "Article"
+                          entry (id "1c5d07ad-8ba3-4db9-b3ae-3f4441cf51ca")
+                          "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("b" "Bookmarks to file"
                           entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* FILE %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                         ("t" "Task"
-                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                          "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("B" "Bookmarks to file (with link annotation)"
                           entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                           "* FILE %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                         ("T" "Task (with link annotation)"
-                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                          "* TODO %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                         ("n" "Task - Next"
-                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                          "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                         ("c" "Scheduled Task"
+                          entry ( id "79c8de14-8039-4d8c-b87e-f8c499860694")
+                          "* SCHED %?\nSCHEDULED: %t")
                          ("d" "Design Examples"
                           entry (id  "2d9bf65f-6b2b-4e8a-81f5-b2faf22f8a6f")
                           "* %? :GoodDesign:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                         ("k" "Book to read"
-                          entry ( id "31b8afb4-8d11-4334-a12a-5f4490a77f3a")
-                          "* SOMEDAY %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                         ("w" "To Watch"
-                          entry ( id "e8e91a3d-d21b-403d-b46e-0be14a3d7c2d")
-                          "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                         ("S" "Sent to Kindle"
-                          entry ( id "baef29b1-40b5-4704-bf28-24b1898c41c9")
-                          "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                         ("s" "Scratch"
-                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                          "* %? :SCRATCH:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("h" "Habbit"
                           entry ( id "b8e8b020-2772-4028-b209-1a52d3cb2fe6")
                           "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
@@ -107,31 +92,46 @@
                           "* %?\n%U"
                           :clock-in t
                           :clock-keep t)
-                         ("T" "Scheduled Task"
-                          entry ( id "79c8de14-8039-4d8c-b87e-f8c499860694")
-                          "* SCHED %?\nSCHEDULED: %t")
-                         ("p" "Person"
-                          entry ( id "fbefa010-a0a4-4915-bc7e-ce1844a5e3a5")
-                          "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                         ("k" "Book to read"
+                          entry ( id "31b8afb4-8d11-4334-a12a-5f4490a77f3a")
+                          "* SOMEDAY %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                         ("m" "Good Song"
+                          table-line (id "b3a14888-312d-432e-8062-4ed352866729")
+                          " | %^{Title} | %^{Artist} |"
+                          :immediate-finish t)
+                         ("n" "Task - Next"
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                          "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("N" "Non-profit"
                           entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")
                           "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("o" "Toodledo Task"
                           entry ( id "bbd1b4a1-3f1a-4e97-ac45-7719edbaf700")
                           "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                         ("p" "Person"
+                          entry ( id "fbefa010-a0a4-4915-bc7e-ce1844a5e3a5")
+                          "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("P" "Personal"
                           entry ( id "5baf8be5-b956-421a-950c-6e39c8e6d52e")
                           "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                         ("a" "Article"
-                          entry (id "1c5d07ad-8ba3-4db9-b3ae-3f4441cf51ca")
+                         ("s" "Scratch"
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                          "* %? :SCRATCH:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                         ("S" "Sent to Kindle"
+                          entry ( id "baef29b1-40b5-4704-bf28-24b1898c41c9")
                           "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                         ("t" "Task"
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                          "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                         ("T" "Task (with link annotation)"
+                          entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                          "* TODO %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                          ("u" "Quote"
                           entry (id "67e35685-d8e5-488d-8ab2-ac36a7ee3c9a")
                           "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                         ("m" "Good Song"
-                          table-line (id "b3a14888-312d-432e-8062-4ed352866729")
-                          " | %^{Title} | %^{Artist} |"
-                          :immediate-finish t))
+                         ("w" "To Watch"
+                          entry ( id "e8e91a3d-d21b-403d-b46e-0be14a3d7c2d")
+                          "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:"))
  ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
  ;; "* %^{Title}  :blog:
  ;;  :PROPERTIES:

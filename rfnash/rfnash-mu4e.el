@@ -6,7 +6,7 @@
 
 (add-to-list 'load-path (expand-file-name "mu/mu4e" prelude-vendor-dir))
 (require 'mu4e)
-(setq mu4e-mu-binary "/usr/local/bin/mu"   ;; use local version of mu
+(setq mu4e-mu-binary "~/.local/bin/mu"   ;; use local version of mu
       mu4e-maildir       "~/Maildir"       ;; top-level Maildir
       mu4e-sent-folder   "/Sent"           ;; folder for sent messages
       mu4e-drafts-folder "/Drafts"         ;; unfinished messages

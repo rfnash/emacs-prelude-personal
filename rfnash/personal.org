@@ -620,17 +620,17 @@ old ELPA package config for historical interest
       (require 'rfnash-org-modules)
       (require 'rfnash-prelude-mode)
       (require 'rfnash-remem)
-    #+end_src    
+    #+end_src
 *** Setup the gnus init file
     #+begin_src emacs-lisp
       (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
     #+end_src
-    
+
 *** Debug on error
     #+begin_src emacs-lisp
       (setq debug-on-error t)
     #+end_src
-    
+
 *** Emacs Server
     Start the Emacs server if it isn't already running
     #+begin_src emacs-lisp

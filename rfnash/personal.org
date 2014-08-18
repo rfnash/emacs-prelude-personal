@@ -631,6 +631,14 @@ old ELPA package config for historical interest
       (setq debug-on-error t)
     #+end_src
 
+*** K / Kona
+    #+begin_src emacs-lisp
+      (add-to-list 'load-path "~/.local/opt/kona")
+      (require 'k-mode)
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2014-08-18 Mon 14:05]
+    :END:
 *** Emacs Server
     Start the Emacs server if it isn't already running
     #+begin_src emacs-lisp

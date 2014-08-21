@@ -56,6 +56,10 @@
  org-refile-use-cache t
  org-return-follows-link t
  org-sort-agenda-notime-is-late nil
+ org-agenda-skip-deadline-if-done t
+ org-agenda-skip-scheduled-if-deadline-is-shown nil
+ org-agenda-sorting-strategy (quote ((agenda time-up habit-down priority-down) (todo pr
+                iority-down category-keep) (tags priority-down category-keep) (search category-keep)))
 
  org-journal-dir "~/Documents/OrgMode/journal/")
 

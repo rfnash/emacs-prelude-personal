@@ -1390,18 +1390,13 @@ old ELPA package config for historical interest
      :CREATED:  [2014-09-03 Wed 16:42]
      :END:
 **** Gnus
-    #+begin_src emacs-lisp
-      (add-to-list 'load-path (expand-file-name "rfnash" prelude-personal-dir))
+     #+begin_src emacs-lisp
+      (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
       (require 'rfnash-gnus)
     #+end_src
      :PROPERTIES:
      :CREATED:  [2014-09-03 Wed 16:54]
      :END:
-*** Setup the gnus init file
-    #+begin_src emacs-lisp
-      (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
-    #+end_src
-
 *** Debug on error
     #+begin_src emacs-lisp
       (setq debug-on-error t)

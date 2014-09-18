@@ -386,6 +386,22 @@ old ELPA package config for historical interest
     #+begin_src emacs-lisp
       (prelude-require-packages '(helm-orgcard helm-descbinds helm-backup helm-helm-commands))
       (prelude-require-packages '(ag helm-ag helm-ag-r))
+      (prelude-require-packages '(caskxy graphviz-dot-mode))
+    #+end_src
+*** calfw
+        #+begin_src emacs-lisp
+          (prelude-require-packages '(calfw calfw-gcal))
+
+          (require 'calfw-gcal)
+          (require 'calfw-org)
+
+          (defun my-open-calendar ()
+            (interactive)
+            (cfw:open-calendar-buffer
+             :contents-sources
+             (list
+              (cfw:org-create-source "Green")  ; orgmode source
+              )))
     #+end_src
 *** BBDB
     #+begin_src emacs-lisp
@@ -1369,6 +1385,9 @@ old ELPA package config for historical interest
        
        ;; (global-set-key "\C-cT" 'rfnash-visit-term-buffer)
        ;; (global-set-key "\C-ct" 'rfnash-visit-eshell-buffer)
+
+       (global-set-key "\C-xcs" 'helm-surfraw)
+
      #+end_src
      :PROPERTIES:
      :CREATED:  [2014-09-03 Wed 16:42]

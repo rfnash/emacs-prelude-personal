@@ -636,804 +636,803 @@ old ELPA package config for historical interest
      (prelude-require-package 'nix-mode)
      (require 'nix-mode)
    #+end_src
-** Require my modules
-*** Color Theme
-    My settings to use the solarized light color theme.
-    #+begin_src emacs-lisp
-      ;; Set up the old-fashioned Solarized color theme
-      ;; and set ansi-term to use solarized dark colors
+** Color Theme
+   My settings to use the solarized light color theme.
+   #+begin_src emacs-lisp
+     ;; Set up the old-fashioned Solarized color theme
+     ;; and set ansi-term to use solarized dark colors
 
-      ;; Could be a coincidence, but since adding Solarized,
-      ;; but I can't get 'Emacs --daemon' to work
+     ;; Could be a coincidence, but since adding Solarized,
+     ;; but I can't get 'Emacs --daemon' to work
 
-      (prelude-require-packages '(solarized-theme load-theme-buffer-local color-theme color-theme-buffer-local color-theme-solarized))
+     (prelude-require-packages '(solarized-theme load-theme-buffer-local color-theme color-theme-buffer-local color-theme-solarized))
 
-      (setq light t)           ; setting to t works and remove undefined var error
-      ;;(load-theme 'solarized-light t)
-      ;;(if (display-graphic-p)
-      ;;    (load-theme 'solarized-light t)
-      ;;  (load-theme 'solarized-dark t))
+     (setq light t)           ; setting to t works and remove undefined var error
+     ;;(load-theme 'solarized-light t)
+     ;;(if (display-graphic-p)
+     ;;    (load-theme 'solarized-light t)
+     ;;  (load-theme 'solarized-dark t))
 
-      (disable-theme 'zenburn)
-      (require 'color-theme)
-      (color-theme-solarized-light)
+     (disable-theme 'zenburn)
+     (require 'color-theme)
+     (color-theme-solarized-light)
 
-      (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
+     (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
 
-      ;;; ansi-term solarized settings
+     ;;; ansi-term solarized settings
 
-      (require 'term)
-      (setq term-mode-hook '((lambda nil
-                               ;; To use new deftheme instead of color-theme
-                               ;;                         (load-theme-buffer-local
-                               ;;                         'solarized-dark
-                               ;;                          (current-buffer)
-                               ;;                          t)))
+     (require 'term)
+     (setq term-mode-hook '((lambda nil
+                              ;; To use new deftheme instead of color-theme
+                              ;;                         (load-theme-buffer-local
+                              ;;                         'solarized-dark
+                              ;;                          (current-buffer)
+                              ;;                          t)))
 
-                               ;; (color-theme-buffer-local
-                               ;;  (quote color-theme-solarized-dark)
-                               ;;  (current-buffer))
-                               (setq-local dark t)
-                               (load-theme-buffer-local
-                                'solarized-dark
-                                (current-buffer) t nil)))
-            term-scroll-to-bottom-on-output t)
+                              ;; (color-theme-buffer-local
+                              ;;  (quote color-theme-solarized-dark)
+                              ;;  (current-buffer))
+                              (setq-local dark t)
+                              (load-theme-buffer-local
+                               'solarized-dark
+                               (current-buffer) t nil)))
+           term-scroll-to-bottom-on-output t)
 
-      ;; TODO: is probably a bad idea to set this here. Find a better way.
-      (custom-set-faces
-       ;; custom-set-faces was added by Custom.
-       ;; If you edit it by hand, you could mess it up, so be careful.
-       ;; Your init file should contain only one such instance.
-       ;; If there is more than one, they won't work right.
-       '(term ((t (:inherit default :background "#002b36"))))
-       '(term-bold ((t (:inverse-video t :weight bold))))
-       '(term-color-black ((t (:background "#002b36" :foreground "#073642"))))
-       '(term-color-blue ((t (:background "#002b36" :foreground "#268bd2"))))
-       '(term-color-cyan ((t (:background "#002b36" :foreground "#2aa198"))))
-       '(term-color-green ((t (:background "#002b36" :foreground "#859900"))))
-       '(term-color-magenta ((t (:background "#002b36" :foreground "#d33682"))))
-       '(term-color-red ((t (:background "#002b36" :foreground "#dc322f"))))
-       '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
-       '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))
-    #+end_src
-    :PROPERTIES:
+     ;; TODO: is probably a bad idea to set this here. Find a better way.
+     (custom-set-faces
+      ;; custom-set-faces was added by Custom.
+      ;; If you edit it by hand, you could mess it up, so be careful.
+      ;; Your init file should contain only one such instance.
+      ;; If there is more than one, they won't work right.
+      '(term ((t (:inherit default :background "#002b36"))))
+      '(term-bold ((t (:inverse-video t :weight bold))))
+      '(term-color-black ((t (:background "#002b36" :foreground "#073642"))))
+      '(term-color-blue ((t (:background "#002b36" :foreground "#268bd2"))))
+      '(term-color-cyan ((t (:background "#002b36" :foreground "#2aa198"))))
+      '(term-color-green ((t (:background "#002b36" :foreground "#859900"))))
+      '(term-color-magenta ((t (:background "#002b36" :foreground "#d33682"))))
+      '(term-color-red ((t (:background "#002b36" :foreground "#dc322f"))))
+      '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
+      '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))
+   #+end_src
+   :PROPERTIES:
+  :CREATED:  [2014-09-03 Wed 16:41]
+  :END:
+** El-get
+   Install and configure various packages through el-get.
+   #+begin_src emacs-lisp
+     (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+     (require 'el-get nil t)                       ; to appease flycheck
+     (unless (require 'el-get nil t)
+       (url-retrieve
+        "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
+        (lambda (s)
+          (end-of-buffer)
+          (eval-print-last-sexp))))
+
+     ;; now either el-get is `require'd already, or have been `load'ed by the
+     ;; el-get installer.
+
+     ;; set local recipes
+     (setq
+      el-get-sources
+      '((:name el-get)          ; el-get is self-hosting
+        (:name nxhtml)          ; for html emails and wrap-to-file-column-mode
+        ;; (:name o-blog)       ; version in package.el doesn't work
+        (:name pwsafe :after (setq pwsafe-primary-database "~/Dropbox/pwsafe.dat"))
+        ;; (:name org-mode)
+        (:name erc-extras)
+        (:name erc-nick-notify)
+        (:name emacs-http-server)
+        ;;(:name bbdb-vcard)
+        ;; (:name bbdb (progn
+        ;;                    (setq bbdb-file "~/.emacs.d/bbdb")
+        ;;                    (require 'bbdb)
+        ;;                    (bbdb-initialize 'gnus 'message)
+        ;;                    (bbdb-insinuate-message)
+        ;;                    (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
+        ;;                     (add-hook 'kill-emacs-hook 'bbdb-save)))
+        ))
+
+     ;; Adds packages from local recipes above
+     (setq my:el-get-packages
+           (loop for src in el-get-sources collect (el-get-source-name src)))
+
+     ;; install new packages and init already installed packages
+     (el-get 'sync my:el-get-packages)
+
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:41]
    :END:
-*** El-get
-    Install and configure various packages through el-get.
-    #+begin_src emacs-lisp
-      (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-      (require 'el-get nil t)                       ; to appease flycheck
-      (unless (require 'el-get nil t)
-        (url-retrieve
-         "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
-         (lambda (s)
-           (end-of-buffer)
-           (eval-print-last-sexp))))
-
-      ;; now either el-get is `require'd already, or have been `load'ed by the
-      ;; el-get installer.
-
-      ;; set local recipes
-      (setq
-       el-get-sources
-       '((:name el-get)          ; el-get is self-hosting
-         (:name nxhtml)          ; for html emails and wrap-to-file-column-mode
-         ;; (:name o-blog)       ; version in package.el doesn't work
-         (:name pwsafe :after (setq pwsafe-primary-database "~/Dropbox/pwsafe.dat"))
-         ;; (:name org-mode)
-         (:name erc-extras)
-         (:name erc-nick-notify)
-         (:name emacs-http-server)
-         ;;(:name bbdb-vcard)
-         ;; (:name bbdb (progn
-         ;;                    (setq bbdb-file "~/.emacs.d/bbdb")
-         ;;                    (require 'bbdb)
-         ;;                    (bbdb-initialize 'gnus 'message)
-         ;;                    (bbdb-insinuate-message)
-         ;;                    (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
-         ;;                     (add-hook 'kill-emacs-hook 'bbdb-save)))
-         ))
-
-      ;; Adds packages from local recipes above
-      (setq my:el-get-packages
-            (loop for src in el-get-sources collect (el-get-source-name src)))
-
-      ;; install new packages and init already installed packages
-      (el-get 'sync my:el-get-packages)
-
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-09-03 Wed 16:41]
-    :END:
-*** ERC
-    My personal ERC config.
-    From emacswiki.org/emacs/ERC.
-    #+begin_src emacs-lisp
-      ;; (setq erc-echo-notices-in-minibuffer-flag t)
-
-      ;; (require 'erc-match)
-      ;; (setq erc-keywords '("Niki" "Nikki"))
-
-      ;; ;; Doesn't seem to work
-      ;; (require 'notifications)
-      ;; (defun erc-global-notify (match-type nick message)
-      ;;   "Notify when a message is recieved."
-      ;;   (notifications-notify
-      ;;    :title nick
-      ;;    :body message
-      ;;    :urgency 'low))
-      ;; (add-hook 'erc-text-matched-hook 'erc-global-notify)
-
-
-      ;; ;; Creates new buffer each time someone pm's me
-      ;; ;; opens second window and shows buffer in non-focused window
-      ;; ;; This happens even on different screen in elscreen
-      ;; (setq erc-auto-query 'buffer)
-      ;; (add-hook 'erc-after-connect
-      ;;        (lambda (server nick)
-      ;;          (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
-
-      ;; ;; Doesn't seem to work
-      ;; (setq erc-autojoin-channels-alist
-      ;;       '(("***REMOVED***.com" "#lesbian" "#sub/Dom" "#sluts_craving_humiliation")))
-      ;;      ;;("oftc.net" "#bitlbee")))
-
-      (add-to-list 'load-path "~/.emacs.d/prelude/personal")
-        (prelude-require-package 'znc)
-      (require 'erc)
-      ;;(require 'erc-nicklist)
-      (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
-                                               (freenode "rfnash/freenode" "***REMOVED***")
-                                               (***REMOVED*** "rfnash/***REMOVED***" "***REMOVED***")
-                                               (bitlbee "rfnash/bitlbee" "***REMOVED***")))))
-      (setq erc-nicklist-voiced-position 'top)
-
-      (autoload 'erc-nick-notify-mode "erc-nick-notify"
-        "Minor mode that calls `erc-nick-notify-cmd' when his nick gets
-      mentioned in an erc channel" t)
-      ;; (eval-after-load 'erc '(erc-nick-notify-mode t))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-09-03 Wed 16:41]
-    :END:
-*** mu4e
-    My personal mu4e config.
-    #+begin_src emacs-lisp
-      (add-to-list 'load-path (expand-file-name "mu/mu4e" prelude-vendor-dir))
-      (require 'mu4e)
-      (setq mu4e-mu-binary "~/.local/bin/mu"   ;; use local version of mu
-            mu4e-maildir       "~/Maildir"       ;; top-level Maildir
-            mu4e-sent-folder   "/Sent"           ;; folder for sent messages
-            mu4e-drafts-folder "/Drafts"         ;; unfinished messages
-            mu4e-trash-folder  "/Trash"          ;; trashed messages
-            mu4e-refile-folder "/archive"        ;; saved messages
-            mu4e-get-mail-command "")
-      (add-to-list 'mu4e-view-actions
-                                              ; Open message in external browser with 'x' as the shortcut
-                   '("xview in browser" . mu4e-action-view-in-browser) t)
-      (add-hook 'mu4e-view-mode-hook 'wrap-to-fill-column-mode)
-
-      (provide 'rfnash-mu4e)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-09-03 Wed 16:41]
-    :END:
-*** newsticker
-    #+begin_src emacs-lisp
-      (require 'newsticker)
-      (global-set-key (kbd "C-c r") 'newsticker-treeview)
-      (setq newsticker-html-renderer 'w3m-region)
-      '(newsticker-url-list
-        (quote
-         (("HMK's Spurious Thoughts" "http://www.spuriousthoughts.com/feed/atom/" nil nil nil)
-          ("The Paleo Pair" "http://thepaleopair.tumblr.com/rss" nil nil nil)
-          ("The NewsBlur Blog" "http://blog.newsblur.com/rss" nil nil nil)
-          ("Tom Morris" "http://tommorris.org/posts.xml" nil nil nil)
-          ("Less Wrong" "http://lesswrong.com/.rss" nil nil nil)
-          ("A Life Less Bullshit" "http://feeds.feedburner.com/lifelessbullshit?format=xml" nil nil nil)
-          ("Mostly Harmless" "http://robrhinehart.com/?feed=rss2" nil nil nil)
-          ("Adam Prescott" "https://aprescott.com/feed" nil nil nil)
-          ("Ben Werdmuller" "http://benwerd.com/feed/" nil nil nil)
-          ("Comments on: Home" "http://www.alifeonyourterms.com/home/feed/" nil nil nil)
-          ("The Pidgeonhole Principal" "http://joneisen.tumblr.com/rss" nil nil nil)
-          ("Robert Heaton" "http://feeds.feedburner.com/RobertHeaton?format=xml" nil nil nil)
-          ("Marco.org" "http://www.marco.org/rss" nil nil nil)
-          ("Justin Vincent" "http://justinvincent.com/feed" nil nil nil)
-          ("copyrighteous" "http://mako.cc/copyrighteous/feed" nil nil nil)
-          ("SlashGeek" "http://www.slashgeek.net/feed/" nil nil nil)
-          ("kyleisom.net" "http://www.kyleisom.net/feed.xml" nil nil nil)
-          ("Emacs Redux" "http://emacsredux.com/atom.xml" nil nil nil)
-          ("What the .emacs.d!?" "http://whattheemacsd.com/atom.xml" nil nil nil)
-          ("Bapt" "http://blog.etoilebsd.net/index.atom" nil nil nil)
-          ("Hile Household" "http://hilehousehold.squarespace.com/journal?format=rss" nil nil nil)
-          ("Mostly Maths" "http://feeds.feedburner.com/MostlyMaths" nil nil nil)
-          ("The Friendly Anarchist" "http://feeds.feedburner.com/FriendlyAnarchist" nil nil nil)
-          ("plasticbag.org" "http://plasticbag.org/feed" nil nil nil)
-          ("Mottr.am" "http://mottr.am/atom.xml" nil nil nil)
-          ("Signal vs. Noise" "http://feeds.feedburner.com/37signals/beMH" nil nil nil)
-          ("Andy Mangold on scriptogr.am" "http://feeds.feedburner.com/andymangold?format=xml" nil nil nil)
-          ("The Buffer blog: productivity, life hacks, writing..." "http://feeds.feedburner.com/bufferapp" nil nil nil)
-          ("Dustin Curtis" "http://feeds.feedburner.com/dcurtis" nil nil nil)
-          ("Debu.gs" "http://feeds.feedburner.com/debugs" nil nil nil)
-          ("Inside 206-105" "http://feeds.feedburner.com/ezyang" nil nil nil)
-          ("Infotropism" "http://infotrope.net/feed/" nil nil nil)
-          ("Startups, life, learning and happiness" "http://feeds.feedburner.com/joelis" nil nil nil)
-          ("Tiny Buddha" "http://tinybuddha.com/feed/" nil nil nil)
-          ("Raptitude.com" "http://feeds2.feedburner.com/Raptitudecom" nil nil nil)
-          ("Tynan | Life Outside the Box" "http://feeds.feedburner.com/tynan?format=xml" nil nil nil)
-          ("zenhabits" "http://zenhabits.net/feed/" nil nil nil)
-          ("Lifehacker" "http://feeds.gawker.com/lifehacker/vip" nil nil nil)
-          ("mnmlist" "http://mnmlist.com/feed/" nil nil nil)
-          ("Nathan's Blog" "http://blog.nathantypanski.com/rss" nil nil nil)
-          ("Lost in Technopolis" "http://newartisans.com/feed/" nil nil nil)
-          ("Poly in Pictures" "http://www.polyinpictures.com/feed/" nil nil nil)
-          ("Practically Efficient" "http://feeds.feedburner.com/PracticallyEfficient" nil nil nil)
-          ("programming is terrible" "http://programmingisterrible.com/rss" nil nil nil)
-          ("Rands In Repose" "http://www.randsinrepose.com/index.xml" nil nil nil)
-          ("Blog" "http://paulwhile.squarespace.com/blog/rss.xml" nil nil nil)
-          ("simple links" "http://zenhabits.tumblr.com/rss" nil nil nil)
-          ("The Setup" "http://usesthis.com/feed/" nil nil nil)
-          ("We Use That" "http://weusethat.com/rss.xml" nil nil nil)
-          ("Under the Tamarind Tree" "https://underthetamarindtree.wordpress.com/feed/" nil nil nil)
-          ("Falkvinge on Infopolicy" "http://feeds.falkvinge.net/Falkvinge-on-Infopolicy" nil nil nil)
-          ("Matt Might's blog" "http://matt.might.net/articles/feed.rss" nil nil nil)
-          ("Simplexify" "http://simplexify.net/blog/atom.xml" nil nil nil)
-          ("SMYCK" "http://smyck.net/feed/" nil nil nil)
-          ("The Pastry Box Project" "http://the-pastry-box-project.net/feed/" nil nil nil)
-          ("skud" "http://skud.dreamwidth.org/data/atom" nil nil nil)
-          ("One Thing Well" "http://onethingwell.org/rss" nil nil nil)
-          ("jake levine" "http://jakelevine.me/blog/feed/" nil nil nil)
-          ("Steve Losh" "http://feeds2.feedburner.com/stevelosh" nil nil nil)
-          ("DAILY VIOLET" "http://violetblue.tumblr.com/rss" nil nil nil)
-          ("violet blue ® :: open source sex" "http://www.tinynibbles.com/feed" nil nil nil)
-          ("This View of Life" "http://www.thisview.org/?feed=rss2" nil nil nil)
-          ("Zack Shapiro" "http://zackshapiro.com/rss" nil nil nil)
-          ("Zack Shapiro" "http://feeds.feedburner.com/zackshapiro/glGU" nil nil nil)
-          ("Send More Paramedics" "http://blog.fogus.me/feed/" nil nil nil))))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-09-03 Wed 16:41]
-    :END:
-*** org-mode
-    My personal org-mode config.
-    #+begin_src emacs-lisp
-      ;; TODO: was naively copied into my prelude config, check for redundancy
-
-      ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
-      (prelude-require-packages '(org-pomodoro org-trello))
-      (add-to-list 'load-path "~/.local/share/emacs/site-lisp/org")
-      (add-to-list 'load-path "~/.emacs.d/org-mode/contrib/lisp")
-      (load-file "~/.local/share/emacs/site-lisp/org/org-compat.el")
-      (load-file "~/.local/share/emacs/site-lisp/org/org-list.el")
-      (require 'org)
-      (org-reload)
-
-      ;; org-toodledo is installed via git
-      (add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
-      (require 'org-toodledo)
-      (setq org-toodledo-preserve-drawers t)
-      (setq org-toodledo-folder-support-mode 'heading)
-      (setq org-toodledo-sync-new-completed-tasks t)
-      (setq org-toodledo-status-to-org-map
-            '(("Active" . "TODO")
-              ("None" . "TODO")
-              ("Next Action" . "NEXT")
-              ("Planning" . "TODO")
-              ("Delegated" . "DELEGATED")
-              ("Waiting" . "WAITING")
-              ("Someday" . "SOMEDAY")
-              ("Hold" . "SOMEDAY")
-              ("Postponed" . "SOMEDAY")
-              ("Canceled" . "CANCELED")
-              ("Reference" . "REFERENCE")))
-
-      (setq
-       op/personal-disqus-shortname "rfnash"
-       op/personal-github-link "https://github.com/rfnash"
-       op/repository-directory "~/git/blog.git/"
-       op/repository-html-branch "gh-pages"
-       op/repository-org-branch "source"
-       op/site-domain "http://robertnash.net/"
-       op/site-main-title "Robert Nash's Blog"
-       op/site-sub-title "A sedomly updated blog")
-
-      (setq
-       org-log-into-drawer t
-       org-refile-use-cache t
-       org-return-follows-link t
-       org-sort-agenda-notime-is-late nil
-       org-agenda-skip-deadline-if-done t
-       org-agenda-skip-scheduled-if-deadline-is-shown nil
-       org-agenda-sorting-strategy (quote ((agenda time-up habit-down priority-down) (todo pr
-                                                                                           iority-down category-keep) (tags priority-down category-keep) (search category-keep)))
-
-       org-journal-dir "~/Documents/OrgMode/journal/")
-
-      (setq
-       org-directory "~/Documents/OrgMode"
-       org-default-notes-file (concat org-directory "/notes.org")
-       ;; org-mobile-use-encryption t
-       org-mobile-directory "~/Dropbox/MobileOrg"
-       org-mobile-inbox-for-pull (concat org-directory "from-mobile.org")
-       org-habit-graph-column 65
-       org-capture-templates '(
-                               ("a" "Article"
-                                entry (id "1c5d07ad-8ba3-4db9-b3ae-3f4441cf51ca")
-                                "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("b" "Bookmarks to file"
-                                entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                                "* FILE %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("B" "Bookmarks to file (with link annotation)"
-                                entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                                "* FILE %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("c" "Scheduled Task"
-                                entry ( id "79c8de14-8039-4d8c-b87e-f8c499860694")
-                                "* SCHED %?\nSCHEDULED: %t")
-                               ("d" "Design Examples"
-                                entry (id  "2d9bf65f-6b2b-4e8a-81f5-b2faf22f8a6f")
-                                "* %? :GoodDesign:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("h" "Habbit"
-                                entry ( id "b8e8b020-2772-4028-b209-1a52d3cb2fe6")
-                                "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
-                               ("j" "Datetree entry"
-                                entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                                "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("J" "Clocked entry"
-                                entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                                "* %?\n%U"
-                                :clock-in t
-                                :clock-keep t)
-                               ("k" "Book to read"
-                                entry ( id "31b8afb4-8d11-4334-a12a-5f4490a77f3a")
-                                "* SOMEDAY %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("m" "Good Song"
-                                table-line (id "b3a14888-312d-432e-8062-4ed352866729")
-                                " | %^{Title} | %^{Artist} |"
-                                :immediate-finish t)
-                               ("n" "Task - Next"
-                                entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                                "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("N" "Non-profit"
-                                entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")
-                                "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("o" "Toodledo Task"
-                                entry ( id "bbd1b4a1-3f1a-4e97-ac45-7719edbaf700")
-                                "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("p" "Person"
-                                entry ( id "fbefa010-a0a4-4915-bc7e-ce1844a5e3a5")
-                                "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("P" "Personal"
-                                entry ( id "5baf8be5-b956-421a-950c-6e39c8e6d52e")
-                                "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("s" "Scratch"
-                                entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                                "* %? :SCRATCH:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("S" "Sent to Kindle"
-                                entry ( id "baef29b1-40b5-4704-bf28-24b1898c41c9")
-                                "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("t" "Task"
-                                entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                                "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("T" "Task (with link annotation)"
-                                entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                                "* TODO %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("u" "Quote"
-                                entry (id "67e35685-d8e5-488d-8ab2-ac36a7ee3c9a")
-                                "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("w" "To Watch"
-                                entry ( id "e8e91a3d-d21b-403d-b46e-0be14a3d7c2d")
-                                "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:"))
-       ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
-       ;; "* %^{Title}  :blog:
-       ;;  :PROPERTIES:
-       ;;  :on: %T
-       ;;  :END:
-       ;;  %?
-       ;;  %x"))
-       org-agenda-files (list     ; Can be set using C-c [ and C-c ] in org-mode
-                         (concat org-directory "/notes.org")
-                         (concat org-directory "/busybox.org")
-                         (concat org-directory "/plover.org")
-                         (concat org-directory "/Toodledo.org")
-                         (concat org-directory "/reference.org")
-                         (concat org-directory "/entertainment.org")
-                         (concat org-directory "/filing.org")
-                         (concat org-directory "/agenda.org")
-                         (concat prelude-personal-dir "rfnash/personal.org")
-                         )
-       org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"
-                                     ((agenda "")
-                                      (tags-todo "NEXT|TODO=\"NEXT\"" nil)))
-                                    ("v" "Videos to watch"
-                                     tags "CATEGORY=\"ToWatch\"" nil)
-                                    ;; TODO: consider only including those not under the appropriate level 1 heading
-                                    ("f" "Bookmarks to file"
-                                     ((todo "FILE"))))
-       org-agenda-dim-blocked-tasks 'invisible
-       org-agenda-skip-scheduled-if-deadline-is-shown t
-       org-agenda-skip-scheduled-if-done t
-       org-agenda-span 'day
-       org-refile-use-cache t
-       org-return-follows-link t
-       org-sort-agenda-notime-is-late nil
-       org-agenda-time-grid '((daily today require-timed)
-                              #("----------------" 0 16
-                                (org-heading t))
-                              (800 900 1000 1200 1400 1600 1800 2000 2200 2259 2300))
-       org-agenda-sorting-strategy '((agenda time-up habit-down priority-down category-keep)
-                                     (todo priority-down category-keep)
-                                     (tags priority-down category-keep)
-                                     (search category-keep))
-       org-enforce-todo-dependencies t
-       org-blank-before-new-entry '((heading) (plain-list-item))
-       org-contacts-birthday-format "Birthday: %h (%Y)"
-       ;; org-drill-optimal-factor-matrix nil
-       org-expiry-inactive-timestamps t
-       ;; I had this set at 5, but setting Emac's timezone off by a few hours works better in practice,
-       ;; because using this method, the completion day of habits is still recorded as when I actually did them,
-       ;; not yesterday at 23:59
-       org-extend-today-until 0
-       org-habit-following-days 1
-       org-habit-graph-column 64
-       org-habit-preceding-days 14
-       org-habit-show-all-today nil
-       org-habit-show-done-always-green t
-       org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
-       org-velocity-bucket "~/Documents/OrgMode/reference.org"
-       )
-      (global-set-key "\C-cl" 'org-store-link)
-      (global-set-key "\C-cc" 'org-capture)
-      (global-set-key "\C-ca" 'org-agenda)
-      (global-set-key "\C-cb" 'org-iswitchb)
-      (global-set-key (kbd "C-c v") 'org-velocity-read)
-      (global-set-key (kbd "C-c F") 'oog)
-      (require 'org-publish)
-      (setq org-publish-project-alist
-            '(
-              ("org-contents"
-               :base-directory "~/org/"
-               :base-extension "org"
-               :publishing-directory "~/public_html/org-site/"
-               :recursive t
-               :publishing-function org-publish-org-to-html
-               :table-of-contents nil
-               :section-numbers nil
-               ;;:author nil
-               ;;:creator-info nil
-               :html-postamble nil
-               :auto-sitemap t
-               )
-              ("org" :components ("org-contents"))))
-      ;; org-refiling - http://kangtu.me/~kangtu/pavilion.html
-      ;; Targets include this file
-      ;; and any file contributing to the agenda - up to 9 levels deep
-      ;; See also http://doc.norang.ca/org-mode.html#RefileSetup
-      (setq org-refile-targets (quote ((nil :maxlevel . 9)
-                                       (org-agenda-files :maxlevel . 9))))
-
-      ;; Use full outline paths for refile targets - we file directly with IDO
-      (setq org-refile-use-outline-path t)
-
-      ;; Targets complete directly with IDO / Helm
-      (setq org-outline-path-complete-in-steps nil)
-
-      ;; Allow refile to create parent tasks with confirmation
-      (setq org-refile-allow-creating-parent-nodes (quote confirm))
-
-      (require 'org-expiry)
-      (org-expiry-insinuate)
-
-      ;;;From http://doc.norang.ca/org-mode.html#Reminders
-      ;;; Set up reminders for all upcoming appointments
-
-      ;; (defun bh/org-agenda-to-appt ()
-      ;;   "Erase all reminders and rebuilt reminders for today from the agenda."
-      ;;   (interactive)
-      ;;   (setq appt-time-msg-list nil)
-      ;;   (org-agenda-to-appt))
-
-      ;; ;; Rebuild the reminders everytime the agenda is displayed
-      ;; (add-hook 'org-finalize-agenda-hook 'bh/org-agenda-to-appt 'append)
-
-      ;; ;; This is at the end of my .emacs - so appointments are set up when Emacs starts
-      ;; (bh/org-agenda-to-appt)
-
-      ;; ;; Activate appointments so we get notifications
-      ;; (appt-activate t)
-
-      ;; ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
-      ;; (run-at-time "24:01" nil 'bh/org-agenda-to-appt)
-
-      ;;; End from http://doc.norang.ca/org-mode.html#Reminders
-
-
-      ;; These don't seem to be working for me
-      ;; I want something that will only close the frame if it was created by org-protocol
-      (defadvice org-capture-finalize
-        (after delete-capture-frame activate)
-        "Advise capture-finalize to close the frame."
-        (if (equal "capture" (frame-parameter nil 'name))
-            (delete-frame)))
-
-      (defadvice org-capture-kill
-        (after delete-capture-frame activate)
-        "Advise capture-kill to close the frame."
-        (if (equal "capture" (frame-parameter nil 'name))
-            (delete-frame)))
-
-      ;; (defvar rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
-      ;; (defun org-agenda-hide-blocked-tasks ()
-      ;;   "Toggle dimming/hiding blocked tasks."
-      ;;   (interactive)
-      ;;   (if rfnash-hide-blocked-tasks
-      ;;       (progn
-      ;;         (setq rfnash-hide-blocked-tasks nil)
-      ;;         (org-agenda-dim-blocked-tasks)
-      ;;         )
-      ;;     (progn
-      ;;       (setq rfnash-hide-blocked-tasks t)
-      ;;       (org-agenda-dim-blocked-tasks t))))
-      ;; (define-key org-agenda-mode-map (kbd "#") 'org-agenda-hide-blocked-tasks)
-
-      (provide 'rfnash-org-mode)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-09-03 Wed 16:42]
-    :END:
-*** Helm
-    My personal customization to helm.
-    #+begin_src emacs-lisp
-      (require 'helm)
-      (require 'helm-config)
-
-      ;; Doesn't override ido for find files, but does for C-h f, so perfect
-      (helm-mode 1)
-
-      ;; I prefer helm over smex
-      (global-set-key (kbd "M-x") 'helm-M-x)
-
-      ;; not sure if I really want to enable or not
-      ;; (add-hook 'eshell-mode-hook
-      ;;           #'(lambda ()
-      ;;               (define-key eshell-mode-map
-      ;;                 [remap eshell-pcomplete]
-      ;;                 'helm-esh-pcomplete)))
-
-      (global-set-key (kbd "C-x c o") 'helm-occur)
-
-      ;; Doesn't play well with gnus
-      ;;(setq helm-split-window-in-side-p t)
-
-
-      ;; added (find-file . ido) as I prefer ido's find-file interface to helm's,
-      ;; but prefer helm for everything else.
-      (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
-      (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
-
-      ;; Increased from 0.1 to 0.5 (the value used by org-occur-goto)
-      ;; because of the long time it takes to search
-      (setq helm-m-occur-idle-delay 0.5)
-
-      (require 'ido)
-      (setq ido-everywhere t)
-      (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
-      (ido-mode 1)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-09-03 Wed 16:54]
-    :END:
-*** org-modules
-    Require all of the org-mode modules that I use.
-    #+begin_src emacs-lisp
-      ;; http://orgmode.org/worg/org-contrib/
-      (require 'org-agenda)                      ; add (load-library "org-compat")
-      (require 'org-annotate-file)
-      (require 'org-bbdb)
-      (require 'org-bibtex)                      ; export bibtex fragments(require '
-      (require 'org-bookmark)
-      (require 'org-capture)
-      (require 'org-checklist)
-      (require 'org-choose)                      ; http://orgmode.org/worg/org-contrib/org-choose.html
-      (require 'org-collector)                   ; http://orgmode.org/worg/org-contrib/org-collector.html
-      (require 'org-contacts)
-      (require 'org-ctags)
-      ;; (require org-depend)                    ; http://orgmode.org/worg/org-contrib/org-depend.html
-      (require 'org-drill)
-      (require 'org-elisp-symbol)
-      (require 'org-eshell)
-      (require 'org-eval)
-      (require 'org-eval-light)
-      (require 'org-expiry)
-      (require 'org-git-link)
-      (require 'org-gnus)
-      (require 'org-habit)
-      (require 'org-id)
-      ;; (require org-index)                     ; http://orgmode.org/worg/org-contrib/org-index.html
-      (require 'org-info)
-      (require 'org-inlinetask)
-      ;;(require 'org-json)
-      (require 'org-learn)
-      (require 'org-man)
-      (require 'org-mobile)
-      (require 'org-mouse)
-      ;;(require 'org-mtags)
-      ;; (require org-occur-goto)                ; http://www.emacswiki.org/emacs/org-search-goto.el
-      ;;(require 'org-panal)
-      (require 'org-protocol)
-      (require 'org-registry)
-      ;; (require org-search-goto)               ; http://www.emacswiki.org/emacs/org-search-goto.el
-      ;;(require org-search-goto-ml)               ;  http://www.emacswiki.org/emacs/org-search-goto-ml.el
-      (require 'org-secretary)                   ; http://juanreyero.com/article/emacs/org-teams.html
-      (require 'org-toc)
-      (require 'org-track)                       ; http://orgmode.org/worg/org-contrib/org-track.html
-      (require 'org-velocity)                    ; http://orgmode.org/worg/org-contrib/org-velocity.html
-      (require 'org-w3m)
-      (require 'remember)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-09-03 Wed 16:42]
-    :END:
-*** prelude mode
-    Emacs Prelude: minor mode.
-    #+begin_src emacs-lisp
-      ;; Based on http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/
-
-      (require 'prelude-mode)
-
-      (defun rfnash-switch-buffer (buffer)
-        "Switch to BUFFER using elscreen if possible;
-      if not, use 'switch-to-buffer-other-window'"
-        (if (fboundp 'elscreen-find-and-goto-by-buffer)
-            (elscreen-find-and-goto-by-buffer buffer t)
-          (switch-to-buffer buffer)))
-
-      (defun rfnash-visit-org-notes-buffer ()
-        "Visit my notes.org buffer."
-        (interactive)
-        (if (get-buffer "notes.org")
-            (rfnash-switch-buffer "notes.org")))
-
-      (defun rfnash-visit-org-agenda-buffer ()
-        "Create or visit 'org-mode' agenda buffer."
-        (interactive)
-        (if (get-buffer "*Org Agenda*")
-            (rfnash-switch-buffer "*Org Agenda*")
-          (org-agenda nil "n")))
-
-      (defun rfnash-visit-term-buffer ()
-        "Create or visit term buffer."
-        (interactive)
-        (if (get-buffer "*ansi-term*")
-            (rfnash-switch-buffer "*ansi-term*")
-          (ansi-term "tmux-attach")))
-
-      (defun rfnash-visit-eshell-buffer ()
-        "Create or visit an eshell buffer."
-        (interactive)
-        (if (get-buffer "*eshell*")
-            (rfnash-switch-buffer "*eshell*")
-          (eshell)))
-
-      (defun rfnash-visit-gnus-buffer ()
-        "Create or visit GNUS's group buffer."
-        (interactive)
-        (if (get-buffer "*Group*")
-            (rfnash-switch-buffer "*Group*")
-          (gnus)))
-
-      (defun rfnash-visit-mu4e-buffer ()
-        "Create or visit mu4e's main buffer."
-        (interactive)
-        (if (get-buffer "*mu4e-main*")
-            (rfnash-switch-buffer "*mu4e-main*")
-          (mu4e)))
-
-      (defun rfnash-visit-scratch-buffer ()
-        "Visit *scratch* buffer."
-        (interactive)
-        (if (get-buffer "*scratch*")
-            (rfnash-switch-buffer "*scratch*")
-          (if (fboundp 'elscreen-create)
-              (elscreen-create)
-            (progn
-              (switch-to-buffer (get-buffer-create "*scratch*"))
-              (lisp-interaction-mode)))))
-
-      ;; From http://stackoverflow.com/a/1249665
-      (defun my-horizontal-recenter ()
-        "Make the point horizontally centered in the window."
-        (interactive)
-        (let ((mid (/ (window-width) 2))
-              (line-len (save-excursion (end-of-line) (current-column)))
-              (cur (current-column)))
-          (if (< mid cur)
-              (set-window-hscroll (selected-window)
-                                  (- cur mid)))))
-
-      (defun rfnash-scroll-left-edge ()
-        "Like `my-horizontal-recenter', but place point at the left edge of the window."
-        (interactive)
-        (set-window-hscroll (selected-window) (current-column)))
-
-      (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
-      (global-set-key (kbd "C-S-L") 'rfnash-scroll-left-edge)
-
-      (defun browse-weather ()
-        "Look up the current weather on forecast.io."
-        (interactive)
-        (browse-url "http://forecast.io/"))
-
-      (define-key prelude-mode-map (kbd "C-x F") 'browse-weather)
-
-      (define-key prelude-mode-map (kbd "C-c i") 'prelude-ido-goto-symbol)
-      (define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list))))
-      (define-key prelude-mode-map (kbd "C-c O") 'prelude-open-with)
-      (define-key prelude-mode-map (kbd "C-c h") 'rfnash-visit-org-agenda-buffer)
-      (define-key prelude-mode-map (kbd "C-x c h") 'helm-prelude)
-      (define-key prelude-mode-map (kbd "C-c g") 'rfnash-visit-gnus-buffer)
-      (define-key prelude-mode-map (kbd "C-c m") 'rfnash-visit-mu4e-buffer)
-      (define-key prelude-mode-map (kbd "C-c G") 'prelude-google)
-      (define-key prelude-mode-map (kbd "C-c s") 'rfnash-visit-scratch-buffer)
-      (define-key prelude-mode-map (kbd "C-c S") 'prelude-swap-windows)
-      (define-key prelude-mode-map (kbd "C-c ;") 'comment-region)
-      (define-key prelude-mode-map (kbd "C-x t") 'my-open-calendar)
-
-      (define-key oog-map (kbd "C-n") 'oog-next-line)
-      (define-key oog-map (kbd "C-p") 'oog-previous-line)
-      (define-key oog-map (kbd "C-v") 'oog-previous-page)
-      (define-key oog-map (kbd "M-v") 'oog-next-page)
-
-      (require 'gnus-art)
-      (define-key gnus-article-mode-map (kbd "i") 'gnus-article-show-images)
-      (define-key gnus-summary-mode-map (kbd "i") 'gnus-article-show-images)
-
-      ;; Use C-h instead of backspace, because I disable backspace in xbindkeys
-      ;; Long story, but purpose was to stop its use in aldo
-      ;; TODO: this probable is a horrible idea and should be removed
-      (global-unset-key (kbd "C-h"))
-      (define-key prelude-mode-map (kbd "C-h") 'backward-delete-char-untabify)
-      (define-key helm-map (kbd "C-h") 'backward-delete-char)
-
-      ;; TODO: kind of works, but usually ends up deleting characters
-      ;; in the buffer I'm searching in, and not from the search string,
-      ;; yet pressing backspace works as expected. Figure out why.
-      (define-key isearch-mode-map (kbd "C-h") 'backward-delete-char)
-
-      ;; (global-set-key "\C-cT" 'rfnash-visit-term-buffer)
-      ;; (global-set-key "\C-ct" 'rfnash-visit-eshell-buffer)
-
-      (global-set-key "\C-xcs" 'helm-surfraw)
-
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-09-03 Wed 16:42]
-    :END:
-*** remem
-    My rememberance agent configuration.
-    #+begin_src emacs-lisp
-      (require 'prelude-mode)
-      (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
-      (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
-      (define-key prelude-mode-map (kbd "C-c r") nil)
-      (define-key global-map (kbd "C-c r") nil)
-      ;; (setq remem-scopes-list '(("mail" 6 5 500)
-      ;;                           ("notes" 2 5 500)))
-      (setq remem-scopes-list '(("mail" 6 5 500)))
-      ;;(load "remem")
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-09-03 Wed 16:42]
-    :END:
-*** Gnus
-    #+begin_src emacs-lisp
-     (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
-     (require 'rfnash-gnus)
+** ERC
+   My personal ERC config.
+   From emacswiki.org/emacs/ERC.
+   #+begin_src emacs-lisp
+     ;; (setq erc-echo-notices-in-minibuffer-flag t)
+
+     ;; (require 'erc-match)
+     ;; (setq erc-keywords '("Niki" "Nikki"))
+
+     ;; ;; Doesn't seem to work
+     ;; (require 'notifications)
+     ;; (defun erc-global-notify (match-type nick message)
+     ;;   "Notify when a message is recieved."
+     ;;   (notifications-notify
+     ;;    :title nick
+     ;;    :body message
+     ;;    :urgency 'low))
+     ;; (add-hook 'erc-text-matched-hook 'erc-global-notify)
+
+
+     ;; ;; Creates new buffer each time someone pm's me
+     ;; ;; opens second window and shows buffer in non-focused window
+     ;; ;; This happens even on different screen in elscreen
+     ;; (setq erc-auto-query 'buffer)
+     ;; (add-hook 'erc-after-connect
+     ;;        (lambda (server nick)
+     ;;          (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
+
+     ;; ;; Doesn't seem to work
+     ;; (setq erc-autojoin-channels-alist
+     ;;       '(("***REMOVED***.com" "#lesbian" "#sub/Dom" "#sluts_craving_humiliation")))
+     ;;      ;;("oftc.net" "#bitlbee")))
+
+     (add-to-list 'load-path "~/.emacs.d/prelude/personal")
+       (prelude-require-package 'znc)
+     (require 'erc)
+     ;;(require 'erc-nicklist)
+     (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
+                                              (freenode "rfnash/freenode" "***REMOVED***")
+                                              (***REMOVED*** "rfnash/***REMOVED***" "***REMOVED***")
+                                              (bitlbee "rfnash/bitlbee" "***REMOVED***")))))
+     (setq erc-nicklist-voiced-position 'top)
+
+     (autoload 'erc-nick-notify-mode "erc-nick-notify"
+       "Minor mode that calls `erc-nick-notify-cmd' when his nick gets
+     mentioned in an erc channel" t)
+     ;; (eval-after-load 'erc '(erc-nick-notify-mode t))
    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-09-03 Wed 16:54]
-    :END:
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:41]
+   :END:
+** mu4e
+   My personal mu4e config.
+   #+begin_src emacs-lisp
+     (add-to-list 'load-path (expand-file-name "mu/mu4e" prelude-vendor-dir))
+     (require 'mu4e)
+     (setq mu4e-mu-binary "~/.local/bin/mu"   ;; use local version of mu
+           mu4e-maildir       "~/Maildir"       ;; top-level Maildir
+           mu4e-sent-folder   "/Sent"           ;; folder for sent messages
+           mu4e-drafts-folder "/Drafts"         ;; unfinished messages
+           mu4e-trash-folder  "/Trash"          ;; trashed messages
+           mu4e-refile-folder "/archive"        ;; saved messages
+           mu4e-get-mail-command "")
+     (add-to-list 'mu4e-view-actions
+                                             ; Open message in external browser with 'x' as the shortcut
+                  '("xview in browser" . mu4e-action-view-in-browser) t)
+     (add-hook 'mu4e-view-mode-hook 'wrap-to-fill-column-mode)
+
+     (provide 'rfnash-mu4e)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:41]
+   :END:
+** newsticker
+   #+begin_src emacs-lisp
+     (require 'newsticker)
+     (global-set-key (kbd "C-c r") 'newsticker-treeview)
+     (setq newsticker-html-renderer 'w3m-region)
+     '(newsticker-url-list
+       (quote
+        (("HMK's Spurious Thoughts" "http://www.spuriousthoughts.com/feed/atom/" nil nil nil)
+         ("The Paleo Pair" "http://thepaleopair.tumblr.com/rss" nil nil nil)
+         ("The NewsBlur Blog" "http://blog.newsblur.com/rss" nil nil nil)
+         ("Tom Morris" "http://tommorris.org/posts.xml" nil nil nil)
+         ("Less Wrong" "http://lesswrong.com/.rss" nil nil nil)
+         ("A Life Less Bullshit" "http://feeds.feedburner.com/lifelessbullshit?format=xml" nil nil nil)
+         ("Mostly Harmless" "http://robrhinehart.com/?feed=rss2" nil nil nil)
+         ("Adam Prescott" "https://aprescott.com/feed" nil nil nil)
+         ("Ben Werdmuller" "http://benwerd.com/feed/" nil nil nil)
+         ("Comments on: Home" "http://www.alifeonyourterms.com/home/feed/" nil nil nil)
+         ("The Pidgeonhole Principal" "http://joneisen.tumblr.com/rss" nil nil nil)
+         ("Robert Heaton" "http://feeds.feedburner.com/RobertHeaton?format=xml" nil nil nil)
+         ("Marco.org" "http://www.marco.org/rss" nil nil nil)
+         ("Justin Vincent" "http://justinvincent.com/feed" nil nil nil)
+         ("copyrighteous" "http://mako.cc/copyrighteous/feed" nil nil nil)
+         ("SlashGeek" "http://www.slashgeek.net/feed/" nil nil nil)
+         ("kyleisom.net" "http://www.kyleisom.net/feed.xml" nil nil nil)
+         ("Emacs Redux" "http://emacsredux.com/atom.xml" nil nil nil)
+         ("What the .emacs.d!?" "http://whattheemacsd.com/atom.xml" nil nil nil)
+         ("Bapt" "http://blog.etoilebsd.net/index.atom" nil nil nil)
+         ("Hile Household" "http://hilehousehold.squarespace.com/journal?format=rss" nil nil nil)
+         ("Mostly Maths" "http://feeds.feedburner.com/MostlyMaths" nil nil nil)
+         ("The Friendly Anarchist" "http://feeds.feedburner.com/FriendlyAnarchist" nil nil nil)
+         ("plasticbag.org" "http://plasticbag.org/feed" nil nil nil)
+         ("Mottr.am" "http://mottr.am/atom.xml" nil nil nil)
+         ("Signal vs. Noise" "http://feeds.feedburner.com/37signals/beMH" nil nil nil)
+         ("Andy Mangold on scriptogr.am" "http://feeds.feedburner.com/andymangold?format=xml" nil nil nil)
+         ("The Buffer blog: productivity, life hacks, writing..." "http://feeds.feedburner.com/bufferapp" nil nil nil)
+         ("Dustin Curtis" "http://feeds.feedburner.com/dcurtis" nil nil nil)
+         ("Debu.gs" "http://feeds.feedburner.com/debugs" nil nil nil)
+         ("Inside 206-105" "http://feeds.feedburner.com/ezyang" nil nil nil)
+         ("Infotropism" "http://infotrope.net/feed/" nil nil nil)
+         ("Startups, life, learning and happiness" "http://feeds.feedburner.com/joelis" nil nil nil)
+         ("Tiny Buddha" "http://tinybuddha.com/feed/" nil nil nil)
+         ("Raptitude.com" "http://feeds2.feedburner.com/Raptitudecom" nil nil nil)
+         ("Tynan | Life Outside the Box" "http://feeds.feedburner.com/tynan?format=xml" nil nil nil)
+         ("zenhabits" "http://zenhabits.net/feed/" nil nil nil)
+         ("Lifehacker" "http://feeds.gawker.com/lifehacker/vip" nil nil nil)
+         ("mnmlist" "http://mnmlist.com/feed/" nil nil nil)
+         ("Nathan's Blog" "http://blog.nathantypanski.com/rss" nil nil nil)
+         ("Lost in Technopolis" "http://newartisans.com/feed/" nil nil nil)
+         ("Poly in Pictures" "http://www.polyinpictures.com/feed/" nil nil nil)
+         ("Practically Efficient" "http://feeds.feedburner.com/PracticallyEfficient" nil nil nil)
+         ("programming is terrible" "http://programmingisterrible.com/rss" nil nil nil)
+         ("Rands In Repose" "http://www.randsinrepose.com/index.xml" nil nil nil)
+         ("Blog" "http://paulwhile.squarespace.com/blog/rss.xml" nil nil nil)
+         ("simple links" "http://zenhabits.tumblr.com/rss" nil nil nil)
+         ("The Setup" "http://usesthis.com/feed/" nil nil nil)
+         ("We Use That" "http://weusethat.com/rss.xml" nil nil nil)
+         ("Under the Tamarind Tree" "https://underthetamarindtree.wordpress.com/feed/" nil nil nil)
+         ("Falkvinge on Infopolicy" "http://feeds.falkvinge.net/Falkvinge-on-Infopolicy" nil nil nil)
+         ("Matt Might's blog" "http://matt.might.net/articles/feed.rss" nil nil nil)
+         ("Simplexify" "http://simplexify.net/blog/atom.xml" nil nil nil)
+         ("SMYCK" "http://smyck.net/feed/" nil nil nil)
+         ("The Pastry Box Project" "http://the-pastry-box-project.net/feed/" nil nil nil)
+         ("skud" "http://skud.dreamwidth.org/data/atom" nil nil nil)
+         ("One Thing Well" "http://onethingwell.org/rss" nil nil nil)
+         ("jake levine" "http://jakelevine.me/blog/feed/" nil nil nil)
+         ("Steve Losh" "http://feeds2.feedburner.com/stevelosh" nil nil nil)
+         ("DAILY VIOLET" "http://violetblue.tumblr.com/rss" nil nil nil)
+         ("violet blue ® :: open source sex" "http://www.tinynibbles.com/feed" nil nil nil)
+         ("This View of Life" "http://www.thisview.org/?feed=rss2" nil nil nil)
+         ("Zack Shapiro" "http://zackshapiro.com/rss" nil nil nil)
+         ("Zack Shapiro" "http://feeds.feedburner.com/zackshapiro/glGU" nil nil nil)
+         ("Send More Paramedics" "http://blog.fogus.me/feed/" nil nil nil))))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:41]
+   :END:
+** org-mode
+   My personal org-mode config.
+   #+begin_src emacs-lisp
+     ;; TODO: was naively copied into my prelude config, check for redundancy
+
+     ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
+     (prelude-require-packages '(org-pomodoro org-trello))
+     (add-to-list 'load-path "~/.local/share/emacs/site-lisp/org")
+     (add-to-list 'load-path "~/.emacs.d/org-mode/contrib/lisp")
+     (load-file "~/.local/share/emacs/site-lisp/org/org-compat.el")
+     (load-file "~/.local/share/emacs/site-lisp/org/org-list.el")
+     (require 'org)
+     (org-reload)
+
+     ;; org-toodledo is installed via git
+     (add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
+     (require 'org-toodledo)
+     (setq org-toodledo-preserve-drawers t)
+     (setq org-toodledo-folder-support-mode 'heading)
+     (setq org-toodledo-sync-new-completed-tasks t)
+     (setq org-toodledo-status-to-org-map
+           '(("Active" . "TODO")
+             ("None" . "TODO")
+             ("Next Action" . "NEXT")
+             ("Planning" . "TODO")
+             ("Delegated" . "DELEGATED")
+             ("Waiting" . "WAITING")
+             ("Someday" . "SOMEDAY")
+             ("Hold" . "SOMEDAY")
+             ("Postponed" . "SOMEDAY")
+             ("Canceled" . "CANCELED")
+             ("Reference" . "REFERENCE")))
+
+     (setq
+      op/personal-disqus-shortname "rfnash"
+      op/personal-github-link "https://github.com/rfnash"
+      op/repository-directory "~/git/blog.git/"
+      op/repository-html-branch "gh-pages"
+      op/repository-org-branch "source"
+      op/site-domain "http://robertnash.net/"
+      op/site-main-title "Robert Nash's Blog"
+      op/site-sub-title "A sedomly updated blog")
+
+     (setq
+      org-log-into-drawer t
+      org-refile-use-cache t
+      org-return-follows-link t
+      org-sort-agenda-notime-is-late nil
+      org-agenda-skip-deadline-if-done t
+      org-agenda-skip-scheduled-if-deadline-is-shown nil
+      org-agenda-sorting-strategy (quote ((agenda time-up habit-down priority-down) (todo pr
+                                                                                          iority-down category-keep) (tags priority-down category-keep) (search category-keep)))
+
+      org-journal-dir "~/Documents/OrgMode/journal/")
+
+     (setq
+      org-directory "~/Documents/OrgMode"
+      org-default-notes-file (concat org-directory "/notes.org")
+      ;; org-mobile-use-encryption t
+      org-mobile-directory "~/Dropbox/MobileOrg"
+      org-mobile-inbox-for-pull (concat org-directory "from-mobile.org")
+      org-habit-graph-column 65
+      org-capture-templates '(
+                              ("a" "Article"
+                               entry (id "1c5d07ad-8ba3-4db9-b3ae-3f4441cf51ca")
+                               "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("b" "Bookmarks to file"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* FILE %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("B" "Bookmarks to file (with link annotation)"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* FILE %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("c" "Scheduled Task"
+                               entry ( id "79c8de14-8039-4d8c-b87e-f8c499860694")
+                               "* SCHED %?\nSCHEDULED: %t")
+                              ("d" "Design Examples"
+                               entry (id  "2d9bf65f-6b2b-4e8a-81f5-b2faf22f8a6f")
+                               "* %? :GoodDesign:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("h" "Habbit"
+                               entry ( id "b8e8b020-2772-4028-b209-1a52d3cb2fe6")
+                               "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
+                              ("j" "Datetree entry"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("J" "Clocked entry"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* %?\n%U"
+                               :clock-in t
+                               :clock-keep t)
+                              ("k" "Book to read"
+                               entry ( id "31b8afb4-8d11-4334-a12a-5f4490a77f3a")
+                               "* SOMEDAY %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("m" "Good Song"
+                               table-line (id "b3a14888-312d-432e-8062-4ed352866729")
+                               " | %^{Title} | %^{Artist} |"
+                               :immediate-finish t)
+                              ("n" "Task - Next"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("N" "Non-profit"
+                               entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")
+                               "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("o" "Toodledo Task"
+                               entry ( id "bbd1b4a1-3f1a-4e97-ac45-7719edbaf700")
+                               "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("p" "Person"
+                               entry ( id "fbefa010-a0a4-4915-bc7e-ce1844a5e3a5")
+                               "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("P" "Personal"
+                               entry ( id "5baf8be5-b956-421a-950c-6e39c8e6d52e")
+                               "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("s" "Scratch"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* %? :SCRATCH:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("S" "Sent to Kindle"
+                               entry ( id "baef29b1-40b5-4704-bf28-24b1898c41c9")
+                               "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("t" "Task"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("T" "Task (with link annotation)"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* TODO %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("u" "Quote"
+                               entry (id "67e35685-d8e5-488d-8ab2-ac36a7ee3c9a")
+                               "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("w" "To Watch"
+                               entry ( id "e8e91a3d-d21b-403d-b46e-0be14a3d7c2d")
+                               "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:"))
+      ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
+      ;; "* %^{Title}  :blog:
+      ;;  :PROPERTIES:
+      ;;  :on: %T
+      ;;  :END:
+      ;;  %?
+      ;;  %x"))
+      org-agenda-files (list     ; Can be set using C-c [ and C-c ] in org-mode
+                        (concat org-directory "/notes.org")
+                        (concat org-directory "/busybox.org")
+                        (concat org-directory "/plover.org")
+                        (concat org-directory "/Toodledo.org")
+                        (concat org-directory "/reference.org")
+                        (concat org-directory "/entertainment.org")
+                        (concat org-directory "/filing.org")
+                        (concat org-directory "/agenda.org")
+                        (concat prelude-personal-dir "rfnash/personal.org")
+                        )
+      org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"
+                                    ((agenda "")
+                                     (tags-todo "NEXT|TODO=\"NEXT\"" nil)))
+                                   ("v" "Videos to watch"
+                                    tags "CATEGORY=\"ToWatch\"" nil)
+                                   ;; TODO: consider only including those not under the appropriate level 1 heading
+                                   ("f" "Bookmarks to file"
+                                    ((todo "FILE"))))
+      org-agenda-dim-blocked-tasks 'invisible
+      org-agenda-skip-scheduled-if-deadline-is-shown t
+      org-agenda-skip-scheduled-if-done t
+      org-agenda-span 'day
+      org-refile-use-cache t
+      org-return-follows-link t
+      org-sort-agenda-notime-is-late nil
+      org-agenda-time-grid '((daily today require-timed)
+                             #("----------------" 0 16
+                               (org-heading t))
+                             (800 900 1000 1200 1400 1600 1800 2000 2200 2259 2300))
+      org-agenda-sorting-strategy '((agenda time-up habit-down priority-down category-keep)
+                                    (todo priority-down category-keep)
+                                    (tags priority-down category-keep)
+                                    (search category-keep))
+      org-enforce-todo-dependencies t
+      org-blank-before-new-entry '((heading) (plain-list-item))
+      org-contacts-birthday-format "Birthday: %h (%Y)"
+      ;; org-drill-optimal-factor-matrix nil
+      org-expiry-inactive-timestamps t
+      ;; I had this set at 5, but setting Emac's timezone off by a few hours works better in practice,
+      ;; because using this method, the completion day of habits is still recorded as when I actually did them,
+      ;; not yesterday at 23:59
+      org-extend-today-until 0
+      org-habit-following-days 1
+      org-habit-graph-column 64
+      org-habit-preceding-days 14
+      org-habit-show-all-today nil
+      org-habit-show-done-always-green t
+      org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
+      org-velocity-bucket "~/Documents/OrgMode/reference.org"
+      )
+     (global-set-key "\C-cl" 'org-store-link)
+     (global-set-key "\C-cc" 'org-capture)
+     (global-set-key "\C-ca" 'org-agenda)
+     (global-set-key "\C-cb" 'org-iswitchb)
+     (global-set-key (kbd "C-c v") 'org-velocity-read)
+     (global-set-key (kbd "C-c F") 'oog)
+     (require 'org-publish)
+     (setq org-publish-project-alist
+           '(
+             ("org-contents"
+              :base-directory "~/org/"
+              :base-extension "org"
+              :publishing-directory "~/public_html/org-site/"
+              :recursive t
+              :publishing-function org-publish-org-to-html
+              :table-of-contents nil
+              :section-numbers nil
+              ;;:author nil
+              ;;:creator-info nil
+              :html-postamble nil
+              :auto-sitemap t
+              )
+             ("org" :components ("org-contents"))))
+     ;; org-refiling - http://kangtu.me/~kangtu/pavilion.html
+     ;; Targets include this file
+     ;; and any file contributing to the agenda - up to 9 levels deep
+     ;; See also http://doc.norang.ca/org-mode.html#RefileSetup
+     (setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                      (org-agenda-files :maxlevel . 9))))
+
+     ;; Use full outline paths for refile targets - we file directly with IDO
+     (setq org-refile-use-outline-path t)
+
+     ;; Targets complete directly with IDO / Helm
+     (setq org-outline-path-complete-in-steps nil)
+
+     ;; Allow refile to create parent tasks with confirmation
+     (setq org-refile-allow-creating-parent-nodes (quote confirm))
+
+     (require 'org-expiry)
+     (org-expiry-insinuate)
+
+     ;;;From http://doc.norang.ca/org-mode.html#Reminders
+     ;;; Set up reminders for all upcoming appointments
+
+     ;; (defun bh/org-agenda-to-appt ()
+     ;;   "Erase all reminders and rebuilt reminders for today from the agenda."
+     ;;   (interactive)
+     ;;   (setq appt-time-msg-list nil)
+     ;;   (org-agenda-to-appt))
+
+     ;; ;; Rebuild the reminders everytime the agenda is displayed
+     ;; (add-hook 'org-finalize-agenda-hook 'bh/org-agenda-to-appt 'append)
+
+     ;; ;; This is at the end of my .emacs - so appointments are set up when Emacs starts
+     ;; (bh/org-agenda-to-appt)
+
+     ;; ;; Activate appointments so we get notifications
+     ;; (appt-activate t)
+
+     ;; ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
+     ;; (run-at-time "24:01" nil 'bh/org-agenda-to-appt)
+
+     ;;; End from http://doc.norang.ca/org-mode.html#Reminders
+
+
+     ;; These don't seem to be working for me
+     ;; I want something that will only close the frame if it was created by org-protocol
+     (defadvice org-capture-finalize
+       (after delete-capture-frame activate)
+       "Advise capture-finalize to close the frame."
+       (if (equal "capture" (frame-parameter nil 'name))
+           (delete-frame)))
+
+     (defadvice org-capture-kill
+       (after delete-capture-frame activate)
+       "Advise capture-kill to close the frame."
+       (if (equal "capture" (frame-parameter nil 'name))
+           (delete-frame)))
+
+     ;; (defvar rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
+     ;; (defun org-agenda-hide-blocked-tasks ()
+     ;;   "Toggle dimming/hiding blocked tasks."
+     ;;   (interactive)
+     ;;   (if rfnash-hide-blocked-tasks
+     ;;       (progn
+     ;;         (setq rfnash-hide-blocked-tasks nil)
+     ;;         (org-agenda-dim-blocked-tasks)
+     ;;         )
+     ;;     (progn
+     ;;       (setq rfnash-hide-blocked-tasks t)
+     ;;       (org-agenda-dim-blocked-tasks t))))
+     ;; (define-key org-agenda-mode-map (kbd "#") 'org-agenda-hide-blocked-tasks)
+
+     (provide 'rfnash-org-mode)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:42]
+   :END:
+** Helm
+   My personal customization to helm.
+   #+begin_src emacs-lisp
+     (require 'helm)
+     (require 'helm-config)
+
+     ;; Doesn't override ido for find files, but does for C-h f, so perfect
+     (helm-mode 1)
+
+     ;; I prefer helm over smex
+     (global-set-key (kbd "M-x") 'helm-M-x)
+
+     ;; not sure if I really want to enable or not
+     ;; (add-hook 'eshell-mode-hook
+     ;;           #'(lambda ()
+     ;;               (define-key eshell-mode-map
+     ;;                 [remap eshell-pcomplete]
+     ;;                 'helm-esh-pcomplete)))
+
+     (global-set-key (kbd "C-x c o") 'helm-occur)
+
+     ;; Doesn't play well with gnus
+     ;;(setq helm-split-window-in-side-p t)
+
+
+     ;; added (find-file . ido) as I prefer ido's find-file interface to helm's,
+     ;; but prefer helm for everything else.
+     (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
+     (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
+
+     ;; Increased from 0.1 to 0.5 (the value used by org-occur-goto)
+     ;; because of the long time it takes to search
+     (setq helm-m-occur-idle-delay 0.5)
+
+     (require 'ido)
+     (setq ido-everywhere t)
+     (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
+     (ido-mode 1)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:54]
+   :END:
+** org-modules
+   Require all of the org-mode modules that I use.
+   #+begin_src emacs-lisp
+     ;; http://orgmode.org/worg/org-contrib/
+     (require 'org-agenda)                      ; add (load-library "org-compat")
+     (require 'org-annotate-file)
+     (require 'org-bbdb)
+     (require 'org-bibtex)                      ; export bibtex fragments(require '
+     (require 'org-bookmark)
+     (require 'org-capture)
+     (require 'org-checklist)
+     (require 'org-choose)                      ; http://orgmode.org/worg/org-contrib/org-choose.html
+     (require 'org-collector)                   ; http://orgmode.org/worg/org-contrib/org-collector.html
+     (require 'org-contacts)
+     (require 'org-ctags)
+     ;; (require org-depend)                    ; http://orgmode.org/worg/org-contrib/org-depend.html
+     (require 'org-drill)
+     (require 'org-elisp-symbol)
+     (require 'org-eshell)
+     (require 'org-eval)
+     (require 'org-eval-light)
+     (require 'org-expiry)
+     (require 'org-git-link)
+     (require 'org-gnus)
+     (require 'org-habit)
+     (require 'org-id)
+     ;; (require org-index)                     ; http://orgmode.org/worg/org-contrib/org-index.html
+     (require 'org-info)
+     (require 'org-inlinetask)
+     ;;(require 'org-json)
+     (require 'org-learn)
+     (require 'org-man)
+     (require 'org-mobile)
+     (require 'org-mouse)
+     ;;(require 'org-mtags)
+     ;; (require org-occur-goto)                ; http://www.emacswiki.org/emacs/org-search-goto.el
+     ;;(require 'org-panal)
+     (require 'org-protocol)
+     (require 'org-registry)
+     ;; (require org-search-goto)               ; http://www.emacswiki.org/emacs/org-search-goto.el
+     ;;(require org-search-goto-ml)               ;  http://www.emacswiki.org/emacs/org-search-goto-ml.el
+     (require 'org-secretary)                   ; http://juanreyero.com/article/emacs/org-teams.html
+     (require 'org-toc)
+     (require 'org-track)                       ; http://orgmode.org/worg/org-contrib/org-track.html
+     (require 'org-velocity)                    ; http://orgmode.org/worg/org-contrib/org-velocity.html
+     (require 'org-w3m)
+     (require 'remember)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:42]
+   :END:
+** prelude mode
+   Emacs Prelude: minor mode.
+   #+begin_src emacs-lisp
+     ;; Based on http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/
+
+     (require 'prelude-mode)
+
+     (defun rfnash-switch-buffer (buffer)
+       "Switch to BUFFER using elscreen if possible;
+     if not, use 'switch-to-buffer-other-window'"
+       (if (fboundp 'elscreen-find-and-goto-by-buffer)
+           (elscreen-find-and-goto-by-buffer buffer t)
+         (switch-to-buffer buffer)))
+
+     (defun rfnash-visit-org-notes-buffer ()
+       "Visit my notes.org buffer."
+       (interactive)
+       (if (get-buffer "notes.org")
+           (rfnash-switch-buffer "notes.org")))
+
+     (defun rfnash-visit-org-agenda-buffer ()
+       "Create or visit 'org-mode' agenda buffer."
+       (interactive)
+       (if (get-buffer "*Org Agenda*")
+           (rfnash-switch-buffer "*Org Agenda*")
+         (org-agenda nil "n")))
+
+     (defun rfnash-visit-term-buffer ()
+       "Create or visit term buffer."
+       (interactive)
+       (if (get-buffer "*ansi-term*")
+           (rfnash-switch-buffer "*ansi-term*")
+         (ansi-term "tmux-attach")))
+
+     (defun rfnash-visit-eshell-buffer ()
+       "Create or visit an eshell buffer."
+       (interactive)
+       (if (get-buffer "*eshell*")
+           (rfnash-switch-buffer "*eshell*")
+         (eshell)))
+
+     (defun rfnash-visit-gnus-buffer ()
+       "Create or visit GNUS's group buffer."
+       (interactive)
+       (if (get-buffer "*Group*")
+           (rfnash-switch-buffer "*Group*")
+         (gnus)))
+
+     (defun rfnash-visit-mu4e-buffer ()
+       "Create or visit mu4e's main buffer."
+       (interactive)
+       (if (get-buffer "*mu4e-main*")
+           (rfnash-switch-buffer "*mu4e-main*")
+         (mu4e)))
+
+     (defun rfnash-visit-scratch-buffer ()
+       "Visit *scratch* buffer."
+       (interactive)
+       (if (get-buffer "*scratch*")
+           (rfnash-switch-buffer "*scratch*")
+         (if (fboundp 'elscreen-create)
+             (elscreen-create)
+           (progn
+             (switch-to-buffer (get-buffer-create "*scratch*"))
+             (lisp-interaction-mode)))))
+
+     ;; From http://stackoverflow.com/a/1249665
+     (defun my-horizontal-recenter ()
+       "Make the point horizontally centered in the window."
+       (interactive)
+       (let ((mid (/ (window-width) 2))
+             (line-len (save-excursion (end-of-line) (current-column)))
+             (cur (current-column)))
+         (if (< mid cur)
+             (set-window-hscroll (selected-window)
+                                 (- cur mid)))))
+
+     (defun rfnash-scroll-left-edge ()
+       "Like `my-horizontal-recenter', but place point at the left edge of the window."
+       (interactive)
+       (set-window-hscroll (selected-window) (current-column)))
+
+     (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
+     (global-set-key (kbd "C-S-L") 'rfnash-scroll-left-edge)
+
+     (defun browse-weather ()
+       "Look up the current weather on forecast.io."
+       (interactive)
+       (browse-url "http://forecast.io/"))
+
+     (define-key prelude-mode-map (kbd "C-x F") 'browse-weather)
+
+     (define-key prelude-mode-map (kbd "C-c i") 'prelude-ido-goto-symbol)
+     (define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list))))
+     (define-key prelude-mode-map (kbd "C-c O") 'prelude-open-with)
+     (define-key prelude-mode-map (kbd "C-c h") 'rfnash-visit-org-agenda-buffer)
+     (define-key prelude-mode-map (kbd "C-x c h") 'helm-prelude)
+     (define-key prelude-mode-map (kbd "C-c g") 'rfnash-visit-gnus-buffer)
+     (define-key prelude-mode-map (kbd "C-c m") 'rfnash-visit-mu4e-buffer)
+     (define-key prelude-mode-map (kbd "C-c G") 'prelude-google)
+     (define-key prelude-mode-map (kbd "C-c s") 'rfnash-visit-scratch-buffer)
+     (define-key prelude-mode-map (kbd "C-c S") 'prelude-swap-windows)
+     (define-key prelude-mode-map (kbd "C-c ;") 'comment-region)
+     (define-key prelude-mode-map (kbd "C-x t") 'my-open-calendar)
+
+     (define-key oog-map (kbd "C-n") 'oog-next-line)
+     (define-key oog-map (kbd "C-p") 'oog-previous-line)
+     (define-key oog-map (kbd "C-v") 'oog-previous-page)
+     (define-key oog-map (kbd "M-v") 'oog-next-page)
+
+     (require 'gnus-art)
+     (define-key gnus-article-mode-map (kbd "i") 'gnus-article-show-images)
+     (define-key gnus-summary-mode-map (kbd "i") 'gnus-article-show-images)
+
+     ;; Use C-h instead of backspace, because I disable backspace in xbindkeys
+     ;; Long story, but purpose was to stop its use in aldo
+     ;; TODO: this probable is a horrible idea and should be removed
+     (global-unset-key (kbd "C-h"))
+     (define-key prelude-mode-map (kbd "C-h") 'backward-delete-char-untabify)
+     (define-key helm-map (kbd "C-h") 'backward-delete-char)
+
+     ;; TODO: kind of works, but usually ends up deleting characters
+     ;; in the buffer I'm searching in, and not from the search string,
+     ;; yet pressing backspace works as expected. Figure out why.
+     (define-key isearch-mode-map (kbd "C-h") 'backward-delete-char)
+
+     ;; (global-set-key "\C-cT" 'rfnash-visit-term-buffer)
+     ;; (global-set-key "\C-ct" 'rfnash-visit-eshell-buffer)
+
+     (global-set-key "\C-xcs" 'helm-surfraw)
+
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:42]
+   :END:
+** remem
+   My rememberance agent configuration.
+   #+begin_src emacs-lisp
+     (require 'prelude-mode)
+     (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
+     (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
+     (define-key prelude-mode-map (kbd "C-c r") nil)
+     (define-key global-map (kbd "C-c r") nil)
+     ;; (setq remem-scopes-list '(("mail" 6 5 500)
+     ;;                           ("notes" 2 5 500)))
+     (setq remem-scopes-list '(("mail" 6 5 500)))
+     ;;(load "remem")
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:42]
+   :END:
+** Gnus
+   #+begin_src emacs-lisp
+    (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
+    (require 'rfnash-gnus)
+  #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:54]
+   :END:
 ** Debug on error
    #+begin_src emacs-lisp
      (setq debug-on-error t)

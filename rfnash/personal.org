@@ -636,7 +636,7 @@ old ELPA package config for historical interest
                          (concat org-directory "/entertainment.org")
                          (concat org-directory "/filing.org")
                          (concat org-directory "/agenda.org")
-                         (concat prelude-personal-dir "rfnash/personal.org")
+                         (concat prelude-personal-dir "/rfnash/personal.org")
                          )
        org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"
                                      ((agenda "")

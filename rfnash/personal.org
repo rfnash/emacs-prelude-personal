@@ -312,6 +312,34 @@ old ELPA package config for historical interest
     :PROPERTIES:
     :CREATED:  [2014-07-01 Tue 14:30]
     :END:
+** Programming
+   :PROPERTIES:
+   :CREATED:  [2014-10-07 Tue 13:24]
+   :END:
+*** Quicklisp
+    Added manually as per quicklisp instructed after running ~(ql:quickload "quicklisp-slime-helper")~ in sbcl
+    #+begin_src emacs-lisp
+      (load (expand-file-name "~/quicklisp/slime-helper.el"))
+      (setq inferior-lisp-program "sbcl")
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2014-07-01 Tue 14:35]
+    :END:
+*** paredit-mode
+    #+begin_src emacs-lisp
+      (prelude-require-package 'paredit)
+      (add-hook 'lisp-interaction-mode-hook 'paredit-mode)
+      (add-hook 'clojure-mode-hook 'paredit-mode)
+      (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+    #+end_src    
+*** K / Kona
+    #+begin_src emacs-lisp
+      (add-to-list 'load-path "~/.local/opt/kona")
+      (require 'k-mode)
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2014-08-18 Mon 14:05]
+    :END:
 ** [[http://www.emacswiki.org/emacs/download/org-occur-goto.el][org-occur-goto]]
    #+begin_src emacs-lisp
      ;;; org-occur-goto.el -- search open org buffers with an occur interface
@@ -454,15 +482,6 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:27]
    :END:
-** Quicklisp
-   Added manually as per quicklisp instructed after running ~(ql:quickload "quicklisp-slime-helper")~ in sbcl
-   #+begin_src emacs-lisp
-     (load (expand-file-name "~/quicklisp/slime-helper.el"))
-     (setq inferior-lisp-program "sbcl")
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-07-01 Tue 14:35]
-   :END:
 ** Load [[http://batsov.com/prelude/][Emacs Prelude]] modules
    #+begin_src emacs-lisp
      ;;; Uncomment the modules you'd like to use and restart Prelude afterwards
@@ -528,13 +547,6 @@ old ELPA package config for historical interest
      (add-to-list 'load-path "~/.local/share/emacs/site-lisp")
      (add-to-list 'load-path "~/.local/share/emacs/site-lisp/edb")
      (require 'elip)
-   #+end_src
-** paredit-mode
-   #+begin_src emacs-lisp
-     (prelude-require-package 'paredit)
-     (add-hook 'lisp-interaction-mode-hook 'paredit-mode)
-     (add-hook 'clojure-mode-hook 'paredit-mode)
-     (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
    #+end_src
 ** Require various packages
    #+begin_src emacs-lisp
@@ -1424,14 +1436,6 @@ old ELPA package config for historical interest
      (setq debug-on-error t)
    #+end_src
 
-** K / Kona
-   #+begin_src emacs-lisp
-     (add-to-list 'load-path "~/.local/opt/kona")
-     (require 'k-mode)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-08-18 Mon 14:05]
-   :END:
 ** Emacs Server
    Start the Emacs server if it isn't already running
    #+begin_src emacs-lisp

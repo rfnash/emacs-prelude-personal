@@ -506,6 +506,7 @@ old ELPA package config for historical interest
 
       ;; org-toodledo is installed via git
       (add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
+      (prelude-require-package 'http-post-simple)
       (require 'org-toodledo)
       (setq org-toodledo-preserve-drawers t)
       (setq org-toodledo-folder-support-mode 'heading)

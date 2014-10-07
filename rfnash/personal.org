@@ -502,7 +502,6 @@ old ELPA package config for historical interest
      (require 'prelude-emacs-lisp)
      (require 'prelude-erlang)
      (require 'prelude-haskell)
-     (require 'prelude-haskell)
      (require 'prelude-js)
      (require 'prelude-latex)
      (require 'prelude-lisp)

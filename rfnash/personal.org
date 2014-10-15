@@ -340,6 +340,13 @@ old ELPA package config for historical interest
     :PROPERTIES:
     :CREATED:  [2014-08-18 Mon 14:05]
     :END:
+*** Rust
+   #+begin_src emacs-lisp
+     (prelude-require-packages '(rust-mode flycheck-rust))
+   #+end_src
+    :PROPERTIES:
+    :CREATED:  [2014-10-09 Thu 23:42]
+    :END:
 ** Org Mode
    :PROPERTIES:
    :CREATED:  [2014-10-07 Tue 13:37]
@@ -1127,7 +1134,7 @@ old ELPA package config for historical interest
      ;;(require 'erc-nicklist)
      (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
                                               (freenode "rfnash/freenode" "***REMOVED***")
-                                              (***REMOVED*** "rfnash/***REMOVED***" "***REMOVED***")
+                                              (mozilla "rfnash/mozilla" "***REMOVED***")
                                               (bitlbee "rfnash/bitlbee" "***REMOVED***")))))
      (setq erc-nicklist-voiced-position 'top)
 

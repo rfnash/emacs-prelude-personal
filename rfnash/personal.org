@@ -1453,6 +1453,13 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
+** EDBI
+   #+begin_src emacs-lisp
+     (prelude-require-packages '(edbi edbi-sqlite))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-10-20 Mon 23:33]
+   :END:
 ** Debug on error
    #+begin_src emacs-lisp
      (setq debug-on-error t)

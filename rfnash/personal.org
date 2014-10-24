@@ -834,6 +834,15 @@ old ELPA package config for historical interest
     :PROPERTIES:
     :CREATED:  [2014-09-03 Wed 16:42]
     :END:
+*** TODO OrgBox
+    Just trying it out.
+    #+begin_src emacs-lisp
+      (prelude-require-package 'orgbox)
+      (require 'orgbox)
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2014-10-22 Wed 22:31]
+    :END:
 ** Load [[http://batsov.com/prelude/][Emacs Prelude]] modules
    #+begin_src emacs-lisp
      ;;; Uncomment the modules you'd like to use and restart Prelude afterwards

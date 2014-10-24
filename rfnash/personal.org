@@ -691,7 +691,6 @@ old ELPA package config for historical interest
       (global-set-key "\C-cb" 'org-iswitchb)
       (global-set-key (kbd "C-c v") 'org-velocity-read)
       (global-set-key (kbd "C-c F") 'oog)
-      (require 'org-publish)
       (setq org-publish-project-alist
             '(
               ("org-contents"

@@ -570,7 +570,7 @@ old ELPA package config for historical interest
                                ("B" "Bookmarks to file (with link annotation)"
                                 entry ( id "3693c528-9bfb-43c4-91e3-d68550fc4799" )
                                 "* FILE %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                               ("c" "Scheduled Task"
+                               ("H" "Scheduled Task"
                                 entry ( id "79c8de14-8039-4d8c-b87e-f8c499860694")
                                 "* SCHED %?\nSCHEDULED: %t")
                                ("d" "Design Examples"

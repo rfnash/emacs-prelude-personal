@@ -594,9 +594,9 @@ old ELPA package config for historical interest
                                 table-line (id "b3a14888-312d-432e-8062-4ed352866729")
                                 " | %^{Title} | %^{Artist} |"
                                 :immediate-finish t)
-                               ("n" "Task - Next"
-                                entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                                "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                               ;; ("n" "Task - Next"
+                               ;;  entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               ;;  "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                                ("N" "Non-profit"
                                 entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")
                                 "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")

@@ -574,7 +574,7 @@ old ELPA package config for historical interest
                                 entry ( id "79c8de14-8039-4d8c-b87e-f8c499860694")
                                 "* SCHED %?\nSCHEDULED: %t")
                                ("d" "Design Examples"
-                                entry (id  "2d9bf65f-6b2b-4e8a-81f5-b2faf22f8a6f")
+                                entry (id  "756f3a10-f323-409b-b418-00074ba93de9")
                                 "* %? :GoodDesign:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                                ("h" "Habbit"
                                 entry ( id "b8e8b020-2772-4028-b209-1a52d3cb2fe6")

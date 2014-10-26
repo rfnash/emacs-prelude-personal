@@ -1460,6 +1460,14 @@ old ELPA package config for historical interest
   :PROPERTIES:
   :CREATED:  [2014-10-20 Mon 23:33]
   :END:
+* Sauron
+  #+begin_src emacs-lisp
+    (prelude-require-package 'sauron)
+    (sauron-start)
+  #+end_src
+  :PROPERTIES:
+  :CREATED:  [2014-10-25 Sat 19:35]
+  :END:
 * Debug on error
   #+begin_src emacs-lisp
     (setq debug-on-error t)

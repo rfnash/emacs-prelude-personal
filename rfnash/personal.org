@@ -961,6 +961,14 @@ old ELPA package config for historical interest
   :PROPERTIES:
   :CREATED:  [2014-11-12 Wed 19:21]
   :END:
+* Yasnippet
+  #+begin_src emacs-lisp
+    (prelude-require-packages '(yasnippet helm-c-yasnippet))
+    (yas-global-mode 1)
+  #+end_src
+  :PROPERTIES:
+  :CREATED:  [2014-11-12 Wed 19:35]
+  :END:
 * calfw
       #+begin_src emacs-lisp
         (prelude-require-packages '(calfw calfw-gcal))

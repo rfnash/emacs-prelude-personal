@@ -340,9 +340,9 @@ old ELPA package config for historical interest
    :CREATED:  [2014-08-18 Mon 14:05]
    :END:
 ** Rust
-  #+begin_src emacs-lisp
+   #+begin_src emacs-lisp
     (prelude-require-packages '(rust-mode flycheck-rust))
-  #+end_src
+   #+end_src
    :PROPERTIES:
    :CREATED:  [2014-10-09 Thu 23:42]
    :END:
@@ -511,11 +511,11 @@ old ELPA package config for historical interest
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:27]
-   :END:    
+   :END:
 ** org-page (no longer used)
    #+begin_src emacs-lisp :tangle no
      (require 'org-page)
-   #+end_src    
+   #+end_src
 ** TODO org-mode
    My personal org-mode config.
    TODO: was naively copied into my prelude config, check for redundancy

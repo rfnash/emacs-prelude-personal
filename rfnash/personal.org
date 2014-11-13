@@ -1144,6 +1144,7 @@ old ELPA package config for historical interest
        (:name erc-extras)
        (:name erc-nick-notify)
        (:name emacs-http-server)
+       (:name webkit)
        ;;(:name bbdb-vcard)
        ;; (:name bbdb (progn
        ;;                    (setq bbdb-file "~/.emacs.d/bbdb")
@@ -1452,7 +1453,6 @@ old ELPA package config for historical interest
     (define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list))))
     (define-key prelude-mode-map (kbd "C-c O") 'prelude-open-with)
     (define-key prelude-mode-map (kbd "C-c h") 'rfnash-visit-org-agenda-buffer)
-    (define-key prelude-mode-map (kbd "C-x c h") 'helm-prelude)
     (define-key prelude-mode-map (kbd "C-c g") 'rfnash-visit-gnus-buffer)
     (define-key prelude-mode-map (kbd "C-c m") 'rfnash-visit-mu4e-buffer)
     (define-key prelude-mode-map (kbd "C-c G") 'prelude-google)

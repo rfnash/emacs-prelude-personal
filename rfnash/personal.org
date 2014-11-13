@@ -951,6 +951,7 @@ old ELPA package config for historical interest
     (prelude-require-packages '(helm-orgcard helm-descbinds helm-backup helm-helm-commands))
     (prelude-require-packages '(ag helm-ag helm-ag-r))
     (prelude-require-packages '(caskxy graphviz-dot-mode))
+    (prelude-require-package 'elnode)
   #+end_src
 * calfw
       #+begin_src emacs-lisp

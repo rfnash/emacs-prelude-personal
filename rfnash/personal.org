@@ -1024,7 +1024,7 @@ old ELPA package config for historical interest
   Set the default browser to vimb.
   #+begin_src emacs-lisp
     (setq browse-url-browser-function
-          'browse-url-generic browse-url-generic-program "vimb")
+          'browse-url-generic browse-url-generic-program "firefox")
   #+end_src
 * TODO set-browser
   A function to easily interactively change the default browser.

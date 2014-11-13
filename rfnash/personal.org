@@ -953,6 +953,14 @@ old ELPA package config for historical interest
     (prelude-require-packages '(caskxy graphviz-dot-mode))
     (prelude-require-package 'elnode)
   #+end_src
+* Volume
+  #+begin_src emacs-lisp
+    (prelude-require-package 'volume)
+    (setq volume-backend 'volume-amixer-backend)
+  #+end_src
+  :PROPERTIES:
+  :CREATED:  [2014-11-12 Wed 19:21]
+  :END:
 * calfw
       #+begin_src emacs-lisp
         (prelude-require-packages '(calfw calfw-gcal))

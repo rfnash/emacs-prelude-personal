@@ -1013,6 +1013,13 @@ old ELPA package config for historical interest
   #+begin_src emacs-lisp
     (prelude-require-package 'paradox)
   #+end_src
+* EWW
+  #+begin_src emacs-lisp
+    (prelude-require-package 'eww-lnum)
+  #+end_src
+  :PROPERTIES:
+  :CREATED:  [2014-10-29 Wed 18:37]
+  :END:
 * Default browser
   Set the default browser to vimb.
   #+begin_src emacs-lisp

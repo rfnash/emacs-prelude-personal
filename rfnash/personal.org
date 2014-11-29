@@ -366,6 +366,15 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-10-28 Tue 17:16]
    :END:
+** lfe
+#+begin_src emacs-lisp
+  (prelude-require-package 'lfe-mode)
+#+end_src
+  :PROPERTIES:
+  :CREATED:  [2014-11-21 Fri 17:28]
+  :END:
+
+
 * Org Mode
   :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:37]

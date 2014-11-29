@@ -374,7 +374,36 @@ old ELPA package config for historical interest
   :CREATED:  [2014-11-21 Fri 17:28]
   :END:
 
+** Yasnippet
+   #+begin_src emacs-lisp
+     (prelude-require-packages '(yasnippet helm-c-yasnippet))
+     (yas-global-mode 1)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-11-12 Wed 19:35]
+   :END:
 
+** eclectic pair mode
+   #+begin_src emacs-lisp
+     (electric-pair-mode +1)
+     (electric-indent-mode +1)
+   #+end_src
+
+** EDBI
+   #+begin_src emacs-lisp
+     (prelude-require-packages '(edbi edbi-sqlite))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-10-20 Mon 23:33]
+   :END:
+** Debug on error
+   #+begin_src emacs-lisp
+     (setq debug-on-error t)
+   #+end_src
+** [[https://github.com/swannodette/ob-sml][ob-sml]]
+   #+begin_src emacs-lisp
+     (prelude-require-package 'ob-sml)
+   #+end_src
 * Org Mode
   :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:37]
@@ -970,14 +999,6 @@ old ELPA package config for historical interest
   :PROPERTIES:
   :CREATED:  [2014-11-12 Wed 19:21]
   :END:
-* Yasnippet
-  #+begin_src emacs-lisp
-    (prelude-require-packages '(yasnippet helm-c-yasnippet))
-    (yas-global-mode 1)
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-11-12 Wed 19:35]
-  :END:
 * calfw
       #+begin_src emacs-lisp
         (prelude-require-packages '(calfw calfw-gcal))
@@ -1008,15 +1029,6 @@ old ELPA package config for historical interest
   #+begin_src emacs-lisp
     (add-to-list 'load-path (expand-file-name "helm-mu" prelude-vendor-dir))
     ;;(require 'helm-mu)
-  #+end_src
-* eclectic pair mode
-  #+begin_src emacs-lisp
-    (electric-pair-mode +1)
-    (electric-indent-mode +1)
-  #+end_src
-* [[https://github.com/swannodette/ob-sml][ob-sml]]
-  #+begin_src emacs-lisp
-    (prelude-require-package 'ob-sml)
   #+end_src
 * paradox
   #+begin_src emacs-lisp
@@ -1525,13 +1537,6 @@ old ELPA package config for historical interest
   :PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:54]
   :END:
-* EDBI
-  #+begin_src emacs-lisp
-    (prelude-require-packages '(edbi edbi-sqlite))
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-10-20 Mon 23:33]
-  :END:
 * Sauron
   #+begin_src emacs-lisp
     (prelude-require-package 'sauron)
@@ -1540,11 +1545,6 @@ old ELPA package config for historical interest
   :PROPERTIES:
   :CREATED:  [2014-10-25 Sat 19:35]
   :END:
-* Debug on error
-  #+begin_src emacs-lisp
-    (setq debug-on-error t)
-  #+end_src
-
 * Emacs Server
   Start the Emacs server if it isn't already running
   #+begin_src emacs-lisp

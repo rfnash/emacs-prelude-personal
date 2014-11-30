@@ -1116,60 +1116,360 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
-* Load [[http://batsov.com/prelude/][Emacs Prelude]] modules
-  #+begin_src emacs-lisp
-    ;;; Uncomment the modules you'd like to use and restart Prelude afterwards
-    (require 'prelude-erc)                  ; Emacs IRC client
-    (require 'prelude-ido)                  ; Super charges Emacs completion for C-x C-f and more
-    (require 'prelude-helm)                 ; Interface for narrowing and search
-    (require 'prelude-company)
-    (require 'prelude-key-chord)            ; Binds useful features to key combinations
-    (require 'prelude-mediawiki)
-    ;;(require 'prelude-evil')                ; what about evil-org and evil-paredit?
+* Emacs
+** Load [[http://batsov.com/prelude/][Emacs Prelude]] modules
+   #+begin_src emacs-lisp
+     ;;; Uncomment the modules you'd like to use and restart Prelude afterwards
+     (require 'prelude-erc)                  ; Emacs IRC client
+     (require 'prelude-ido)                  ; Super charges Emacs completion for C-x C-f and more
+     (require 'prelude-helm)                 ; Interface for narrowing and search
+     (require 'prelude-company)
+     (require 'prelude-key-chord)            ; Binds useful features to key combinations
+     (require 'prelude-mediawiki)
+     ;;(require 'prelude-evil')                ; what about evil-org and evil-paredit?
 
-    ;;; Programming languages support
-    (require 'prelude-c)
-    (require 'prelude-clojure)
-    (require 'prelude-coffee)
-    (require 'prelude-common-lisp)
-    (require 'prelude-css)
-    (require 'prelude-emacs-lisp)
-    (require 'prelude-erlang)
-    (require 'prelude-haskell)
-    (require 'prelude-js)
-    (require 'prelude-latex)
-    (require 'prelude-lisp)
-    (require 'prelude-org)                  ; Org-mode helps you keep TODO lists, notes and more
-    (require 'prelude-perl)
-    (require 'prelude-python)
-    (require 'prelude-ruby)
-    (require 'prelude-scala)
-    (require 'prelude-scheme)
-    (require 'prelude-shell)
-    (require 'prelude-scss)
-    (require 'prelude-web)                  ; Emacs mode for web templates
-    (require 'prelude-xml)
-  #+end_src
-* Set the default directory to HOME
-  #+begin_src emacs-lisp
-    (setq default-directory "~")
-  #+end_src
-* smart-tab and hippie-expand
-  #+begin_src emacs-lisp
-    (prelude-require-package 'smart-tab)
-    (require 'smart-tab)
-    (global-smart-tab-mode 1)
-    (define-key read-expression-map [(tab)] 'hippie-expand)
-  #+end_src
-* elscreen
-  #+begin_src emacs-lisp
-    (prelude-require-package 'elscreen)
-  #+end_src
-* switch-window
-  #+begin_src emacs-lisp
-    (prelude-require-package 'switch-window)
-    (global-set-key (kbd "C-x o") 'switch-window)
-  #+end_src
+     ;;; Programming languages support
+     (require 'prelude-c)
+     (require 'prelude-clojure)
+     (require 'prelude-coffee)
+     (require 'prelude-common-lisp)
+     (require 'prelude-css)
+     (require 'prelude-emacs-lisp)
+     (require 'prelude-erlang)
+     (require 'prelude-haskell)
+     (require 'prelude-js)
+     (require 'prelude-latex)
+     (require 'prelude-lisp)
+     (require 'prelude-org)                  ; Org-mode helps you keep TODO lists, notes and more
+     (require 'prelude-perl)
+     (require 'prelude-python)
+     (require 'prelude-ruby)
+     (require 'prelude-scala)
+     (require 'prelude-scheme)
+     (require 'prelude-shell)
+     (require 'prelude-scss)
+     (require 'prelude-web)                  ; Emacs mode for web templates
+     (require 'prelude-xml)
+   #+end_src
+** Set the default directory to HOME
+   #+begin_src emacs-lisp
+     (setq default-directory "~")
+   #+end_src
+** smart-tab and hippie-expand
+   #+begin_src emacs-lisp
+     (prelude-require-package 'smart-tab)
+     (require 'smart-tab)
+     (global-smart-tab-mode 1)
+     (define-key read-expression-map [(tab)] 'hippie-expand)
+   #+end_src
+** elscreen
+   #+begin_src emacs-lisp
+     (prelude-require-package 'elscreen)
+   #+end_src
+** switch-window
+   #+begin_src emacs-lisp
+     (prelude-require-package 'switch-window)
+     (global-set-key (kbd "C-x o") 'switch-window)
+   #+end_src
+** Require various packages
+   #+begin_src emacs-lisp
+     (prelude-require-packages '(helm-orgcard helm-descbinds helm-backup helm-helm-commands))
+     (prelude-require-packages '(ag helm-ag helm-ag-r))
+     (prelude-require-packages '(caskxy graphviz-dot-mode))
+     (prelude-require-package 'elnode)
+   #+end_src
+** Color Theme
+   My settings to use the solarized light color theme.
+   #+begin_src emacs-lisp
+     ;; Set up the old-fashioned Solarized color theme
+     ;; and set ansi-term to use solarized dark colors
+
+     ;; Could be a coincidence, but since adding Solarized,
+     ;; but I can't get 'Emacs --daemon' to work
+
+     (prelude-require-packages '(solarized-theme load-theme-buffer-local color-theme color-theme-buffer-local color-theme-solarized))
+
+     (setq light t)           ; setting to t works and remove undefined var error
+     ;;(load-theme 'solarized-light t)
+     ;;(if (display-graphic-p)
+     ;;    (load-theme 'solarized-light t)
+     ;;  (load-theme 'solarized-dark t))
+
+     (disable-theme 'zenburn)
+     (require 'color-theme)
+     (color-theme-solarized-light)
+
+     (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
+
+     ;;; ansi-term solarized settings
+
+     (require 'term)
+     (setq term-mode-hook '((lambda nil
+                              ;; To use new deftheme instead of color-theme
+                              ;;                         (load-theme-buffer-local
+                              ;;                         'solarized-dark
+                              ;;                          (current-buffer)
+                              ;;                          t)))
+
+                              ;; (color-theme-buffer-local
+                              ;;  (quote color-theme-solarized-dark)
+                              ;;  (current-buffer))
+                              (setq-local dark t)
+                              (load-theme-buffer-local
+                               'solarized-dark
+                               (current-buffer) t nil)))
+           term-scroll-to-bottom-on-output t)
+
+     ;; TODO: is probably a bad idea to set this here. Find a better way.
+     (custom-set-faces
+      ;; custom-set-faces was added by Custom.
+      ;; If you edit it by hand, you could mess it up, so be careful.
+      ;; Your init file should contain only one such instance.
+      ;; If there is more than one, they won't work right.
+      '(term ((t (:inherit default :background "#002b36"))))
+      '(term-bold ((t (:inverse-video t :weight bold))))
+      '(term-color-black ((t (:background "#002b36" :foreground "#073642"))))
+      '(term-color-blue ((t (:background "#002b36" :foreground "#268bd2"))))
+      '(term-color-cyan ((t (:background "#002b36" :foreground "#2aa198"))))
+      '(term-color-green ((t (:background "#002b36" :foreground "#859900"))))
+      '(term-color-magenta ((t (:background "#002b36" :foreground "#d33682"))))
+      '(term-color-red ((t (:background "#002b36" :foreground "#dc322f"))))
+      '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
+      '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))
+   #+end_src
+   :PROPERTIES:
+  :CREATED:  [2014-09-03 Wed 16:41]
+   :END:      
+** El-get
+   Install and configure various packages through el-get.
+   #+begin_src emacs-lisp
+     (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+     (require 'el-get nil t)                       ; to appease flycheck
+     (unless (require 'el-get nil t)
+       (url-retrieve
+        "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
+        (lambda (s)
+          (end-of-buffer)
+          (eval-print-last-sexp))))
+
+     ;; now either el-get is `require'd already, or have been `load'ed by the
+     ;; el-get installer.
+
+     ;; set local recipes
+     (setq
+      el-get-sources
+      '((:name el-get)          ; el-get is self-hosting
+        (:name nxhtml)          ; for html emails and wrap-to-file-column-mode
+        ;; (:name o-blog)       ; version in package.el doesn't work
+        (:name pwsafe :after (setq pwsafe-primary-database "~/Dropbox/pwsafe.dat"))
+        ;; (:name org-mode)
+        (:name erc-extras)
+        (:name erc-nick-notify)
+        (:name emacs-http-server)
+        (:name webkit)
+        ;;(:name bbdb-vcard)
+        ;; (:name bbdb (progn
+        ;;                    (setq bbdb-file "~/.emacs.d/bbdb")
+        ;;                    (require 'bbdb)
+        ;;                    (bbdb-initialize 'gnus 'message)
+        ;;                    (bbdb-insinuate-message)
+        ;;                    (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
+        ;;                     (add-hook 'kill-emacs-hook 'bbdb-save)))
+        ))
+
+     ;; Adds packages from local recipes above
+     (setq my:el-get-packages
+           (loop for src in el-get-sources collect (el-get-source-name src)))
+
+     ;; install new packages and init already installed packages
+     (el-get 'sync my:el-get-packages)
+
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:41]
+   :END:
+** Helm
+   My personal customization to helm.
+   #+begin_src emacs-lisp
+     (require 'helm)
+     (require 'helm-config)
+
+     ;; Doesn't override ido for find files, but does for C-h f, so perfect
+     (helm-mode 1)
+
+     ;; I prefer helm over smex
+     (global-set-key (kbd "M-x") 'helm-M-x)
+
+     ;; not sure if I really want to enable or not
+     ;; (add-hook 'eshell-mode-hook
+     ;;           #'(lambda ()
+     ;;               (define-key eshell-mode-map
+     ;;                 [remap eshell-pcomplete]
+     ;;                 'helm-esh-pcomplete)))
+
+     (global-set-key (kbd "C-x c o") 'helm-occur)
+
+     ;; Doesn't play well with gnus
+     ;;(setq helm-split-window-in-side-p t)
+
+
+     ;; added (find-file . ido) as I prefer ido's find-file interface to helm's,
+     ;; but prefer helm for everything else.
+     (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
+     (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
+
+     ;; Increased from 0.1 to 0.5 (the value used by org-occur-goto)
+     ;; because of the long time it takes to search
+     (setq helm-m-occur-idle-delay 0.5)
+
+     (require 'ido)
+     (setq ido-everywhere t)
+     (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
+     (ido-mode 1)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:54]
+   :END:
+** prelude mode
+   Emacs Prelude: minor mode.
+   #+begin_src emacs-lisp
+     ;; Based on http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/
+
+     (require 'prelude-mode)
+
+     (defun rfnash-switch-buffer (buffer)
+       "Switch to BUFFER using elscreen if possible;
+     if not, use 'switch-to-buffer-other-window'"
+       (if (fboundp 'elscreen-find-and-goto-by-buffer)
+           (elscreen-find-and-goto-by-buffer buffer t)
+         (switch-to-buffer buffer)))
+
+     (defun rfnash-visit-org-notes-buffer ()
+       "Visit my notes.org buffer."
+       (interactive)
+       (if (get-buffer "notes.org")
+           (rfnash-switch-buffer "notes.org")))
+
+     (defun rfnash-visit-org-agenda-buffer ()
+       "Create or visit 'org-mode' agenda buffer."
+       (interactive)
+       (if (get-buffer "*Org Agenda*")
+           (rfnash-switch-buffer "*Org Agenda*")
+         (org-agenda nil "n")))
+
+     (defun rfnash-visit-term-buffer ()
+       "Create or visit term buffer."
+       (interactive)
+       (if (get-buffer "*ansi-term*")
+           (rfnash-switch-buffer "*ansi-term*")
+         (ansi-term "tmux-attach")))
+
+     (defun rfnash-visit-eshell-buffer ()
+       "Create or visit an eshell buffer."
+       (interactive)
+       (if (get-buffer "*eshell*")
+           (rfnash-switch-buffer "*eshell*")
+         (eshell)))
+
+     (defun rfnash-visit-gnus-buffer ()
+       "Create or visit GNUS's group buffer."
+       (interactive)
+       (if (get-buffer "*Group*")
+           (rfnash-switch-buffer "*Group*")
+         (gnus)))
+
+     (defun rfnash-visit-mu4e-buffer ()
+       "Create or visit mu4e's main buffer."
+       (interactive)
+       (if (get-buffer "*mu4e-main*")
+           (rfnash-switch-buffer "*mu4e-main*")
+         (mu4e)))
+
+     (defun rfnash-visit-scratch-buffer ()
+       "Visit *scratch* buffer."
+       (interactive)
+       (if (get-buffer "*scratch*")
+           (rfnash-switch-buffer "*scratch*")
+         (if (fboundp 'elscreen-create)
+             (elscreen-create)
+           (progn
+             (switch-to-buffer (get-buffer-create "*scratch*"))
+             (lisp-interaction-mode)))))
+
+     ;; From http://stackoverflow.com/a/1249665
+     (defun my-horizontal-recenter ()
+       "Make the point horizontally centered in the window."
+       (interactive)
+       (let ((mid (/ (window-width) 2))
+             (line-len (save-excursion (end-of-line) (current-column)))
+             (cur (current-column)))
+         (if (< mid cur)
+             (set-window-hscroll (selected-window)
+                                 (- cur mid)))))
+
+     (defun rfnash-scroll-left-edge ()
+       "Like `my-horizontal-recenter', but place point at the left edge of the window."
+       (interactive)
+       (set-window-hscroll (selected-window) (current-column)))
+
+     (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
+     (global-set-key (kbd "C-S-L") 'rfnash-scroll-left-edge)
+
+     (defun browse-weather ()
+       "Look up the current weather on forecast.io."
+       (interactive)
+       (browse-url "http://forecast.io/"))
+
+     (define-key prelude-mode-map (kbd "C-x F") 'browse-weather)
+
+     (define-key prelude-mode-map (kbd "C-c i") 'prelude-ido-goto-symbol)
+     (define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list))))
+     (define-key prelude-mode-map (kbd "C-c O") 'prelude-open-with)
+     (define-key prelude-mode-map (kbd "C-c h") 'rfnash-visit-org-agenda-buffer)
+     (define-key prelude-mode-map (kbd "C-c g") 'rfnash-visit-gnus-buffer)
+     (define-key prelude-mode-map (kbd "C-c m") 'rfnash-visit-mu4e-buffer)
+     (define-key prelude-mode-map (kbd "C-c G") 'prelude-google)
+     (define-key prelude-mode-map (kbd "C-c s") 'rfnash-visit-scratch-buffer)
+     (define-key prelude-mode-map (kbd "C-c S") 'prelude-swap-windows)
+     (define-key prelude-mode-map (kbd "C-c ;") 'comment-region)
+     (define-key prelude-mode-map (kbd "C-x t") 'my-open-calendar)
+     (define-key prelude-mode-map (kbd "C-x x") 'sauron-toggle-hide-show)
+
+     (define-key oog-map (kbd "C-n") 'oog-next-line)
+     (define-key oog-map (kbd "C-p") 'oog-previous-line)
+     (define-key oog-map (kbd "C-v") 'oog-previous-page)
+     (define-key oog-map (kbd "M-v") 'oog-next-page)
+
+     (require 'gnus-art)
+     (define-key gnus-article-mode-map (kbd "i") 'gnus-article-show-images)
+     (define-key gnus-summary-mode-map (kbd "i") 'gnus-article-show-images)
+
+     ;; Use C-h instead of backspace, because I disable backspace in xbindkeys
+     ;; Long story, but purpose was to stop its use in aldo
+     ;; TODO: this probable is a horrible idea and should be removed
+     (global-unset-key (kbd "C-h"))
+     (define-key prelude-mode-map (kbd "C-h") 'backward-delete-char-untabify)
+     (define-key helm-map (kbd "C-h") 'backward-delete-char)
+
+     ;; TODO: kind of works, but usually ends up deleting characters
+     ;; in the buffer I'm searching in, and not from the search string,
+     ;; yet pressing backspace works as expected. Figure out why.
+     (define-key isearch-mode-map (kbd "C-h") 'backward-delete-char)
+
+     ;; (global-set-key "\C-cT" 'rfnash-visit-term-buffer)
+     ;; (global-set-key "\C-ct" 'rfnash-visit-eshell-buffer)
+
+     (global-set-key "\C-xcs" 'helm-surfraw)
+
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:42]
+   :END:
+** paradox
+   #+begin_src emacs-lisp
+     (prelude-require-package 'paradox)
+   #+end_src
 * emagician-fix-spell-memory
   #+begin_src emacs-lisp
   (prelude-require-package 'emagician-fix-spell-memory)
@@ -1180,13 +1480,6 @@ old ELPA package config for historical interest
     (add-to-list 'load-path "~/.local/share/emacs/site-lisp")
     (add-to-list 'load-path "~/.local/share/emacs/site-lisp/edb")
     (require 'elip)
-  #+end_src
-* Require various packages
-  #+begin_src emacs-lisp
-    (prelude-require-packages '(helm-orgcard helm-descbinds helm-backup helm-helm-commands))
-    (prelude-require-packages '(ag helm-ag helm-ag-r))
-    (prelude-require-packages '(caskxy graphviz-dot-mode))
-    (prelude-require-package 'elnode)
   #+end_src
 * Volume
   #+begin_src emacs-lisp
@@ -1211,10 +1504,6 @@ old ELPA package config for historical interest
             (cfw:org-create-source "Green")  ; orgmode source
             )))
   #+end_src
-* paradox
-  #+begin_src emacs-lisp
-    (prelude-require-package 'paradox)
-  #+end_src
 * babel
   #+begin_src emacs-lisp
     (prelude-require-package 'babel)
@@ -1234,294 +1523,6 @@ old ELPA package config for historical interest
     (prelude-require-package 'nix-mode)
     (require 'nix-mode)
   #+end_src
-* Color Theme
-  My settings to use the solarized light color theme.
-  #+begin_src emacs-lisp
-    ;; Set up the old-fashioned Solarized color theme
-    ;; and set ansi-term to use solarized dark colors
-
-    ;; Could be a coincidence, but since adding Solarized,
-    ;; but I can't get 'Emacs --daemon' to work
-
-    (prelude-require-packages '(solarized-theme load-theme-buffer-local color-theme color-theme-buffer-local color-theme-solarized))
-
-    (setq light t)           ; setting to t works and remove undefined var error
-    ;;(load-theme 'solarized-light t)
-    ;;(if (display-graphic-p)
-    ;;    (load-theme 'solarized-light t)
-    ;;  (load-theme 'solarized-dark t))
-
-    (disable-theme 'zenburn)
-    (require 'color-theme)
-    (color-theme-solarized-light)
-
-    (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
-
-    ;;; ansi-term solarized settings
-
-    (require 'term)
-    (setq term-mode-hook '((lambda nil
-                             ;; To use new deftheme instead of color-theme
-                             ;;                         (load-theme-buffer-local
-                             ;;                         'solarized-dark
-                             ;;                          (current-buffer)
-                             ;;                          t)))
-
-                             ;; (color-theme-buffer-local
-                             ;;  (quote color-theme-solarized-dark)
-                             ;;  (current-buffer))
-                             (setq-local dark t)
-                             (load-theme-buffer-local
-                              'solarized-dark
-                              (current-buffer) t nil)))
-          term-scroll-to-bottom-on-output t)
-
-    ;; TODO: is probably a bad idea to set this here. Find a better way.
-    (custom-set-faces
-     ;; custom-set-faces was added by Custom.
-     ;; If you edit it by hand, you could mess it up, so be careful.
-     ;; Your init file should contain only one such instance.
-     ;; If there is more than one, they won't work right.
-     '(term ((t (:inherit default :background "#002b36"))))
-     '(term-bold ((t (:inverse-video t :weight bold))))
-     '(term-color-black ((t (:background "#002b36" :foreground "#073642"))))
-     '(term-color-blue ((t (:background "#002b36" :foreground "#268bd2"))))
-     '(term-color-cyan ((t (:background "#002b36" :foreground "#2aa198"))))
-     '(term-color-green ((t (:background "#002b36" :foreground "#859900"))))
-     '(term-color-magenta ((t (:background "#002b36" :foreground "#d33682"))))
-     '(term-color-red ((t (:background "#002b36" :foreground "#dc322f"))))
-     '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
-     '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))
-  #+end_src
-  :PROPERTIES:
- :CREATED:  [2014-09-03 Wed 16:41]
-  :END:      
-* El-get
-  Install and configure various packages through el-get.
-  #+begin_src emacs-lisp
-    (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-    (require 'el-get nil t)                       ; to appease flycheck
-    (unless (require 'el-get nil t)
-      (url-retrieve
-       "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
-       (lambda (s)
-         (end-of-buffer)
-         (eval-print-last-sexp))))
-
-    ;; now either el-get is `require'd already, or have been `load'ed by the
-    ;; el-get installer.
-
-    ;; set local recipes
-    (setq
-     el-get-sources
-     '((:name el-get)          ; el-get is self-hosting
-       (:name nxhtml)          ; for html emails and wrap-to-file-column-mode
-       ;; (:name o-blog)       ; version in package.el doesn't work
-       (:name pwsafe :after (setq pwsafe-primary-database "~/Dropbox/pwsafe.dat"))
-       ;; (:name org-mode)
-       (:name erc-extras)
-       (:name erc-nick-notify)
-       (:name emacs-http-server)
-       (:name webkit)
-       ;;(:name bbdb-vcard)
-       ;; (:name bbdb (progn
-       ;;                    (setq bbdb-file "~/.emacs.d/bbdb")
-       ;;                    (require 'bbdb)
-       ;;                    (bbdb-initialize 'gnus 'message)
-       ;;                    (bbdb-insinuate-message)
-       ;;                    (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
-       ;;                     (add-hook 'kill-emacs-hook 'bbdb-save)))
-       ))
-
-    ;; Adds packages from local recipes above
-    (setq my:el-get-packages
-          (loop for src in el-get-sources collect (el-get-source-name src)))
-
-    ;; install new packages and init already installed packages
-    (el-get 'sync my:el-get-packages)
-
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-09-03 Wed 16:41]
-  :END:
-* Helm
-  My personal customization to helm.
-  #+begin_src emacs-lisp
-    (require 'helm)
-    (require 'helm-config)
-
-    ;; Doesn't override ido for find files, but does for C-h f, so perfect
-    (helm-mode 1)
-
-    ;; I prefer helm over smex
-    (global-set-key (kbd "M-x") 'helm-M-x)
-
-    ;; not sure if I really want to enable or not
-    ;; (add-hook 'eshell-mode-hook
-    ;;           #'(lambda ()
-    ;;               (define-key eshell-mode-map
-    ;;                 [remap eshell-pcomplete]
-    ;;                 'helm-esh-pcomplete)))
-
-    (global-set-key (kbd "C-x c o") 'helm-occur)
-
-    ;; Doesn't play well with gnus
-    ;;(setq helm-split-window-in-side-p t)
-
-
-    ;; added (find-file . ido) as I prefer ido's find-file interface to helm's,
-    ;; but prefer helm for everything else.
-    (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
-    (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
-
-    ;; Increased from 0.1 to 0.5 (the value used by org-occur-goto)
-    ;; because of the long time it takes to search
-    (setq helm-m-occur-idle-delay 0.5)
-
-    (require 'ido)
-    (setq ido-everywhere t)
-    (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
-    (ido-mode 1)
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-09-03 Wed 16:54]
-  :END:
-* prelude mode
-  Emacs Prelude: minor mode.
-  #+begin_src emacs-lisp
-    ;; Based on http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/
-
-    (require 'prelude-mode)
-
-    (defun rfnash-switch-buffer (buffer)
-      "Switch to BUFFER using elscreen if possible;
-    if not, use 'switch-to-buffer-other-window'"
-      (if (fboundp 'elscreen-find-and-goto-by-buffer)
-          (elscreen-find-and-goto-by-buffer buffer t)
-        (switch-to-buffer buffer)))
-
-    (defun rfnash-visit-org-notes-buffer ()
-      "Visit my notes.org buffer."
-      (interactive)
-      (if (get-buffer "notes.org")
-          (rfnash-switch-buffer "notes.org")))
-
-    (defun rfnash-visit-org-agenda-buffer ()
-      "Create or visit 'org-mode' agenda buffer."
-      (interactive)
-      (if (get-buffer "*Org Agenda*")
-          (rfnash-switch-buffer "*Org Agenda*")
-        (org-agenda nil "n")))
-
-    (defun rfnash-visit-term-buffer ()
-      "Create or visit term buffer."
-      (interactive)
-      (if (get-buffer "*ansi-term*")
-          (rfnash-switch-buffer "*ansi-term*")
-        (ansi-term "tmux-attach")))
-
-    (defun rfnash-visit-eshell-buffer ()
-      "Create or visit an eshell buffer."
-      (interactive)
-      (if (get-buffer "*eshell*")
-          (rfnash-switch-buffer "*eshell*")
-        (eshell)))
-
-    (defun rfnash-visit-gnus-buffer ()
-      "Create or visit GNUS's group buffer."
-      (interactive)
-      (if (get-buffer "*Group*")
-          (rfnash-switch-buffer "*Group*")
-        (gnus)))
-
-    (defun rfnash-visit-mu4e-buffer ()
-      "Create or visit mu4e's main buffer."
-      (interactive)
-      (if (get-buffer "*mu4e-main*")
-          (rfnash-switch-buffer "*mu4e-main*")
-        (mu4e)))
-
-    (defun rfnash-visit-scratch-buffer ()
-      "Visit *scratch* buffer."
-      (interactive)
-      (if (get-buffer "*scratch*")
-          (rfnash-switch-buffer "*scratch*")
-        (if (fboundp 'elscreen-create)
-            (elscreen-create)
-          (progn
-            (switch-to-buffer (get-buffer-create "*scratch*"))
-            (lisp-interaction-mode)))))
-
-    ;; From http://stackoverflow.com/a/1249665
-    (defun my-horizontal-recenter ()
-      "Make the point horizontally centered in the window."
-      (interactive)
-      (let ((mid (/ (window-width) 2))
-            (line-len (save-excursion (end-of-line) (current-column)))
-            (cur (current-column)))
-        (if (< mid cur)
-            (set-window-hscroll (selected-window)
-                                (- cur mid)))))
-
-    (defun rfnash-scroll-left-edge ()
-      "Like `my-horizontal-recenter', but place point at the left edge of the window."
-      (interactive)
-      (set-window-hscroll (selected-window) (current-column)))
-
-    (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
-    (global-set-key (kbd "C-S-L") 'rfnash-scroll-left-edge)
-
-    (defun browse-weather ()
-      "Look up the current weather on forecast.io."
-      (interactive)
-      (browse-url "http://forecast.io/"))
-
-    (define-key prelude-mode-map (kbd "C-x F") 'browse-weather)
-
-    (define-key prelude-mode-map (kbd "C-c i") 'prelude-ido-goto-symbol)
-    (define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list))))
-    (define-key prelude-mode-map (kbd "C-c O") 'prelude-open-with)
-    (define-key prelude-mode-map (kbd "C-c h") 'rfnash-visit-org-agenda-buffer)
-    (define-key prelude-mode-map (kbd "C-c g") 'rfnash-visit-gnus-buffer)
-    (define-key prelude-mode-map (kbd "C-c m") 'rfnash-visit-mu4e-buffer)
-    (define-key prelude-mode-map (kbd "C-c G") 'prelude-google)
-    (define-key prelude-mode-map (kbd "C-c s") 'rfnash-visit-scratch-buffer)
-    (define-key prelude-mode-map (kbd "C-c S") 'prelude-swap-windows)
-    (define-key prelude-mode-map (kbd "C-c ;") 'comment-region)
-    (define-key prelude-mode-map (kbd "C-x t") 'my-open-calendar)
-    (define-key prelude-mode-map (kbd "C-x x") 'sauron-toggle-hide-show)
-
-    (define-key oog-map (kbd "C-n") 'oog-next-line)
-    (define-key oog-map (kbd "C-p") 'oog-previous-line)
-    (define-key oog-map (kbd "C-v") 'oog-previous-page)
-    (define-key oog-map (kbd "M-v") 'oog-next-page)
-
-    (require 'gnus-art)
-    (define-key gnus-article-mode-map (kbd "i") 'gnus-article-show-images)
-    (define-key gnus-summary-mode-map (kbd "i") 'gnus-article-show-images)
-
-    ;; Use C-h instead of backspace, because I disable backspace in xbindkeys
-    ;; Long story, but purpose was to stop its use in aldo
-    ;; TODO: this probable is a horrible idea and should be removed
-    (global-unset-key (kbd "C-h"))
-    (define-key prelude-mode-map (kbd "C-h") 'backward-delete-char-untabify)
-    (define-key helm-map (kbd "C-h") 'backward-delete-char)
-
-    ;; TODO: kind of works, but usually ends up deleting characters
-    ;; in the buffer I'm searching in, and not from the search string,
-    ;; yet pressing backspace works as expected. Figure out why.
-    (define-key isearch-mode-map (kbd "C-h") 'backward-delete-char)
-
-    ;; (global-set-key "\C-cT" 'rfnash-visit-term-buffer)
-    ;; (global-set-key "\C-ct" 'rfnash-visit-eshell-buffer)
-
-    (global-set-key "\C-xcs" 'helm-surfraw)
-
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-09-03 Wed 16:42]
-  :END:
 * remem
   My rememberance agent configuration.
   #+begin_src emacs-lisp

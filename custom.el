@@ -17,6 +17,7 @@
  '(fci-rule-color "#383838" t)
  '(fill-flowed-display-column nil t)
  '(foreground-color "#626262")
+ '(ispell-program-name "/usr/bin/aspell")
  '(magit-use-overlays nil t)
  '(org-toodledo-folder-support-mode nil)
  '(paradox-automatically-star t t)

@@ -385,7 +385,7 @@ old ELPA package config for historical interest
 
 ** eclectic pair mode
    #+begin_src emacs-lisp
-     (electric-pair-mode +1)
+     ;; (electric-pair-mode +1)                 ; Adds an extra closing paren when paredit is enabled
      (electric-indent-mode +1)
    #+end_src
 

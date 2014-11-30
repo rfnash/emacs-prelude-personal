@@ -1470,83 +1470,84 @@ old ELPA package config for historical interest
    #+begin_src emacs-lisp
      (prelude-require-package 'paradox)
    #+end_src
-* emagician-fix-spell-memory
-  #+begin_src emacs-lisp
-  (prelude-require-package 'emagician-fix-spell-memory)
-  (require 'emagician-fix-spell-memory)
-  #+end_src
-* elip
-  #+begin_src emacs-lisp :tangle no
-    (add-to-list 'load-path "~/.local/share/emacs/site-lisp")
-    (add-to-list 'load-path "~/.local/share/emacs/site-lisp/edb")
-    (require 'elip)
-  #+end_src
-* Volume
-  #+begin_src emacs-lisp
-    (prelude-require-package 'volume)
-    (setq volume-backend 'volume-amixer-backend)
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-11-12 Wed 19:21]
-  :END:
-* calfw
-      #+begin_src emacs-lisp
-        (prelude-require-packages '(calfw calfw-gcal))
+* Misc
+** emagician-fix-spell-memory
+   #+begin_src emacs-lisp
+   (prelude-require-package 'emagician-fix-spell-memory)
+   (require 'emagician-fix-spell-memory)
+   #+end_src
+** elip
+   #+begin_src emacs-lisp :tangle no
+     (add-to-list 'load-path "~/.local/share/emacs/site-lisp")
+     (add-to-list 'load-path "~/.local/share/emacs/site-lisp/edb")
+     (require 'elip)
+   #+end_src
+** Volume
+   #+begin_src emacs-lisp
+     (prelude-require-package 'volume)
+     (setq volume-backend 'volume-amixer-backend)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-11-12 Wed 19:21]
+   :END:
+** calfw
+       #+begin_src emacs-lisp
+         (prelude-require-packages '(calfw calfw-gcal))
 
-        (require 'calfw-gcal)
-        (require 'calfw-org)
+         (require 'calfw-gcal)
+         (require 'calfw-org)
 
-        (defun my-open-calendar ()
-          (interactive)
-          (cfw:open-calendar-buffer
-           :contents-sources
-           (list
-            (cfw:org-create-source "Green")  ; orgmode source
-            )))
-  #+end_src
-* babel
-  #+begin_src emacs-lisp
-    (prelude-require-package 'babel)
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-07-24 Thu 10:09]
-  :END:
-* ledger-mode
-  #+begin_src emacs-lisp
-    (prelude-require-package 'ledger-mode)
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-07-24 Thu 10:09]
-  :END:
-* nix-mode
-  #+begin_src emacs-lisp
-    (prelude-require-package 'nix-mode)
-    (require 'nix-mode)
-  #+end_src
-* remem
-  My rememberance agent configuration.
-  #+begin_src emacs-lisp
-    (require 'prelude-mode)
-    (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
-    (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
-    (define-key prelude-mode-map (kbd "C-c r") nil)
-    (define-key global-map (kbd "C-c r") nil)
-    ;; (setq remem-scopes-list '(("mail" 6 5 500)
-    ;;                           ("notes" 2 5 500)))
-    (setq remem-scopes-list '(("mail" 6 5 500)))
-    ;;(load "remem")
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-09-03 Wed 16:42]
-  :END:
-* Sauron
-  #+begin_src emacs-lisp
-    (prelude-require-package 'sauron)
-    (sauron-start)
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-10-25 Sat 19:35]
-  :END:
+         (defun my-open-calendar ()
+           (interactive)
+           (cfw:open-calendar-buffer
+            :contents-sources
+            (list
+             (cfw:org-create-source "Green")  ; orgmode source
+             )))
+   #+end_src
+** babel
+   #+begin_src emacs-lisp
+     (prelude-require-package 'babel)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-07-24 Thu 10:09]
+   :END:
+** ledger-mode
+   #+begin_src emacs-lisp
+     (prelude-require-package 'ledger-mode)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-07-24 Thu 10:09]
+   :END:
+** nix-mode
+   #+begin_src emacs-lisp
+     (prelude-require-package 'nix-mode)
+     (require 'nix-mode)
+   #+end_src
+** remem
+   My rememberance agent configuration.
+   #+begin_src emacs-lisp
+     (require 'prelude-mode)
+     (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
+     (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
+     (define-key prelude-mode-map (kbd "C-c r") nil)
+     (define-key global-map (kbd "C-c r") nil)
+     ;; (setq remem-scopes-list '(("mail" 6 5 500)
+     ;;                           ("notes" 2 5 500)))
+     (setq remem-scopes-list '(("mail" 6 5 500)))
+     ;;(load "remem")
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:42]
+   :END:
+** Sauron
+   #+begin_src emacs-lisp
+     (prelude-require-package 'sauron)
+     (sauron-start)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-10-25 Sat 19:35]
+   :END:
 * Emacs Server
   Start the Emacs server if it isn't already running
   #+begin_src emacs-lisp

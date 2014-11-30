@@ -1179,7 +1179,7 @@ old ELPA package config for historical interest
      (require 'prelude-scheme)
      (require 'prelude-shell)
      (require 'prelude-scss)
-     (require 'prelude-web)                  ; Emacs mode for web templates
+     ;; (require 'prelude-web)                  ; Emacs mode for web templates
      (require 'prelude-xml)
    #+end_src
 ** Set the default directory to HOME

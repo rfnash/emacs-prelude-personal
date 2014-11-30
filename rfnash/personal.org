@@ -756,7 +756,6 @@ old ELPA package config for historical interest
        ;;  %?
        ;;  %x"))
        )
-
     #+end_src
 *** org related global keybindings
     #+begin_src emacs-lisp

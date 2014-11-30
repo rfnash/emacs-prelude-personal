@@ -919,6 +919,13 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-10-22 Wed 22:31]
    :END:
+** org-cliplink
+#+begin_src emacs-lisp
+  (prelude-require-package 'org-cliplink)
+#+end_src
+  :PROPERTIES:
+  :CREATED:  [2014-11-21 Fri 17:28]
+  :END:
 * Networking
   :PR5OPERTIES:
   :CREATED:  [2014-11-29 Sat 17:21]

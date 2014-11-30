@@ -927,8 +927,8 @@ old ELPA package config for historical interest
   :CREATED:  [2014-11-21 Fri 17:28]
   :END:
 * Networking
-  :PR5OPERTIES:
-  :CREATED:  [2014-11-29 Sat 17:21]
+  :PROPERTIES:
+  :CREATED:  [2014-11-28 Fri 18:50]
   :END:
 ** BBDB
    #+begin_src emacs-lisp

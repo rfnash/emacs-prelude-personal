@@ -919,6 +919,203 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-10-22 Wed 22:31]
    :END:
+* Networking
+  :PR5OPERTIES:
+  :CREATED:  [2014-11-29 Sat 17:21]
+  :END:
+** BBDB
+   #+begin_src emacs-lisp
+     (prelude-require-package 'bbdb)
+     (setq bbdb-file "~/.emacs.d/bbdb")
+     (require 'bbdb)
+     (bbdb-initialize 'gnus 'message)
+     (bbdb-insinuate-message)
+     (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
+     (add-hook 'kill-emacs-hook 'bbdb-save)
+     ;;(prelude-require-package 'bbdb-vcard)
+   #+end_src
+** helm-mu
+   #+begin_src emacs-lisp
+     (add-to-list 'load-path (expand-file-name "helm-mu" prelude-vendor-dir))
+     ;;(require 'helm-mu)
+   #+end_src
+** EWW
+   #+begin_src emacs-lisp
+     (prelude-require-package 'eww-lnum)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-10-29 Wed 18:37]
+   :END:
+** Default browser
+   Set the default browser to vimb.
+   #+begin_src emacs-lisp
+     (setq browse-url-browser-function
+           'browse-url-generic browse-url-generic-program "firefox")
+   #+end_src
+** TODO set-browser
+   A function to easily interactively change the default browser.
+   TODO: include a list of browsers to choose from.
+   #+begin_src emacs-lisp
+     (defun set-browser (browser)
+       "Prompt for BROWSER to set as default."
+       (interactive "sBrowser: ")
+       (setq browse-url-browser-function
+             'browse-url-generic browse-url-generic-program browser))
+   #+end_src
+** ERC
+   My personal ERC config.
+   From emacswiki.org/emacs/ERC.
+   #+begin_src emacs-lisp
+     ;; (setq erc-echo-notices-in-minibuffer-flag t)
+
+     ;; (require 'erc-match)
+     ;; (setq erc-keywords '("Niki" "Nikki"))
+
+     ;; ;; Doesn't seem to work
+     ;; (require 'notifications)
+     ;; (defun erc-global-notify (match-type nick message)
+     ;;   "Notify when a message is recieved."
+     ;;   (notifications-notify
+     ;;    :title nick
+     ;;    :body message
+     ;;    :urgency 'low))
+     ;; (add-hook 'erc-text-matched-hook 'erc-global-notify)
+
+
+     ;; ;; Creates new buffer each time someone pm's me
+     ;; ;; opens second window and shows buffer in non-focused window
+     ;; ;; This happens even on different screen in elscreen
+     ;; (setq erc-auto-query 'buffer)
+     ;; (add-hook 'erc-after-connect
+     ;;        (lambda (server nick)
+     ;;          (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
+
+     ;; ;; Doesn't seem to work
+     ;; (setq erc-autojoin-channels-alist
+     ;;       '(("***REMOVED***.com" "#lesbian" "#sub/Dom" "#sluts_craving_humiliation")))
+     ;;      ;;("oftc.net" "#bitlbee")))
+
+     (add-to-list 'load-path "~/.emacs.d/prelude/personal")
+       (prelude-require-package 'znc)
+     (require 'erc)
+     ;;(require 'erc-nicklist)
+     (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
+                                              (freenode "rfnash/freenode" "***REMOVED***")
+                                              (mozilla "rfnash/mozilla" "***REMOVED***")
+                                              (bitlbee "rfnash/bitlbee" "***REMOVED***")))))
+     (setq erc-nicklist-voiced-position 'top)
+
+     (autoload 'erc-nick-notify-mode "erc-nick-notify"
+       "Minor mode that calls `erc-nick-notify-cmd' when his nick gets
+     mentioned in an erc channel" t)
+     ;; (eval-after-load 'erc '(erc-nick-notify-mode t))
+   #+end_src
+** mu4e
+   My personal mu4e config.
+   #+begin_src emacs-lisp
+     (add-to-list 'load-path (expand-file-name "mu/mu4e" prelude-vendor-dir))
+     (require 'mu4e)
+     (setq mu4e-mu-binary "~/.local/bin/mu"   ;; use local version of mu
+           mu4e-maildir       "~/Maildir"       ;; top-level Maildir
+           mu4e-sent-folder   "/Sent"           ;; folder for sent messages
+           mu4e-drafts-folder "/Drafts"         ;; unfinished messages
+           mu4e-trash-folder  "/Trash"          ;; trashed messages
+           mu4e-refile-folder "/archive"        ;; saved messages
+           mu4e-get-mail-command "")
+     (add-to-list 'mu4e-view-actions
+                                             ; Open message in external browser with 'x' as the shortcut
+                  '("xview in browser" . mu4e-action-view-in-browser) t)
+     (add-hook 'mu4e-view-mode-hook 'wrap-to-fill-column-mode)
+
+     (provide 'rfnash-mu4e)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:41]
+   :END:
+** newsticker
+   #+begin_src emacs-lisp
+     (require 'newsticker)
+     (global-set-key (kbd "C-c r") 'newsticker-treeview)
+     (setq newsticker-html-renderer 'w3m-region)
+     '(newsticker-url-list
+       (quote
+        (("HMK's Spurious Thoughts" "http://www.spuriousthoughts.com/feed/atom/" nil nil nil)
+         ("The Paleo Pair" "http://thepaleopair.tumblr.com/rss" nil nil nil)
+         ("The NewsBlur Blog" "http://blog.newsblur.com/rss" nil nil nil)
+         ("Tom Morris" "http://tommorris.org/posts.xml" nil nil nil)
+         ("Less Wrong" "http://lesswrong.com/.rss" nil nil nil)
+         ("A Life Less Bullshit" "http://feeds.feedburner.com/lifelessbullshit?format=xml" nil nil nil)
+         ("Mostly Harmless" "http://robrhinehart.com/?feed=rss2" nil nil nil)
+         ("Adam Prescott" "https://aprescott.com/feed" nil nil nil)
+         ("Ben Werdmuller" "http://benwerd.com/feed/" nil nil nil)
+         ("Comments on: Home" "http://www.alifeonyourterms.com/home/feed/" nil nil nil)
+         ("The Pidgeonhole Principal" "http://joneisen.tumblr.com/rss" nil nil nil)
+         ("Robert Heaton" "http://feeds.feedburner.com/RobertHeaton?format=xml" nil nil nil)
+         ("Marco.org" "http://www.marco.org/rss" nil nil nil)
+         ("Justin Vincent" "http://justinvincent.com/feed" nil nil nil)
+         ("copyrighteous" "http://mako.cc/copyrighteous/feed" nil nil nil)
+         ("SlashGeek" "http://www.slashgeek.net/feed/" nil nil nil)
+         ("kyleisom.net" "http://www.kyleisom.net/feed.xml" nil nil nil)
+         ("Emacs Redux" "http://emacsredux.com/atom.xml" nil nil nil)
+         ("What the .emacs.d!?" "http://whattheemacsd.com/atom.xml" nil nil nil)
+         ("Bapt" "http://blog.etoilebsd.net/index.atom" nil nil nil)
+         ("Hile Household" "http://hilehousehold.squarespace.com/journal?format=rss" nil nil nil)
+         ("Mostly Maths" "http://feeds.feedburner.com/MostlyMaths" nil nil nil)
+         ("The Friendly Anarchist" "http://feeds.feedburner.com/FriendlyAnarchist" nil nil nil)
+         ("plasticbag.org" "http://plasticbag.org/feed" nil nil nil)
+         ("Mottr.am" "http://mottr.am/atom.xml" nil nil nil)
+         ("Signal vs. Noise" "http://feeds.feedburner.com/37signals/beMH" nil nil nil)
+         ("Andy Mangold on scriptogr.am" "http://feeds.feedburner.com/andymangold?format=xml" nil nil nil)
+         ("The Buffer blog: productivity, life hacks, writing..." "http://feeds.feedburner.com/bufferapp" nil nil nil)
+         ("Dustin Curtis" "http://feeds.feedburner.com/dcurtis" nil nil nil)
+         ("Debu.gs" "http://feeds.feedburner.com/debugs" nil nil nil)
+         ("Inside 206-105" "http://feeds.feedburner.com/ezyang" nil nil nil)
+         ("Infotropism" "http://infotrope.net/feed/" nil nil nil)
+         ("Startups, life, learning and happiness" "http://feeds.feedburner.com/joelis" nil nil nil)
+         ("Tiny Buddha" "http://tinybuddha.com/feed/" nil nil nil)
+         ("Raptitude.com" "http://feeds2.feedburner.com/Raptitudecom" nil nil nil)
+         ("Tynan | Life Outside the Box" "http://feeds.feedburner.com/tynan?format=xml" nil nil nil)
+         ("zenhabits" "http://zenhabits.net/feed/" nil nil nil)
+         ("Lifehacker" "http://feeds.gawker.com/lifehacker/vip" nil nil nil)
+         ("mnmlist" "http://mnmlist.com/feed/" nil nil nil)
+         ("Nathan's Blog" "http://blog.nathantypanski.com/rss" nil nil nil)
+         ("Lost in Technopolis" "http://newartisans.com/feed/" nil nil nil)
+         ("Poly in Pictures" "http://www.polyinpictures.com/feed/" nil nil nil)
+         ("Practically Efficient" "http://feeds.feedburner.com/PracticallyEfficient" nil nil nil)
+         ("programming is terrible" "http://programmingisterrible.com/rss" nil nil nil)
+         ("Rands In Repose" "http://www.randsinrepose.com/index.xml" nil nil nil)
+         ("Blog" "http://paulwhile.squarespace.com/blog/rss.xml" nil nil nil)
+         ("simple links" "http://zenhabits.tumblr.com/rss" nil nil nil)
+         ("The Setup" "http://usesthis.com/feed/" nil nil nil)
+         ("We Use That" "http://weusethat.com/rss.xml" nil nil nil)
+         ("Under the Tamarind Tree" "https://underthetamarindtree.wordpress.com/feed/" nil nil nil)
+         ("Falkvinge on Infopolicy" "http://feeds.falkvinge.net/Falkvinge-on-Infopolicy" nil nil nil)
+         ("Matt Might's blog" "http://matt.might.net/articles/feed.rss" nil nil nil)
+         ("Simplexify" "http://simplexify.net/blog/atom.xml" nil nil nil)
+         ("SMYCK" "http://smyck.net/feed/" nil nil nil)
+         ("The Pastry Box Project" "http://the-pastry-box-project.net/feed/" nil nil nil)
+         ("skud" "http://skud.dreamwidth.org/data/atom" nil nil nil)
+         ("One Thing Well" "http://onethingwell.org/rss" nil nil nil)
+         ("jake levine" "http://jakelevine.me/blog/feed/" nil nil nil)
+         ("Steve Losh" "http://feeds2.feedburner.com/stevelosh" nil nil nil)
+         ("DAILY VIOLET" "http://violetblue.tumblr.com/rss" nil nil nil)
+         ("violet blue ® :: open source sex" "http://www.tinynibbles.com/feed" nil nil nil)
+         ("This View of Life" "http://www.thisview.org/?feed=rss2" nil nil nil)
+         ("Zack Shapiro" "http://zackshapiro.com/rss" nil nil nil)
+         ("Zack Shapiro" "http://feeds.feedburner.com/zackshapiro/glGU" nil nil nil)
+         ("Send More Paramedics" "http://blog.fogus.me/feed/" nil nil nil))))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:41]
+   :END:
+** Gnus
+   #+begin_src emacs-lisp
+    (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
+    (require 'rfnash-gnus)
+  #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:54]
+   :END:
 * Load [[http://batsov.com/prelude/][Emacs Prelude]] modules
   #+begin_src emacs-lisp
     ;;; Uncomment the modules you'd like to use and restart Prelude afterwards
@@ -1014,48 +1211,9 @@ old ELPA package config for historical interest
             (cfw:org-create-source "Green")  ; orgmode source
             )))
   #+end_src
-* BBDB
-  #+begin_src emacs-lisp
-    (prelude-require-package 'bbdb)
-    (setq bbdb-file "~/.emacs.d/bbdb")
-    (require 'bbdb)
-    (bbdb-initialize 'gnus 'message)
-    (bbdb-insinuate-message)
-    (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
-    (add-hook 'kill-emacs-hook 'bbdb-save)
-    ;;(prelude-require-package 'bbdb-vcard)
-  #+end_src
-* helm-mu
-  #+begin_src emacs-lisp
-    (add-to-list 'load-path (expand-file-name "helm-mu" prelude-vendor-dir))
-    ;;(require 'helm-mu)
-  #+end_src
 * paradox
   #+begin_src emacs-lisp
     (prelude-require-package 'paradox)
-  #+end_src
-* EWW
-  #+begin_src emacs-lisp
-    (prelude-require-package 'eww-lnum)
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-10-29 Wed 18:37]
-  :END:
-* Default browser
-  Set the default browser to vimb.
-  #+begin_src emacs-lisp
-    (setq browse-url-browser-function
-          'browse-url-generic browse-url-generic-program "firefox")
-  #+end_src
-* TODO set-browser
-  A function to easily interactively change the default browser.
-  TODO: include a list of browsers to choose from.
-  #+begin_src emacs-lisp
-    (defun set-browser (browser)
-      "Prompt for BROWSER to set as default."
-      (interactive "sBrowser: ")
-      (setq browse-url-browser-function
-            'browse-url-generic browse-url-generic-program browser))
   #+end_src
 * babel
   #+begin_src emacs-lisp
@@ -1137,7 +1295,7 @@ old ELPA package config for historical interest
   #+end_src
   :PROPERTIES:
  :CREATED:  [2014-09-03 Wed 16:41]
- :END:
+  :END:      
 * El-get
   Install and configure various packages through el-get.
   #+begin_src emacs-lisp
@@ -1183,155 +1341,6 @@ old ELPA package config for historical interest
     ;; install new packages and init already installed packages
     (el-get 'sync my:el-get-packages)
 
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-09-03 Wed 16:41]
-  :END:
-* ERC
-  My personal ERC config.
-  From emacswiki.org/emacs/ERC.
-  #+begin_src emacs-lisp
-    ;; (setq erc-echo-notices-in-minibuffer-flag t)
-
-    ;; (require 'erc-match)
-    ;; (setq erc-keywords '("Niki" "Nikki"))
-
-    ;; ;; Doesn't seem to work
-    ;; (require 'notifications)
-    ;; (defun erc-global-notify (match-type nick message)
-    ;;   "Notify when a message is recieved."
-    ;;   (notifications-notify
-    ;;    :title nick
-    ;;    :body message
-    ;;    :urgency 'low))
-    ;; (add-hook 'erc-text-matched-hook 'erc-global-notify)
-
-
-    ;; ;; Creates new buffer each time someone pm's me
-    ;; ;; opens second window and shows buffer in non-focused window
-    ;; ;; This happens even on different screen in elscreen
-    ;; (setq erc-auto-query 'buffer)
-    ;; (add-hook 'erc-after-connect
-    ;;        (lambda (server nick)
-    ;;          (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
-
-    ;; ;; Doesn't seem to work
-    ;; (setq erc-autojoin-channels-alist
-    ;;       '(("***REMOVED***.com" "#lesbian" "#sub/Dom" "#sluts_craving_humiliation")))
-    ;;      ;;("oftc.net" "#bitlbee")))
-
-    (add-to-list 'load-path "~/.emacs.d/prelude/personal")
-      (prelude-require-package 'znc)
-    (require 'erc)
-    ;;(require 'erc-nicklist)
-    (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
-                                             (freenode "rfnash/freenode" "***REMOVED***")
-                                             (mozilla "rfnash/mozilla" "***REMOVED***")
-                                             (bitlbee "rfnash/bitlbee" "***REMOVED***")))))
-    (setq erc-nicklist-voiced-position 'top)
-
-    (autoload 'erc-nick-notify-mode "erc-nick-notify"
-      "Minor mode that calls `erc-nick-notify-cmd' when his nick gets
-    mentioned in an erc channel" t)
-    ;; (eval-after-load 'erc '(erc-nick-notify-mode t))
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-09-03 Wed 16:41]
-  :END:
-* mu4e
-  My personal mu4e config.
-  #+begin_src emacs-lisp
-    (add-to-list 'load-path (expand-file-name "mu/mu4e" prelude-vendor-dir))
-    (require 'mu4e)
-    (setq mu4e-mu-binary "~/.local/bin/mu"   ;; use local version of mu
-          mu4e-maildir       "~/Maildir"       ;; top-level Maildir
-          mu4e-sent-folder   "/Sent"           ;; folder for sent messages
-          mu4e-drafts-folder "/Drafts"         ;; unfinished messages
-          mu4e-trash-folder  "/Trash"          ;; trashed messages
-          mu4e-refile-folder "/archive"        ;; saved messages
-          mu4e-get-mail-command "")
-    (add-to-list 'mu4e-view-actions
-                                            ; Open message in external browser with 'x' as the shortcut
-                 '("xview in browser" . mu4e-action-view-in-browser) t)
-    (add-hook 'mu4e-view-mode-hook 'wrap-to-fill-column-mode)
-
-    (provide 'rfnash-mu4e)
-  #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-09-03 Wed 16:41]
-  :END:
-* newsticker
-  #+begin_src emacs-lisp
-    (require 'newsticker)
-    (global-set-key (kbd "C-c r") 'newsticker-treeview)
-    (setq newsticker-html-renderer 'w3m-region)
-    '(newsticker-url-list
-      (quote
-       (("HMK's Spurious Thoughts" "http://www.spuriousthoughts.com/feed/atom/" nil nil nil)
-        ("The Paleo Pair" "http://thepaleopair.tumblr.com/rss" nil nil nil)
-        ("The NewsBlur Blog" "http://blog.newsblur.com/rss" nil nil nil)
-        ("Tom Morris" "http://tommorris.org/posts.xml" nil nil nil)
-        ("Less Wrong" "http://lesswrong.com/.rss" nil nil nil)
-        ("A Life Less Bullshit" "http://feeds.feedburner.com/lifelessbullshit?format=xml" nil nil nil)
-        ("Mostly Harmless" "http://robrhinehart.com/?feed=rss2" nil nil nil)
-        ("Adam Prescott" "https://aprescott.com/feed" nil nil nil)
-        ("Ben Werdmuller" "http://benwerd.com/feed/" nil nil nil)
-        ("Comments on: Home" "http://www.alifeonyourterms.com/home/feed/" nil nil nil)
-        ("The Pidgeonhole Principal" "http://joneisen.tumblr.com/rss" nil nil nil)
-        ("Robert Heaton" "http://feeds.feedburner.com/RobertHeaton?format=xml" nil nil nil)
-        ("Marco.org" "http://www.marco.org/rss" nil nil nil)
-        ("Justin Vincent" "http://justinvincent.com/feed" nil nil nil)
-        ("copyrighteous" "http://mako.cc/copyrighteous/feed" nil nil nil)
-        ("SlashGeek" "http://www.slashgeek.net/feed/" nil nil nil)
-        ("kyleisom.net" "http://www.kyleisom.net/feed.xml" nil nil nil)
-        ("Emacs Redux" "http://emacsredux.com/atom.xml" nil nil nil)
-        ("What the .emacs.d!?" "http://whattheemacsd.com/atom.xml" nil nil nil)
-        ("Bapt" "http://blog.etoilebsd.net/index.atom" nil nil nil)
-        ("Hile Household" "http://hilehousehold.squarespace.com/journal?format=rss" nil nil nil)
-        ("Mostly Maths" "http://feeds.feedburner.com/MostlyMaths" nil nil nil)
-        ("The Friendly Anarchist" "http://feeds.feedburner.com/FriendlyAnarchist" nil nil nil)
-        ("plasticbag.org" "http://plasticbag.org/feed" nil nil nil)
-        ("Mottr.am" "http://mottr.am/atom.xml" nil nil nil)
-        ("Signal vs. Noise" "http://feeds.feedburner.com/37signals/beMH" nil nil nil)
-        ("Andy Mangold on scriptogr.am" "http://feeds.feedburner.com/andymangold?format=xml" nil nil nil)
-        ("The Buffer blog: productivity, life hacks, writing..." "http://feeds.feedburner.com/bufferapp" nil nil nil)
-        ("Dustin Curtis" "http://feeds.feedburner.com/dcurtis" nil nil nil)
-        ("Debu.gs" "http://feeds.feedburner.com/debugs" nil nil nil)
-        ("Inside 206-105" "http://feeds.feedburner.com/ezyang" nil nil nil)
-        ("Infotropism" "http://infotrope.net/feed/" nil nil nil)
-        ("Startups, life, learning and happiness" "http://feeds.feedburner.com/joelis" nil nil nil)
-        ("Tiny Buddha" "http://tinybuddha.com/feed/" nil nil nil)
-        ("Raptitude.com" "http://feeds2.feedburner.com/Raptitudecom" nil nil nil)
-        ("Tynan | Life Outside the Box" "http://feeds.feedburner.com/tynan?format=xml" nil nil nil)
-        ("zenhabits" "http://zenhabits.net/feed/" nil nil nil)
-        ("Lifehacker" "http://feeds.gawker.com/lifehacker/vip" nil nil nil)
-        ("mnmlist" "http://mnmlist.com/feed/" nil nil nil)
-        ("Nathan's Blog" "http://blog.nathantypanski.com/rss" nil nil nil)
-        ("Lost in Technopolis" "http://newartisans.com/feed/" nil nil nil)
-        ("Poly in Pictures" "http://www.polyinpictures.com/feed/" nil nil nil)
-        ("Practically Efficient" "http://feeds.feedburner.com/PracticallyEfficient" nil nil nil)
-        ("programming is terrible" "http://programmingisterrible.com/rss" nil nil nil)
-        ("Rands In Repose" "http://www.randsinrepose.com/index.xml" nil nil nil)
-        ("Blog" "http://paulwhile.squarespace.com/blog/rss.xml" nil nil nil)
-        ("simple links" "http://zenhabits.tumblr.com/rss" nil nil nil)
-        ("The Setup" "http://usesthis.com/feed/" nil nil nil)
-        ("We Use That" "http://weusethat.com/rss.xml" nil nil nil)
-        ("Under the Tamarind Tree" "https://underthetamarindtree.wordpress.com/feed/" nil nil nil)
-        ("Falkvinge on Infopolicy" "http://feeds.falkvinge.net/Falkvinge-on-Infopolicy" nil nil nil)
-        ("Matt Might's blog" "http://matt.might.net/articles/feed.rss" nil nil nil)
-        ("Simplexify" "http://simplexify.net/blog/atom.xml" nil nil nil)
-        ("SMYCK" "http://smyck.net/feed/" nil nil nil)
-        ("The Pastry Box Project" "http://the-pastry-box-project.net/feed/" nil nil nil)
-        ("skud" "http://skud.dreamwidth.org/data/atom" nil nil nil)
-        ("One Thing Well" "http://onethingwell.org/rss" nil nil nil)
-        ("jake levine" "http://jakelevine.me/blog/feed/" nil nil nil)
-        ("Steve Losh" "http://feeds2.feedburner.com/stevelosh" nil nil nil)
-        ("DAILY VIOLET" "http://violetblue.tumblr.com/rss" nil nil nil)
-        ("violet blue ® :: open source sex" "http://www.tinynibbles.com/feed" nil nil nil)
-        ("This View of Life" "http://www.thisview.org/?feed=rss2" nil nil nil)
-        ("Zack Shapiro" "http://zackshapiro.com/rss" nil nil nil)
-        ("Zack Shapiro" "http://feeds.feedburner.com/zackshapiro/glGU" nil nil nil)
-        ("Send More Paramedics" "http://blog.fogus.me/feed/" nil nil nil))))
   #+end_src
   :PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:41]
@@ -1528,14 +1537,6 @@ old ELPA package config for historical interest
   #+end_src
   :PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:42]
-  :END:
-* Gnus
-  #+begin_src emacs-lisp
-   (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
-   (require 'rfnash-gnus)
- #+end_src
-  :PROPERTIES:
-  :CREATED:  [2014-09-03 Wed 16:54]
   :END:
 * Sauron
   #+begin_src emacs-lisp

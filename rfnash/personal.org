@@ -712,11 +712,14 @@ old ELPA package config for historical interest
                                ;; ("n" "Task - Next"
                                ;;  entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                                ;;  "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                               ("n" "Task - Next"
+                                entry ( id "dd307243-992b-4454-86b7-929dbdc59f99")
+                                "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                                ("N" "Non-profit"
                                 entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")
                                 "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                                ("o" "Toodledo Task"
-                                entry ( id "bbd1b4a1-3f1a-4e97-ac45-7719edbaf700")
+                                entry ( id "dd307243-992b-4454-86b7-929dbdc59f99")
                                 "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                                ("p" "Person"
                                 entry ( id "fbefa010-a0a4-4915-bc7e-ce1844a5e3a5")
@@ -741,7 +744,10 @@ old ELPA package config for historical interest
                                 "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                                ("w" "To Watch"
                                 entry ( id "e8e91a3d-d21b-403d-b46e-0be14a3d7c2d")
-                                "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:"))
+                                "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                               ("z" "Journal entry" plain ; From http://sachachua.com/blog/2014/11/using-org-mode-keep-process-journal/
+                                (file+datetree+prompt "~/Documents/OrgMode/journal.org")
+                                "%K - %a\n%i\n%?\n"))
        ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
        ;; "* %^{Title}  :blog:
        ;;  :PROPERTIES:

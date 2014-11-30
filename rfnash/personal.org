@@ -764,7 +764,7 @@ old ELPA package config for historical interest
       (global-set-key "\C-cc" 'org-capture)
       (global-set-key "\C-ca" 'org-agenda)
       (global-set-key "\C-cb" 'org-iswitchb)
-      (global-set-key (kbd "C-c v") 'org-velocity-read)
+      (global-set-key (kbd "C-x c v") 'org-velocity-read)
       (global-set-key (kbd "C-c F") 'oog)
     #+end_src
 *** org-publish

@@ -1042,8 +1042,6 @@ old ELPA package config for historical interest
                                              ; Open message in external browser with 'x' as the shortcut
                   '("xview in browser" . mu4e-action-view-in-browser) t)
      (add-hook 'mu4e-view-mode-hook 'wrap-to-fill-column-mode)
-
-     (provide 'rfnash-mu4e)
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:41]
@@ -1502,6 +1500,8 @@ old ELPA package config for historical interest
    #+begin_src emacs-lisp
      (prelude-require-package 'volume)
      (setq volume-backend 'volume-amixer-backend)
+     (require 'volume)
+     (global-set-key (kbd "C-c v") #'volume)
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-11-12 Wed 19:21]

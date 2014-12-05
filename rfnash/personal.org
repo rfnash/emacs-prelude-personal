@@ -382,13 +382,18 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-11-12 Wed 19:35]
    :END:
-
-** eclectic pair mode
+** SmartParens
    #+begin_src emacs-lisp
-     ;; (electric-pair-mode +1)                 ; Adds an extra closing paren when paredit is enabled
+     (prelude-require-package 'smartparens)
+     (smartparens-global-mode 1)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-12-04 Thu 18:36]
+   :END:
+** Electric Indent Mode
+   #+begin_src emacs-lisp
      (electric-indent-mode +1)
    #+end_src
-
 ** EDBI
    #+begin_src emacs-lisp
      (prelude-require-packages '(edbi edbi-sqlite))

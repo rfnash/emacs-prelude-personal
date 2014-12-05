@@ -88,8 +88,6 @@
 (add-hook 'gnus-article-mode-hook 'rfnash-gnus-article-mode-hook)
 ;;(add-hook 'gnus-get-top-new-news-hook (lambda () (mu4e-update-mail-and-index nil)))
 
-(define-key gnus-article-mode-map (kbd "RET") 'gnus-article-goto-next-page)
-
 (setq nnmail-expiry-wait 'immediate)
 (setq gnus-group-default-list-level 3)
 (setq gnus-save-duplicate-list t)

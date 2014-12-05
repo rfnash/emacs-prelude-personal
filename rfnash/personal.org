@@ -413,6 +413,7 @@ old ELPA package config for historical interest
    #+begin_src emacs-lisp
      (load-file (let ((coding-system-for-read 'utf-8))
                   (shell-command-to-string "agda-mode locate")))
+     (add-to-list 'smart-tab-disabled-major-modes 'agda2-mode)
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-12-04 Thu 17:49]

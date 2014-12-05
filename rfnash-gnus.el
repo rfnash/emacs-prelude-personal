@@ -12,7 +12,6 @@
 (require 'gnus-art)
 (require 'face-remap)
 (require 'gnus-dup)
-(require 'wrap-to-fill)
 (require 'mu4e-utils)
 
 

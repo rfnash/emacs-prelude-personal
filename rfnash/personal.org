@@ -1221,6 +1221,7 @@ old ELPA package config for historical interest
      (prelude-require-packages '(ag helm-ag helm-ag-r))
      (prelude-require-packages '(caskxy graphviz-dot-mode))
      (prelude-require-package 'elnode)
+     (prelude-require-package 'unbound)
    #+end_src
 ** Default Font
    #+begin_src emacs-lisp

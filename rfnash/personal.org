@@ -957,6 +957,13 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-10-22 Wed 22:31]
    :END:
+** [[https://github.com/jplindstrom/emacs-org-transform-tree-table][org-transform-tree-table]]
+   #+begin_src emacs-lisp
+     (prelude-require-package 'org-transform-tree-table)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-12-29 Mon 19:00]
+   :END:
 ** org-cliplink
 #+begin_src emacs-lisp
   (prelude-require-package 'org-cliplink)

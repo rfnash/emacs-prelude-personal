@@ -1285,7 +1285,7 @@ old ELPA package config for historical interest
    #+end_src
    :PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:41]
-   :END:      
+   :END:
 ** El-get
    Install and configure various packages through el-get.
    #+begin_src emacs-lisp

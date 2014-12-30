@@ -409,6 +409,13 @@ old ELPA package config for historical interest
    #+begin_src emacs-lisp
      (prelude-require-package 'ob-sml)
    #+end_src
+** [[https://github.com/ikirill/hl-indent][hl-indent]]
+   #+begin_src emacs-lisp
+     (prelude-require-package 'hl-indent)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2014-12-29 Mon 19:02]
+   :END:
 ** Agda
    #+begin_src emacs-lisp
      (load-file (let ((coding-system-for-read 'utf-8))

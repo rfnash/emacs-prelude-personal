@@ -1597,6 +1597,13 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-10-25 Sat 19:35]
    :END:
+** anchored-transpose
+   #+begin_src emacs-lisp
+     (prelude-require-package 'anchored-transpose)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-01-04 Sun 23:55]
+   :END:
 * Emacs Server
   Start the Emacs server if it isn't already running
   #+begin_src emacs-lisp

@@ -1547,6 +1547,7 @@ old ELPA package config for historical interest
      ;; (global-set-key "\C-ct" 'rfnash-visit-eshell-buffer)
 
      (global-set-key "\C-xcs" 'helm-surfraw)
+     (global-set-key "\C-x," #'rename-buffer)
 
    #+end_src
    :PROPERTIES:

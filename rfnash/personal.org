@@ -1666,6 +1666,14 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-01-13 Tue 11:14]
    :END:
+** [[https://github.com/tam17aki/ace-isearch][ace-isearch]] -- See [[http://sachachua.com/blog/2015/01/emacs-kaizen-ace-isearch-combines-ace-jump-mode-helm-swoop/][Sachachua's article]].
+   #+begin_src emacs-lisp
+     (prelude-require-package 'ace-isearch)
+     (global-ace-isearch-mode)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-01-16 Fri 14:15]
+   :END:
 * Emacs Server
   Start the Emacs server if it isn't already running
   #+begin_src emacs-lisp

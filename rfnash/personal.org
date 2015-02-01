@@ -680,6 +680,7 @@ old ELPA package config for historical interest
                          (concat org-directory "/agenda.org")
                          (concat org-directory "/computers.org")
                          (concat org-directory "/bookmarks.org")
+                         (concat org-directory "/vimb.org")
                          "~/Dropbox/Projects/learning.org"
                          (concat prelude-personal-dir "/rfnash/personal.org"))
        org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"

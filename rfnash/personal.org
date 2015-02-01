@@ -1653,6 +1653,19 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-01-08 Thu 11:56]
    :END:
+** RFC
+   #+begin_src emacs-lisp
+     (prelude-require-package 'w3)
+     (setq rfc-url-save-directory (expand-file-name  "RFC" user-emacs-directory))
+     (setq rfc-index-url "http://www.ietf.org/iesg/1rfc_index.txt")
+     (setq rfc-archive-alist (list (expand-file-name "rfc.zip" rfc-url-save-directory)
+                                   rfc-url-save-directory
+                                   "http://www.ietf.org/rfc/"))
+     (setq rfc-insert-content-url-hook '(rfc-url-save))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-01-13 Tue 11:14]
+   :END:
 * Emacs Server
   Start the Emacs server if it isn't already running
   #+begin_src emacs-lisp

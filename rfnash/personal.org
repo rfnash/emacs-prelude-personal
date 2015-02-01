@@ -684,7 +684,8 @@ old ELPA package config for historical interest
                          (concat prelude-personal-dir "/rfnash/personal.org"))
        org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"
                                      ((agenda "")
-                                      (tags-todo "NEXT|TODO=\"NEXT\"" nil)))
+                                      (todo "NEXT" nil)
+                                      (tags-todo "NEXT" nil)))
                                     ("v" "Videos to watch"
                                      tags "CATEGORY=\"ToWatch\"" nil)
                                     ;; TODO: consider only including those not under the appropriate level 1 heading

@@ -1502,6 +1502,11 @@ old ELPA package config for historical interest
        (interactive)
        (browse-url "http://forecast.io/"))
 
+     (defun rfnash-helm-org-swoop ()
+       "Run `'helm-multi-swoop' with `org-buffer-list'"
+       (interactive)
+       (helm-multi-swoop nil (mapcar #'buffer-name (org-buffer-list))))
+
      (define-key prelude-mode-map (kbd "C-x F") 'browse-weather)
 
      (define-key prelude-mode-map (kbd "C-c i") 'prelude-ido-goto-symbol)

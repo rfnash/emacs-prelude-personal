@@ -1520,7 +1520,7 @@ old ELPA package config for historical interest
      (define-key prelude-mode-map (kbd "C-c s") 'rfnash-visit-scratch-buffer)
      (define-key prelude-mode-map (kbd "C-c S") 'prelude-swap-windows)
      (define-key prelude-mode-map (kbd "C-c ;") 'comment-region)
-     (define-key prelude-mode-map (kbd "C-x t") 'my-open-calendar)
+     (define-key prelude-mode-map (kbd "C-x t") 'rfnash-open-calendar)
      (define-key prelude-mode-map (kbd "C-x x") 'sauron-toggle-hide-show)
 
      (define-key oog-map (kbd "C-n") 'oog-next-line)
@@ -1587,7 +1587,7 @@ old ELPA package config for historical interest
          (require 'calfw-gcal)
          (require 'calfw-org)
 
-         (defun my-open-calendar ()
+         (defun rfnash-open-calendar ()
            (interactive)
            (cfw:open-calendar-buffer
             :contents-sources

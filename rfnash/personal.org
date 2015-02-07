@@ -1550,6 +1550,8 @@ old ELPA package config for historical interest
      (global-set-key "\C-xcs" 'helm-surfraw)
      (global-set-key "\C-x," #'rename-buffer)
 
+     (define-key org-mode-map (kbd "C-c C-w") #'helm-org-agenda-files-headings) ; Should be helm-org-headlines but its currently broken
+     (define-key org-agenda-mode-map (kbd "C-c C-w") #'helm-org-agenda-files-headings)
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]

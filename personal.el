@@ -11,6 +11,7 @@
 
 ;;; Code:
 
+;;(setq prelude-whitespace nil)
 (prelude-require-package 'org)
 (require 'org-install)
 (require 'ob-tangle)

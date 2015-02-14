@@ -14,6 +14,8 @@
 (require 'gnus-dup)
 (require 'mu4e-utils)
 
+(add-to-list 'load-path prelude-personal-dir)
+(require 'wrap-to-fill)
 
 (setq gnus-select-method '(nntp "news.gwene.org"))
 

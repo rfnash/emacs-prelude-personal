@@ -453,6 +453,15 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-12-04 Thu 17:49]
    :END:
+** Geiser
+   #+begin_src emacs-lisp
+     (prelude-require-package 'geiser)
+     (require 'geiser)
+     (setq geiser-racket-binary "/usr/local/racket/bin/racket")
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-13 Fri 23:48]
+   :END:
 * Org Mode
   :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:37]

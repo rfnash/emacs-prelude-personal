@@ -1738,6 +1738,17 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-02-11 Wed 23:34]
    :END:
+** [[https://github.com/dacap/keyfreq][keyfreq]]
+   Track Emacs commands frequency
+   #+begin_src emacs-lisp
+     (prelude-require-package 'keyfreq)
+     (setq keyfreq-file (expand-file-name "keyfreq" prelude-savefile-dir))
+     (keyfreq-mode 1)
+     (keyfreq-autosave-mode 1)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-13 Fri 14:12]
+   :END:
 * Emacs Server
   Start the Emacs server if it isn't already running
   #+begin_src emacs-lisp

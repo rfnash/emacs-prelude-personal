@@ -1361,6 +1361,7 @@ old ELPA package config for historical interest
         (:name erc-nick-notify)
         (:name emacs-http-server)
         (:name webkit)
+        (:name howm)
         ;;(:name bbdb-vcard)
         ;; (:name bbdb (progn
         ;;                    (setq bbdb-file "~/.emacs.d/bbdb")
@@ -1644,6 +1645,10 @@ old ELPA package config for historical interest
                                      "IndianRed") ; google calendar ICS. Doesn't support repeating events (only shows them on day of first repeat)
              )))
    #+end_src
+** TODO [[http://howm.sourceforge.jp/README.html][howm]] ([[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?e.FrontPage][wiki]], [[http://www.emacswiki.org/emacs/HowmMode][emacswiki]], [[http://www.emacswiki.org/emacs/HowmAndCalendar][Howm and calendar]])                      :NEXT:
+   :PROPERTIES:
+   :CREATED:  [2015-02-13 Fri 16:22]
+   :END:
 ** babel
    #+begin_src emacs-lisp
      (prelude-require-package 'babel)

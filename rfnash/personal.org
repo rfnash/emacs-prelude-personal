@@ -1723,6 +1723,14 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-02-07 Sat 15:06]
    :END:
+** [[https://github.com/agrif/pianobar.el][pianobar.el]]
+   #+begin_src emacs-lisp
+     (prelude-require-package 'pianobar)
+     (require 'pianobar)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-07 Sat 15:41]
+   :END:
 * Emacs Server
   Start the Emacs server if it isn't already running
   #+begin_src emacs-lisp

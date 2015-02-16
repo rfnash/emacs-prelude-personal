@@ -1699,7 +1699,7 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-01-04 Sun 23:55]
    :END:
-** [[https://github.com/vspinu/zotelo][Zotelo]] 
+** [[https://github.com/vspinu/zotelo][Zotelo]]
    #+begin_src emacs-lisp
      (prelude-require-package 'zotelo)
      (add-hook 'TeX-mode-hook 'zotelo-minor-mode)

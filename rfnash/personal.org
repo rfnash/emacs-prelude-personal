@@ -1758,6 +1758,13 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-02-13 Fri 14:12]
    :END:
+** Diary ([[http://www.emacswiki.org/emacs/DiaryMode][emacswiki]], [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Diary.html][manual]])
+   #+begin_src emacs-lisp
+     (setq diary-file (expand-file-name "diary" prelude-savefile-dir))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-13 Fri 16:07]
+   :END:
 * Emacs Server
   Start the Emacs server if it isn't already running
   #+begin_src emacs-lisp

@@ -1572,7 +1572,7 @@ old ELPA package config for historical interest
      ;; (global-set-key "\C-cT" 'rfnash-visit-term-buffer)
      ;; (global-set-key "\C-ct" 'rfnash-visit-eshell-buffer)
 
-     (define-key org-mode-map (kbd "C-c C-w") #'helm-org-agenda-files-headings) ; Should be helm-org-headlines but its currently broken
+     (define-key org-mode-map (kbd "C-c C-w") #'helm-org-agenda-files-headings)
      (define-key org-agenda-mode-map (kbd "C-c C-w") #'helm-org-agenda-files-headings)
    #+end_src
    :PROPERTIES:

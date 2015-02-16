@@ -1715,6 +1715,14 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-01-16 Fri 14:15]
    :END:
+** [[http://elpa.gnu.org/packages/poker.html][poker]]
+   Texas Hold'em Poker
+   #+begin_src emacs-lisp
+     (prelude-require-package 'poker)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-07 Sat 15:06]
+   :END:
 * Emacs Server
   Start the Emacs server if it isn't already running
   #+begin_src emacs-lisp

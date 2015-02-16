@@ -1731,6 +1731,13 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-02-07 Sat 15:41]
    :END:
+** [[https://github.com/julienXX/helm-lobste.rs][helm-lobsters]]
+   #+begin_src emacs-lisp
+     (prelude-require-package 'helm-lobsters)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-11 Wed 23:34]
+   :END:
 * Emacs Server
   Start the Emacs server if it isn't already running
   #+begin_src emacs-lisp

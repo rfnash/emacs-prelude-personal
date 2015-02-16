@@ -1494,6 +1494,13 @@ old ELPA package config for historical interest
              (switch-to-buffer (get-buffer-create "*scratch*"))
              (lisp-interaction-mode)))))
 
+     (defun rfnash-visit-packages-buffer ()
+       "Visit buffer of package.el packages"
+       (interactive)
+       (if (get-buffer "*Packages*")
+           (rfnash-switch-buffer "*Packages*")
+         (paradox-list-packages nil)))
+
      ;; From http://stackoverflow.com/a/1249665
      (defun my-horizontal-recenter ()
        "Make the point horizontally centered in the window."
@@ -1537,6 +1544,7 @@ old ELPA package config for historical interest
      (define-key prelude-mode-map (kbd "C-c ;") 'comment-region)
      (define-key prelude-mode-map (kbd "C-x t") 'rfnash-open-calendar)
      (define-key prelude-mode-map (kbd "C-x x") 'sauron-toggle-hide-show)
+     (define-key prelude-mode-map (kbd "C-x c p") 'rfnash-visit-packages-buffer)
 
      (define-key oog-map (kbd "C-n") 'oog-next-line)
      (define-key oog-map (kbd "C-p") 'oog-previous-line)

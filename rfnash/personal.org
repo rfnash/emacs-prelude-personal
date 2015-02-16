@@ -1217,6 +1217,13 @@ old ELPA package config for historical interest
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
 * Emacs
+** Misc Prelude settings
+   #+begin_src emacs-lisp
+     (setq prelude-clean-whitespace-on-save nil)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-07 Sat 22:40]
+   :END:
 ** Load [[http://batsov.com/prelude/][Emacs Prelude]] modules
    #+begin_src emacs-lisp
      ;;; Uncomment the modules you'd like to use and restart Prelude afterwards

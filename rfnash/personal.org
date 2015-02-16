@@ -1581,8 +1581,24 @@ old ELPA package config for historical interest
 ** paradox
    #+begin_src emacs-lisp
      (prelude-require-package 'paradox)
+     '(setq paradox-automatically-star t)
    #+end_src
+** Faces
+   #+begin_src emacs-lisp
+     (set-face-attribute 'org-agenda-clocking nil :inherit 'org-scheduled :background "#268bd2")
+     (set-face-attribute 'org-agenda-current-time nil :inherit 'org-time-grid :background "light green")
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-07 Sat 22:46]
+   :END:
 * Misc
+** Info additional directory list
+   #+begin_src emacs-lisp
+     (setq Info-additional-directory-list (quote ("~/.local/share/info/")))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-07 Sat 22:42]
+   :END:
 ** emagician-fix-spell-memory
    #+begin_src emacs-lisp
    (prelude-require-package 'emagician-fix-spell-memory)

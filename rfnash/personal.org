@@ -1020,7 +1020,7 @@ old ELPA package config for historical interest
    #+begin_src emacs-lisp
      (setq twittering-use-master-password t)
      (prelude-require-package 'twittering-mode)
-     (twit)
+     ;; (twit)
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-11-18 Tue 15:12]

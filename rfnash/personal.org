@@ -1545,6 +1545,8 @@ old ELPA package config for historical interest
      (define-key prelude-mode-map (kbd "C-x t") 'rfnash-open-calendar)
      (define-key prelude-mode-map (kbd "C-x x") 'sauron-toggle-hide-show)
      (define-key prelude-mode-map (kbd "C-x c p") 'rfnash-visit-packages-buffer)
+     (define-key prelude-mode-map (kbd "C-x c s") 'helm-surfraw)
+     (define-key prelude-mode-map (kbd "C-x ,") #'rename-buffer)
 
      (define-key oog-map (kbd "C-n") 'oog-next-line)
      (define-key oog-map (kbd "C-p") 'oog-previous-line)
@@ -1569,9 +1571,6 @@ old ELPA package config for historical interest
 
      ;; (global-set-key "\C-cT" 'rfnash-visit-term-buffer)
      ;; (global-set-key "\C-ct" 'rfnash-visit-eshell-buffer)
-
-     (global-set-key "\C-xcs" 'helm-surfraw)
-     (global-set-key "\C-x," #'rename-buffer)
 
      (define-key org-mode-map (kbd "C-c C-w") #'helm-org-agenda-files-headings) ; Should be helm-org-headlines but its currently broken
      (define-key org-agenda-mode-map (kbd "C-c C-w") #'helm-org-agenda-files-headings)

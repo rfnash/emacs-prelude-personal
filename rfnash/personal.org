@@ -1673,7 +1673,7 @@ old ELPA package config for historical interest
 ** Sauron
    #+begin_src emacs-lisp
      (prelude-require-package 'sauron)
-     (sauron-start)
+     ;; (sauron-start)
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-10-25 Sat 19:35]

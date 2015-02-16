@@ -1620,11 +1620,15 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-11-12 Wed 19:21]
    :END:
-** calfw
+** [[https://github.com/kiwanami/emacs-calfw][calfw]] ([[http://www.emacswiki.org/emacs/Calfw][emacswiki]])
        #+begin_src emacs-lisp
          (prelude-require-packages '(calfw calfw-gcal))
 
          (require 'calfw-gcal)
+         (require 'calfw-org)
+         (require 'calfw-cal)
+         (require 'calfw-ical)
+         (require 'calfw-howm)
          (require 'calfw-org)
 
          (defun rfnash-open-calendar ()
@@ -1633,6 +1637,11 @@ old ELPA package config for historical interest
             :contents-sources
             (list
              (cfw:org-create-source "Green")  ; orgmode source
+             (cfw:howm-create-source "Blue") ; howm source
+             (cfw:cal-create-source "Orange") ; diary source
+             (cfw:ical-create-source "gcal - Main Calendar"
+                                     "https://www.google.com/calendar/ical/musicmaker1118%40gmail.com/private-e760c860d242661263a68f8e42dfe0bd/basic.ics"
+                                     "IndianRed") ; google calendar ICS. Doesn't support repeating events (only shows them on day of first repeat)
              )))
    #+end_src
 ** babel

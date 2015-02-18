@@ -1697,7 +1697,58 @@ old ELPA package config for historical interest
                                      "IndianRed") ; google calendar ICS. Doesn't support repeating events (only shows them on day of first repeat)
              )))
    #+end_src
-** TODO [[http://howm.sourceforge.jp/README.html][howm]] ([[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?e.FrontPage][wiki]], [[http://www.emacswiki.org/emacs/HowmMode][emacswiki]], [[http://www.emacswiki.org/emacs/HowmAndCalendar][Howm and calendar]])                      :NEXT:
+** TODO [[http://howm.sourceforge.jp/README.html][howm]] ([[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?e.FrontPage][wiki]], [[http://www.emacswiki.org/emacs/HowmMode][emacswiki]], [[http://www.emacswiki.org/emacs/HowmAndCalendar][Howm and calendar]], [[http://howm.sourceforge.jp/README.html][tutorial]] [[[file:~/.emacs.d/el-get/howm/doc/README.html][local]]])         :NEXT:
+   #+begin_src text
+     `howm-mode' Minor Mode Bindings:
+     key             binding
+     ---             -------
+
+     C-c             Prefix Command
+     C-x             Prefix Command
+
+     C-x C-s         howm-save-buffer
+
+     C-c ,           Prefix Command
+
+     C-c , SPC       howm-toggle-buffer
+     C-c , ,         howm-menu
+     C-c , .         howm-find-today
+     C-c , :         howm-find-yesterday
+     C-c , A         howm-list-around
+     C-c , C         howm-create-here
+     C-c , D         howm-dup
+     C-c , H         howm-first-memo
+     C-c , I         howm-create-interactively
+     C-c , K         howm-keyword-to-kill-ring
+     C-c , L         howm-last-memo
+     C-c , M         howm-open-named-file
+     C-c , N         howm-next-memo
+     C-c , P         howm-previous-memo
+     C-c , Q         howm-kill-all
+     C-c , T         howm-insert-dtime
+     C-c , a         howm-list-all
+     C-c , b         howm-list-buffers
+     C-c , c         howm-create
+     C-c , d         howm-insert-date
+     C-c , e         howm-remember
+     C-c , g         howm-list-grep
+     C-c , h         howm-history
+     C-c , i         howm-insert-keyword
+     C-c , l         howm-list-recent
+     C-c , m         howm-list-migemo
+     C-c , n         action-lock-goto-next-link
+     C-c , o         howm-occur
+     C-c , p         action-lock-goto-previous-link
+     C-c , r         howm-refresh
+     C-c , s         howm-list-grep-fixed
+     C-c , t         howm-list-todo
+     C-c , w         howm-random-walk
+     C-c , x         howm-list-mark-ring
+     C-c , y         howm-list-schedule
+   #+end_src
+   #+begin_src emacs-lisp
+     (require 'howm)
+   #+end_src
    :PROPERTIES:
    :CREATED:  [2015-02-13 Fri 16:22]
    :END:

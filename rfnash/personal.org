@@ -1413,6 +1413,7 @@ old ELPA package config for historical interest
         (:name emacs-http-server)
         (:name webkit)
         (:name howm)
+        (:name ProofGeneral)
         ;;(:name bbdb-vcard)
         ;; (:name bbdb (progn
         ;;                    (setq bbdb-file "~/.emacs.d/bbdb")

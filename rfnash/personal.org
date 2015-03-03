@@ -1436,24 +1436,67 @@ old ELPA package config for historical interest
    #+end_src
 ** Color Theme
    My settings to use the solarized light color theme.
-   #+begin_src emacs-lisp :tangle no
+   #+begin_src emacs-lisp
      ;; Set up the old-fashioned Solarized color theme
      ;; and set ansi-term to use solarized dark colors
 
      ;; Could be a coincidence, but since adding Solarized,
      ;; but I can't get 'Emacs --daemon' to work
 
-     (prelude-require-packages '(solarized-theme load-theme-buffer-local color-theme color-theme-buffer-local color-theme-solarized))
+     ;; (prelude-require-packages '(solarized-theme load-theme-buffer-local color-theme color-theme-buffer-local color-theme-solarized))
 
-     (setq light t)           ; setting to t works and remove undefined var error
+     ;; (setq light t)           ; setting to t works and remove undefined var error
      ;;(load-theme 'solarized-light t)
      ;;(if (display-graphic-p)
      ;;    (load-theme 'solarized-light t)
      ;;  (load-theme 'solarized-dark t))
 
      (disable-theme 'zenburn)
-     (require 'color-theme)
-     (color-theme-solarized-light)
+     (prelude-require-package 'color-theme-solarized)
+     (set-frame-parameter nil 'background-mode 'dark)
+     (load-theme 'solarized t)
+
+     (defun rfnash-solarized-light ()
+       (interactive)
+       (disable-theme 'zenburn)
+       (set-frame-parameter nil 'background-mode 'light)
+       (enable-theme 'solarized)
+       (set-face-attribute 'org-scheduled-today nil :foreground "darkgreen") ; orginal color
+       (set-face-attribute 'org-warning nil :weight 'bold)
+       (set-face-attribute 'org-todo nil :inherit 'org-todo))
+
+     (defun rfnash-solarized-dark ()
+       (interactive)
+       (disable-theme 'zenburn)
+       (set-frame-parameter nil 'background-mode 'dark)
+       (enable-theme 'solarized)
+       (set-face-attribute 'org-scheduled-today nil :foreground "#4df946")
+       (set-face-attribute 'org-warning nil :weight 'bold)
+       ;; TODO: Doesn't show up while highlighted (point is on same line)
+       (set-face-attribute 'org-todo nil :inverse-video t))
+
+     (defun rfnash-zenburn ()
+       (interactive)
+       (disable-theme 'solarized)
+       (enable-theme 'zenburn)
+       ;; Colors from habit grid
+       (set-face-attribute 'org-warning nil :foreground "firebrick" :weight 'bold)
+       (set-face-attribute 'org-upcoming-deadline nil :foreground "darkgoldenrod"))
+
+     (defun rfnash-helm-theme ()
+       "helm interface to let my chose one of my customized themes"
+       (interactive)
+       (helm :sources `(
+                        ((name . "My colorthemes")
+                         (candidates . (("zenburn" . rfnash-zenburn)
+                                        ("solarized-light" . rfnash-solarized-light)
+                                        ("solarized-dark" . rfnash-solarized-dark)))
+                         (action . (("Apply Theme" . (lambda (x) (apply x ())))))))))
+
+     (global-set-key (kbd "C-x c t") #'rfnash-helm-theme)
+
+     ;; (require 'color-theme)
+     ;; (color-theme-solarized-light)
    #+end_src
    :PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:41]

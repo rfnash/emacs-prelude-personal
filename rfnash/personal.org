@@ -1362,6 +1362,7 @@ old ELPA package config for historical interest
      (require 'prelude-org)                  ; Org-mode helps you keep TODO lists, notes and more
      (require 'prelude-scheme)
      (require 'prelude-shell)
+     (require 'prelude-clojure)
    #+end_src
 ** Set the default directory to HOME
    #+begin_src emacs-lisp

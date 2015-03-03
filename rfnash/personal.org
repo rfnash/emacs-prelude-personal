@@ -324,22 +324,17 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:35]
    :END:
-** paredit-mode
-   #+begin_src emacs-lisp
-     (prelude-require-package 'paredit)
-     (add-hook 'lisp-interaction-mode-hook 'paredit-mode)
-     (add-hook 'clojure-mode-hook 'paredit-mode)
-     (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
-   #+end_src
 ** paxedit-mode
    #+begin_src emacs-lisp
      ;;; Won't install from package.el, cloned git repo instead
      (add-to-list 'load-path "~/.emacs.d/paxedit")
+     (prelude-require-package 'paredit)
      (require 'paxedit)
 
      (add-hook 'emacs-lisp-mode-hook 'paxedit-mode)
      (add-hook 'clojure-mode-hook 'paxedit-mode)
      (add-hook 'lisp-interaction-mode-hook 'paxedit-mode)
+     (add-hook 'paxedit-mode-hook 'paredit-mode)
 
      ;;; Verify that this part is really needed sometime
      (eval-after-load "paxedit"

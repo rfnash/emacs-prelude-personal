@@ -1766,6 +1766,15 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-02-07 Sat 22:46]
    :END:
+** Mode Line
+   #+begin_src emacs-lisp
+     (prelude-require-package 'smart-mode-line)
+     (sml/setup)
+     (sml/apply-theme 'respectful)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-23 Mon 11:38]
+   :END:
 * Misc
 ** Info additional directory list
    #+begin_src emacs-lisp

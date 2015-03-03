@@ -1205,13 +1205,14 @@ old ELPA package config for historical interest
      ;;      ;;("oftc.net" "#bitlbee")))
 
      (add-to-list 'load-path "~/.emacs.d/prelude/personal")
-       (prelude-require-package 'znc)
+     (prelude-require-package 'znc)
      (require 'erc)
      ;;(require 'erc-nicklist)
      (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
                                               (freenode "rfnash/freenode" "***REMOVED***")
                                               (mozilla "rfnash/mozilla" "***REMOVED***")
-                                              (bitlbee "rfnash/bitlbee" "***REMOVED***")))))
+                                              (bitlbee "rfnash/bitlbee" "***REMOVED***")
+                                              (***REMOVED*** "rfnash/***REMOVED***" "***REMOVED***")))))
      (setq erc-nicklist-voiced-position 'top)
 
      (autoload 'erc-nick-notify-mode "erc-nick-notify"

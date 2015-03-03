@@ -752,8 +752,8 @@ old ELPA package config for historical interest
      ;; Targets include this file
      ;; and any file contributing to the agenda - up to 9 levels deep
      ;; See also http://doc.norang.ca/org-mode.html#RefileSetup
-     (setq org-refile-targets (quote ((nil :maxlevel . 1)
-                                      (org-agenda-files :maxlevel . 1))))
+     (setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                      (org-agenda-files :maxlevel . 9))))
      ;; Use full outline paths for refile targets - we file directly with IDO
      (setq org-refile-use-outline-path t)
 
@@ -1620,8 +1620,12 @@ old ELPA package config for historical interest
      ;; (global-set-key "\C-cT" 'rfnash-visit-term-buffer)
      ;; (global-set-key "\C-ct" 'rfnash-visit-eshell-buffer)
 
-     (define-key org-mode-map (kbd "C-c C-w") #'helm-org-agenda-files-headings)
-     (define-key org-agenda-mode-map (kbd "C-c C-w") #'helm-org-agenda-files-headings)
+     (defun rfnash-org-refile (&rest args)
+       (interactive)
+       (let ((helm-candidate-number-limit nil)) (apply #'org-refile args)))
+
+     (define-key org-mode-map (kbd "C-c C-w") #'rfnash-org-refile)
+     (define-key org-agenda-mode-map (kbd "C-c C-w") #'rfnash-org-refile)
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]

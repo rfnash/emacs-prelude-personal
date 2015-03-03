@@ -1606,7 +1606,7 @@ old ELPA package config for historical interest
 
      (defun rfnash-switch-buffer (buffer)
        "Switch to BUFFER using elscreen if possible;
-     if not, use 'switch-to-buffer-other-window'"
+               if not, use 'switch-to-buffer-other-window'"
        (if (fboundp 'elscreen-find-and-goto-by-buffer)
            (elscreen-find-and-goto-by-buffer buffer t)
          (switch-to-buffer buffer)))
@@ -1622,7 +1622,8 @@ old ELPA package config for historical interest
        (interactive)
        (if (get-buffer "*Org Agenda*")
            (rfnash-switch-buffer "*Org Agenda*")
-         (org-agenda nil "n")))
+         (org-agenda nil "n"))
+       (delete-other-windows))
 
      (defun rfnash-visit-term-buffer ()
        "Create or visit term buffer."

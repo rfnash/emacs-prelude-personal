@@ -989,7 +989,63 @@ old ELPA package config for historical interest
    #+begin_src emacs-lisp :tangle no
      (require 'org-page)
    #+end_src
+** TODO org-registry
+   #+begin_src emacs-lisp
+     (require 'org-registry)
+     (org-registry-initialize)
+     ;; (org-registry-insinuate)                ; Calls org-registry-update on save, but slows down org a lot
 
+     ;;; Slightly modified org-registry-show from org-registry.el
+     ;;; TODO: I could probably rewrite most of this function to use helm
+     (defun rfnash-org-registry-show (visit link)
+       "Show Org files where there are links pointing to the current
+     buffer."
+       ;; Not sure if I should use M on s in interactive
+       (interactive "P\nMlink: ")
+       (org-registry-initialize)
+       (let* ((files (org-registry-assoc-all link))
+              file point selection tmphist)
+         (cond ((and files visit)
+                ;; result(s) to visit
+                (cond ((< 1 (length files))
+                       ;; more than one result
+                       (setq tmphist (mapcar (lambda(entry)
+                                               (format "%s (%d) [%s]"
+                                                       (nth 3 entry) ; file
+                                                       (nth 2 entry) ; point
+                                                       (nth 1 entry))) files))
+                       (setq selection (completing-read "File: " tmphist
+                                                        nil t nil 'tmphist))
+                       (string-match "\\(.+\\) (\\([0-9]+\\))" selection)
+                       (setq file (match-string 1 selection))
+                       (setq point (string-to-number (match-string 2 selection))))
+                      ((eq 1 (length files))
+                       ;; just one result
+                       (setq file (nth 3 (car files)))
+                       (setq point (nth 2 (car files)))))
+                ;; visit the (selected) file
+                (funcall org-registry-find-file file)
+                (goto-char point)
+                (unless (org-before-first-heading-p)
+                  (org-show-context)))
+               ((and files (not visit))
+                ;; result(s) to display
+                (cond  ((eq 1 (length files))
+                        ;; show one file
+                        (message "Link in file %s (%d) [%s]"
+                                 (nth 3 (car files))
+                                 (nth 2 (car files))
+                                 (nth 1 (car files))))
+                       (t (org-registry-display-files files link))))
+               (t (message "No link to this in org-agenda-files")))))
+
+     (defun rfnash-org-registry-show-clipboard (visit)
+       (interactive "P")
+       (rfnash-org-registry-show visit (x-get-clipboard)))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-26 Thu 16:00]
+   :END:
 ** org-modules
    Require all of the org-mode modules that I use.
    #+begin_src emacs-lisp
@@ -1028,7 +1084,6 @@ old ELPA package config for historical interest
      ;; (require org-occur-goto)                ; http://www.emacswiki.org/emacs/org-search-goto.el
      ;;(require 'org-panal)
      (require 'org-protocol)
-     (require 'org-registry)
      ;; (require org-search-goto)               ; http://www.emacswiki.org/emacs/org-search-goto.el
      ;;(require org-search-goto-ml)               ;  http://www.emacswiki.org/emacs/org-search-goto-ml.el
      (require 'org-secretary)                   ; http://juanreyero.com/article/emacs/org-teams.html

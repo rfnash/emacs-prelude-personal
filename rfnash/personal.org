@@ -1220,6 +1220,21 @@ old ELPA package config for historical interest
      mentioned in an erc channel" t)
      ;; (eval-after-load 'erc '(erc-nick-notify-mode t))
    #+end_src
+** Circe
+   #+begin_src emacs-lisp
+     (prelude-require-package 'circe)
+     (require 'circe)
+     (setq circe-network-options
+           '(("***REMOVED***"
+             :host "***REMOVED***.com"
+             :service "6667"
+             :nick "Niki"
+             :realname "22 F Female Bi MI USA"
+             :nickserv-password "***REMOVED***")))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-20 Fri 22:25]
+   :END:
 ** mu4e
    My personal mu4e config.
    #+begin_src emacs-lisp

@@ -1717,6 +1717,7 @@ old ELPA package config for historical interest
      (define-key prelude-mode-map (kbd "C-x c p") 'rfnash-visit-packages-buffer)
      (define-key prelude-mode-map (kbd "C-x c s") 'helm-surfraw)
      (define-key prelude-mode-map (kbd "C-x ,") #'rename-buffer)
+     (define-key prelude-mode-map (kbd "C-x c h") #'helm-mini)
 
      (define-key oog-map (kbd "C-n") 'oog-next-line)
      (define-key oog-map (kbd "C-p") 'oog-previous-line)

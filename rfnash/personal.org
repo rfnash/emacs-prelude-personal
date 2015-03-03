@@ -655,6 +655,9 @@ old ELPA package config for historical interest
                               ("d" "Design Examples"
                                entry (id  "756f3a10-f323-409b-b418-00074ba93de9")
                                "* %? :GoodDesign:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("D" "Task with a deadline"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* TODO %?\nDEADLINE: %t\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("h" "Habbit"
                                entry ( id "b8e8b020-2772-4028-b209-1a52d3cb2fe6")
                                "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")

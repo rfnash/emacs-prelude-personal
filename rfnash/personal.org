@@ -613,12 +613,11 @@ old ELPA package config for historical interest
     :END:
 *** org-agenda-time-grid
     #+begin_src emacs-lisp
-     (setq
-      org-agenda-time-grid '((daily today require-timed)
-                             #("----------------" 0 16
-                               (org-heading t))
-                             (800 900 1000 1200 1400 1600 1800 2000 2200 2259 2300))
-     )
+      (setq org-agenda-time-grid
+            '((daily today require-timed)
+              #("----------------" 0 16
+                (org-heading t))
+              (800 1000 1200 1400 1600 1800 2000)))
     #+end_src
     :PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:08]

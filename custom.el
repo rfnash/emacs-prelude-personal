@@ -11,7 +11,7 @@
       "dvips and gv")
      (output-dvi "xdvi")
      (output-pdf "xdg-open")
-     (output-html "xdg-open"))))
+     (output-html "xdg-open")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

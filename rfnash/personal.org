@@ -1771,6 +1771,7 @@ old ELPA package config for historical interest
      (prelude-require-package 'smart-mode-line)
      (sml/setup)
      (sml/apply-theme 'respectful)
+     (setq rm-whitelist '(""))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-02-23 Mon 11:38]

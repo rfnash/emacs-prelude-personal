@@ -355,6 +355,16 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-01-23 Fri 14:55]
    :END:
+** [[https://github.com/Bruce-Connor/speed-of-thought-lisp][speed-of-thought-lisp]]
+   #+begin_src emacs-lisp
+     (prelude-require-package 'sotlisp)
+     (require 'sotlisp)
+     (speed-of-thought-mode)
+     (add-hook 'emacs-lisp-mode-hook 'abbrev-mode)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-03-05 Thu 16:06]
+   :END:
 ** K / Kona
    #+begin_src emacs-lisp
      (add-to-list 'load-path "~/.local/opt/kona/src")

@@ -493,8 +493,11 @@ old ELPA package config for historical interest
      (prelude-require-package 'http-post-simple)
      (require 'org-toodledo)
      (setq org-toodledo-preserve-drawers t)
-     (setq org-toodledo-sync-new-completed-tasks t)
+     (setq org-toodledo-sync-new-completed-tasks nil)
      (setq org-toodledo-userid "td52fa891b12039")
+     (setq org-toodledo-sync-on-save "ask")
+     (setq org-toodledo-archive-completed-tasks t)
+     (setq org-toodledo-archive-deleted-tasks t)
      (setq org-toodledo-status-to-org-map
            '(("Active" . "TODO")
              ("None" . "TODO")

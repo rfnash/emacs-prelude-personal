@@ -1145,7 +1145,7 @@ old ELPA package config for historical interest
 ** BBDB
    #+begin_src emacs-lisp
      (prelude-require-package 'bbdb)
-     (setq bbdb-file "~/.emacs.d/bbdb")
+     (setq bbdb-file "~/.emacs.d/prelude/savefile/bbdb")
      (require 'bbdb)
      (bbdb-initialize 'gnus 'message)
      (bbdb-insinuate-message)

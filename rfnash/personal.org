@@ -1532,7 +1532,7 @@ old ELPA package config for historical interest
       el-get-sources
       '((:name el-get)          ; el-get is self-hosting
         ;; (:name o-blog)       ; version in package.el doesn't work
-        (:name pwsafe :after (setq pwsafe-primary-database "~/Dropbox/pwsafe.dat"))
+        (:name pwsafe :after (setq pwsafe-primary-database "~/Dropbox/pwsafe/pwsafe.dat"))
         ;; (:name org-mode)
         (:name erc-extras)
         (:name erc-nick-notify)

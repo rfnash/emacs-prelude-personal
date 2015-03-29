@@ -42,25 +42,12 @@
                 (nnimap-address "imap.gmail.com")
                 (nnimap-user "robert@nash.co.vu"))))
 
-;;(setq message-send-mail-function 'smtpmail-send-it
-;;      smtpmail-auth-credentials '(("localhost" 25 "rfnash" nil))
-;;      smtpmail-default-smtp-server "localhost"
-;;      smtpmail-smtp-server "localhost"
-;;      smtpmail-smtp-service 25)
-
 (setq message-send-mail-function 'message-send-mail-with-sendmail)
 
 ;; This is needed to allow msmtp to do its magic:
 (setq message-sendmail-f-is-evil 't)
 (setq sendmail-program "msmtp")
 (setq message-sendmail-extra-arguments '("--read-envelope-from" "-t"))
-
-;;(setq message-send-mail-function 'smtpmail-send-it
-;;      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-;;      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "robert@nash.co.vu" nil))
-;;      smtpmail-default-smtp-server "smtp.gmail.com"
-;;      smtpmail-smtp-server "smtp.gmail.com"
-;;      smtpmail-smtp-service 587)
 
 ;; Make Gnus NOT ignore [Gmail] mailboxes
 (setq gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")

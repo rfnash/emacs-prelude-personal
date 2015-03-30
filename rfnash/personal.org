@@ -334,30 +334,30 @@ old ELPA package config for historical interest
 ** paxedit-mode
    #+begin_src emacs-lisp
      ;;; Won't install from package.el, cloned git repo instead
-     (add-to-list 'load-path "~/.emacs.d/paxedit")
      (prelude-require-package 'paredit)
-     (require 'paxedit)
-
-     (add-hook 'emacs-lisp-mode-hook 'paxedit-mode)
-     (add-hook 'clojure-mode-hook 'paxedit-mode)
-     (add-hook 'lisp-interaction-mode-hook 'paxedit-mode)
-     (add-hook 'paxedit-mode-hook 'paredit-mode)
-
-     ;;; Verify that this part is really needed sometime
-     (eval-after-load "paxedit"
-       '(progn (define-key paxedit-mode-map (kbd "M-<right>") 'paxedit-transpose-forward)
-               (define-key paxedit-mode-map (kbd "M-<left>") 'paxedit-transpose-backward)
-               (define-key paxedit-mode-map (kbd "M-<up>") 'paxedit-backward-up)
-               (define-key paxedit-mode-map (kbd "M-<down>") 'paxedit-backward-end)
-               (define-key paxedit-mode-map (kbd "M-b") 'paxedit-previous-symbol)
-               (define-key paxedit-mode-map (kbd "M-f") 'paxedit-next-symbol)
-               (define-key paxedit-mode-map (kbd "C-%") 'paxedit-copy)
-               (define-key paxedit-mode-map (kbd "C-&") 'paxedit-kill)
-               (define-key paxedit-mode-map (kbd "C-*") 'paxedit-delete)
-               (define-key paxedit-mode-map (kbd "C-^") 'paxedit-sexp-raise)
-               (define-key paxedit-mode-map (kbd "M-u") 'paxedit-symbol-change-case)
-               (define-key paxedit-mode-map (kbd "C-@") 'paxedit-symbol-copy)
-               (define-key paxedit-mode-map (kbd "C-#") 'paxedit-symbol-kill)))
+     (use-package paxedit
+       :commands paxedit-mode
+       :load-path "~/.emacs.d/paxedit"
+       :init
+       (add-hook 'emacs-lisp-mode-hook 'paxedit-mode)
+       (add-hook 'clojure-mode-hook 'paxedit-mode)
+       (add-hook 'lisp-interaction-mode-hook 'paxedit-mode)
+       (add-hook 'paxedit-mode-hook 'paredit-mode)
+       :config
+       (define-key paxedit-mode-map (kbd "M-<right>") 'paxedit-transpose-forward)
+       (define-key paxedit-mode-map (kbd "M-<left>") 'paxedit-transpose-backward)
+       (define-key paxedit-mode-map (kbd "M-<up>") 'paxedit-backward-up)
+       (define-key paxedit-mode-map (kbd "M-<down>") 'paxedit-backward-end)
+       (define-key paxedit-mode-map (kbd "M-b") 'paxedit-previous-symbol)
+       (define-key paxedit-mode-map (kbd "M-f") 'paxedit-next-symbol)
+       (define-key paxedit-mode-map (kbd "C-%") 'paxedit-copy)
+       (define-key paxedit-mode-map (kbd "C-&") 'paxedit-kill)
+       (define-key paxedit-mode-map (kbd "C-*") 'paxedit-delete)
+       (define-key paxedit-mode-map (kbd "C-^") 'paxedit-sexp-raise)
+       (define-key paxedit-mode-map (kbd "M-u") 'paxedit-symbol-change-case)
+       (define-key paxedit-mode-map (kbd "C-@") 'paxedit-symbol-copy)
+       (define-key paxedit-mode-map (kbd "C-#") 'paxedit-symbol-kill)
+       )
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-01-23 Fri 14:55]

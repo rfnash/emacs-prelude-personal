@@ -2,6 +2,13 @@
 #+OPTIONS: toc:4 h:4
 * About this file
 <<babel-init>>
+#+begin_src emacs-lisp
+  (prelude-require-packages '(use-package diminish))
+  (eval-when-compile
+    (require 'use-package))
+  (require 'diminish)                     ; if you use :diminish
+  (require 'bind-key)                     ; if you use any :bind variant
+#+end_src
 TODO: write something about this file.
 * Historical
   :PROPERTIES:

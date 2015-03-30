@@ -8,6 +8,7 @@
     (require 'use-package))
   (require 'diminish)                     ; if you use :diminish
   (require 'bind-key)                     ; if you use any :bind variant
+  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 #+end_src
 TODO: write something about this file.
 * Historical
@@ -489,11 +490,7 @@ old ELPA package config for historical interest
    Loads my locally installed org-mode
    #+begin_src emacs-lisp
      ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
-     (prelude-require-packages '(org-pomodoro org-trello))
-     (add-to-list 'load-path "~/.local/share/emacs/site-lisp/org")
-     (add-to-list 'load-path "~/.emacs.d/org-mode/contrib/lisp")
-     (load-file "~/.local/share/emacs/site-lisp/org/org-compat.el")
-     (load-file "~/.local/share/emacs/site-lisp/org/org-list.el")
+     (prelude-require-packages '(org-pomodoro org-trello org-plus-contrib))
      (require 'org)
      (org-reload)
    #+end_src

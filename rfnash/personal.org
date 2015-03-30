@@ -389,20 +389,24 @@ old ELPA package config for historical interest
    :END:
 ** Picolisp
    #+begin_src emacs-lisp
-     (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
-     (add-to-list 'load-path "~/.local/opt/picolisp/lib/el")
-     (load "tsm.el") ;; Picolisp TransientSymbolsMarkup (*Tsm)
-     (autoload 'run-picolisp "inferior-picolisp")
-     (autoload 'picolisp-mode "picolisp" "Major mode for editing Picolisp." t)
-
-     (add-to-list 'auto-mode-alist '("\\.l$" . picolisp-mode))
-
-     (add-hook 'picolisp-mode-hook
-               (lambda ()
-                 (paredit-mode +1) ;; Loads paredit mode automatically
-                 (tsm-mode) ;; Enables TSM
-                 (define-key picolisp-mode-map (kbd "RET") 'newline-and-indent)
-                 (define-key picolisp-mode-map (kbd "C-h") 'paredit-backward-delete)))
+     (use-package picolisp
+       :load-path "~/.local/opt/picolisp/lib/el"
+       :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
+       :mode ("\\.l$" . picolisp-mode)
+       :commands picolisp-mode
+       :config
+       (add-hook 'picolisp-mode-hook
+                 (lambda ()
+                   (paredit-mode +1) ;; Loads paredit mode automatically
+                   (tsm-mode) ;; Enables TSM
+                   (define-key picolisp-mode-map (kbd "RET") 'newline-and-indent)
+                   (define-key picolisp-mode-map (kbd "C-h") 'paredit-backward-delete)))
+       )
+     (use-package inferior-picolisp
+       :load-path "~/.local/opt/picolisp/lib/el"
+       :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
+       :commands run-picolisp
+       )
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-10-28 Tue 17:16]

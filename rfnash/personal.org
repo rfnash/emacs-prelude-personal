@@ -534,6 +534,26 @@ old ELPA package config for historical interest
 ** Various org settings
    #+begin_src emacs-lisp
      (setq
+      org-todo-keywords '((sequence
+                           "NEXT(n)"
+                           "TODO(t)"
+                           "DELEGATED(g@)"
+                           "SOMEDAY(s)"
+                           "WAITING(w@)"
+                           "|"
+                           "DONE(d!)"
+                           "CANCELLED(C@)"
+                           "REFERENCE(r)")
+                          (sequence "SCHED(c)" "|" "DONE(d!)")
+                          (sequence "HABIT(h)" "|" "DONE(d!)")
+                          (sequence "FILE(f)" "|")
+                          (sequence "IDEA(i)" "|"))
+      org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("@phone" . ?p) ("@computer" . ?c) ("@tofile" . ?t)
+                      ("READING" . ?r) ("GoodDesign" . ?d) ("7plus" . ?s) ("SCRATCH" . ?e) ("NEXT" . ?n) ("anki" . ?a))
+      org-startup-folded t
+      org-startup-indented t
+      ;; org-hide-leading-stars t
+      ;; org-hide-leading-stars nil
       org-log-into-drawer t
       org-refile-use-cache t
       org-return-follows-link t

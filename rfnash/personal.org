@@ -1842,6 +1842,7 @@ old ELPA package config for historical interest
    #+begin_src emacs-lisp
      (prelude-require-package 'volume)
      (setq volume-backend 'volume-amixer-backend)
+     (volume-amixer-program "samixer")
      (require 'volume)
      (global-set-key (kbd "C-c v") #'volume)
    #+end_src

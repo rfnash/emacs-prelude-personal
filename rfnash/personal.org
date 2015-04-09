@@ -585,6 +585,8 @@ old ELPA package config for historical interest
 *** Misc
     #+begin_src emacs-lisp
       (setq
+       org-agenda-sticky t
+       org-agenda-window-setup 'current-window
        org-agenda-skip-deadline-if-done t
        org-agenda-skip-scheduled-if-deadline-is-shown nil
        org-agenda-sorting-strategy (quote ((agenda time-up habit-down priority-down) (todo priority-down category-keep) (tags priority-down category-keep) (search category-keep)))
@@ -1664,9 +1666,8 @@ old ELPA package config for historical interest
        "Create or visit 'org-mode' agenda buffer."
        (interactive)
        (if (get-buffer "*Org Agenda*")
-           (rfnash-switch-buffer "*Org Agenda*")
-         (org-agenda nil "n"))
-       (delete-other-windows))
+           (rfnash-switch-buffer "*Org Agenda(n)*")
+         (org-agenda nil "n")))
 
      (defun rfnash-visit-term-buffer ()
        "Create or visit term buffer."

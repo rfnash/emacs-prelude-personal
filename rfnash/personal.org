@@ -375,8 +375,8 @@ old ELPA package config for historical interest
    :END:
 ** K / Kona
    #+begin_src emacs-lisp
-     (add-to-list 'load-path "~/.local/opt/kona/src")
-     (require 'k-mode)
+     (use-package k-mode
+       :load-path "~/.local/opt/kona/src")
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-08-18 Mon 14:05]

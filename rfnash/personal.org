@@ -2101,6 +2101,18 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-03-03 Tue 00:07]
    :END:
+** [[https://github.com/sachac/artbollocks-mode][artbollacks-mode]]
+#+begin_src emacs-lisp
+  (use-package artbollocks-mode
+    :ensure t
+    :commands artbollocks-mode
+    :init
+    (add-hook 'text-mode-hook 'artbollocks-mode)
+    (add-hook 'org-mode-hook 'artbollocks-mode))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-10 Fri 19:09]
+:END:
 * Emacs Server
   Start the Emacs server if it isn't already running
   #+begin_src emacs-lisp

@@ -340,6 +340,7 @@ old ELPA package config for historical interest
        :diminish paredit-mode)
      (use-package paxedit
        :commands paxedit-mode
+       :diminish paxedit-mode
        :load-path "~/.emacs.d/paxedit"
        :init
        (add-hook 'emacs-lisp-mode-hook 'paxedit-mode)

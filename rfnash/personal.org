@@ -335,7 +335,9 @@ old ELPA package config for historical interest
 ** paxedit-mode
    #+begin_src emacs-lisp
      ;;; Won't install from package.el, cloned git repo instead
-     (prelude-require-package 'paredit)
+     (use-package paredit
+       :ensure t
+       :diminish paredit-mode)
      (use-package paxedit
        :commands paxedit-mode
        :load-path "~/.emacs.d/paxedit"

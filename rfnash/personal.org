@@ -371,6 +371,7 @@ old ELPA package config for historical interest
      (prelude-require-package 'sotlisp)
      (require 'sotlisp)
      (speed-of-thought-mode)
+     (eval-after-load "abbrev" '(diminish 'abbrev-mode))
      (add-hook 'emacs-lisp-mode-hook 'abbrev-mode)
    #+end_src
    :PROPERTIES:

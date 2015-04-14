@@ -1410,6 +1410,7 @@ old ELPA package config for historical interest
      (require 'prelude-scheme)
      (require 'prelude-shell)
      (require 'prelude-clojure)
+     (require 'prelude-haskell)
    #+end_src
 ** Set the default directory to HOME
    #+begin_src emacs-lisp

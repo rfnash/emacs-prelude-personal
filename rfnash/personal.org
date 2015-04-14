@@ -740,7 +740,7 @@ old ELPA package config for historical interest
                                "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("P" "Personal"
                                entry ( id "5baf8be5-b956-421a-950c-6e39c8e6d52e")
-                               "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                               "* %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("s" "Scratch"
                                entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                                "* %? :SCRATCH:\n:PROPERTIES:\n:CREATED:  %U\n:END:")

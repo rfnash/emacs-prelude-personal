@@ -1877,7 +1877,7 @@ old ELPA package config for historical interest
                                      "IndianRed") ; google calendar ICS. Doesn't support repeating events (only shows them on day of first repeat)
              )))
    #+end_src
-** TODO [[http://howm.sourceforge.jp/README.html][howm]] ([[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?e.FrontPage][wiki]], [[http://www.emacswiki.org/emacs/HowmMode][emacswiki]], [[http://www.emacswiki.org/emacs/HowmAndCalendar][Howm and calendar]], [[http://howm.sourceforge.jp/README.html][tutorial]] [[[file:~/.emacs.d/el-get/howm/doc/README.html][local]]])   :NEXT:
+** TODO [[http://howm.sourceforge.jp/README.html][howm]] ([[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?e.FrontPage][wiki]], [[http://www.emacswiki.org/emacs/HowmMode][emacswiki]], [[http://www.emacswiki.org/emacs/HowmAndCalendar][Howm and calendar]], [[http://howm.sourceforge.jp/README.html][tutorial]] [[[file:~/.emacs.d/el-get/howm/doc/README.html][local]]], [[http://sourceforge.jp/projects/howm/lists/archive/eng/2008/000038.html][integrating with org-mode]].) :NEXT:
    #+begin_src text
      `howm-mode' Minor Mode Bindings:
      key             binding
@@ -1932,6 +1932,40 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2015-02-13 Fri 16:22]
    :END:
+*** TODO [#B] Howm-related
+   - http://angg.twu.net/e/howm.e.html
+   - http://www.emacswiki.org/emacs/PlannerAndHowmComparison
+   - http://pages.sachachua.com/sharing/blog.html
+   - http://sachachua.com/notebook/wickedcoolemacs/wc-emacs-07-managing-your-notes.pdf
+   - http://sachachua.com/notebook/wickedcoolemacs/wc-emacs-07-managing-your-notes.html
+   - http://sachachua.com/blog/2008/01/note-taking-random-notes-journal-entries-outlines-and-hyperlinks/
+   - http://sachachua.com/blog/2005/09/planning-reflection/
+   - http://sachachua.com/blog/2005/06/planner-support-for-action-lockel/
+   - http://sachachua.com/blog/2004/01/emacs-wiki-sites/
+   :PROPERTIES:
+   :CREATED:  [2015-02-18 Wed 00:00]
+   :ToodledoID: 48996451
+   :Hash:     62b08258a1adeb06ffb4426679d7f3e4
+   :END:
+*** TODO http://howm.sourceforge.jp/a/
+:PROPERTIES:
+:CREATED:  [2015-04-14 Tue 17:49]
+:END:
+*** TODO http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?ExternalTool
+:PROPERTIES:
+:CREATED:  [2015-04-14 Tue 17:49]
+:END:
+:PROPERTIES:
+*** TODO http://sourceforge.jp/projects/howm/lists/archive/eng/
+:PROPERTIES:
+:CREATED:  [2015-04-14 Tue 17:51]
+:END:
+:CREATED:  [2015-04-14 Tue 17:51]
+:END:
+*** TODO http://howm.sourceforge.jp/a/rich-title/
+:PROPERTIES:
+:CREATED:  [2015-04-14 Tue 17:49]
+:END:
 ** babel
    #+begin_src emacs-lisp
      (prelude-require-package 'babel)

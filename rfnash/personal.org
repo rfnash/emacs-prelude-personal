@@ -496,7 +496,6 @@ old ELPA package config for historical interest
      ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
      (prelude-require-packages '(org-pomodoro org-trello org-plus-contrib))
      (require 'org)
-     (org-reload)
    #+end_src
 ** org-toodledo
    #+begin_src emacs-lisp

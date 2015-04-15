@@ -1645,107 +1645,132 @@ old ELPA package config for historical interest
    :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
+** rfnash-switch-buffer
+#+begin_src emacs-lisp
+  ;; Based on http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/
+
+  (defun rfnash-switch-buffer (buffer)
+    "Switch to BUFFER using elscreen if possible;
+            if not, use 'switch-to-buffer-other-window'"
+    (if (fboundp 'elscreen-find-and-goto-by-buffer)
+        (elscreen-find-and-goto-by-buffer buffer t)
+      (switch-to-buffer buffer)))
+
+  (defun rfnash-visit-org-notes-buffer ()
+    "Visit my notes.org buffer."
+    (interactive)
+    (if (get-buffer "notes.org")
+        (rfnash-switch-buffer "notes.org")))
+
+  (defun rfnash-visit-org-agenda-buffer ()
+    "Create or visit 'org-mode' agenda buffer."
+    (interactive)
+    (if (get-buffer "*Org Agenda*")
+        (rfnash-switch-buffer "*Org Agenda(n)*")
+      (org-agenda nil "n")))
+
+  (defun rfnash-visit-term-buffer ()
+    "Create or visit term buffer."
+    (interactive)
+    (if (get-buffer "*ansi-term*")
+        (rfnash-switch-buffer "*ansi-term*")
+      (ansi-term "tmux-attach")))
+
+  (defun rfnash-visit-eshell-buffer ()
+    "Create or visit an eshell buffer."
+    (interactive)
+    (if (get-buffer "*eshell*")
+        (rfnash-switch-buffer "*eshell*")
+      (eshell)))
+
+  (defun rfnash-visit-gnus-buffer ()
+    "Create or visit GNUS's group buffer."
+    (interactive)
+    (if (get-buffer "*Group*")
+        (rfnash-switch-buffer "*Group*")
+      (gnus)))
+
+  (defun rfnash-visit-mu4e-buffer ()
+    "Create or visit mu4e's main buffer."
+    (interactive)
+    (if (get-buffer "*mu4e-main*")
+        (rfnash-switch-buffer "*mu4e-main*")
+      (mu4e)))
+
+  (defun rfnash-visit-scratch-buffer ()
+    "Visit *scratch* buffer."
+    (interactive)
+    (if (get-buffer "*scratch*")
+        (rfnash-switch-buffer "*scratch*")
+      (if (fboundp 'elscreen-create)
+          (elscreen-create)
+        (progn
+          (switch-to-buffer (get-buffer-create "*scratch*"))
+          (lisp-interaction-mode)))))
+
+  (defun rfnash-visit-packages-buffer ()
+    "Visit buffer of package.el packages"
+    (interactive)
+    (if (get-buffer "*Packages*")
+        (rfnash-switch-buffer "*Packages*")
+      (paradox-list-packages nil)))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-14 Tue 20:32]
+:END:
+** rfnash-horizontal-recenter
+#+begin_src emacs-lisp
+  ;; From http://stackoverflow.com/a/1249665
+  (defun rfnash-horizontal-recenter ()
+    "Make the point horizontally centered in the window."
+    (interactive)
+    (let ((mid (/ (window-width) 2))
+          (line-len (save-excursion (end-of-line) (current-column)))
+          (cur (current-column)))
+      (if (< mid cur)
+          (set-window-hscroll (selected-window)
+                              (- cur mid)))))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-14 Tue 20:35]
+:END:
+** rfnash-scroll-left-edge
+#+begin_src emacs-lisp
+  (defun rfnash-scroll-left-edge ()
+    "Like `my-horizontal-recenter', but place point at the left edge of the window."
+    (interactive)
+    (set-window-hscroll (selected-window) (current-column)))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-14 Tue 20:36]
+:END:
+** browse-weather
+#+begin_src emacs-lisp
+  (defun browse-weather ()
+    "Look up the current weather on forecast.io."
+    (interactive)
+    (browse-url "http://forecast.io/"))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-14 Tue 20:37]
+:END:
+** rfnash-helm-org-swoop
+#+begin_src emacs-lisp
+  (defun rfnash-helm-org-swoop ()
+    "Run `'helm-multi-swoop' with `org-buffer-list'"
+    (interactive)
+    (helm-multi-swoop nil (mapcar #'buffer-name (org-buffer-list))))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-14 Tue 20:38]
+:END:
 ** prelude mode
    Emacs Prelude: minor mode.
    #+begin_src emacs-lisp
-     ;; Based on http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/
-
      (require 'prelude-mode)
-
-     (defun rfnash-switch-buffer (buffer)
-       "Switch to BUFFER using elscreen if possible;
-               if not, use 'switch-to-buffer-other-window'"
-       (if (fboundp 'elscreen-find-and-goto-by-buffer)
-           (elscreen-find-and-goto-by-buffer buffer t)
-         (switch-to-buffer buffer)))
-
-     (defun rfnash-visit-org-notes-buffer ()
-       "Visit my notes.org buffer."
-       (interactive)
-       (if (get-buffer "notes.org")
-           (rfnash-switch-buffer "notes.org")))
-
-     (defun rfnash-visit-org-agenda-buffer ()
-       "Create or visit 'org-mode' agenda buffer."
-       (interactive)
-       (if (get-buffer "*Org Agenda*")
-           (rfnash-switch-buffer "*Org Agenda(n)*")
-         (org-agenda nil "n")))
-
-     (defun rfnash-visit-term-buffer ()
-       "Create or visit term buffer."
-       (interactive)
-       (if (get-buffer "*ansi-term*")
-           (rfnash-switch-buffer "*ansi-term*")
-         (ansi-term "tmux-attach")))
-
-     (defun rfnash-visit-eshell-buffer ()
-       "Create or visit an eshell buffer."
-       (interactive)
-       (if (get-buffer "*eshell*")
-           (rfnash-switch-buffer "*eshell*")
-         (eshell)))
-
-     (defun rfnash-visit-gnus-buffer ()
-       "Create or visit GNUS's group buffer."
-       (interactive)
-       (if (get-buffer "*Group*")
-           (rfnash-switch-buffer "*Group*")
-         (gnus)))
-
-     (defun rfnash-visit-mu4e-buffer ()
-       "Create or visit mu4e's main buffer."
-       (interactive)
-       (if (get-buffer "*mu4e-main*")
-           (rfnash-switch-buffer "*mu4e-main*")
-         (mu4e)))
-
-     (defun rfnash-visit-scratch-buffer ()
-       "Visit *scratch* buffer."
-       (interactive)
-       (if (get-buffer "*scratch*")
-           (rfnash-switch-buffer "*scratch*")
-         (if (fboundp 'elscreen-create)
-             (elscreen-create)
-           (progn
-             (switch-to-buffer (get-buffer-create "*scratch*"))
-             (lisp-interaction-mode)))))
-
-     (defun rfnash-visit-packages-buffer ()
-       "Visit buffer of package.el packages"
-       (interactive)
-       (if (get-buffer "*Packages*")
-           (rfnash-switch-buffer "*Packages*")
-         (paradox-list-packages nil)))
-
-     ;; From http://stackoverflow.com/a/1249665
-     (defun my-horizontal-recenter ()
-       "Make the point horizontally centered in the window."
-       (interactive)
-       (let ((mid (/ (window-width) 2))
-             (line-len (save-excursion (end-of-line) (current-column)))
-             (cur (current-column)))
-         (if (< mid cur)
-             (set-window-hscroll (selected-window)
-                                 (- cur mid)))))
-
-     (defun rfnash-scroll-left-edge ()
-       "Like `my-horizontal-recenter', but place point at the left edge of the window."
-       (interactive)
-       (set-window-hscroll (selected-window) (current-column)))
 
      (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
      (global-set-key (kbd "C-S-L") 'rfnash-scroll-left-edge)
-
-     (defun browse-weather ()
-       "Look up the current weather on forecast.io."
-       (interactive)
-       (browse-url "http://forecast.io/"))
-
-     (defun rfnash-helm-org-swoop ()
-       "Run `'helm-multi-swoop' with `org-buffer-list'"
-       (interactive)
-       (helm-multi-swoop nil (mapcar #'buffer-name (org-buffer-list))))
 
      (define-key prelude-mode-map (kbd "C-x F") 'browse-weather)
 

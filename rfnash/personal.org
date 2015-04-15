@@ -1800,17 +1800,14 @@ old ELPA package config for historical interest
      (define-key gnus-article-mode-map (kbd "i") #'gnus-article-show-images)
      (define-key gnus-summary-mode-map (kbd "i") #'gnus-article-show-images)
 
-     ;; Use C-h instead of backspace, because I disable backspace in xbindkeys
-     ;; Long story, but purpose was to stop its use in aldo
-     ;; TODO: this probable is a horrible idea and should be removed
-     (global-unset-key (kbd "C-h"))
-     (define-key prelude-mode-map (kbd "C-h") 'backward-delete-char-untabify)
-     (define-key helm-map (kbd "C-h") 'backward-delete-char)
+     ;;; From https://github.com/magnars/hardcore-mode.el
+     ;; Use shell-like backspace C-h, rebind help to F1
+     (define-key key-translation-map [?\C-h] [?\C-?])
+     (global-set-key (kbd "<f1>") #'help-command)
 
      ;; TODO: kind of works, but usually ends up deleting characters
      ;; in the buffer I'm searching in, and not from the search string,
      ;; yet pressing backspace works as expected. Figure out why.
-     (define-key isearch-mode-map (kbd "C-h") 'backward-delete-char)
 
      ;; (global-set-key "\C-cT" #'rfnash-visit-term-buffer)
      ;; (global-set-key "\C-ct" #'rfnash-visit-eshell-buffer)

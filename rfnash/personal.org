@@ -1980,11 +1980,8 @@ old ELPA package config for historical interest
 :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:49]
 :END:
-:PROPERTIES:
 *** TODO http://sourceforge.jp/projects/howm/lists/archive/eng/
 :PROPERTIES:
-:CREATED:  [2015-04-14 Tue 17:51]
-:END:
 :CREATED:  [2015-04-14 Tue 17:51]
 :END:
 *** TODO http://howm.sourceforge.jp/a/rich-title/

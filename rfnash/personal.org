@@ -512,6 +512,9 @@ old ELPA package config for historical interest
      ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
      (prelude-require-packages '(org-pomodoro org-trello org-plus-contrib))
      (require 'org)
+
+     ;;; Flycheck interferes with org-time-stamp-inactive in org-mode
+     (setq flycheck-global-modes '(not org-mode))
    #+end_src
 ** org-toodledo
    #+begin_src emacs-lisp

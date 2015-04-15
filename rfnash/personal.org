@@ -1787,18 +1787,17 @@ old ELPA package config for historical interest
 
      (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
      (global-set-key (kbd "C-S-L") 'rfnash-scroll-left-edge)
-
      (define-key prelude-mode-map (kbd "C-x F") #'browse-weather)
 
      (define-key prelude-mode-map (kbd "C-c i") #'prelude-ido-goto-symbol)
-     (define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list))))
+     (define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list)))) ; overwrites prelude-open-with keybinding
      (define-key prelude-mode-map (kbd "C-c O") #'prelude-open-with)
-     (define-key prelude-mode-map (kbd "C-c h") #'rfnash-visit-org-agenda-buffer)
-     (define-key prelude-mode-map (kbd "C-c g") #'rfnash-visit-gnus-buffer)
+     (define-key prelude-mode-map (kbd "C-c h") #'rfnash-visit-org-agenda-buffer) ; overwrites helm-command-prefix keybinding
+     (define-key prelude-mode-map (kbd "C-c g") #'rfnash-visit-gnus-buffer) ; overwrites prelude-google keybinding
      (define-key prelude-mode-map (kbd "C-c m") #'rfnash-visit-mu4e-buffer)
-     (define-key prelude-mode-map (kbd "C-c G") #'prelude-google)
-     (define-key prelude-mode-map (kbd "C-c s") #'rfnash-visit-scratch-buffer)
-     (define-key prelude-mode-map (kbd "C-c S") #'prelude-swap-windows)
+     (define-key prelude-mode-map (kbd "C-c G") #'prelude-google) ; overwrites prelude-github keybinding
+     (define-key prelude-mode-map (kbd "C-c s") #'rfnash-visit-scratch-buffer) ; overwrites prelude-swap-windows keybinding
+     (define-key prelude-mode-map (kbd "C-c S") #'prelude-swap-windows) ; overwrites prelude-find-shell-init-file keybinding
      (define-key prelude-mode-map (kbd "C-c ;") #'comment-region)
      (define-key prelude-mode-map (kbd "C-x t") #'rfnash-open-calendar)
      (define-key prelude-mode-map (kbd "C-x x") #'sauron-toggle-hide-show)

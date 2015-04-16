@@ -368,11 +368,13 @@ Added manually as per quicklisp instructed after running ~(ql:quickload "quickli
    :END:
 ** [[https://github.com/Bruce-Connor/speed-of-thought-lisp][speed-of-thought-lisp]]
 #+begin_src emacs-lisp
-     (prelude-require-package 'sotlisp)
-     (require 'sotlisp)
-     (speed-of-thought-mode)
-     (eval-after-load "abbrev" '(diminish 'abbrev-mode))
-     (add-hook 'emacs-lisp-mode-hook 'abbrev-mode)
+     (use-package sotlisp
+       :ensure t
+       :diminish sotlisp-mode
+       :config
+       (speed-of-thought-mode)
+       (eval-after-load "abbrev" '(diminish 'abbrev-mode))
+       (add-hook 'emacs-lisp-mode-hook 'abbrev-mode))
 #+end_src
 :PROPERTIES:
    :CREATED:  [2015-03-05 Thu 16:06]
@@ -387,7 +389,8 @@ Added manually as per quicklisp instructed after running ~(ql:quickload "quickli
    :END:
 ** Rust
 #+begin_src emacs-lisp
-    (prelude-require-packages '(rust-mode flycheck-rust))
+    (use-package rust-mode :ensure t)
+    (use-package flycheck-rust :ensure t)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2014-10-09 Thu 23:42]
@@ -418,7 +421,7 @@ Added manually as per quicklisp instructed after running ~(ql:quickload "quickli
    :END:
 ** lfe
 #+begin_src emacs-lisp
-  (prelude-require-package 'lfe-mode)
+  (use-package lfe-mode :ensure t)
 #+end_src
 :PROPERTIES:
   :CREATED:  [2014-11-21 Fri 17:28]
@@ -426,16 +429,25 @@ Added manually as per quicklisp instructed after running ~(ql:quickload "quickli
 
 ** Yasnippet
 #+begin_src emacs-lisp
-     (prelude-require-packages '(yasnippet helm-c-yasnippet))
-     (yas-global-mode 1)
+     (use-package yasnippet
+       :ensure t
+       :diminish yas-minor-mode
+       :config
+       (yas-global-mode 1))
+     (use-package helm-c-yasnippet
+       :ensure t)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2014-11-12 Wed 19:35]
    :END:
 ** SmartParens
 #+begin_src emacs-lisp
-     (prelude-require-package 'smartparens)
-     (smartparens-global-mode 1)
+     (use-package smartparens
+       :ensure t
+       :diminish smartparens-mode
+       :config
+       (smartparens-global-mode 1))
+
 #+end_src
 :PROPERTIES:
    :CREATED:  [2014-12-04 Thu 18:36]
@@ -446,7 +458,8 @@ Added manually as per quicklisp instructed after running ~(ql:quickload "quickli
 #+end_src
 ** EDBI
 #+begin_src emacs-lisp
-     (prelude-require-packages '(edbi edbi-sqlite))
+     (use-package edbi :ensure t)
+     (use-package edbi-sqlite :ensure t)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2014-10-20 Mon 23:33]
@@ -457,11 +470,11 @@ Added manually as per quicklisp instructed after running ~(ql:quickload "quickli
 #+end_src
 ** [[https://github.com/swannodette/ob-sml][ob-sml]]
 #+begin_src emacs-lisp
-     (prelude-require-package 'ob-sml)
+     (use-package ob-sml :ensure t)
 #+end_src
 ** [[https://github.com/ikirill/hl-indent][hl-indent]]
 #+begin_src emacs-lisp
-     (prelude-require-package 'hl-indent)
+     (use-package hl-indent :ensure t)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2014-12-29 Mon 19:02]
@@ -476,7 +489,7 @@ Added manually as per quicklisp instructed after running ~(ql:quickload "quickli
    :END:
 ** Geiser
 #+begin_src emacs-lisp
-     (prelude-require-package 'geiser)
+     (use-package geiser :ensure t)
      (require 'geiser)
      (setq geiser-racket-binary "/usr/local/racket/bin/racket")
      (setq geiser-racket-gracket-binary "/usr/local/racket/bin/gracket-text")
@@ -510,7 +523,10 @@ TODO: was naively copied into my prelude config, check for redundancy
 Loads my locally installed org-mode
 #+begin_src emacs-lisp
      ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
-     (prelude-require-packages '(org-pomodoro org-trello org-plus-contrib))
+     (use-package org-pomodoro :ensure t)
+     (use-package org-trello :ensure t)
+     (use-package org-plus-contrib :ensure t)
+
      (require 'org)
 
      ;;; Flycheck interferes with org-time-stamp-inactive in org-mode
@@ -520,7 +536,7 @@ Loads my locally installed org-mode
 #+begin_src emacs-lisp
      ;; org-toodledo is installed via git
      (add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
-     (prelude-require-package 'http-post-simple)
+     (use-package http-post-simple :ensure t)
      (require 'org-toodledo)
      (setq org-toodledo-preserve-drawers t)
      (setq org-toodledo-sync-new-completed-tasks nil)
@@ -1165,7 +1181,7 @@ Require all of the org-mode modules that I use.
 ** TODO OrgBox
 Just trying it out.
 #+begin_src emacs-lisp
-     (prelude-require-package 'orgbox)
+     (use-package orgbox :ensure t)
      (require 'orgbox)
 #+end_src
 :PROPERTIES:
@@ -1173,14 +1189,14 @@ Just trying it out.
    :END:
 ** [[https://github.com/jplindstrom/emacs-org-transform-tree-table][org-transform-tree-table]]
 #+begin_src emacs-lisp
-     (prelude-require-package 'org-transform-tree-table)
+     (use-package org-transform-tree-table :ensure t)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2014-12-29 Mon 19:00]
    :END:
 ** org-cliplink
 #+begin_src emacs-lisp
-  (prelude-require-package 'org-cliplink)
+  (use-package org-cliplink :ensure t)
 #+end_src
 :PROPERTIES:
   :CREATED:  [2014-11-21 Fri 17:28]
@@ -1192,7 +1208,7 @@ Just trying it out.
 ** Twitter
 #+begin_src emacs-lisp
      (setq twittering-use-master-password t)
-     (prelude-require-package 'twittering-mode)
+     (use-package twittering-mode :ensure t)
      ;; (twit)
 #+end_src
 :PROPERTIES:
@@ -1200,14 +1216,14 @@ Just trying it out.
    :END:
 ** BBDB
 #+begin_src emacs-lisp
-     (prelude-require-package 'bbdb)
+     (use-package bbdb :ensure t)
      (setq bbdb-file "~/.emacs.d/prelude/savefile/bbdb")
      (require 'bbdb)
      (bbdb-initialize 'gnus 'message)
      (bbdb-insinuate-message)
      (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
      (add-hook 'kill-emacs-hook 'bbdb-save)
-     ;;(prelude-require-package 'bbdb-vcard)
+     ;;(use-package bbdb-vcard :ensure t)
 #+end_src
 ** helm-mu
 #+begin_src emacs-lisp
@@ -1216,7 +1232,7 @@ Just trying it out.
 #+end_src
 ** EWW
 #+begin_src emacs-lisp
-     (prelude-require-package 'eww-lnum)
+     (use-package eww-lnum :ensure t)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2014-10-29 Wed 18:37]
@@ -1271,7 +1287,7 @@ From emacswiki.org/emacs/ERC.
      ;;      ;;("oftc.net" "#bitlbee")))
 
      (add-to-list 'load-path "~/.emacs.d/prelude/personal")
-     (prelude-require-package 'znc)
+     (use-package znc :ensure t)
      (require 'erc)
      ;;(require 'erc-nicklist)
      (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
@@ -1288,7 +1304,7 @@ From emacswiki.org/emacs/ERC.
 #+end_src
 ** Circe
 #+begin_src emacs-lisp
-     (prelude-require-package 'circe)
+     (use-package circe :ensure t)
      (require 'circe)
      (setq circe-network-options
            '(("***REMOVED***"
@@ -1419,7 +1435,7 @@ My personal mu4e config.
      (require 'prelude-erc)                  ; Emacs IRC client
      (require 'prelude-ido)                  ; Super charges Emacs completion for C-x C-f and more
      (require 'prelude-helm)                 ; Interface for narrowing and search
-     (require 'prelude-company)
+     (use-package prelude-company :diminish company-mode)
      (require 'prelude-key-chord)            ; Binds useful features to key combinations
 
      ;;; Programming languages support
@@ -1437,11 +1453,13 @@ My personal mu4e config.
 #+end_src
 ** smart-tab and hippie-expand
 #+begin_src emacs-lisp
-     (prelude-require-package 'smart-tab)
-     (require 'smart-tab)
-     (add-to-list 'smart-tab-disabled-major-modes 'agda2-mode)
-     (global-smart-tab-mode 1)
-     (define-key read-expression-map [(tab)] 'hippie-expand)
+     (use-package smart-tab
+       :ensure t
+       :diminish smart-tab-mode
+       :config
+       (add-to-list 'smart-tab-disabled-major-modes 'agda2-mode)
+       (global-smart-tab-mode 1)
+       (define-key read-expression-map [(tab)] 'hippie-expand))
 #+end_src
 ** elscreen
 #+begin_src emacs-lisp
@@ -1449,16 +1467,22 @@ My personal mu4e config.
 #+end_src
 ** switch-window
 #+begin_src emacs-lisp
-     (prelude-require-package 'switch-window)
+     (use-package switch-window :ensure t)
      (global-set-key (kbd "C-x o") 'switch-window)
 #+end_src
 ** Require various packages
 #+begin_src emacs-lisp
-     (prelude-require-packages '(helm-orgcard helm-descbinds helm-backup helm-helm-commands))
-     (prelude-require-packages '(ag helm-ag helm-ag-r))
-     (prelude-require-packages '(caskxy graphviz-dot-mode))
-     (prelude-require-package 'elnode)
-     (prelude-require-package 'unbound)
+     (use-package helm-orgcard :ensure t)
+     (use-package helm-descbinds :ensure t)
+     (use-package helm-backup :ensure t)
+     (use-package helm-helm-commands :ensure t)
+     (use-package ag :ensure t)
+     (use-package helm-ag :ensure t)
+     (use-package helm-ag-r :ensure t)
+     (use-package caskxy :ensure t)
+     (use-package graphviz-dot-mode :ensure t)
+     (use-package elnode :ensure t)
+     (use-package unbound :ensure t)
 #+end_src
 ** Default Font
 #+begin_src emacs-lisp
@@ -1518,49 +1542,54 @@ My settings to use the solarized light color theme.
      ;;    (load-theme 'solarized-light t)
      ;;  (load-theme 'solarized-dark t))
 
-     (disable-theme 'zenburn)
-     (prelude-require-package 'color-theme-solarized)
-     (set-frame-parameter nil 'background-mode 'dark)
-     (load-theme 'solarized t)
+  (disable-theme 'zenburn)
+  (use-package color-theme
+    :ensure t
+    :config
+    (use-package color-theme-solarized
+      :ensure t
+      :config
+      (set-frame-parameter nil 'background-mode 'dark)
+      (load-theme 'solarized t)
 
-     (defun rfnash-solarized-light ()
-       (interactive)
-       (disable-theme 'zenburn)
-       (set-frame-parameter nil 'background-mode 'light)
-       (enable-theme 'solarized)
-       (set-face-attribute 'org-scheduled-today nil :foreground "darkgreen") ; orginal color
-       (set-face-attribute 'org-warning nil :weight 'bold)
-       (set-face-attribute 'org-todo nil :inherit 'org-todo))
+      (defun rfnash-solarized-light ()
+        (interactive)
+        (disable-theme 'zenburn)
+        (set-frame-parameter nil 'background-mode 'light)
+        (enable-theme 'solarized)
+        (set-face-attribute 'org-scheduled-today nil :foreground "darkgreen") ; orginal color
+        (set-face-attribute 'org-warning nil :weight 'bold)
+        (set-face-attribute 'org-todo nil :inherit 'org-todo))
 
-     (defun rfnash-solarized-dark ()
-       (interactive)
-       (disable-theme 'zenburn)
-       (set-frame-parameter nil 'background-mode 'dark)
-       (enable-theme 'solarized)
-       (set-face-attribute 'org-scheduled-today nil :foreground "#4df946")
-       (set-face-attribute 'org-warning nil :weight 'bold)
-       ;; TODO: Doesn't show up while highlighted (point is on same line)
-       (set-face-attribute 'org-todo nil :inverse-video t))
+      (defun rfnash-solarized-dark ()
+        (interactive)
+        (disable-theme 'zenburn)
+        (set-frame-parameter nil 'background-mode 'dark)
+        (enable-theme 'solarized)
+        (set-face-attribute 'org-scheduled-today nil :foreground "#4df946")
+        (set-face-attribute 'org-warning nil :weight 'bold)
+        ;; TODO: Doesn't show up while highlighted (point is on same line)
+        (set-face-attribute 'org-todo nil :inverse-video t))
 
-     (defun rfnash-zenburn ()
-       (interactive)
-       (disable-theme 'solarized)
-       (enable-theme 'zenburn)
-       ;; Colors from habit grid
-       (set-face-attribute 'org-warning nil :foreground "firebrick" :weight 'bold)
-       (set-face-attribute 'org-upcoming-deadline nil :foreground "darkgoldenrod"))
+      (defun rfnash-zenburn ()
+        (interactive)
+        (disable-theme 'solarized)
+        (enable-theme 'zenburn)
+        ;; Colors from habit grid
+        (set-face-attribute 'org-warning nil :foreground "firebrick" :weight 'bold)
+        (set-face-attribute 'org-upcoming-deadline nil :foreground "darkgoldenrod"))
 
-     (defun rfnash-helm-theme ()
-       "helm interface to let my chose one of my customized themes"
-       (interactive)
-       (helm :sources `(
-                        ((name . "My colorthemes")
-                         (candidates . (("zenburn" . rfnash-zenburn)
-                                        ("solarized-light" . rfnash-solarized-light)
-                                        ("solarized-dark" . rfnash-solarized-dark)))
-                         (action . (("Apply Theme" . (lambda (x) (apply x ())))))))))
+      (defun rfnash-helm-theme ()
+        "helm interface to let my chose one of my customized themes"
+        (interactive)
+        (helm :sources `(
+                         ((name . "My colorthemes")
+                          (candidates . (("zenburn" . rfnash-zenburn)
+                                         ("solarized-light" . rfnash-solarized-light)
+                                         ("solarized-dark" . rfnash-solarized-dark)))
+                          (action . (("Apply Theme" . (lambda (x) (apply x ())))))))))
 
-     (global-set-key (kbd "C-x c t") #'rfnash-helm-theme)
+      (global-set-key (kbd "C-x c t") #'rfnash-helm-theme)))
 
      ;; (require 'color-theme)
      ;; (color-theme-solarized-light)
@@ -1653,7 +1682,7 @@ My personal customization to helm.
      (setq helm-m-occur-idle-delay 0.5)
 
      ;; https://github.com/emacs-helm/helm-descbinds
-     (prelude-require-package 'helm-descbinds)
+     (use-package helm-descbinds :ensure t)
      (helm-descbinds-mode)
 
      (require 'ido)
@@ -1786,59 +1815,60 @@ My personal customization to helm.
 ** prelude mode
 Emacs Prelude: minor mode.
 #+begin_src emacs-lisp
-     (require 'prelude-mode)
+     (use-package prelude-mode
+       :diminish prelude-mode
+       :config
+       (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
+       (global-set-key (kbd "C-S-L") 'rfnash-scroll-left-edge)
+       (define-key prelude-mode-map (kbd "C-x F") #'browse-weather)
 
-     (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
-     (global-set-key (kbd "C-S-L") 'rfnash-scroll-left-edge)
-     (define-key prelude-mode-map (kbd "C-x F") #'browse-weather)
+       (define-key prelude-mode-map (kbd "C-c i") #'prelude-ido-goto-symbol)
+       (define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list)))) ; overwrites prelude-open-with keybinding
+       (define-key prelude-mode-map (kbd "C-c O") #'prelude-open-with)
+       (define-key prelude-mode-map (kbd "C-c h") #'rfnash-visit-org-agenda-buffer) ; overwrites helm-command-prefix keybinding
+       (define-key prelude-mode-map (kbd "C-c g") #'rfnash-visit-gnus-buffer) ; overwrites prelude-google keybinding
+       (define-key prelude-mode-map (kbd "C-c m") #'rfnash-visit-mu4e-buffer)
+       (define-key prelude-mode-map (kbd "C-c G") #'prelude-google) ; overwrites prelude-github keybinding
+       (define-key prelude-mode-map (kbd "C-c s") #'rfnash-visit-scratch-buffer) ; overwrites prelude-swap-windows keybinding
+       (define-key prelude-mode-map (kbd "C-c S") #'prelude-swap-windows) ; overwrites prelude-find-shell-init-file keybinding
+       (define-key prelude-mode-map (kbd "C-c ;") #'comment-region)
+       (define-key prelude-mode-map (kbd "C-x t") #'rfnash-open-calendar)
+       (define-key prelude-mode-map (kbd "C-x x") #'sauron-toggle-hide-show)
+       (define-key prelude-mode-map (kbd "C-x c p") #'rfnash-visit-packages-buffer)
+       (define-key prelude-mode-map (kbd "C-x c s") #'helm-surfraw)
+       (define-key prelude-mode-map (kbd "C-x ,") #'rename-buffer)
+       (define-key prelude-mode-map (kbd "C-x c h") #'helm-mini)
 
-     (define-key prelude-mode-map (kbd "C-c i") #'prelude-ido-goto-symbol)
-     (define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list)))) ; overwrites prelude-open-with keybinding
-     (define-key prelude-mode-map (kbd "C-c O") #'prelude-open-with)
-     (define-key prelude-mode-map (kbd "C-c h") #'rfnash-visit-org-agenda-buffer) ; overwrites helm-command-prefix keybinding
-     (define-key prelude-mode-map (kbd "C-c g") #'rfnash-visit-gnus-buffer) ; overwrites prelude-google keybinding
-     (define-key prelude-mode-map (kbd "C-c m") #'rfnash-visit-mu4e-buffer)
-     (define-key prelude-mode-map (kbd "C-c G") #'prelude-google) ; overwrites prelude-github keybinding
-     (define-key prelude-mode-map (kbd "C-c s") #'rfnash-visit-scratch-buffer) ; overwrites prelude-swap-windows keybinding
-     (define-key prelude-mode-map (kbd "C-c S") #'prelude-swap-windows) ; overwrites prelude-find-shell-init-file keybinding
-     (define-key prelude-mode-map (kbd "C-c ;") #'comment-region)
-     (define-key prelude-mode-map (kbd "C-x t") #'rfnash-open-calendar)
-     (define-key prelude-mode-map (kbd "C-x x") #'sauron-toggle-hide-show)
-     (define-key prelude-mode-map (kbd "C-x c p") #'rfnash-visit-packages-buffer)
-     (define-key prelude-mode-map (kbd "C-x c s") #'helm-surfraw)
-     (define-key prelude-mode-map (kbd "C-x ,") #'rename-buffer)
-     (define-key prelude-mode-map (kbd "C-x c h") #'helm-mini)
+       (define-key oog-map (kbd "C-n") #'oog-next-line)
+       (define-key oog-map (kbd "C-p") #'oog-previous-line)
+       (define-key oog-map (kbd "C-v") #'oog-previous-page)
+       (define-key oog-map (kbd "M-v") #'oog-next-page)
 
-     (define-key oog-map (kbd "C-n") #'oog-next-line)
-     (define-key oog-map (kbd "C-p") #'oog-previous-line)
-     (define-key oog-map (kbd "C-v") #'oog-previous-page)
-     (define-key oog-map (kbd "M-v") #'oog-next-page)
-
-     (require 'gnus-art)
-     (define-key gnus-article-mode-map (kbd "i") #'gnus-article-show-images)
-     (define-key gnus-summary-mode-map (kbd "i") #'gnus-article-show-images)
+       (require 'gnus-art)
+       (define-key gnus-article-mode-map (kbd "i") #'gnus-article-show-images)
+       (define-key gnus-summary-mode-map (kbd "i") #'gnus-article-show-images)
 
      ;;; From https://github.com/magnars/hardcore-mode.el
-     ;; Use shell-like backspace C-h, rebind help to F1
-     (define-key key-translation-map [?\C-h] [?\C-?])
-     (global-set-key (kbd "<f1>") #'help-command)
+       ;; Use shell-like backspace C-h, rebind help to F1
+       (define-key key-translation-map [?\C-h] [?\C-?])
+       (global-set-key (kbd "<f1>") #'help-command)
 
-     ;; (global-set-key "\C-cT" #'rfnash-visit-term-buffer)
-     ;; (global-set-key "\C-ct" #'rfnash-visit-eshell-buffer)
+       ;; (global-set-key "\C-cT" #'rfnash-visit-term-buffer)
+       ;; (global-set-key "\C-ct" #'rfnash-visit-eshell-buffer)
 
-     (defun rfnash-org-refile (&rest args)
-       (interactive)
-       (let ((helm-candidate-number-limit nil)) (apply #'org-refile args)))
+       (defun rfnash-org-refile (&rest args)
+         (interactive)
+         (let ((helm-candidate-number-limit nil)) (apply #'org-refile args)))
 
-     (define-key org-mode-map (kbd "C-c C-w") #'rfnash-org-refile)
-     (define-key org-agenda-mode-map (kbd "C-c C-w") #'rfnash-org-refile)
+       (define-key org-mode-map (kbd "C-c C-w") #'rfnash-org-refile)
+       (define-key org-agenda-mode-map (kbd "C-c C-w") #'rfnash-org-refile))
 #+end_src
 :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]
    :END:
 ** paradox
 #+begin_src emacs-lisp
-     (prelude-require-package 'paradox)
+     (use-package paradox :ensure t)
      '(setq paradox-automatically-star t)
 #+end_src
 ** Faces
@@ -1851,7 +1881,7 @@ Emacs Prelude: minor mode.
    :END:
 ** Mode Line
 #+begin_src emacs-lisp
-     (prelude-require-package 'smart-mode-line)
+     (use-package smart-mode-line :ensure t)
      (sml/setup)
      (sml/apply-theme 'respectful)
      (setq rm-whitelist '(""))
@@ -1869,7 +1899,7 @@ Emacs Prelude: minor mode.
    :END:
 ** emagician-fix-spell-memory
 #+begin_src emacs-lisp
-   (prelude-require-package 'emagician-fix-spell-memory)
+   (use-package emagician-fix-spell-memory :ensure t)
    (require 'emagician-fix-spell-memory)
 #+end_src
 ** elip
@@ -1880,7 +1910,7 @@ Emacs Prelude: minor mode.
 #+end_src
 ** Volume
 #+begin_src emacs-lisp
-     (prelude-require-package 'volume)
+     (use-package volume :ensure t)
      (setq volume-backend 'volume-amixer-backend)
      (setq volume-amixer-program "samixer")
      (require 'volume)
@@ -1891,7 +1921,8 @@ Emacs Prelude: minor mode.
    :END:
 ** [[https://github.com/kiwanami/emacs-calfw][calfw]] ([[http://www.emacswiki.org/emacs/Calfw][emacswiki]])
 #+begin_src emacs-lisp
-         (prelude-require-packages '(calfw calfw-gcal))
+         (use-package calfw :ensure t)
+         (use-package calfw-gcal :ensure t)
 
          (require 'calfw-gcal)
          (require 'calfw-org)
@@ -2001,21 +2032,21 @@ Emacs Prelude: minor mode.
 :END:
 ** babel
 #+begin_src emacs-lisp
-     (prelude-require-package 'babel)
+     (use-package babel :ensure t)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2014-07-24 Thu 10:09]
    :END:
 ** ledger-mode
 #+begin_src emacs-lisp
-     (prelude-require-package 'ledger-mode)
+     (use-package ledger-mode :ensure t)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2014-07-24 Thu 10:09]
    :END:
 ** nix-mode
 #+begin_src emacs-lisp
-     (prelude-require-package 'nix-mode)
+     (use-package nix-mode :ensure t)
      (require 'nix-mode)
 #+end_src
 ** remem
@@ -2036,7 +2067,7 @@ My rememberance agent configuration.
    :END:
 ** Sauron
 #+begin_src emacs-lisp
-     (prelude-require-package 'sauron)
+     (use-package sauron :ensure t)
      ;; (sauron-start)
 #+end_src
 :PROPERTIES:
@@ -2044,14 +2075,14 @@ My rememberance agent configuration.
    :END:
 ** anchored-transpose
 #+begin_src emacs-lisp
-     (prelude-require-package 'anchored-transpose)
+     (use-package anchored-transpose :ensure t)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2015-01-04 Sun 23:55]
    :END:
 ** [[https://github.com/vspinu/zotelo][Zotelo]]
 #+begin_src emacs-lisp
-     (prelude-require-package 'zotelo)
+     (use-package zotelo :ensure t)
      (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
      (add-hook 'org-mode-hook 'zotelo-minor-mode)
 #+end_src
@@ -2060,7 +2091,7 @@ My rememberance agent configuration.
    :END:
 ** RFC
 #+begin_src emacs-lisp
-     (prelude-require-package 'w3)
+     (use-package w3 :ensure t)
      (setq rfc-url-save-directory (expand-file-name  "RFC" user-emacs-directory))
      (setq rfc-index-url "http://www.ietf.org/iesg/1rfc_index.txt")
      (setq rfc-archive-alist (list (expand-file-name "rfc.zip" rfc-url-save-directory)
@@ -2073,7 +2104,7 @@ My rememberance agent configuration.
    :END:
 ** [[https://github.com/tam17aki/ace-isearch][ace-isearch]] -- See [[http://sachachua.com/blog/2015/01/emacs-kaizen-ace-isearch-combines-ace-jump-mode-helm-swoop/][Sachachua's article]].
 #+begin_src emacs-lisp
-     (prelude-require-package 'ace-isearch)
+     (use-package ace-isearch :ensure t)
      (global-ace-isearch-mode)
 #+end_src
 :PROPERTIES:
@@ -2082,14 +2113,14 @@ My rememberance agent configuration.
 ** [[http://elpa.gnu.org/packages/poker.html][poker]]
 Texas Hold'em Poker
 #+begin_src emacs-lisp
-     (prelude-require-package 'poker)
+     (use-package poker :ensure t)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2015-02-07 Sat 15:06]
    :END:
 ** [[https://github.com/agrif/pianobar.el][pianobar.el]]
 #+begin_src emacs-lisp
-     (prelude-require-package 'pianobar)
+     (use-package pianobar :ensure t)
      (require 'pianobar)
 #+end_src
 :PROPERTIES:
@@ -2097,7 +2128,7 @@ Texas Hold'em Poker
    :END:
 ** [[https://github.com/julienXX/helm-lobste.rs][helm-lobsters]]
 #+begin_src emacs-lisp
-     (prelude-require-package 'helm-lobsters)
+     (use-package helm-lobsters :ensure t)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2015-02-11 Wed 23:34]
@@ -2105,7 +2136,7 @@ Texas Hold'em Poker
 ** [[https://github.com/dacap/keyfreq][keyfreq]]
 Track Emacs commands frequency
 #+begin_src emacs-lisp
-     (prelude-require-package 'keyfreq)
+     (use-package keyfreq :ensure t)
      (setq keyfreq-file (expand-file-name "keyfreq" prelude-savefile-dir))
      (keyfreq-mode 1)
      (keyfreq-autosave-mode 1)

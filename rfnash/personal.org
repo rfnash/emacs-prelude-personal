@@ -2192,6 +2192,18 @@ Track Emacs commands frequency
 :PROPERTIES:
 :CREATED:  [2015-04-10 Fri 19:09]
 :END:
+** [[http://bnbeckwith.com/code/writegood-mode.html][Writegood-mode]] ([[https://github.com/bnbeckwith/writegood-mode][github]])
+   Minor mode for Emacs to improve English writing, inspired by [[id:76d76618-af13-4b63-94fa-3d2862161aa3][Matt Might's scripts]].
+   #+begin_src emacs-lisp :tangle no
+     (use-package writegood-mode
+       :ensure t
+       :commands writegood-mode
+       ;; :bind "C-c g"
+       )
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-16 Thu 14:44]
+   :END:
 ** Magit
 #+begin_src emacs-lisp
   (setq magit-last-seen-setup-instructions "1.4.0")

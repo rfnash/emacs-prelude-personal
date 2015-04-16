@@ -621,7 +621,6 @@ Loads my locally installed org-mode
       ;; not yesterday at 23:59
       org-extend-today-until 0
       org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
-      org-velocity-bucket "~/Documents/OrgMode/reference.org"
       )
 #+end_src
 ** Org Agenda Settings
@@ -820,7 +819,6 @@ Loads my locally installed org-mode
      (global-set-key "\C-cc" 'org-capture)
      (global-set-key "\C-ca" 'org-agenda)
      (global-set-key "\C-cb" 'org-iswitchb)
-     (global-set-key (kbd "C-x c v") 'org-velocity-read)
      (global-set-key (kbd "C-c F") 'oog)
 #+end_src
 ** org-publish
@@ -1179,12 +1177,21 @@ Require all of the org-mode modules that I use.
      (require 'org-secretary)                   ; http://juanreyero.com/article/emacs/org-teams.html
      (require 'org-toc)
      (require 'org-track)                       ; http://orgmode.org/worg/org-contrib/org-track.html
-     (require 'org-velocity)                    ; http://orgmode.org/worg/org-contrib/org-velocity.html
      (require 'org-w3m)
      (require 'remember)
 #+end_src
 :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]
+   :END:
+** [[http://orgmode.org/worg/org-contrib/org-velocity.html][org-velocity]]
+   #+begin_src emacs-lisp
+     (use-package org-velocity
+       :commands org-velocity-read
+       :bind "C-x c v"
+       :config (setq org-velocity-bucket "~/Documents/OrgMode/reference.org"))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-16 Thu 13:01]
    :END:
 ** TODO OrgBox
 Just trying it out.

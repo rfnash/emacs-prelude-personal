@@ -12,12 +12,12 @@
 #+end_src
 TODO: write something about this file.
 * Historical
-  :PROPERTIES:
+:PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:22]
   :END:
 ** init.el
-   For historical reference
-   #+begin_src emacs-lisp :tangle no
+For historical reference
+#+begin_src emacs-lisp :tangle no
      (mapc 'load (directory-files "~/.emacs.d/conf.d/" t "^[^#!].*\.el$"))
      (server-start)
      (custom-set-variables
@@ -165,7 +165,7 @@ TODO: write something about this file.
        "Start alsamixer in its own buffer"
        (interactive)
        (ansi-term "alsamixer" "mixer"))
-   #+end_src
+#+end_src
 ** package.el
 old ELPA package config for historical interest
 #+begin_src emacs-lisp :tangle no
@@ -262,12 +262,12 @@ old ELPA package config for historical interest
   '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
   '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
 #+end_src
-   :PROPERTIES:
+:PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:21]
    :END:
 ** ido.el
-   old ido config for historical reference
-   #+begin_src emacs-lisp :tangle no
+old ido config for historical reference
+#+begin_src emacs-lisp :tangle no
      use ido for minibuffer completion
      (require 'ido)
      (ido-mode t)
@@ -315,25 +315,25 @@ old ELPA package config for historical interest
      (ido-mode (quote both))
 
      (load-file "/usr/share/emacs/24.3/lisp/ido.el.gz")
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:30]
    :END:
 * Programming
-  :PROPERTIES:
+:PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:24]
   :END:
 ** Quicklisp
-   Added manually as per quicklisp instructed after running ~(ql:quickload "quicklisp-slime-helper")~ in sbcl
-   #+begin_src emacs-lisp
+Added manually as per quicklisp instructed after running ~(ql:quickload "quicklisp-slime-helper")~ in sbcl
+#+begin_src emacs-lisp
      (load (expand-file-name "~/quicklisp/slime-helper.el"))
      (setq inferior-lisp-program "sbcl")
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:35]
    :END:
 ** paxedit-mode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      ;;; Won't install from package.el, cloned git repo instead
      (use-package paredit
        :ensure t
@@ -362,38 +362,38 @@ old ELPA package config for historical interest
        (define-key paxedit-mode-map (kbd "C-@") 'paxedit-symbol-copy)
        (define-key paxedit-mode-map (kbd "C-#") 'paxedit-symbol-kill)
        )
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-01-23 Fri 14:55]
    :END:
 ** [[https://github.com/Bruce-Connor/speed-of-thought-lisp][speed-of-thought-lisp]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'sotlisp)
      (require 'sotlisp)
      (speed-of-thought-mode)
      (eval-after-load "abbrev" '(diminish 'abbrev-mode))
      (add-hook 'emacs-lisp-mode-hook 'abbrev-mode)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-03-05 Thu 16:06]
    :END:
 ** K / Kona
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package k-mode
        :load-path "~/.local/opt/kona/src")
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-08-18 Mon 14:05]
    :END:
 ** Rust
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
     (prelude-require-packages '(rust-mode flycheck-rust))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-10-09 Thu 23:42]
    :END:
 ** Picolisp
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package picolisp
        :load-path "~/.local/opt/picolisp/lib/el"
        :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
@@ -412,76 +412,76 @@ old ELPA package config for historical interest
        :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
        :commands run-picolisp
        )
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-10-28 Tue 17:16]
    :END:
 ** lfe
 #+begin_src emacs-lisp
   (prelude-require-package 'lfe-mode)
 #+end_src
-  :PROPERTIES:
+:PROPERTIES:
   :CREATED:  [2014-11-21 Fri 17:28]
   :END:
 
 ** Yasnippet
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-packages '(yasnippet helm-c-yasnippet))
      (yas-global-mode 1)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-11-12 Wed 19:35]
    :END:
 ** SmartParens
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'smartparens)
      (smartparens-global-mode 1)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-12-04 Thu 18:36]
    :END:
 ** Electric Indent Mode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (electric-indent-mode +1)
-   #+end_src
+#+end_src
 ** EDBI
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-packages '(edbi edbi-sqlite))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-10-20 Mon 23:33]
    :END:
 ** Debug on error
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq debug-on-error t)
-   #+end_src
+#+end_src
 ** [[https://github.com/swannodette/ob-sml][ob-sml]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'ob-sml)
-   #+end_src
+#+end_src
 ** [[https://github.com/ikirill/hl-indent][hl-indent]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'hl-indent)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-12-29 Mon 19:02]
    :END:
 ** Agda
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (load-file (let ((coding-system-for-read 'utf-8))
                   (shell-command-to-string "agda-mode locate")))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-12-04 Thu 17:49]
    :END:
 ** Geiser
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'geiser)
      (require 'geiser)
      (setq geiser-racket-binary "/usr/local/racket/bin/racket")
      (setq geiser-racket-gracket-binary "/usr/local/racket/bin/gracket-text")
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-13 Fri 23:48]
    :END:
 ** Haskell
@@ -501,23 +501,23 @@ old ELPA package config for historical interest
 :CREATED:  [2015-04-10 Fri 19:49]
 :END:
 * Org Mode
-  My personal org-mode config.
-  TODO: was naively copied into my prelude config, check for redundancy
-  :PROPERTIES:
+My personal org-mode config.
+TODO: was naively copied into my prelude config, check for redundancy
+:PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:37]
   :END:
 ** Load org-mode
-   Loads my locally installed org-mode
-   #+begin_src emacs-lisp
+Loads my locally installed org-mode
+#+begin_src emacs-lisp
      ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
      (prelude-require-packages '(org-pomodoro org-trello org-plus-contrib))
      (require 'org)
 
      ;;; Flycheck interferes with org-time-stamp-inactive in org-mode
      (setq flycheck-global-modes '(not org-mode))
-   #+end_src
+#+end_src
 ** org-toodledo
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      ;; org-toodledo is installed via git
      (add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
      (prelude-require-package 'http-post-simple)
@@ -540,9 +540,9 @@ old ELPA package config for historical interest
              ("Postponed" . "SOMEDAY")
              ("Canceled" . "CANCELED")
              ("Reference" . "REFERENCE")))
-   #+end_src
+#+end_src
 ** org-page
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq
       op/personal-disqus-shortname "rfnash"
       op/personal-github-link "https://github.com/rfnash"
@@ -552,9 +552,9 @@ old ELPA package config for historical interest
       op/site-domain "http://robertnash.net/"
       op/site-main-title "Robert Nash's Blog"
       op/site-sub-title "A sedomly updated blog")
-   #+end_src
+#+end_src
 ** Various org settings
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq
       org-todo-keywords '((sequence
                            "NEXT(n)"
@@ -599,13 +599,13 @@ old ELPA package config for historical interest
       org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
       org-velocity-bucket "~/Documents/OrgMode/reference.org"
       )
-   #+end_src
+#+end_src
 ** Org Agenda Settings
-   :PROPERTIES:
+:PROPERTIES:
    :CREATED:  [2015-02-17 Tue 16:03]
    :END:
 *** Misc
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (setq
        org-agenda-sticky t
        org-agenda-window-setup 'current-window
@@ -621,12 +621,12 @@ old ELPA package config for historical interest
        org-columns-default-format "%40ITEM(Task) %TODO %3PRIORITY %TAGS %17Effort(Estimated Effort){:} %5CLOCKSUM"
        org-global-properties '(("Effort_ALL" . "0 0:02 0:05 0:10 0:15 0:20 0:30 0:45 1:00 2:00"))
        )
-    #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-17 Tue 16:06]
    :END:
 *** org-agenda-files
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq
       org-agenda-files (list     ; Can be set using C-c [ and C-c ] in org-mode
                         (concat org-directory "/notes.org")
@@ -643,23 +643,23 @@ old ELPA package config for historical interest
                         "~/Dropbox/Projects/learning.org"
                         (concat prelude-personal-dir "/rfnash/personal.org"))
      )
-    #+end_src
-    :PROPERTIES:
+#+end_src
+:PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:08]
     :END:
 *** org-agenda-sorting-strategy
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (setq org-agenda-sorting-strategy
             '((agenda time-up habit-down timestamp-up priority-down category-keep)
               (todo priority-down category-keep)
               (tags priority-down category-keep)
               (search category-keep)))
-    #+end_src
-    :PROPERTIES:
+#+end_src
+:PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:08]
     :END:
 *** org-agenda-custom-commands
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (setq
        org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"
                                      ((agenda "")
@@ -673,23 +673,23 @@ old ELPA package config for historical interest
                                      tags-todo "NEXT" nil)
                                     ("p" "Next actions of my projects"
                                      tags-todo "project" nil)))
-    #+end_src
-    :PROPERTIES:
+#+end_src
+:PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:08]
     :END:
 *** org-agenda-time-grid
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (setq org-agenda-time-grid
             '((daily today require-timed)
               #("----------------" 0 16
                 (org-heading t))
               (800 1000 1200 1400 1600 1800 2000)))
-    #+end_src
-    :PROPERTIES:
+#+end_src
+:PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:08]
     :END:
 *** org-habits
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq
       org-habit-graph-column 65
       org-habit-following-days 1
@@ -698,12 +698,12 @@ old ELPA package config for historical interest
       org-habit-show-all-today nil
       org-habit-show-done-always-green t
      )
-    #+end_src
-    :PROPERTIES:
+#+end_src
+:PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:06]
     :END:
 ** org-capture-templates
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq
       org-capture-templates '(
                               ("a" "Article"
@@ -789,18 +789,18 @@ old ELPA package config for historical interest
       ;;  %?
       ;;  %x"))
       )
-   #+end_src
+#+end_src
 ** org related global keybindings
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (global-set-key "\C-cl" 'org-store-link)
      (global-set-key "\C-cc" 'org-capture)
      (global-set-key "\C-ca" 'org-agenda)
      (global-set-key "\C-cb" 'org-iswitchb)
      (global-set-key (kbd "C-x c v") 'org-velocity-read)
      (global-set-key (kbd "C-c F") 'oog)
-   #+end_src
+#+end_src
 ** org-publish
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq org-publish-project-alist
            '(
              ("org-contents"
@@ -817,9 +817,9 @@ old ELPA package config for historical interest
               :auto-sitemap t
               )
              ("org" :components ("org-contents"))))
-   #+end_src
+#+end_src
 ** org refiling
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      ;; org-refiling - http://kangtu.me/~kangtu/pavilion.html
      ;; Targets include this file
      ;; and any file contributing to the agenda - up to 9 levels deep
@@ -834,16 +834,16 @@ old ELPA package config for historical interest
 
      ;; Allow refile to create parent tasks with confirmation
      (setq org-refile-allow-creating-parent-nodes (quote confirm))
-   #+end_src
+#+end_src
 ** org-expiry
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (require 'org-expiry)
      (org-expiry-insinuate)
-   #+end_src
+#+end_src
 ** Reminders
-   From http://doc.norang.ca/org-mode.html#Reminders
-   Set up reminders for all upcoming appointments
-   #+begin_src emacs-lisp
+From http://doc.norang.ca/org-mode.html#Reminders
+Set up reminders for all upcoming appointments
+#+begin_src emacs-lisp
    ;; (defun bh/org-agenda-to-appt ()
    ;;   "Erase all reminders and rebuilt reminders for today from the agenda."
    ;;   (interactive)
@@ -861,10 +861,10 @@ old ELPA package config for historical interest
 
    ;; ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
    ;; (run-at-time "24:01" nil 'bh/org-agenda-to-appt)
-   #+end_src
+#+end_src
 ** org-protocol help
-   From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with Org Mode (with refile)]]. I modified it so that org-capture-mode only closes other windows if its called via org-protocol.
-   #+begin_src emacs-lisp
+From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with Org Mode (with refile)]]. I modified it so that org-capture-mode only closes other windows if its called via org-protocol.
+#+begin_src emacs-lisp
      (require 'org-protocol)
      (setq my-org-protocol-flag nil)
      (defun my-org-protocol-delete-other-windows ()
@@ -889,9 +889,9 @@ old ELPA package config for historical interest
               (setq my-org-protocol-flag nil)))
      (defadvice org-protocol-capture (before set-org-protocol-flag activate)
        (setq my-org-protocol-flag t))
-   #+end_src
+#+end_src
 ** Hide blocked tasks
-   #+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle no
      (defvar rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
      (defun org-agenda-hide-blocked-tasks ()
        "Toggle dimming/hiding blocked tasks."
@@ -905,12 +905,12 @@ old ELPA package config for historical interest
            (setq rfnash-hide-blocked-tasks t)
            (org-agenda-dim-blocked-tasks t))))
      (define-key org-agenda-mode-map (kbd "#") 'org-agenda-hide-blocked-tasks)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:42]
   :END:
 ** [[http://www.emacswiki.org/emacs/download/org-occur-goto.el][org-occur-goto]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      ;;; org-occur-goto.el -- search open org buffers with an occur interface
 
      ;; This file is free software; you can redistribute it and/or modify
@@ -1047,16 +1047,16 @@ old ELPA package config for historical interest
            (save-excursion
              (outline-previous-visible-heading 1)
              (org-show-subtree)))))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:27]
    :END:
 ** org-page (no longer used)
-   #+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle no
      (require 'org-page)
-   #+end_src
+#+end_src
 ** TODO org-registry
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (require 'org-registry)
      (org-registry-initialize)
      ;; (org-registry-insinuate)                ; Calls org-registry-update on save, but slows down org a lot
@@ -1108,13 +1108,13 @@ old ELPA package config for historical interest
      (defun rfnash-org-registry-show-clipboard (visit)
        (interactive "P")
        (rfnash-org-registry-show visit (x-get-clipboard)))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-26 Thu 16:00]
    :END:
 ** org-modules
-   Require all of the org-mode modules that I use.
-   #+begin_src emacs-lisp
+Require all of the org-mode modules that I use.
+#+begin_src emacs-lisp
      ;; http://orgmode.org/worg/org-contrib/
      (require 'org-agenda)                      ; add (load-library "org-compat")
      (require 'org-annotate-file)
@@ -1158,48 +1158,48 @@ old ELPA package config for historical interest
      (require 'org-velocity)                    ; http://orgmode.org/worg/org-contrib/org-velocity.html
      (require 'org-w3m)
      (require 'remember)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]
    :END:
 ** TODO OrgBox
-   Just trying it out.
-   #+begin_src emacs-lisp
+Just trying it out.
+#+begin_src emacs-lisp
      (prelude-require-package 'orgbox)
      (require 'orgbox)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-10-22 Wed 22:31]
    :END:
 ** [[https://github.com/jplindstrom/emacs-org-transform-tree-table][org-transform-tree-table]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'org-transform-tree-table)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-12-29 Mon 19:00]
    :END:
 ** org-cliplink
 #+begin_src emacs-lisp
   (prelude-require-package 'org-cliplink)
 #+end_src
-  :PROPERTIES:
+:PROPERTIES:
   :CREATED:  [2014-11-21 Fri 17:28]
   :END:
 * Networking
-  :PROPERTIES:
+:PROPERTIES:
   :CREATED:  [2014-11-28 Fri 18:50]
   :END:
 ** Twitter
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq twittering-use-master-password t)
      (prelude-require-package 'twittering-mode)
      ;; (twit)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-11-18 Tue 15:12]
    :END:
 ** BBDB
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'bbdb)
      (setq bbdb-file "~/.emacs.d/prelude/savefile/bbdb")
      (require 'bbdb)
@@ -1208,39 +1208,39 @@ old ELPA package config for historical interest
      (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
      (add-hook 'kill-emacs-hook 'bbdb-save)
      ;;(prelude-require-package 'bbdb-vcard)
-   #+end_src
+#+end_src
 ** helm-mu
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (add-to-list 'load-path (expand-file-name "helm-mu" prelude-vendor-dir))
      ;;(require 'helm-mu)
-   #+end_src
+#+end_src
 ** EWW
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'eww-lnum)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-10-29 Wed 18:37]
    :END:
 ** Default browser
-   Set the default browser to vimb.
-   #+begin_src emacs-lisp
+Set the default browser to vimb.
+#+begin_src emacs-lisp
      (setq browse-url-browser-function
            'browse-url-generic browse-url-generic-program "firefox")
-   #+end_src
+#+end_src
 ** TODO set-browser
-   A function to easily interactively change the default browser.
-   TODO: include a list of browsers to choose from.
-   #+begin_src emacs-lisp
+A function to easily interactively change the default browser.
+TODO: include a list of browsers to choose from.
+#+begin_src emacs-lisp
      (defun set-browser (browser)
        "Prompt for BROWSER to set as default."
        (interactive "sBrowser: ")
        (setq browse-url-browser-function
              'browse-url-generic browse-url-generic-program browser))
-   #+end_src
+#+end_src
 ** ERC
-   My personal ERC config.
-   From emacswiki.org/emacs/ERC.
-   #+begin_src emacs-lisp
+My personal ERC config.
+From emacswiki.org/emacs/ERC.
+#+begin_src emacs-lisp
      ;; (setq erc-echo-notices-in-minibuffer-flag t)
 
      ;; (require 'erc-match)
@@ -1285,9 +1285,9 @@ old ELPA package config for historical interest
        "Minor mode that calls `erc-nick-notify-cmd' when his nick gets
      mentioned in an erc channel" t)
      ;; (eval-after-load 'erc '(erc-nick-notify-mode t))
-   #+end_src
+#+end_src
 ** Circe
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'circe)
      (require 'circe)
      (setq circe-network-options
@@ -1297,13 +1297,13 @@ old ELPA package config for historical interest
              :nick "Niki"
              :realname "22 F Female Bi MI USA"
              :nickserv-password "***REMOVED***")))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-20 Fri 22:25]
    :END:
 ** mu4e
-   My personal mu4e config.
-   #+begin_src emacs-lisp
+My personal mu4e config.
+#+begin_src emacs-lisp
      (add-to-list 'load-path (expand-file-name "mu/mu4e" prelude-vendor-dir))
      (require 'mu4e)
      (setq mu4e-mu-binary "~/.local/bin/mu"   ;; use local version of mu
@@ -1317,12 +1317,12 @@ old ELPA package config for historical interest
                                              ; Open message in external browser with 'x' as the shortcut
                   '("xview in browser" . mu4e-action-view-in-browser) t)
      (add-hook 'mu4e-view-mode-hook 'wrap-to-fill-column-mode)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:41]
    :END:
 ** newsticker
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (require 'newsticker)
      (global-set-key (kbd "C-c r") 'newsticker-treeview)
      (setq newsticker-html-renderer 'w3m-region)
@@ -1393,28 +1393,28 @@ old ELPA package config for historical interest
          ("Zack Shapiro" "http://zackshapiro.com/rss" nil nil nil)
          ("Zack Shapiro" "http://feeds.feedburner.com/zackshapiro/glGU" nil nil nil)
          ("Send More Paramedics" "http://blog.fogus.me/feed/" nil nil nil))))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:41]
    :END:
 ** Gnus
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
     (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
     (require 'rfnash-gnus)
-  #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
 * Emacs
 ** Misc Prelude settings
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq prelude-clean-whitespace-on-save nil)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-07 Sat 22:40]
    :END:
 ** Load [[http://batsov.com/prelude/][Emacs Prelude]] modules
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      ;;; Uncomment the modules you'd like to use and restart Prelude afterwards
      (require 'prelude-erc)                  ; Emacs IRC client
      (require 'prelude-ido)                  ; Super charges Emacs completion for C-x C-f and more
@@ -1430,42 +1430,42 @@ old ELPA package config for historical interest
      (require 'prelude-shell)
      (require 'prelude-clojure)
      (require 'prelude-haskell)
-   #+end_src
+#+end_src
 ** Set the default directory to HOME
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq default-directory "~")
-   #+end_src
+#+end_src
 ** smart-tab and hippie-expand
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'smart-tab)
      (require 'smart-tab)
      (add-to-list 'smart-tab-disabled-major-modes 'agda2-mode)
      (global-smart-tab-mode 1)
      (define-key read-expression-map [(tab)] 'hippie-expand)
-   #+end_src
+#+end_src
 ** elscreen
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'elscreen)
-   #+end_src
+#+end_src
 ** switch-window
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'switch-window)
      (global-set-key (kbd "C-x o") 'switch-window)
-   #+end_src
+#+end_src
 ** Require various packages
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-packages '(helm-orgcard helm-descbinds helm-backup helm-helm-commands))
      (prelude-require-packages '(ag helm-ag helm-ag-r))
      (prelude-require-packages '(caskxy graphviz-dot-mode))
      (prelude-require-package 'elnode)
      (prelude-require-package 'unbound)
-   #+end_src
+#+end_src
 ** Default Font
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
-   #+end_src
+#+end_src
 ** Term Mode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (require 'term)
      (setq term-scroll-to-bottom-on-output t)
 
@@ -1500,10 +1500,10 @@ old ELPA package config for historical interest
      ;;  '(term-color-red ((t (:background "#002b36" :foreground "#dc322f"))))
      ;;  '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
      ;;  '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))
-   #+end_src
+#+end_src
 ** Color Theme
-   My settings to use the solarized light color theme.
-   #+begin_src emacs-lisp
+My settings to use the solarized light color theme.
+#+begin_src emacs-lisp
      ;; Set up the old-fashioned Solarized color theme
      ;; and set ansi-term to use solarized dark colors
 
@@ -1564,13 +1564,13 @@ old ELPA package config for historical interest
 
      ;; (require 'color-theme)
      ;; (color-theme-solarized-light)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:41]
    :END:
 ** El-get
-   Install and configure various packages through el-get.
-   #+begin_src emacs-lisp
+Install and configure various packages through el-get.
+#+begin_src emacs-lisp
      (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
      (require 'el-get nil t)                       ; to appease flycheck
@@ -1614,13 +1614,13 @@ old ELPA package config for historical interest
      ;; install new packages and init already installed packages
      (el-get 'sync my:el-get-packages)
 
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:41]
    :END:
 ** Helm
-   My personal customization to helm.
-   #+begin_src emacs-lisp
+My personal customization to helm.
+#+begin_src emacs-lisp
      (require 'helm)
      (require 'helm-config)
 
@@ -1660,8 +1660,8 @@ old ELPA package config for historical interest
      (setq ido-everywhere t)
      (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
      (ido-mode 1)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
 ** rfnash-switch-buffer
@@ -1784,8 +1784,8 @@ old ELPA package config for historical interest
 :CREATED:  [2015-04-14 Tue 20:38]
 :END:
 ** prelude mode
-   Emacs Prelude: minor mode.
-   #+begin_src emacs-lisp
+Emacs Prelude: minor mode.
+#+begin_src emacs-lisp
      (require 'prelude-mode)
 
      (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
@@ -1832,65 +1832,65 @@ old ELPA package config for historical interest
 
      (define-key org-mode-map (kbd "C-c C-w") #'rfnash-org-refile)
      (define-key org-agenda-mode-map (kbd "C-c C-w") #'rfnash-org-refile)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]
    :END:
 ** paradox
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'paradox)
      '(setq paradox-automatically-star t)
-   #+end_src
+#+end_src
 ** Faces
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (set-face-attribute 'org-agenda-clocking nil :inherit 'org-scheduled :background "#268bd2")
      (set-face-attribute 'org-agenda-current-time nil :inherit 'org-time-grid :background "light green")
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-07 Sat 22:46]
    :END:
 ** Mode Line
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'smart-mode-line)
      (sml/setup)
      (sml/apply-theme 'respectful)
      (setq rm-whitelist '(""))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-23 Mon 11:38]
    :END:
 * Misc
 ** Info additional directory list
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq Info-additional-directory-list (quote ("~/.local/share/info/")))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-07 Sat 22:42]
    :END:
 ** emagician-fix-spell-memory
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
    (prelude-require-package 'emagician-fix-spell-memory)
    (require 'emagician-fix-spell-memory)
-   #+end_src
+#+end_src
 ** elip
-   #+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle no
      (add-to-list 'load-path "~/.local/share/emacs/site-lisp")
      (add-to-list 'load-path "~/.local/share/emacs/site-lisp/edb")
      (require 'elip)
-   #+end_src
+#+end_src
 ** Volume
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'volume)
      (setq volume-backend 'volume-amixer-backend)
      (setq volume-amixer-program "samixer")
      (require 'volume)
      (global-set-key (kbd "C-c v") #'volume)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-11-12 Wed 19:21]
    :END:
 ** [[https://github.com/kiwanami/emacs-calfw][calfw]] ([[http://www.emacswiki.org/emacs/Calfw][emacswiki]])
-       #+begin_src emacs-lisp
+#+begin_src emacs-lisp
          (prelude-require-packages '(calfw calfw-gcal))
 
          (require 'calfw-gcal)
@@ -1912,9 +1912,9 @@ old ELPA package config for historical interest
                                      "https://www.google.com/calendar/ical/musicmaker1118%40gmail.com/private-e760c860d242661263a68f8e42dfe0bd/basic.ics"
                                      "IndianRed") ; google calendar ICS. Doesn't support repeating events (only shows them on day of first repeat)
              )))
-   #+end_src
+#+end_src
 ** TODO [[http://howm.sourceforge.jp/README.html][howm]] ([[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?e.FrontPage][wiki]], [[http://www.emacswiki.org/emacs/HowmMode][emacswiki]], [[http://www.emacswiki.org/emacs/HowmAndCalendar][Howm and calendar]], [[http://howm.sourceforge.jp/README.html][tutorial]] [[[file:~/.emacs.d/el-get/howm/doc/README.html][local]]], [[http://sourceforge.jp/projects/howm/lists/archive/eng/2008/000038.html][integrating with org-mode]].) :NEXT:
-   #+begin_src text
+#+begin_src text
      `howm-mode' Minor Mode Bindings:
      key             binding
      ---             -------
@@ -1961,11 +1961,11 @@ old ELPA package config for historical interest
      C-c , w         howm-random-walk
      C-c , x         howm-list-mark-ring
      C-c , y         howm-list-schedule
-   #+end_src
-   #+begin_src emacs-lisp
+#+end_src
+#+begin_src emacs-lisp
      (require 'howm)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-13 Fri 16:22]
    :END:
 *** TODO [#B] Howm-related
@@ -2000,27 +2000,27 @@ old ELPA package config for historical interest
 :CREATED:  [2015-04-14 Tue 17:49]
 :END:
 ** babel
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'babel)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-07-24 Thu 10:09]
    :END:
 ** ledger-mode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'ledger-mode)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-07-24 Thu 10:09]
    :END:
 ** nix-mode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'nix-mode)
      (require 'nix-mode)
-   #+end_src
+#+end_src
 ** remem
-   My rememberance agent configuration.
-   #+begin_src emacs-lisp
+My rememberance agent configuration.
+#+begin_src emacs-lisp
      (require 'prelude-mode)
      (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
      (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
@@ -2030,36 +2030,36 @@ old ELPA package config for historical interest
      ;;                           ("notes" 2 5 500)))
      (setq remem-scopes-list '(("mail" 6 5 500)))
      ;;(load "remem")
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]
    :END:
 ** Sauron
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'sauron)
      ;; (sauron-start)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2014-10-25 Sat 19:35]
    :END:
 ** anchored-transpose
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'anchored-transpose)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-01-04 Sun 23:55]
    :END:
 ** [[https://github.com/vspinu/zotelo][Zotelo]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'zotelo)
      (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
      (add-hook 'org-mode-hook 'zotelo-minor-mode)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-01-08 Thu 11:56]
    :END:
 ** RFC
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'w3)
      (setq rfc-url-save-directory (expand-file-name  "RFC" user-emacs-directory))
      (setq rfc-index-url "http://www.ietf.org/iesg/1rfc_index.txt")
@@ -2067,71 +2067,71 @@ old ELPA package config for historical interest
                                    rfc-url-save-directory
                                    "http://www.ietf.org/rfc/"))
      (setq rfc-insert-content-url-hook '(rfc-url-save))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-01-13 Tue 11:14]
    :END:
 ** [[https://github.com/tam17aki/ace-isearch][ace-isearch]] -- See [[http://sachachua.com/blog/2015/01/emacs-kaizen-ace-isearch-combines-ace-jump-mode-helm-swoop/][Sachachua's article]].
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'ace-isearch)
      (global-ace-isearch-mode)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-01-16 Fri 14:15]
    :END:
 ** [[http://elpa.gnu.org/packages/poker.html][poker]]
-   Texas Hold'em Poker
-   #+begin_src emacs-lisp
+Texas Hold'em Poker
+#+begin_src emacs-lisp
      (prelude-require-package 'poker)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-07 Sat 15:06]
    :END:
 ** [[https://github.com/agrif/pianobar.el][pianobar.el]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'pianobar)
      (require 'pianobar)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-07 Sat 15:41]
    :END:
 ** [[https://github.com/julienXX/helm-lobste.rs][helm-lobsters]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'helm-lobsters)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-11 Wed 23:34]
    :END:
 ** [[https://github.com/dacap/keyfreq][keyfreq]]
-   Track Emacs commands frequency
-   #+begin_src emacs-lisp
+Track Emacs commands frequency
+#+begin_src emacs-lisp
      (prelude-require-package 'keyfreq)
      (setq keyfreq-file (expand-file-name "keyfreq" prelude-savefile-dir))
      (keyfreq-mode 1)
      (keyfreq-autosave-mode 1)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-13 Fri 14:12]
    :END:
 ** Diary ([[http://www.emacswiki.org/emacs/DiaryMode][emacswiki]], [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Diary.html][manual]])
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq diary-file (expand-file-name "diary" prelude-savefile-dir))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-02-13 Fri 16:07]
    :END:
 ** Alert
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq alert-default-style 'notifications)
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-03-03 Tue 00:06]
    :END:
 ** Temporary Directory
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq temporary-file-directory "/home/rfnash/tmp")
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
    :CREATED:  [2015-03-03 Tue 00:07]
    :END:
 ** [[https://github.com/sachac/artbollocks-mode][artbollacks-mode]]
@@ -2147,8 +2147,8 @@ old ELPA package config for historical interest
 :CREATED:  [2015-04-10 Fri 19:09]
 :END:
 * Emacs Server
-  Start the Emacs server if it isn't already running
-  #+begin_src emacs-lisp
+Start the Emacs server if it isn't already running
+#+begin_src emacs-lisp
     (require 'server)
     (if (not (server-running-p server-name)) (server-start))
-  #+end_src
+#+end_src

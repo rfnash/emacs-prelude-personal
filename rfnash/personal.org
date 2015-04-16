@@ -2183,7 +2183,7 @@ Track Emacs commands frequency
 ** [[https://github.com/sachac/artbollocks-mode][artbollacks-mode]]
 #+begin_src emacs-lisp
   (use-package artbollocks-mode
-    :ensure t
+    :load-path (lambda () (expand-file-name "artbollocks-mode" prelude-vendor-dir))
     :commands artbollocks-mode
     :init
     (add-hook 'text-mode-hook 'artbollocks-mode)

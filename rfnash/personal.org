@@ -600,9 +600,6 @@ Loads my locally installed org-mode
       org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("@phone" . ?p) ("@computer" . ?c) ("@tofile" . ?t)
                       ("READING" . ?r) ("GoodDesign" . ?d) ("7plus" . ?s) ("SCRATCH" . ?e) ("NEXT" . ?n) ("anki" . ?a))
       org-startup-folded t
-      org-startup-indented t
-      org-hide-leading-stars t
-      ;; org-hide-leading-stars nil
       org-log-into-drawer t
       org-refile-use-cache t
       org-return-follows-link t

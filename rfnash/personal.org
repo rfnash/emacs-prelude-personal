@@ -770,7 +770,7 @@ Loads my locally installed org-mode
                            ;;  entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                            ;;  "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                            ("n" "Task - Next"
-                            entry ( id "dd307243-992b-4454-86b7-929dbdc59f99")
+                            entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                             "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                            ("N" "Non-profit"
                             entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")

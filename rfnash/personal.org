@@ -2163,7 +2163,7 @@ Track Emacs commands frequency
    :END:
 ** Alert
 #+begin_src emacs-lisp
-     (setq alert-default-style 'notifications)
+     (setq alert-default-style 'libnotify) ; libnotify uses notify-send; notifications uses dbus
 #+end_src
 :PROPERTIES:
    :CREATED:  [2015-03-03 Tue 00:06]

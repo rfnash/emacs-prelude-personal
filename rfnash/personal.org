@@ -2194,6 +2194,21 @@ Track Emacs commands frequency
 :PROPERTIES:
 :CREATED:  [2015-04-15 Wed 19:24]
 :END:
+** [[http://jblevins.org/projects/deft/][Deft]] ([[http://www.emacswiki.org/emacs/DeftMode][Emacswiki]])
+#+begin_src emacs-lisp
+  (use-package deft
+    :ensure t
+    :commands deft
+    :bind "C-x c d" [f8]
+    :config
+    ;; (setq deft-use-filename-as-title t)
+    (setq deft-extension "org")
+    (setq deft-text-mode 'org-mode)
+    (setq deft-directory "~/Dropbox/notes"))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-15 Wed 22:51]
+:END:
 * Emacs Server
 Start the Emacs server if it isn't already running
 #+begin_src emacs-lisp

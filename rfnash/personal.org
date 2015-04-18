@@ -1877,7 +1877,6 @@
                ("C-x c h" . helm-command-prefix))
        :config
 
-       (bind-key  "C-c i" #'prelude-ido-goto-symbol prelude-mode-map)
        (bind-key "C-x c O" #'prelude-open-with prelude-mode-map)
        (bind-key "C-x c g" #'prelude-google prelude-mode-map)
        (bind-key "C-x c S" #'prelude-swap-windows prelude-mode-map)

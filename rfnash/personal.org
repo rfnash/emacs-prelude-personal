@@ -385,6 +385,29 @@
    :PROPERTIES:
    :CREATED:  [2015-04-18 Sat 11:20]
    :END:
+** srefactor
+   #+begin_src emacs-lisp
+     (use-package srefactor
+       :ensure t
+       :commands srefactor-refactor-at-point
+       :config
+       (semantic-mode 1)
+       (bind-key "M-RET" #'srefactor-refactor-at-point c-mode-map)
+       (bind-key "M-RET" #'srefactor-refactor-at-point c++-mode-map))
+     (use-package srefactor-lisp
+       :bind (("M-RET o" . srefactor-lisp-one-line)
+              ("M-RET m" . srefactor-lisp-format-sexp)
+              ("M-RET d" . srefactor-lisp-format-defun)
+              ("M-RET b" . srefactor-lisp-format-buffer))
+       :commands (srefactor-lisp-one-line
+                  srefactor-lisp-format-sexp
+                  srefactor-lisp-format-defun
+                  srefactor-lisp-format-buffer))
+
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-18 Sat 11:54]
+   :END:
 ** Lisp
    :PROPERTIES:
    :CREATED:  [2015-04-18 Sat 16:47]

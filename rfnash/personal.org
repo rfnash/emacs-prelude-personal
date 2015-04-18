@@ -336,13 +336,19 @@
   :END:
 ** Lisp
    :PROPERTIES:
-  :CREATED:  [2015-04-18 Sat 16:47]
-  :END:
+   :CREATED:  [2015-04-18 Sat 16:47]
+   :END:
+*** Paredit
+    #+begin_src emacs-lisp
+    (use-package paredit
+      :ensure t
+      :diminish paredit-mode)
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-04-17 Fri 17:11]
+    :END:
 *** paxedit-mode
     #+begin_src emacs-lisp
-      (use-package paredit
-        :ensure t
-        :diminish paredit-mode)
       (use-package paxedit
         :commands paxedit-mode
         :diminish paxedit-mode

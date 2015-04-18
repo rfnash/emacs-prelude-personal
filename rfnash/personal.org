@@ -655,17 +655,7 @@
     #+begin_src emacs-lisp
       (setq
        org-agenda-files (list     ; Can be set using C-c [ and C-c ] in org-mode
-                        (concat org-directory "/notes.org")
-                        (concat org-directory "/busybox.org")
-                        (concat org-directory "/plover.org")
-                        (concat org-directory "/Toodledo.org")
-                        (concat org-directory "/reference.org")
-                        (concat org-directory "/entertainment.org")
-                        (concat org-directory "/filing.org")
-                        (concat org-directory "/agenda.org")
-                        (concat org-directory "/computers.org")
-                        (concat org-directory "/bookmarks.org")
-                        (concat org-directory "/vimb.org")
+                         org-directory
                          "~/Dropbox/Projects/learning.org"
                          (concat prelude-personal-dir "/rfnash/personal.org")))
     #+end_src

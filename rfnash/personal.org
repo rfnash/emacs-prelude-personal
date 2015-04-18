@@ -1860,25 +1860,27 @@
        :diminish prelude-mode
        :bind* (("C-c x l" . rfnash-scroll-left-edge)
                ("C-S-L" . rfnash-scroll-left-edge)
-               ("C-x F" . browse-weather))
+               ("C-x F" . browse-weather)
+               ("C-c o" . helm-multi-org-occur)
+               ("C-c h" . rfnash-visit-org-agenda-buffer)
+               ("C-c g" . rfnash-visit-gnus-buffer)
+               ("C-c m" . rfnash-visit-mu4e-buffer)
+               ("C-c s" . rfnash-visit-scratch-buffer)
+               ("C-c ;" . comment-region)
+               ("C-x t" . rfnash-open-calendar)
+               ("C-x x" . sauron-toggle-hide-show)
+               ("C-x c p" . rfnash-visit-packages-buffer)
+               ("C-x c s" . helm-surfraw)
+               ("C-x R" . rename-buffer)
+               ("C-c H" . helm-mini)
+               ("C-x c o" . helm-multi-occur)
+               ("C-x c h" . helm-command-prefix))
        :config
 
-       (define-key prelude-mode-map (kbd "C-c i") #'prelude-ido-goto-symbol)
-       (define-key prelude-mode-map (kbd "C-c o") #'helm-multi-org-occur) ; overwrites prelude-open-with keybinding
-       (define-key prelude-mode-map (kbd "C-c O") #'prelude-open-with)
-       (define-key prelude-mode-map (kbd "C-c h") #'rfnash-visit-org-agenda-buffer) ; overwrites helm-command-prefix keybinding
-       (define-key prelude-mode-map (kbd "C-c g") #'rfnash-visit-gnus-buffer) ; overwrites prelude-google keybinding
-       (define-key prelude-mode-map (kbd "C-c m") #'rfnash-visit-mu4e-buffer)
-       (define-key prelude-mode-map (kbd "C-c G") #'prelude-google) ; overwrites prelude-github keybinding
-       (define-key prelude-mode-map (kbd "C-c s") #'rfnash-visit-scratch-buffer) ; overwrites prelude-swap-windows keybinding
-       (define-key prelude-mode-map (kbd "C-c S") #'prelude-swap-windows) ; overwrites prelude-find-shell-init-file keybinding
-       (define-key prelude-mode-map (kbd "C-c ;") #'comment-region)
-       (define-key prelude-mode-map (kbd "C-x t") #'rfnash-open-calendar)
-       (define-key prelude-mode-map (kbd "C-x x") #'sauron-toggle-hide-show)
-       (define-key prelude-mode-map (kbd "C-x c p") #'rfnash-visit-packages-buffer)
-       (define-key prelude-mode-map (kbd "C-x c s") #'helm-surfraw)
-       (define-key prelude-mode-map (kbd "C-x ,") #'rename-buffer)
-       (define-key prelude-mode-map (kbd "C-x c h") #'helm-mini)
+       (bind-key  "C-c i" #'prelude-ido-goto-symbol prelude-mode-map)
+       (bind-key "C-x c O" #'prelude-open-with prelude-mode-map)
+       (bind-key "C-x c g" #'prelude-google prelude-mode-map)
+       (bind-key "C-x c S" #'prelude-swap-windows prelude-mode-map)
 
        (bind-key "C-n" #'oog-next-line oog-map)
        (bind-key "C-p" #'oog-previous-line oog-map)
@@ -1888,8 +1890,8 @@
        (require 'gnus-art)
        (bind-key "i" #'gnus-article-show-images gnus-article-mode-map)
        (bind-key "i" #'gnus-article-show-images gnus-summary-mode-map)
-       ;; (global-set-key "\C-cT" #'rfnash-visit-term-buffer)
-       ;; (global-set-key "\C-ct" #'rfnash-visit-eshell-buffer)
+       ;; (bind-key "C-c T" #'rfnash-visit-term-buffer)
+       ;; (bind-key "C-c t" #'rfnash-visit-eshell-buffer)
 
        (bind-key "C-c C-w" #'rfnash-org-refile org-mode-map)
        (bind-key "C-c C-w" #'rfnash-org-refile org-agenda-mode-map))

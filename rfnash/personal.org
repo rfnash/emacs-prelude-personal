@@ -359,19 +359,19 @@
          (add-hook 'lisp-interaction-mode-hook 'paxedit-mode)
          (add-hook 'paxedit-mode-hook 'paredit-mode)
          :config
-         (define-key paxedit-mode-map (kbd "M-<right>") 'paxedit-transpose-forward)
-         (define-key paxedit-mode-map (kbd "M-<left>") 'paxedit-transpose-backward)
-         (define-key paxedit-mode-map (kbd "M-<up>") 'paxedit-backward-up)
-         (define-key paxedit-mode-map (kbd "M-<down>") 'paxedit-backward-end)
-         (define-key paxedit-mode-map (kbd "M-b") 'paxedit-previous-symbol)
-         (define-key paxedit-mode-map (kbd "M-f") 'paxedit-next-symbol)
-         (define-key paxedit-mode-map (kbd "C-%") 'paxedit-copy)
-         (define-key paxedit-mode-map (kbd "C-&") 'paxedit-kill)
-         (define-key paxedit-mode-map (kbd "C-*") 'paxedit-delete)
-         (define-key paxedit-mode-map (kbd "C-^") 'paxedit-sexp-raise)
-         (define-key paxedit-mode-map (kbd "M-u") 'paxedit-symbol-change-case)
-         (define-key paxedit-mode-map (kbd "C-@") 'paxedit-symbol-copy)
-         (define-key paxedit-mode-map (kbd "C-#") 'paxedit-symbol-kill))
+         (bind-key "M-<right>" #'paxedit-transpose-forward paxedit-mode-map)
+         (bind-key "M-<left>" #'paxedit-transpose-backward paxedit-mode-map)
+         (bind-key "M-<up>" #'paxedit-backward-up paxedit-mode-map)
+         (bind-key "M-<down>" #'paxedit-backward-end paxedit-mode-map)
+         (bind-key "M-b" #'paxedit-previous-symbol paxedit-mode-map)
+         (bind-key "M-f" #'paxedit-next-symbol paxedit-mode-map)
+         (bind-key "C-%" #'paxedit-copy paxedit-mode-map)
+         (bind-key "C-&" #'paxedit-kill paxedit-mode-map)
+         (bind-key "C-*" #'paxedit-delete paxedit-mode-map)
+         (bind-key "C-^" #'paxedit-sexp-raise paxedit-mode-map)
+         (bind-key "M-u" #'paxedit-symbol-change-case paxedit-mode-map)
+         (bind-key "C-@" #'paxedit-symbol-copy paxedit-mode-map)
+         (bind-key "C-#" #'paxedit-symbol-kill paxedit-mode-map))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-01-23 Fri 14:55]
@@ -540,27 +540,28 @@
 ** org-toodledo
    #+begin_src emacs-lisp
      ;; org-toodledo is installed via git
-     (add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
-     (use-package http-post-simple :ensure t)
-     (require 'org-toodledo)
-     (setq org-toodledo-preserve-drawers t)
-     (setq org-toodledo-sync-new-completed-tasks nil)
-     (setq org-toodledo-userid "td52fa891b12039")
-     (setq org-toodledo-sync-on-save "ask")
-     (setq org-toodledo-archive-completed-tasks t)
-     (setq org-toodledo-archive-deleted-tasks t)
-     (setq org-toodledo-status-to-org-map
-           '(("Active" . "TODO")
-             ("None" . "TODO")
-             ("Next Action" . "NEXT")
-             ("Planning" . "TODO")
-             ("Delegated" . "DELEGATED")
-             ("Waiting" . "WAITING")
-             ("Someday" . "SOMEDAY")
-             ("Hold" . "SOMEDAY")
-             ("Postponed" . "SOMEDAY")
-             ("Canceled" . "CANCELED")
-             ("Reference" . "REFERENCE")))
+     (use-package org-toodledo
+       :load-path (lambda () (expand-file-name "org-toodledo" prelude-vendor-dir))
+       :config
+       (use-package http-post-simple :ensure t)
+       (setq org-toodledo-preserve-drawers t
+             org-toodledo-sync-new-completed-tasks nil
+             org-toodledo-userid "td52fa891b12039"
+             org-toodledo-sync-on-save 'no
+             org-toodledo-archive-completed-tasks t
+             org-toodledo-archive-deleted-tasks t)
+       (setq org-toodledo-status-to-org-map
+             '(("Active" . "TODO")
+               ("None" . "TODO")
+               ("Next Action" . "NEXT")
+               ("Planning" . "TODO")
+               ("Delegated" . "DELEGATED")
+               ("Waiting" . "WAITING")
+               ("Someday" . "SOMEDAY")
+               ("Hold" . "SOMEDAY")
+               ("Postponed" . "SOMEDAY")
+               ("Canceled" . "CANCELED")
+               ("Reference" . "REFERENCE"))))
    #+end_src
 ** org-page
    #+begin_src emacs-lisp
@@ -1422,8 +1423,9 @@
    :END:
 ** Gnus
    #+begin_src emacs-lisp
-    (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
-    (require 'rfnash-gnus)
+     (use-package rfnash-gnus
+       :load-path prelude-personal-dir
+       :config (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir)))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:54]
@@ -1497,8 +1499,9 @@
    #+end_src
 ** Term Mode
    #+begin_src emacs-lisp
-     (require 'term)
-     (setq term-scroll-to-bottom-on-output t)
+     (use-package term
+       :config
+       (setq term-scroll-to-bottom-on-output t))
    #+end_src
 ** Term Colorscheme
    #+begin_src emacs-lisp :tangle no
@@ -1829,10 +1832,10 @@
    #+begin_src emacs-lisp
      (use-package prelude-mode
        :diminish prelude-mode
+       :bind* (("C-c x l" . rfnash-scroll-left-edge)
+               ("C-S-L" . rfnash-scroll-left-edge)
+               ("C-x F" . browse-weather))
        :config
-       (global-set-key (kbd "C-c x l") 'rfnash-scroll-left-edge)
-       (global-set-key (kbd "C-S-L") 'rfnash-scroll-left-edge)
-       (define-key prelude-mode-map (kbd "C-x F") #'browse-weather)
 
        (define-key prelude-mode-map (kbd "C-c i") #'prelude-ido-goto-symbol)
        (define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list)))) ; overwrites prelude-open-with keybinding
@@ -1851,14 +1854,14 @@
        (define-key prelude-mode-map (kbd "C-x ,") #'rename-buffer)
        (define-key prelude-mode-map (kbd "C-x c h") #'helm-mini)
 
-       (define-key oog-map (kbd "C-n") #'oog-next-line)
-       (define-key oog-map (kbd "C-p") #'oog-previous-line)
-       (define-key oog-map (kbd "C-v") #'oog-previous-page)
-       (define-key oog-map (kbd "M-v") #'oog-next-page)
+       (bind-key "C-n" #'oog-next-line oog-map)
+       (bind-key "C-p" #'oog-previous-line oog-map)
+       (bind-key "C-v" #'oog-previous-page oog-map)
+       (bind-key "M-v" #'oog-next-page oog-map)
 
        (require 'gnus-art)
-       (define-key gnus-article-mode-map (kbd "i") #'gnus-article-show-images)
-       (define-key gnus-summary-mode-map (kbd "i") #'gnus-article-show-images)
+       (bind-key "i" #'gnus-article-show-images gnus-article-mode-map)
+       (bind-key "i" #'gnus-article-show-images gnus-summary-mode-map)
 
      ;;; From https://github.com/magnars/hardcore-mode.el
        ;; Use shell-like backspace C-h, rebind help to F1
@@ -1872,8 +1875,8 @@
          (interactive)
          (let ((helm-candidate-number-limit nil)) (apply #'org-refile args)))
 
-       (define-key org-mode-map (kbd "C-c C-w") #'rfnash-org-refile)
-       (define-key org-agenda-mode-map (kbd "C-c C-w") #'rfnash-org-refile))
+       (bind-key "C-c C-w" #'rfnash-org-refile org-mode-map)
+       (bind-key "C-c C-w" #'rfnash-org-refile org-agenda-mode-map))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]
@@ -1912,7 +1915,6 @@
 ** emagician-fix-spell-memory
    #+begin_src emacs-lisp
      (use-package emagician-fix-spell-memory :ensure t)
-     (require 'emagician-fix-spell-memory)
    #+end_src
 ** elip
    #+begin_src emacs-lisp :tangle no
@@ -2059,7 +2061,6 @@
 ** nix-mode
    #+begin_src emacs-lisp
      (use-package nix-mode :ensure t)
-     (require 'nix-mode)
    #+end_src
 ** remem
    My rememberance agent configuration.
@@ -2094,9 +2095,11 @@
    :END:
 ** [[https://github.com/vspinu/zotelo][Zotelo]]
    #+begin_src emacs-lisp
-     (use-package zotelo :ensure t)
-     (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
-     (add-hook 'org-mode-hook 'zotelo-minor-mode)
+     (use-package zotelo :ensure t
+       :config
+       (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
+       (add-hook 'org-mode-hook 'zotelo-minor-mode))
+
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-01-08 Thu 11:56]
@@ -2116,8 +2119,9 @@
    :END:
 ** [[https://github.com/tam17aki/ace-isearch][ace-isearch]] -- See [[http://sachachua.com/blog/2015/01/emacs-kaizen-ace-isearch-combines-ace-jump-mode-helm-swoop/][Sachachua's article]].
    #+begin_src emacs-lisp
-     (use-package ace-isearch :ensure t)
-     (global-ace-isearch-mode)
+     (use-package ace-isearch
+       :ensure t
+       :config (global-ace-isearch-mode))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-01-16 Fri 14:15]
@@ -2133,7 +2137,6 @@
 ** [[https://github.com/agrif/pianobar.el][pianobar.el]]
    #+begin_src emacs-lisp
      (use-package pianobar :ensure t)
-     (require 'pianobar)
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-02-07 Sat 15:41]
@@ -2148,10 +2151,12 @@
 ** [[https://github.com/dacap/keyfreq][keyfreq]]
    Track Emacs commands frequency
    #+begin_src emacs-lisp
-     (use-package keyfreq :ensure t)
-     (setq keyfreq-file (expand-file-name "keyfreq" prelude-savefile-dir))
-     (keyfreq-mode 1)
-     (keyfreq-autosave-mode 1)
+     (use-package keyfreq
+       :ensure t
+       :config
+       (setq keyfreq-file (expand-file-name "keyfreq" prelude-savefile-dir))
+       (keyfreq-mode 1)
+       (keyfreq-autosave-mode 1))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-02-13 Fri 14:12]

@@ -1642,20 +1642,6 @@
 ** Color Theme
    My settings to use the solarized light color theme.
    #+begin_src emacs-lisp
-     ;; Set up the old-fashioned Solarized color theme
-     ;; and set ansi-term to use solarized dark colors
-
-     ;; Could be a coincidence, but since adding Solarized,
-     ;; but I can't get 'Emacs --daemon' to work
-
-     ;; (prelude-require-packages '(solarized-theme load-theme-buffer-local color-theme color-theme-buffer-local color-theme-solarized))
-
-     ;; (setq light t)           ; setting to t works and remove undefined var error
-     ;;(load-theme 'solarized-light t)
-     ;;(if (display-graphic-p)
-     ;;    (load-theme 'solarized-light t)
-     ;;  (load-theme 'solarized-dark t))
-
   (disable-theme 'zenburn)
      (use-package color-theme
        :ensure t
@@ -1702,10 +1688,6 @@
                                             ("solarized-light" . rfnash-solarized-light)
                                             ("solarized-dark" . rfnash-solarized-dark)))
                              (action . (("Apply Theme" . (lambda (x) (apply x ())))))))))))
-
-
-         ;; (require 'color-theme)
-         ;; (color-theme-solarized-light)
    #+end_src
    :PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:41]

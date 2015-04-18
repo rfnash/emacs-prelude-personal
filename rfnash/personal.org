@@ -1385,25 +1385,8 @@
              'browse-url-generic browse-url-generic-program browser))
    #+end_src
 ** ERC
-   My personal ERC config.
-   From emacswiki.org/emacs/ERC.
+   Emacs IRC client.
    #+begin_src emacs-lisp
-     ;; (setq erc-echo-notices-in-minibuffer-flag t)
-
-     ;; (require 'erc-match)
-     ;; (setq erc-keywords '("Niki" "Nikki"))
-
-     ;; ;; Doesn't seem to work
-     ;; (require 'notifications)
-     ;; (defun erc-global-notify (match-type nick message)
-     ;;   "Notify when a message is recieved."
-     ;;   (notifications-notify
-     ;;    :title nick
-     ;;    :body message
-     ;;    :urgency 'low))
-     ;; (add-hook 'erc-text-matched-hook 'erc-global-notify)
-
-
      ;; ;; Creates new buffer each time someone pm's me
      ;; ;; opens second window and shows buffer in non-focused window
      ;; ;; This happens even on different screen in elscreen
@@ -1427,11 +1410,6 @@
                                               (bitlbee "rfnash/bitlbee" "***REMOVED***")
                                               (***REMOVED*** "rfnash/***REMOVED***" "***REMOVED***")))))
      (setq erc-nicklist-voiced-position 'top)
-
-     (autoload 'erc-nick-notify-mode "erc-nick-notify"
-       "Minor mode that calls `erc-nick-notify-cmd' when his nick gets
-     mentioned in an erc channel" t)
-     ;; (eval-after-load 'erc '(erc-nick-notify-mode t))
    #+end_src
 ** Circe
    #+begin_src emacs-lisp

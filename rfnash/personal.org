@@ -426,8 +426,8 @@
       (use-package lfe-mode :ensure t)
     #+end_src
     :PROPERTIES:
-   :CREATED:  [2014-11-21 Fri 17:28]
-   :END:
+    :CREATED:  [2014-11-21 Fri 17:28]
+    :END:
 
 *** Geiser
     #+begin_src emacs-lisp

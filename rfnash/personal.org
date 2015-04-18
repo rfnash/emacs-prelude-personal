@@ -345,33 +345,32 @@
    :END:
 ** paxedit-mode
    #+begin_src emacs-lisp
-     ;;; Won't install from package.el, cloned git repo instead
      (use-package paredit
        :ensure t
        :diminish paredit-mode)
-       (use-package paxedit
-         :commands paxedit-mode
-         :diminish paxedit-mode
-         :load-path "~/.emacs.d/paxedit"
-         :init
-         (add-hook 'emacs-lisp-mode-hook 'paxedit-mode)
-         (add-hook 'clojure-mode-hook 'paxedit-mode)
-         (add-hook 'lisp-interaction-mode-hook 'paxedit-mode)
-         (add-hook 'paxedit-mode-hook 'paredit-mode)
-         :config
-         (bind-key "M-<right>" #'paxedit-transpose-forward paxedit-mode-map)
-         (bind-key "M-<left>" #'paxedit-transpose-backward paxedit-mode-map)
-         (bind-key "M-<up>" #'paxedit-backward-up paxedit-mode-map)
-         (bind-key "M-<down>" #'paxedit-backward-end paxedit-mode-map)
-         (bind-key "M-b" #'paxedit-previous-symbol paxedit-mode-map)
-         (bind-key "M-f" #'paxedit-next-symbol paxedit-mode-map)
-         (bind-key "C-%" #'paxedit-copy paxedit-mode-map)
-         (bind-key "C-&" #'paxedit-kill paxedit-mode-map)
-         (bind-key "C-*" #'paxedit-delete paxedit-mode-map)
-         (bind-key "C-^" #'paxedit-sexp-raise paxedit-mode-map)
-         (bind-key "M-u" #'paxedit-symbol-change-case paxedit-mode-map)
-         (bind-key "C-@" #'paxedit-symbol-copy paxedit-mode-map)
-         (bind-key "C-#" #'paxedit-symbol-kill paxedit-mode-map))
+     (use-package paxedit
+       :commands paxedit-mode
+       :diminish paxedit-mode
+       :load-path "~/.emacs.d/paxedit"       ; Won't install from package.el, cloned git repo instead
+       :init
+       (add-hook 'emacs-lisp-mode-hook 'paxedit-mode)
+       (add-hook 'clojure-mode-hook 'paxedit-mode)
+       (add-hook 'lisp-interaction-mode-hook 'paxedit-mode)
+       (add-hook 'paxedit-mode-hook 'paredit-mode)
+       :config
+       (bind-key "M-<right>" #'paxedit-transpose-forward paxedit-mode-map)
+       (bind-key "M-<left>" #'paxedit-transpose-backward paxedit-mode-map)
+       (bind-key "M-<up>" #'paxedit-backward-up paxedit-mode-map)
+       (bind-key "M-<down>" #'paxedit-backward-end paxedit-mode-map)
+       (bind-key "M-b" #'paxedit-previous-symbol paxedit-mode-map)
+       (bind-key "M-f" #'paxedit-next-symbol paxedit-mode-map)
+       (bind-key "C-%" #'paxedit-copy paxedit-mode-map)
+       (bind-key "C-&" #'paxedit-kill paxedit-mode-map)
+       (bind-key "C-*" #'paxedit-delete paxedit-mode-map)
+       (bind-key "C-^" #'paxedit-sexp-raise paxedit-mode-map)
+       (bind-key "M-u" #'paxedit-symbol-change-case paxedit-mode-map)
+       (bind-key "C-@" #'paxedit-symbol-copy paxedit-mode-map)
+       (bind-key "C-#" #'paxedit-symbol-kill paxedit-mode-map))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-01-23 Fri 14:55]
@@ -421,7 +420,7 @@
                    (define-key picolisp-mode-map (kbd "C-h") 'paredit-backward-delete))))
      (use-package inferior-picolisp
        :load-path "~/.local/opt/picolisp/lib/el"
-       :commands run-picolisp       
+       :commands run-picolisp
        :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +"))
    #+end_src
    :PROPERTIES:
@@ -2240,7 +2239,7 @@
        :config
        (setq deft-extension "org"
              deft-text-mode 'org-mode
-	     ;; deft-use-filename-as-title nil
+             ;; deft-use-filename-as-title nil
              deft-directory "~/Dropbox/notes"))
    #+end_src
    :PROPERTIES:

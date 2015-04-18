@@ -2240,7 +2240,7 @@
        :config
        (setq deft-extension "org"
              deft-text-mode 'org-mode
-             ;; deft-use-filename-as-title nil
+             deft-use-filename-as-title nil
              deft-directory "~/Dropbox/notes"))
    #+end_src
    :PROPERTIES:

@@ -1522,7 +1522,6 @@
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
 * Emacs
-   :END:
 ** Set the default directory to HOME
    #+begin_src emacs-lisp
      (setq default-directory "~")

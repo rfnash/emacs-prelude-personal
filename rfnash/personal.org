@@ -327,10 +327,6 @@
 
     ;;; Uncomment the modules you'd like to use and restart Prelude afterwards
     (require 'prelude-erc)                  ; Emacs IRC client
-    (require 'prelude-ido)                  ; Super charges Emacs completion for C-x C-f and more
-    (require 'prelude-helm)                 ; Interface for narrowing and search
-    (use-package prelude-company :diminish company-mode)
-    (require 'prelude-key-chord)            ; Binds useful features to key combinations
 
     ;;; Programming languages support
     (require 'prelude-emacs-lisp)
@@ -348,6 +344,37 @@
    :PROPERTIES:
   :CREATED:  [2015-04-17 Fri 17:23]
   :END:
+** Ido
+   Super charges Emacs completion for C-x C-f and more
+   #+begin_src emacs-lisp
+  (use-package prelude-ido)
+   #+end_src
+   :PROPERTIES:
+  :CREATED:  [2015-04-17 Fri 16:57]
+  :END:
+** Helm
+   Interface for narrowing and search
+   #+begin_src emacs-lisp
+  (use-package prelude-helm)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-17 Fri 16:57]
+   :END:
+** Company
+   #+begin_src emacs-lisp
+  (use-package prelude-company :diminish company-mode)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-17 Fri 16:59]
+   :END:
+** prelude-key-chord
+   Binds useful features to key combinations
+   #+begin_src emacs-lisp
+  (use-package prelude-key-chord)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-17 Fri 17:08]
+   :END:
 * NEXT Diminished Modes
   #+begin_src emacs-lisp
     (eval-after-load 'guru-mode '(diminish 'guru-mode))

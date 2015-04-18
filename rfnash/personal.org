@@ -324,7 +324,6 @@
   :CREATED:  [2015-04-17 Fri 16:57]
   :END:
   #+begin_src emacs-lisp
-    (setq prelude-clean-whitespace-on-save nil)
 
     ;;; Uncomment the modules you'd like to use and restart Prelude afterwards
     (require 'prelude-erc)                  ; Emacs IRC client
@@ -342,7 +341,13 @@
     (require 'prelude-clojure)
     (require 'prelude-haskell)
   #+end_src
-
+** Whitespace
+   #+begin_src emacs-lisp
+     (setq prelude-clean-whitespace-on-save nil)
+   #+end_src
+   :PROPERTIES:
+  :CREATED:  [2015-04-17 Fri 17:23]
+  :END:
 * NEXT Diminished Modes
   #+begin_src emacs-lisp
     (eval-after-load 'guru-mode '(diminish 'guru-mode))

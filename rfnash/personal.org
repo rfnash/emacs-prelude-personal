@@ -2026,6 +2026,7 @@
    #+end_src
    #+begin_src emacs-lisp
      (require 'howm)
+     (global-set-key (kbd "C-x ,") (key-binding (kbd "C-c ,")))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-02-13 Fri 16:22]

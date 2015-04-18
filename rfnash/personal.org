@@ -334,60 +334,106 @@
   :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:24]
   :END:
-** Quicklisp
-   Added manually as per quicklisp instructed after running ~(ql:quickload "quicklisp-slime-helper")~ in sbcl
-   #+begin_src emacs-lisp
-     (load (expand-file-name "~/quicklisp/slime-helper.el"))
-     (setq inferior-lisp-program "sbcl")
-   #+end_src
+** Lisp
    :PROPERTIES:
-   :CREATED:  [2014-07-01 Tue 14:35]
+  :CREATED:  [2015-04-18 Sat 16:47]
+  :END:
+*** paxedit-mode
+    #+begin_src emacs-lisp
+      (use-package paredit
+        :ensure t
+        :diminish paredit-mode)
+      (use-package paxedit
+        :commands paxedit-mode
+        :diminish paxedit-mode
+        :load-path "~/.emacs.d/paxedit"       ; Won't install from package.el, cloned git repo instead
+        :init
+        (add-hook 'emacs-lisp-mode-hook 'paxedit-mode)
+        (add-hook 'clojure-mode-hook 'paxedit-mode)
+        (add-hook 'lisp-interaction-mode-hook 'paxedit-mode)
+        (add-hook 'paxedit-mode-hook 'paredit-mode)
+        :config
+        (bind-key "M-<right>" #'paxedit-transpose-forward paxedit-mode-map)
+        (bind-key "M-<left>" #'paxedit-transpose-backward paxedit-mode-map)
+        (bind-key "M-<up>" #'paxedit-backward-up paxedit-mode-map)
+        (bind-key "M-<down>" #'paxedit-backward-end paxedit-mode-map)
+        (bind-key "M-b" #'paxedit-previous-symbol paxedit-mode-map)
+        (bind-key "M-f" #'paxedit-next-symbol paxedit-mode-map)
+        (bind-key "C-%" #'paxedit-copy paxedit-mode-map)
+        (bind-key "C-&" #'paxedit-kill paxedit-mode-map)
+        (bind-key "C-*" #'paxedit-delete paxedit-mode-map)
+        (bind-key "C-^" #'paxedit-sexp-raise paxedit-mode-map)
+        (bind-key "M-u" #'paxedit-symbol-change-case paxedit-mode-map)
+        (bind-key "C-@" #'paxedit-symbol-copy paxedit-mode-map)
+        (bind-key "C-#" #'paxedit-symbol-kill paxedit-mode-map))
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-01-23 Fri 14:55]
+    :END:
+
+*** Quicklisp
+    Added manually as per quicklisp instructed after running ~(ql:quickload "quicklisp-slime-helper")~ in sbcl
+    #+begin_src emacs-lisp
+      (load (expand-file-name "~/quicklisp/slime-helper.el"))
+      (setq inferior-lisp-program "sbcl")
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2014-07-01 Tue 14:35]
+    :END:
+*** [[https://github.com/Bruce-Connor/speed-of-thought-lisp][speed-of-thought-lisp]]
+    #+begin_src emacs-lisp
+      (use-package sotlisp
+        :ensure t
+        :diminish sotlisp-mode
+        :config
+        (speed-of-thought-mode)
+        (eval-after-load "abbrev" '(diminish 'abbrev-mode))
+        (add-hook 'emacs-lisp-mode-hook 'abbrev-mode))
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-03-05 Thu 16:06]
+    :END:
+*** Picolisp
+    #+begin_src emacs-lisp
+      (use-package picolisp
+        :load-path "~/.local/opt/picolisp/lib/el"
+        :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
+        :mode ("\\.l$" . picolisp-mode)
+        :commands picolisp-mode
+        :config
+        (add-hook 'picolisp-mode-hook
+                  (lambda ()
+                    (paredit-mode +1) ;; Loads paredit mode automatically
+                    (tsm-mode) ;; Enables TSM
+                    (define-key picolisp-mode-map (kbd "RET") 'newline-and-indent)
+                    (define-key picolisp-mode-map (kbd "C-h") 'paredit-backward-delete))))
+      (use-package inferior-picolisp
+        :load-path "~/.local/opt/picolisp/lib/el"
+        :commands run-picolisp
+        :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +"))
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2014-10-28 Tue 17:16]
+    :END:
+*** lfe
+    #+begin_src emacs-lisp
+      (use-package lfe-mode :ensure t)
+    #+end_src
+    :PROPERTIES:
+   :CREATED:  [2014-11-21 Fri 17:28]
    :END:
-** paxedit-mode
-   #+begin_src emacs-lisp
-     (use-package paredit
-       :ensure t
-       :diminish paredit-mode)
-     (use-package paxedit
-       :commands paxedit-mode
-       :diminish paxedit-mode
-       :load-path "~/.emacs.d/paxedit"       ; Won't install from package.el, cloned git repo instead
-       :init
-       (add-hook 'emacs-lisp-mode-hook 'paxedit-mode)
-       (add-hook 'clojure-mode-hook 'paxedit-mode)
-       (add-hook 'lisp-interaction-mode-hook 'paxedit-mode)
-       (add-hook 'paxedit-mode-hook 'paredit-mode)
-       :config
-       (bind-key "M-<right>" #'paxedit-transpose-forward paxedit-mode-map)
-       (bind-key "M-<left>" #'paxedit-transpose-backward paxedit-mode-map)
-       (bind-key "M-<up>" #'paxedit-backward-up paxedit-mode-map)
-       (bind-key "M-<down>" #'paxedit-backward-end paxedit-mode-map)
-       (bind-key "M-b" #'paxedit-previous-symbol paxedit-mode-map)
-       (bind-key "M-f" #'paxedit-next-symbol paxedit-mode-map)
-       (bind-key "C-%" #'paxedit-copy paxedit-mode-map)
-       (bind-key "C-&" #'paxedit-kill paxedit-mode-map)
-       (bind-key "C-*" #'paxedit-delete paxedit-mode-map)
-       (bind-key "C-^" #'paxedit-sexp-raise paxedit-mode-map)
-       (bind-key "M-u" #'paxedit-symbol-change-case paxedit-mode-map)
-       (bind-key "C-@" #'paxedit-symbol-copy paxedit-mode-map)
-       (bind-key "C-#" #'paxedit-symbol-kill paxedit-mode-map))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-01-23 Fri 14:55]
-   :END:
-** [[https://github.com/Bruce-Connor/speed-of-thought-lisp][speed-of-thought-lisp]]
-   #+begin_src emacs-lisp
-       (use-package sotlisp
-         :ensure t
-         :diminish sotlisp-mode
-         :config
-         (speed-of-thought-mode)
-         (eval-after-load "abbrev" '(diminish 'abbrev-mode))
-         (add-hook 'emacs-lisp-mode-hook 'abbrev-mode))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-03-05 Thu 16:06]
-   :END:
+
+*** Geiser
+    #+begin_src emacs-lisp
+      (use-package geiser :ensure t)
+      (require 'geiser)
+      (setq geiser-racket-binary "/usr/local/racket/bin/racket")
+      (setq geiser-racket-gracket-binary "/usr/local/racket/bin/gracket-text")
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-02-13 Fri 23:48]
+    :END:
+
 ** K / Kona
    #+begin_src emacs-lisp
      (use-package k-mode
@@ -404,36 +450,6 @@
    :PROPERTIES:
    :CREATED:  [2014-10-09 Thu 23:42]
    :END:
-** Picolisp
-   #+begin_src emacs-lisp
-     (use-package picolisp
-       :load-path "~/.local/opt/picolisp/lib/el"
-       :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
-       :mode ("\\.l$" . picolisp-mode)
-       :commands picolisp-mode
-       :config
-       (add-hook 'picolisp-mode-hook
-                 (lambda ()
-                   (paredit-mode +1) ;; Loads paredit mode automatically
-                   (tsm-mode) ;; Enables TSM
-                   (define-key picolisp-mode-map (kbd "RET") 'newline-and-indent)
-                   (define-key picolisp-mode-map (kbd "C-h") 'paredit-backward-delete))))
-     (use-package inferior-picolisp
-       :load-path "~/.local/opt/picolisp/lib/el"
-       :commands run-picolisp
-       :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +"))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-10-28 Tue 17:16]
-   :END:
-** lfe
-   #+begin_src emacs-lisp
-  (use-package lfe-mode :ensure t)
-   #+end_src
-   :PROPERTIES:
-  :CREATED:  [2014-11-21 Fri 17:28]
-  :END:
-
 ** Yasnippet
    #+begin_src emacs-lisp
      (use-package yasnippet
@@ -493,16 +509,6 @@
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-12-04 Thu 17:49]
-   :END:
-** Geiser
-   #+begin_src emacs-lisp
-     (use-package geiser :ensure t)
-     (require 'geiser)
-     (setq geiser-racket-binary "/usr/local/racket/bin/racket")
-     (setq geiser-racket-gracket-binary "/usr/local/racket/bin/gracket-text")
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-13 Fri 23:48]
    :END:
 ** Haskell
 *** prelude-haskell

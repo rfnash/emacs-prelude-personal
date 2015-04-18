@@ -656,6 +656,7 @@
       (setq
        org-agenda-files (list     ; Can be set using C-c [ and C-c ] in org-mode
                          org-directory
+                         "~/Dropbox/notes"
                          "~/Dropbox/Projects/learning.org"
                          (concat prelude-personal-dir "/rfnash/personal.org")))
     #+end_src

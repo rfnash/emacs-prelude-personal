@@ -1604,7 +1604,6 @@
                                             ("solarized-dark" . rfnash-solarized-dark)))
                              (action . (("Apply Theme" . (lambda (x) (apply x ())))))))))))
 
-         (global-set-key (kbd "C-x c t") #'rfnash-helm-theme)))
 
          ;; (require 'color-theme)
          ;; (color-theme-solarized-light)
@@ -1874,6 +1873,7 @@
                ("C-x R" . rename-buffer)
                ("C-c H" . helm-mini)
                ("C-x c o" . helm-multi-occur)
+               ("C-x c t" . rfnash-helm-theme)
                ("C-x c h" . helm-command-prefix))
        :config
 

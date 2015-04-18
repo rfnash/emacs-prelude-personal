@@ -1386,28 +1386,43 @@
    #+end_src
 ** ERC
    Emacs IRC client.
-   #+begin_src emacs-lisp
-     ;; ;; Creates new buffer each time someone pm's me
-     ;; ;; opens second window and shows buffer in non-focused window
-     ;; ;; This happens even on different screen in elscreen
-     ;; (setq erc-auto-query 'buffer)
-     ;; (add-hook 'erc-after-connect
-     ;;        (lambda (server nick)
-     ;;          (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
-
-     (add-to-list 'load-path "~/.emacs.d/prelude/personal")
+   :PROPERTIES:
+   :CREATED:  [2015-04-18 Sat 17:45]
+   :END:
+*** Query in new buffer
+    Creates new buffer each time someone pm's me,
+    opens second window and shows buffer in non-focused window.
+    This happens even on different screen in elscreen
+   #+begin_src emacs-lisp :tangle no
+     (setq erc-auto-query 'buffer)
+     (add-hook 'erc-after-connect
+            (lambda (server nick)
+              (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
+   #+end_src
+*** Znc
+    #+begin_src emacs-lisp
      (use-package znc
        :ensure t
        :config
-       (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
-                                                (freenode "rfnash/freenode" "***REMOVED***")
-                                                (mozilla "rfnash/mozilla" "***REMOVED***")
-                                                (bitlbee "rfnash/bitlbee" "***REMOVED***")
-                                                (***REMOVED*** "rfnash/***REMOVED***" "***REMOVED***"))))))
-
-     ;; (use-package erc-nicklist
-     ;;   :config (setq erc-nicklist-voiced-position 'top))
-   #+end_src
+       (setq znc-servers
+             '(("localhost" 1666 t
+                ((efnet "rfnash/efnet" "***REMOVED***")
+                 (freenode "rfnash/freenode" "***REMOVED***")
+                 (mozilla "rfnash/mozilla" "***REMOVED***")
+                 (bitlbee "rfnash/bitlbee" "***REMOVED***")
+                 (***REMOVED*** "rfnash/***REMOVED***" "***REMOVED***"))))))
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-04-18 Sat 17:46]
+    :END:
+*** erc-nicklist
+    #+begin_src emacs-lisp :tangle no
+      (use-package erc-nicklist
+        :config (setq erc-nicklist-voiced-position 'top))
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-04-18 Sat 17:47]
+    :END:
 ** Circe
    #+begin_src emacs-lisp
      (use-package circe :ensure t)

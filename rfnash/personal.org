@@ -323,20 +323,6 @@
   :PROPERTIES:
   :CREATED:  [2015-04-17 Fri 16:57]
   :END:
-  #+begin_src emacs-lisp
-
-    ;;; Uncomment the modules you'd like to use and restart Prelude afterwards
-    (require 'prelude-erc)                  ; Emacs IRC client
-
-    ;;; Programming languages support
-    (require 'prelude-emacs-lisp)
-    (require 'prelude-lisp)
-    (require 'prelude-org)                  ; Org-mode helps you keep TODO lists, notes and more
-    (require 'prelude-scheme)
-    (require 'prelude-shell)
-    (require 'prelude-clojure)
-    (require 'prelude-haskell)
-  #+end_src
 ** Whitespace
    #+begin_src emacs-lisp
      (setq prelude-clean-whitespace-on-save nil)
@@ -442,6 +428,20 @@
     :PROPERTIES:
     :CREATED:  [2014-07-01 Tue 14:35]
     :END:
+*** prelude-lisp
+    #+begin_src emacs-lisp
+ (use-package prelude-lisp)
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-04-17 Fri 17:10]
+    :END:
+*** prelude-emacs-lisp
+    #+begin_src emacs-lisp
+      (use-package prelude-emacs-lisp)
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-04-17 Fri 17:16]
+    :END:
 *** [[https://github.com/Bruce-Connor/speed-of-thought-lisp][speed-of-thought-lisp]]
     #+begin_src emacs-lisp
       (use-package sotlisp
@@ -484,7 +484,13 @@
     :PROPERTIES:
     :CREATED:  [2014-11-21 Fri 17:28]
     :END:
-
+*** prelude-scheme
+    #+begin_src emacs-lisp
+      (use-package prelude-scheme)
+    #+end_src
+    :PROPERTIES:
+   :CREATED:  [2015-04-17 Fri 17:16]
+   :END:
 *** Geiser
     #+begin_src emacs-lisp
       (use-package geiser
@@ -498,6 +504,13 @@
     :CREATED:  [2015-02-13 Fri 23:48]
     :END:
 
+*** clojure
+    #+begin_src emacs-lisp
+      (use-package prelude-clojure)
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-04-17 Fri 17:21]
+    :END:
 ** K / Kona
    #+begin_src emacs-lisp
      (use-package k-mode
@@ -594,6 +607,13 @@
     :PROPERTIES:
 :CREATED:  [2015-04-10 Fri 19:49]
 :END:
+** Shell
+   #+begin_src emacs-lisp
+     (use-package prelude-shell)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-17 Fri 17:21]
+   :END:
 * Org Mode
   Org-mode helps you keep TODO lists, notes and more
   :PROPERTIES:
@@ -601,6 +621,8 @@
   :END:
 ** Load org-mode
    #+begin_src emacs-lisp
+     (require 'prelude-org)
+
      ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
      (use-package org-pomodoro :ensure t)
      (use-package org-trello :ensure t)

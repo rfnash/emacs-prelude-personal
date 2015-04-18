@@ -376,6 +376,15 @@
   :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:24]
   :END:
+** fill-column-indicator
+   #+begin_src emacs-lisp
+     (use-package fill-column-indicator
+       :ensure t
+       :commands fci-mode)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-18 Sat 11:20]
+   :END:
 ** Lisp
    :PROPERTIES:
    :CREATED:  [2015-04-18 Sat 16:47]

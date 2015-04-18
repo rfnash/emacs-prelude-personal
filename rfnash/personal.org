@@ -505,18 +505,23 @@
    :CREATED:  [2015-02-13 Fri 23:48]
    :END:
 ** Haskell
-   #+begin_src emacs-lisp :tangle no
-     (use-package shm
-       :ensure t
-       :commands structured-haskell-mode
-       :init
-       (defun turn-on-structured-haskell-mode ()
-         (require 'haskell-indent)
-         (turn-off-haskell-indent)
-         (structured-haskell-mode t))
-       (add-hook 'haskell-mode-hook #'turn-on-structured-haskell-mode))
-   #+end_src
-   :PROPERTIES:
+*** prelude-haskell
+    #+begin_src emacs-lisp
+      (use-package prelude-haskell)
+    #+end_src
+*** structured-haskell-mode
+    #+begin_src emacs-lisp :tangle no
+      (use-package shm
+        :ensure t
+        :commands structured-haskell-mode
+        :init
+        (defun turn-on-structured-haskell-mode ()
+          (require 'haskell-indent)
+          (turn-off-haskell-indent)
+          (structured-haskell-mode t))
+        (add-hook 'haskell-mode-hook #'turn-on-structured-haskell-mode))
+    #+end_src
+    :PROPERTIES:
 :CREATED:  [2015-04-10 Fri 19:49]
 :END:
 * Org Mode

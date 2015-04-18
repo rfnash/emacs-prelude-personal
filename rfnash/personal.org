@@ -546,6 +546,8 @@
      ;; org-toodledo is installed via git
      (use-package org-toodledo
        :load-path (lambda () (expand-file-name "org-toodledo" prelude-vendor-dir))
+       :demand t
+       :bind ("C-c x t" . org-toodledo-sync)
        :config
        (use-package http-post-simple :ensure t)
        (setq org-toodledo-preserve-drawers t

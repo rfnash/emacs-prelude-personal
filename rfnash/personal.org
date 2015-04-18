@@ -2135,7 +2135,7 @@
    :CREATED:  [2015-01-13 Tue 11:14]
    :END:
 ** [[https://github.com/tam17aki/ace-isearch][ace-isearch]] -- See [[http://sachachua.com/blog/2015/01/emacs-kaizen-ace-isearch-combines-ace-jump-mode-helm-swoop/][Sachachua's article]].
-   #+begin_src emacs-lisp
+   #+begin_src emacs-lisp :tangle no
      (use-package ace-isearch
        :ensure t
        :config (global-ace-isearch-mode))

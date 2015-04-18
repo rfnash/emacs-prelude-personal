@@ -1827,6 +1827,33 @@
    :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 20:38]
 :END:
+** helm-multi-org-occur
+   #+begin_src emacs-lisp
+     (defun helm-multi-org-occur ()
+       (interactive)
+       (helm-multi-occur (org-buffer-list)))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-17 Fri 18:27]
+   :END:
+** rfnash-org-refile
+   #+begin_src emacs-lisp
+     (defun rfnash-org-refile (&rest args)
+       (interactive)
+       (let ((helm-candidate-number-limit nil)) (apply #'org-refile args)))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-17 Fri 18:27]
+   :END:
+** Use shell-like backspace C-h, rebind help to F1
+   From [[https://github.com/magnars/hardcore-mode.el][hardcore-mode]]
+   #+begin_src emacs-lisp
+     (define-key key-translation-map [?\C-h] [?\C-?])
+     (bind-key "<f1>" #'help-command)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-17 Fri 18:28]
+   :END:
 ** prelude mode
    Emacs Prelude: minor mode.
    #+begin_src emacs-lisp
@@ -1838,7 +1865,7 @@
        :config
 
        (define-key prelude-mode-map (kbd "C-c i") #'prelude-ido-goto-symbol)
-       (define-key prelude-mode-map (kbd "C-c o") (lambda () (interactive) (helm-multi-occur (org-buffer-list)))) ; overwrites prelude-open-with keybinding
+       (define-key prelude-mode-map (kbd "C-c o") #'helm-multi-org-occur) ; overwrites prelude-open-with keybinding
        (define-key prelude-mode-map (kbd "C-c O") #'prelude-open-with)
        (define-key prelude-mode-map (kbd "C-c h") #'rfnash-visit-org-agenda-buffer) ; overwrites helm-command-prefix keybinding
        (define-key prelude-mode-map (kbd "C-c g") #'rfnash-visit-gnus-buffer) ; overwrites prelude-google keybinding
@@ -1862,18 +1889,8 @@
        (require 'gnus-art)
        (bind-key "i" #'gnus-article-show-images gnus-article-mode-map)
        (bind-key "i" #'gnus-article-show-images gnus-summary-mode-map)
-
-     ;;; From https://github.com/magnars/hardcore-mode.el
-       ;; Use shell-like backspace C-h, rebind help to F1
-       (define-key key-translation-map [?\C-h] [?\C-?])
-       (global-set-key (kbd "<f1>") #'help-command)
-
        ;; (global-set-key "\C-cT" #'rfnash-visit-term-buffer)
        ;; (global-set-key "\C-ct" #'rfnash-visit-eshell-buffer)
-
-       (defun rfnash-org-refile (&rest args)
-         (interactive)
-         (let ((helm-candidate-number-limit nil)) (apply #'org-refile args)))
 
        (bind-key "C-c C-w" #'rfnash-org-refile org-mode-map)
        (bind-key "C-c C-w" #'rfnash-org-refile org-agenda-mode-map))

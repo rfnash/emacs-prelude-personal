@@ -1401,15 +1401,17 @@
      ;;      ;;("oftc.net" "#bitlbee")))
 
      (add-to-list 'load-path "~/.emacs.d/prelude/personal")
-     (use-package znc :ensure t)
-     (require 'erc)
-     ;;(require 'erc-nicklist)
-     (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
-                                              (freenode "rfnash/freenode" "***REMOVED***")
-                                              (mozilla "rfnash/mozilla" "***REMOVED***")
-                                              (bitlbee "rfnash/bitlbee" "***REMOVED***")
-                                              (***REMOVED*** "rfnash/***REMOVED***" "***REMOVED***")))))
-     (setq erc-nicklist-voiced-position 'top)
+     (use-package znc
+       :ensure t
+       :config
+       (setq znc-servers '(("localhost" 1666 t ((efnet "rfnash/efnet" "***REMOVED***")
+                                                (freenode "rfnash/freenode" "***REMOVED***")
+                                                (mozilla "rfnash/mozilla" "***REMOVED***")
+                                                (bitlbee "rfnash/bitlbee" "***REMOVED***")
+                                                (***REMOVED*** "rfnash/***REMOVED***" "***REMOVED***"))))))
+
+     ;; (use-package erc-nicklist
+     ;;   :config (setq erc-nicklist-voiced-position 'top))
    #+end_src
 ** Circe
    #+begin_src emacs-lisp

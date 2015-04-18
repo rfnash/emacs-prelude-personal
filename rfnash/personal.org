@@ -418,13 +418,11 @@
                    (paredit-mode +1) ;; Loads paredit mode automatically
                    (tsm-mode) ;; Enables TSM
                    (define-key picolisp-mode-map (kbd "RET") 'newline-and-indent)
-                   (define-key picolisp-mode-map (kbd "C-h") 'paredit-backward-delete)))
-       )
+                   (define-key picolisp-mode-map (kbd "C-h") 'paredit-backward-delete))))
      (use-package inferior-picolisp
        :load-path "~/.local/opt/picolisp/lib/el"
-       :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
-       :commands run-picolisp
-       )
+       :commands run-picolisp       
+       :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +"))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-10-28 Tue 17:16]
@@ -646,8 +644,8 @@
    :END:
 *** org-agenda-files
     #+begin_src emacs-lisp
-     (setq
-      org-agenda-files (list     ; Can be set using C-c [ and C-c ] in org-mode
+      (setq
+       org-agenda-files (list     ; Can be set using C-c [ and C-c ] in org-mode
                         (concat org-directory "/notes.org")
                         (concat org-directory "/busybox.org")
                         (concat org-directory "/plover.org")
@@ -659,9 +657,8 @@
                         (concat org-directory "/computers.org")
                         (concat org-directory "/bookmarks.org")
                         (concat org-directory "/vimb.org")
-                        "~/Dropbox/Projects/learning.org"
-                        (concat prelude-personal-dir "/rfnash/personal.org"))
-     )
+                         "~/Dropbox/Projects/learning.org"
+                         (concat prelude-personal-dir "/rfnash/personal.org")))
     #+end_src
     :PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:08]
@@ -1206,7 +1203,7 @@
    :END:
 ** org-cliplink
    #+begin_src emacs-lisp
-  (use-package org-cliplink :ensure t)
+     (use-package org-cliplink :ensure t)
    #+end_src
    :PROPERTIES:
   :CREATED:  [2014-11-21 Fri 17:28]
@@ -2219,10 +2216,10 @@
        :commands deft
        :bind "C-x c d" [f8]
        :config
-      ;; (setq deft-use-filename-as-title t)
-      (setq deft-extension "org")
-      (setq deft-text-mode 'org-mode)
-      (setq deft-directory "~/Dropbox/notes"))
+       (setq deft-extension "org"
+             deft-text-mode 'org-mode
+	     ;; deft-use-filename-as-title nil
+             deft-directory "~/Dropbox/notes"))
    #+end_src
    :PROPERTIES:
 :CREATED:  [2015-04-15 Wed 22:51]

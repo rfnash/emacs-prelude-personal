@@ -523,13 +523,11 @@
 :CREATED:  [2015-04-10 Fri 19:49]
 :END:
 * Org Mode
-  My personal org-mode config.
-  TODO: was naively copied into my prelude config, check for redundancy
+  Org-mode helps you keep TODO lists, notes and more
   :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:37]
   :END:
 ** Load org-mode
-   Loads my locally installed org-mode
    #+begin_src emacs-lisp
      ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
      (use-package org-pomodoro :ensure t)
@@ -863,23 +861,23 @@
    From http://doc.norang.ca/org-mode.html#Reminders
    Set up reminders for all upcoming appointments
    #+begin_src emacs-lisp :tangle no
-   ;; (defun bh/org-agenda-to-appt ()
-   ;;   "Erase all reminders and rebuilt reminders for today from the agenda."
-   ;;   (interactive)
-   ;;   (setq appt-time-msg-list nil)
-   ;;   (org-agenda-to-appt))
+     (defun bh/org-agenda-to-appt ()
+       "Erase all reminders and rebuilt reminders for today from the agenda."
+       (interactive)
+       (setq appt-time-msg-list nil)
+       (org-agenda-to-appt))
 
-   ;; ;; Rebuild the reminders everytime the agenda is displayed
-   ;; (add-hook 'org-finalize-agenda-hook 'bh/org-agenda-to-appt 'append)
+     ;; Rebuild the reminders everytime the agenda is displayed
+     (add-hook 'org-finalize-agenda-hook 'bh/org-agenda-to-appt 'append)
 
-   ;; ;; This is at the end of my .emacs - so appointments are set up when Emacs starts
-   ;; (bh/org-agenda-to-appt)
+     ;; This is at the end of my .emacs - so appointments are set up when Emacs starts
+     (bh/org-agenda-to-appt)
 
-   ;; ;; Activate appointments so we get notifications
-   ;; (appt-activate t)
+     ;; Activate appointments so we get notifications
+     (appt-activate t)
 
-   ;; ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
-   ;; (run-at-time "24:01" nil 'bh/org-agenda-to-appt)
+     ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
+     (run-at-time "24:01" nil 'bh/org-agenda-to-appt)
    #+end_src
 ** org-protocol help
    From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with Org Mode (with refile)]]. I modified it so that org-capture-mode only closes other windows if its called via org-protocol.
@@ -1504,39 +1502,45 @@
    #+begin_src emacs-lisp
      (require 'term)
      (setq term-scroll-to-bottom-on-output t)
-
-     ;; (setq term-mode-hook '((lambda nil
-     ;;                          ;; To use new deftheme instead of color-theme
-     ;;                          ;;                         (load-theme-buffer-local
-     ;;                          ;;                         'solarized-dark
-     ;;                          ;;                          (current-buffer)
-     ;;                          ;;                          t)))
-
-     ;;                          ;; (color-theme-buffer-local
-     ;;                          ;;  (quote color-theme-solarized-dark)
-     ;;                          ;;  (current-buffer))
-     ;;                          (setq-local dark t)
-     ;;                          (load-theme-buffer-local
-     ;;                           'solarized-dark
-     ;;                           (current-buffer) t nil))))
-
-     ;; ;; TODO: is probably a bad idea to set this here. Find a better way.
-     ;; (custom-set-faces
-     ;;  ;; custom-set-faces was added by Custom.
-     ;;  ;; If you edit it by hand, you could mess it up, so be careful.
-     ;;  ;; Your init file should contain only one such instance.
-     ;;  ;; If there is more than one, they won't work right.
-     ;;  '(term ((t (:inherit default :background "#002b36"))))
-     ;;  '(term-bold ((t (:inverse-video t :weight bold))))
-     ;;  '(term-color-black ((t (:background "#002b36" :foreground "#073642"))))
-     ;;  '(term-color-blue ((t (:background "#002b36" :foreground "#268bd2"))))
-     ;;  '(term-color-cyan ((t (:background "#002b36" :foreground "#2aa198"))))
-     ;;  '(term-color-green ((t (:background "#002b36" :foreground "#859900"))))
-     ;;  '(term-color-magenta ((t (:background "#002b36" :foreground "#d33682"))))
-     ;;  '(term-color-red ((t (:background "#002b36" :foreground "#dc322f"))))
-     ;;  '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
-     ;;  '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))
    #+end_src
+** Term Colorscheme
+   #+begin_src emacs-lisp :tangle no
+     (setq term-mode-hook
+           '((lambda nil
+               ;; To use new deftheme instead of color-theme
+               ;;                         (load-theme-buffer-local
+               ;;                         'solarized-dark
+               ;;                          (current-buffer)
+               ;;                          t)))
+
+               ;; (color-theme-buffer-local
+               ;;  (quote color-theme-solarized-dark)
+               ;;  (current-buffer))
+               (setq-local dark t)
+               (load-theme-buffer-local
+                'solarized-dark
+                (current-buffer) t nil))))
+
+     ;; TODO: is probably a bad idea to set this here. Find a better way.
+     (custom-set-faces
+      ;; custom-set-faces was added by Custom.
+      ;; If you edit it by hand, you could mess it up, so be careful.
+      ;; Your init file should contain only one such instance.
+      ;; If there is more than one, they won't work right.
+      '(term ((t (:inherit default :background "#002b36"))))
+      '(term-bold ((t (:inverse-video t :weight bold))))
+      '(term-color-black ((t (:background "#002b36" :foreground "#073642"))))
+      '(term-color-blue ((t (:background "#002b36" :foreground "#268bd2"))))
+      '(term-color-cyan ((t (:background "#002b36" :foreground "#2aa198"))))
+      '(term-color-green ((t (:background "#002b36" :foreground "#859900"))))
+      '(term-color-magenta ((t (:background "#002b36" :foreground "#d33682"))))
+      '(term-color-red ((t (:background "#002b36" :foreground "#dc322f"))))
+      '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
+      '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-17 Fri 18:23]
+   :END:
 ** Color Theme
    My settings to use the solarized light color theme.
    #+begin_src emacs-lisp
@@ -1706,9 +1710,8 @@
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
 ** rfnash-switch-buffer
+   Based on [[http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/][terminal at your fingertips]].
    #+begin_src emacs-lisp
-  ;; Based on http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/
-
      (defun rfnash-switch-buffer (buffer)
        "Switch to BUFFER using elscreen if possible;
                if not, use 'switch-to-buffer-other-window'"
@@ -1779,8 +1782,8 @@
 :CREATED:  [2015-04-14 Tue 20:32]
 :END:
 ** rfnash-horizontal-recenter
+   From http://stackoverflow.com/a/1249665
    #+begin_src emacs-lisp
-  ;; From http://stackoverflow.com/a/1249665
      (defun rfnash-horizontal-recenter ()
        "Make the point horizontally centered in the window."
        (interactive)
@@ -2164,8 +2167,9 @@
    :CREATED:  [2015-02-13 Fri 16:07]
    :END:
 ** Alert
+   libnotify uses notify-send; notifications uses dbus
    #+begin_src emacs-lisp
-     (setq alert-default-style 'libnotify) ; libnotify uses notify-send; notifications uses dbus
+     (setq alert-default-style 'libnotify)
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-03-03 Tue 00:06]

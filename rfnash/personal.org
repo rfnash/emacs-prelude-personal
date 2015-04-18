@@ -1,23 +1,23 @@
 #+TITLE: rfnash's Emacs configuration
 #+OPTIONS: toc:4 h:4
 * About this file
-<<babel-init>>
-#+begin_src emacs-lisp
-  (prelude-require-packages '(use-package diminish))
-  (eval-when-compile
-    (require 'use-package))
-  (require 'diminish)                     ; if you use :diminish
-  (require 'bind-key)                     ; if you use any :bind variant
-  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-#+end_src
-TODO: write something about this file.
+  <<babel-init>>
+  #+begin_src emacs-lisp
+    (prelude-require-packages '(use-package diminish))
+    (eval-when-compile
+      (require 'use-package))
+    (require 'diminish)                     ; if you use :diminish
+    (require 'bind-key)                     ; if you use any :bind variant
+    (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+  #+end_src
+  TODO: write something about this file.
 * Historical
-:PROPERTIES:
+  :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:22]
   :END:
 ** init.el
-For historical reference
-#+begin_src emacs-lisp :tangle no
+   For historical reference
+   #+begin_src emacs-lisp :tangle no
      (mapc 'load (directory-files "~/.emacs.d/conf.d/" t "^[^#!].*\.el$"))
      (server-start)
      (custom-set-variables
@@ -165,109 +165,109 @@ For historical reference
        "Start alsamixer in its own buffer"
        (interactive)
        (ansi-term "alsamixer" "mixer"))
-#+end_src
+   #+end_src
 ** package.el
-old ELPA package config for historical interest
-#+begin_src emacs-lisp :tangle no
-  (require 'package)
-  (add-to-list 'package-archives
-            '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  (add-to-list 'package-archives
-            '("org" . "http://orgmode.org/elpa/") t)
-  (add-to-list 'package-archives
-            '("tromey" . "http://tromey.com/elpa/") t)
-  (add-to-list 'package-archives
-            '("gnu" . "http://elpa.gnu.org/packages/") t)
-  (add-to-list 'package-archives
-            '("marmalade" . "http://marmalade-repo.org/packages/") t)
-  (package-initialize)
+   old ELPA package config for historical interest
+   #+begin_src emacs-lisp :tangle no
+     (require 'package)
+     (add-to-list 'package-archives
+               '("melpa" . "http://melpa.milkbox.net/packages/") t)
+     (add-to-list 'package-archives
+               '("org" . "http://orgmode.org/elpa/") t)
+     (add-to-list 'package-archives
+               '("tromey" . "http://tromey.com/elpa/") t)
+     (add-to-list 'package-archives
+               '("gnu" . "http://elpa.gnu.org/packages/") t)
+     (add-to-list 'package-archives
+               '("marmalade" . "http://marmalade-repo.org/packages/") t)
+     (package-initialize)
 
-  (when (not package-archive-contents)
-   (package-refresh-contents))
+     (when (not package-archive-contents)
+      (package-refresh-contents))
 
-  (defvar my-packages '((cl-lib)
-                     (bbdb
-                      (progn
-                        (setq bbdb-file "~/.emacs.d/bbdb")
-                        (require 'bbdb)
-                        (bbdb-initialize 'gnus 'message)
-                        (bbdb-insinuate-message)
-                        (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
-                        (setq bbdb-send-mail-style 'gnus)
-                        (setq bbdb-complete-name-full-completion t)
-                        (setq bbdb-completion-type 'primary-or-name)
-                        (setq bbdb-complete-name-allow-cycling t)
-                        (setq bbdb-offer-save 1
-                              bbdb-use-pop-up t
-                              bbdb-electric-p t
-                              bbdb-popup-target-lines  1)))
-                     ;;(bbdb-vcard)
-                     (emms)
-                     (deft
-                       (progn
-                         ;; deft: homepage: http://jblevins.org/projects/deft/
-                         ;; also http://www.emacswiki.org/emacs/DeftMode
-                         (setq deft-extension "org")
-                         (setq deft-text-mode 'org-mode)
-                         (setq deft-directory "~/Dropbox/notes")
-                         (global-set-key [f8] 'deft) ; (setq deft-use-filename-as-title t)
-                         ))
-                     (evil)
-                     (linum-off
-                      (require 'linum-off))          ; linum slows down org-mode
-                     (quack)
-                     (geiser)
-                     (puppet-mode)
-                     (bitlbee (require 'bitlbee))
-                     (rainbow-delimiters (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-                     (powerline)
-                     (htmlize)                       ; required by org-mode html export
-                     (helm-ag)
-                     (w3m)
-                     (elixir-mode)
-                     (flymake-easy)                  ; required by flymake-elixir
-                     (flymake-elixir
-                      (progn
-                        (add-hook 'find-file-hook 'flymake-find-file-hook)
-                        (require 'flymake-elixir)
-                        (add-hook 'elixir-mode-hook 'flymake-elixir-load)))
-                     (smart-tab                      ; indents or completes, inteligently
-                      (progn
-                        (require 'smart-tab)
-                        (global-smart-tab-mode 1)
-                        (define-key read-expression-map [(tab)] 'hippie-expand)))
-                     (nrepl                          ;  see https://github.com/kingtim/nrepl.el
-                      (progn
-                        (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
-                        (setq nrepl-hide-special-buffers t)
-                        (add-to-list 'same-window-buffer-names "*nrepl*")
-                        (add-hook 'nrepl-mode-hook 'subword-mode)
-                        (add-hook 'nrepl-mode-hook 'paredit-mode)
-                        (add-hook 'nrepl-mode-hook 'rainbow-delimiters-mode)))
-                     (auctex)
-                     (auctex-latexmk)
-                     (ioccur)                       ; not sure if i like better than helm-occur or not
-                     (switch-window)
-                     (goto-last-change)
-                     (org-page))
-  "A list of packages to ensure are installed at launch.")
+     (defvar my-packages '((cl-lib)
+                        (bbdb
+                         (progn
+                           (setq bbdb-file "~/.emacs.d/bbdb")
+                           (require 'bbdb)
+                           (bbdb-initialize 'gnus 'message)
+                           (bbdb-insinuate-message)
+                           (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
+                           (setq bbdb-send-mail-style 'gnus)
+                           (setq bbdb-complete-name-full-completion t)
+                           (setq bbdb-completion-type 'primary-or-name)
+                           (setq bbdb-complete-name-allow-cycling t)
+                           (setq bbdb-offer-save 1
+                                 bbdb-use-pop-up t
+                                 bbdb-electric-p t
+                                 bbdb-popup-target-lines  1)))
+                        ;;(bbdb-vcard)
+                        (emms)
+                        (deft
+                          (progn
+                            ;; deft: homepage: http://jblevins.org/projects/deft/
+                            ;; also http://www.emacswiki.org/emacs/DeftMode
+                            (setq deft-extension "org")
+                            (setq deft-text-mode 'org-mode)
+                            (setq deft-directory "~/Dropbox/notes")
+                            (global-set-key [f8] 'deft) ; (setq deft-use-filename-as-title t)
+                            ))
+                        (evil)
+                        (linum-off
+                         (require 'linum-off))          ; linum slows down org-mode
+                        (quack)
+                        (geiser)
+                        (puppet-mode)
+                        (bitlbee (require 'bitlbee))
+                        (rainbow-delimiters (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+                        (powerline)
+                        (htmlize)                       ; required by org-mode html export
+                        (helm-ag)
+                        (w3m)
+                        (elixir-mode)
+                        (flymake-easy)                  ; required by flymake-elixir
+                        (flymake-elixir
+                         (progn
+                           (add-hook 'find-file-hook 'flymake-find-file-hook)
+                           (require 'flymake-elixir)
+                           (add-hook 'elixir-mode-hook 'flymake-elixir-load)))
+                        (smart-tab                      ; indents or completes, inteligently
+                         (progn
+                           (require 'smart-tab)
+                           (global-smart-tab-mode 1)
+                           (define-key read-expression-map [(tab)] 'hippie-expand)))
+                        (nrepl                          ;  see https://github.com/kingtim/nrepl.el
+                         (progn
+                           (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+                           (setq nrepl-hide-special-buffers t)
+                           (add-to-list 'same-window-buffer-names "*nrepl*")
+                           (add-hook 'nrepl-mode-hook 'subword-mode)
+                           (add-hook 'nrepl-mode-hook 'paredit-mode)
+                           (add-hook 'nrepl-mode-hook 'rainbow-delimiters-mode)))
+                        (auctex)
+                        (auctex-latexmk)
+                        (ioccur)                       ; not sure if i like better than helm-occur or not
+                        (switch-window)
+                        (goto-last-change)
+                        (org-page))
+     "A list of packages to ensure are installed at launch.")
 
-  (dolist (p my-packages)
-   (progn
-     (when (not (package-installed-p (car p)))
-       (package-install (car p)))
-     (eval (cadr p))))
+     (dolist (p my-packages)
+      (progn
+        (when (not (package-installed-p (car p)))
+          (package-install (car p)))
+        (eval (cadr p))))
 
-  (custom-set-faces
-  '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
-  '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
-#+end_src
-:PROPERTIES:
+     (custom-set-faces
+     '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
+     '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:21]
    :END:
 ** ido.el
-old ido config for historical reference
-#+begin_src emacs-lisp :tangle no
+   old ido config for historical reference
+   #+begin_src emacs-lisp :tangle no
      use ido for minibuffer completion
      (require 'ido)
      (ido-mode t)
@@ -315,99 +315,98 @@ old ido config for historical reference
      (ido-mode (quote both))
 
      (load-file "/usr/share/emacs/24.3/lisp/ido.el.gz")
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:30]
    :END:
 * NEXT Diminished Modes
-#+begin_src emacs-lisp
-  (eval-after-load 'guru-mode '(diminish 'guru-mode))
-  ;; (eval-after-load "helm '(diminish 'helm-mode))
-  (eval-after-load 'flycheck '(diminish 'flycheck-mode))
-  (eval-after-load 'whitespace '(diminish 'whitespace-mode))
-  (eval-after-load 'flyspell '(diminish 'flyspell-mode))
-#+end_src
-:PROPERTIES:
+  #+begin_src emacs-lisp
+    (eval-after-load 'guru-mode '(diminish 'guru-mode))
+    ;; (eval-after-load "helm '(diminish 'helm-mode))
+    (eval-after-load 'flycheck '(diminish 'flycheck-mode))
+    (eval-after-load 'whitespace '(diminish 'whitespace-mode))
+    (eval-after-load 'flyspell '(diminish 'flyspell-mode))
+  #+end_src
+  :PROPERTIES:
 :CREATED:  [2015-04-09 Thu 15:09]
 :END:
 * Programming
-:PROPERTIES:
+  :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:24]
   :END:
 ** Quicklisp
-Added manually as per quicklisp instructed after running ~(ql:quickload "quicklisp-slime-helper")~ in sbcl
-#+begin_src emacs-lisp
+   Added manually as per quicklisp instructed after running ~(ql:quickload "quicklisp-slime-helper")~ in sbcl
+   #+begin_src emacs-lisp
      (load (expand-file-name "~/quicklisp/slime-helper.el"))
      (setq inferior-lisp-program "sbcl")
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:35]
    :END:
 ** paxedit-mode
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      ;;; Won't install from package.el, cloned git repo instead
      (use-package paredit
        :ensure t
        :diminish paredit-mode)
-     (use-package paxedit
-       :commands paxedit-mode
-       :diminish paxedit-mode
-       :load-path "~/.emacs.d/paxedit"
-       :init
-       (add-hook 'emacs-lisp-mode-hook 'paxedit-mode)
-       (add-hook 'clojure-mode-hook 'paxedit-mode)
-       (add-hook 'lisp-interaction-mode-hook 'paxedit-mode)
-       (add-hook 'paxedit-mode-hook 'paredit-mode)
-       :config
-       (define-key paxedit-mode-map (kbd "M-<right>") 'paxedit-transpose-forward)
-       (define-key paxedit-mode-map (kbd "M-<left>") 'paxedit-transpose-backward)
-       (define-key paxedit-mode-map (kbd "M-<up>") 'paxedit-backward-up)
-       (define-key paxedit-mode-map (kbd "M-<down>") 'paxedit-backward-end)
-       (define-key paxedit-mode-map (kbd "M-b") 'paxedit-previous-symbol)
-       (define-key paxedit-mode-map (kbd "M-f") 'paxedit-next-symbol)
-       (define-key paxedit-mode-map (kbd "C-%") 'paxedit-copy)
-       (define-key paxedit-mode-map (kbd "C-&") 'paxedit-kill)
-       (define-key paxedit-mode-map (kbd "C-*") 'paxedit-delete)
-       (define-key paxedit-mode-map (kbd "C-^") 'paxedit-sexp-raise)
-       (define-key paxedit-mode-map (kbd "M-u") 'paxedit-symbol-change-case)
-       (define-key paxedit-mode-map (kbd "C-@") 'paxedit-symbol-copy)
-       (define-key paxedit-mode-map (kbd "C-#") 'paxedit-symbol-kill)
-       )
-#+end_src
-:PROPERTIES:
+       (use-package paxedit
+         :commands paxedit-mode
+         :diminish paxedit-mode
+         :load-path "~/.emacs.d/paxedit"
+         :init
+         (add-hook 'emacs-lisp-mode-hook 'paxedit-mode)
+         (add-hook 'clojure-mode-hook 'paxedit-mode)
+         (add-hook 'lisp-interaction-mode-hook 'paxedit-mode)
+         (add-hook 'paxedit-mode-hook 'paredit-mode)
+         :config
+         (define-key paxedit-mode-map (kbd "M-<right>") 'paxedit-transpose-forward)
+         (define-key paxedit-mode-map (kbd "M-<left>") 'paxedit-transpose-backward)
+         (define-key paxedit-mode-map (kbd "M-<up>") 'paxedit-backward-up)
+         (define-key paxedit-mode-map (kbd "M-<down>") 'paxedit-backward-end)
+         (define-key paxedit-mode-map (kbd "M-b") 'paxedit-previous-symbol)
+         (define-key paxedit-mode-map (kbd "M-f") 'paxedit-next-symbol)
+         (define-key paxedit-mode-map (kbd "C-%") 'paxedit-copy)
+         (define-key paxedit-mode-map (kbd "C-&") 'paxedit-kill)
+         (define-key paxedit-mode-map (kbd "C-*") 'paxedit-delete)
+         (define-key paxedit-mode-map (kbd "C-^") 'paxedit-sexp-raise)
+         (define-key paxedit-mode-map (kbd "M-u") 'paxedit-symbol-change-case)
+         (define-key paxedit-mode-map (kbd "C-@") 'paxedit-symbol-copy)
+         (define-key paxedit-mode-map (kbd "C-#") 'paxedit-symbol-kill))
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-01-23 Fri 14:55]
    :END:
 ** [[https://github.com/Bruce-Connor/speed-of-thought-lisp][speed-of-thought-lisp]]
-#+begin_src emacs-lisp
-     (use-package sotlisp
-       :ensure t
-       :diminish sotlisp-mode
-       :config
-       (speed-of-thought-mode)
-       (eval-after-load "abbrev" '(diminish 'abbrev-mode))
-       (add-hook 'emacs-lisp-mode-hook 'abbrev-mode))
-#+end_src
-:PROPERTIES:
+   #+begin_src emacs-lisp
+       (use-package sotlisp
+         :ensure t
+         :diminish sotlisp-mode
+         :config
+         (speed-of-thought-mode)
+         (eval-after-load "abbrev" '(diminish 'abbrev-mode))
+         (add-hook 'emacs-lisp-mode-hook 'abbrev-mode))
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-03-05 Thu 16:06]
    :END:
 ** K / Kona
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package k-mode
        :load-path "~/.local/opt/kona/src")
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-08-18 Mon 14:05]
    :END:
 ** Rust
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
     (use-package rust-mode :ensure t)
     (use-package flycheck-rust :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-10-09 Thu 23:42]
    :END:
 ** Picolisp
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package picolisp
        :load-path "~/.local/opt/picolisp/lib/el"
        :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
@@ -426,20 +425,20 @@ Added manually as per quicklisp instructed after running ~(ql:quickload "quickli
        :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
        :commands run-picolisp
        )
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-10-28 Tue 17:16]
    :END:
 ** lfe
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
   (use-package lfe-mode :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
   :CREATED:  [2014-11-21 Fri 17:28]
   :END:
 
 ** Yasnippet
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package yasnippet
        :ensure t
        :diminish yas-minor-mode
@@ -447,92 +446,91 @@ Added manually as per quicklisp instructed after running ~(ql:quickload "quickli
        (yas-global-mode 1))
      (use-package helm-c-yasnippet
        :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-11-12 Wed 19:35]
    :END:
 ** SmartParens
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package smartparens
        :ensure t
        :diminish smartparens-mode
        :config
        (smartparens-global-mode 1))
 
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-12-04 Thu 18:36]
    :END:
 ** Electric Indent Mode
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (electric-indent-mode +1)
-#+end_src
+   #+end_src
 ** EDBI
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package edbi :ensure t)
      (use-package edbi-sqlite :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-10-20 Mon 23:33]
    :END:
 ** Debug on error
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (setq debug-on-error t)
-#+end_src
+   #+end_src
 ** [[https://github.com/swannodette/ob-sml][ob-sml]]
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package ob-sml :ensure t)
-#+end_src
+   #+end_src
 ** [[https://github.com/ikirill/hl-indent][hl-indent]]
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package hl-indent :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-12-29 Mon 19:02]
    :END:
 ** Agda
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (load-file (let ((coding-system-for-read 'utf-8))
                   (shell-command-to-string "agda-mode locate")))
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-12-04 Thu 17:49]
    :END:
 ** Geiser
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package geiser :ensure t)
      (require 'geiser)
      (setq geiser-racket-binary "/usr/local/racket/bin/racket")
      (setq geiser-racket-gracket-binary "/usr/local/racket/bin/gracket-text")
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-13 Fri 23:48]
    :END:
 ** Haskell
-#+begin_src emacs-lisp :tangle no
-
-  (use-package shm
-    :ensure t
-    :commands structured-haskell-mode
-    :init
-    (defun turn-on-structured-haskell-mode ()
-      (require 'haskell-indent)
-      (turn-off-haskell-indent)
-      (structured-haskell-mode t))
-    (add-hook 'haskell-mode-hook #'turn-on-structured-haskell-mode))
-#+end_src
-:PROPERTIES:
+   #+begin_src emacs-lisp :tangle no
+     (use-package shm
+       :ensure t
+       :commands structured-haskell-mode
+       :init
+       (defun turn-on-structured-haskell-mode ()
+         (require 'haskell-indent)
+         (turn-off-haskell-indent)
+         (structured-haskell-mode t))
+       (add-hook 'haskell-mode-hook #'turn-on-structured-haskell-mode))
+   #+end_src
+   :PROPERTIES:
 :CREATED:  [2015-04-10 Fri 19:49]
 :END:
 * Org Mode
-My personal org-mode config.
-TODO: was naively copied into my prelude config, check for redundancy
-:PROPERTIES:
+  My personal org-mode config.
+  TODO: was naively copied into my prelude config, check for redundancy
+  :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:37]
   :END:
 ** Load org-mode
-Loads my locally installed org-mode
-#+begin_src emacs-lisp
+   Loads my locally installed org-mode
+   #+begin_src emacs-lisp
      ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
      (use-package org-pomodoro :ensure t)
      (use-package org-trello :ensure t)
@@ -542,9 +540,9 @@ Loads my locally installed org-mode
 
      ;;; Flycheck interferes with org-time-stamp-inactive in org-mode
      (setq flycheck-global-modes '(not org-mode))
-#+end_src
+   #+end_src
 ** org-toodledo
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      ;; org-toodledo is installed via git
      (add-to-list 'load-path (expand-file-name "org-toodledo" prelude-vendor-dir))
      (use-package http-post-simple :ensure t)
@@ -567,9 +565,9 @@ Loads my locally installed org-mode
              ("Postponed" . "SOMEDAY")
              ("Canceled" . "CANCELED")
              ("Reference" . "REFERENCE")))
-#+end_src
+   #+end_src
 ** org-page
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (setq
       op/personal-disqus-shortname "rfnash"
       op/personal-github-link "https://github.com/rfnash"
@@ -579,9 +577,9 @@ Loads my locally installed org-mode
       op/site-domain "http://robertnash.net/"
       op/site-main-title "Robert Nash's Blog"
       op/site-sub-title "A sedomly updated blog")
-#+end_src
+   #+end_src
 ** Various org settings
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (setq
       org-todo-keywords '((sequence
                            "NEXT(n)"
@@ -622,13 +620,13 @@ Loads my locally installed org-mode
       org-extend-today-until 0
       org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
       )
-#+end_src
+   #+end_src
 ** Org Agenda Settings
-:PROPERTIES:
+   :PROPERTIES:
    :CREATED:  [2015-02-17 Tue 16:03]
    :END:
 *** Misc
-#+begin_src emacs-lisp
+    #+begin_src emacs-lisp
       (setq
        org-agenda-sticky t
        org-agenda-window-setup 'current-window
@@ -644,12 +642,12 @@ Loads my locally installed org-mode
        org-columns-default-format "%40ITEM(Task) %TODO %3PRIORITY %TAGS %17Effort(Estimated Effort){:} %5CLOCKSUM"
        org-global-properties '(("Effort_ALL" . "0 0:02 0:05 0:10 0:15 0:20 0:30 0:45 1:00 2:00"))
        )
-#+end_src
-:PROPERTIES:
+    #+end_src
+    :PROPERTIES:
    :CREATED:  [2015-02-17 Tue 16:06]
    :END:
 *** org-agenda-files
-#+begin_src emacs-lisp
+    #+begin_src emacs-lisp
      (setq
       org-agenda-files (list     ; Can be set using C-c [ and C-c ] in org-mode
                         (concat org-directory "/notes.org")
@@ -666,23 +664,23 @@ Loads my locally installed org-mode
                         "~/Dropbox/Projects/learning.org"
                         (concat prelude-personal-dir "/rfnash/personal.org"))
      )
-#+end_src
-:PROPERTIES:
+    #+end_src
+    :PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:08]
     :END:
 *** org-agenda-sorting-strategy
-#+begin_src emacs-lisp
+    #+begin_src emacs-lisp
       (setq org-agenda-sorting-strategy
             '((agenda time-up habit-down timestamp-up priority-down category-keep)
               (todo priority-down category-keep)
               (tags priority-down category-keep)
               (search category-keep)))
-#+end_src
-:PROPERTIES:
+    #+end_src
+    :PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:08]
     :END:
 *** org-agenda-custom-commands
-#+begin_src emacs-lisp
+    #+begin_src emacs-lisp
       (setq
        org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"
                                      ((agenda "")
@@ -696,133 +694,132 @@ Loads my locally installed org-mode
                                      tags-todo "NEXT" nil)
                                     ("p" "Next actions of my projects"
                                      tags-todo "project" nil)))
-#+end_src
-:PROPERTIES:
+    #+end_src
+    :PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:08]
     :END:
 *** org-agenda-time-grid
-#+begin_src emacs-lisp
+    #+begin_src emacs-lisp
       (setq org-agenda-time-grid
             '((daily today require-timed)
               #("----------------" 0 16
                 (org-heading t))
               (800 1000 1200 1400 1600 1800 2000)))
-#+end_src
-:PROPERTIES:
+    #+end_src
+    :PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:08]
     :END:
 *** org-habits
-#+begin_src emacs-lisp
-     (setq
-      org-habit-graph-column 65
-      org-habit-following-days 1
-      org-habit-graph-column 64
-      org-habit-preceding-days 14
-      org-habit-show-all-today nil
-      org-habit-show-done-always-green t
-     )
-#+end_src
-:PROPERTIES:
+    #+begin_src emacs-lisp
+      (setq
+       org-habit-graph-column 65
+       org-habit-following-days 1
+       org-habit-graph-column 64
+       org-habit-preceding-days 14
+       org-habit-show-all-today nil
+       org-habit-show-done-always-green t)
+    #+end_src
+    :PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:06]
     :END:
 ** org-capture-templates
-#+begin_src emacs-lisp
-  (setq
-   org-capture-templates '(
-                           ("a" "Article"
-                            entry (id "1c5d07ad-8ba3-4db9-b3ae-3f4441cf51ca")
-                            "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("b" "Bookmarks to file"
-                            entry ( id "3693c528-9bfb-43c4-91e3-d68550fc4799" )
-                            "* FILE %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("B" "Bookmarks to file (with link annotation)"
-                            entry ( id "3693c528-9bfb-43c4-91e3-d68550fc4799" )
-                            "* FILE %?%a -- \"%i\"\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("H" "Scheduled Task"
-                            entry ( id "79c8de14-8039-4d8c-b87e-f8c499860694")
-                            "* SCHED %?\nSCHEDULED: %t")
-                           ("d" "Design Examples"
-                            entry (id  "756f3a10-f323-409b-b418-00074ba93de9")
-                            "* %? :GoodDesign:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("D" "Task with a deadline"
-                            entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                            "* TODO %?\nDEADLINE: %t\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("h" "Habbit"
-                            entry ( id "b8e8b020-2772-4028-b209-1a52d3cb2fe6")
-                            "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
-                           ("j" "Datetree entry"
-                            entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                            "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("J" "Clocked entry"
-                            entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                            "* %?\n%U"
-                            :clock-in t
-                            :clock-keep t)
-                           ("k" "Book to read"
-                            entry ( id "31b8afb4-8d11-4334-a12a-5f4490a77f3a")
-                            "* SOMEDAY %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("m" "Good Song"
-                            table-line (id "b3a14888-312d-432e-8062-4ed352866729")
-                            " | %^{Title} | %^{Artist} |"
-                            :immediate-finish t)
-                           ;; ("n" "Task - Next"
-                           ;;  entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                           ;;  "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("n" "Task - Next"
-                            entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                            "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("N" "Non-profit"
-                            entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")
-                            "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("o" "Toodledo Task"
-                            entry ( id "dd307243-992b-4454-86b7-929dbdc59f99")
-                            "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("p" "Person"
-                            entry ( id "fbefa010-a0a4-4915-bc7e-ce1844a5e3a5")
-                            "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("P" "Personal"
-                            entry ( id "5baf8be5-b956-421a-950c-6e39c8e6d52e")
-                            "* %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("s" "Scratch"
-                            entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                            "* %? :SCRATCH:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("S" "Sent to Kindle"
-                            entry ( id "baef29b1-40b5-4704-bf28-24b1898c41c9")
-                            "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("t" "Task"
-                            entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                            "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("T" "Task (with link annotation)"
-                            entry ( file+datetree "~/Documents/OrgMode/agenda.org")
-                            "* TODO %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("u" "Quote"
-                            entry (id "67e35685-d8e5-488d-8ab2-ac36a7ee3c9a")
-                            "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("w" "To Watch"
-                            entry ( id "e8e91a3d-d21b-403d-b46e-0be14a3d7c2d")
-                            "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
-                           ("z" "Journal entry" plain ; From http://sachachua.com/blog/2014/11/using-org-mode-keep-process-journal/
-                            (file+datetree+prompt "~/Documents/OrgMode/journal.org")
-                            "%K - %a\n%i\n%?\n"))
-   ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
-   ;; "* %^{Title}  :blog:
-   ;;  :PROPERTIES:
-   ;;  :on: %T
-   ;;  :END:
-   ;;  %?
-   ;;  %x"))
-   )
-#+end_src
+   #+begin_src emacs-lisp
+     (setq
+      org-capture-templates '(
+                              ("a" "Article"
+                               entry (id "1c5d07ad-8ba3-4db9-b3ae-3f4441cf51ca")
+                               "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("b" "Bookmarks to file"
+                               entry ( id "3693c528-9bfb-43c4-91e3-d68550fc4799" )
+                               "* FILE %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("B" "Bookmarks to file (with link annotation)"
+                               entry ( id "3693c528-9bfb-43c4-91e3-d68550fc4799" )
+                               "* FILE %?%a -- \"%i\"\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("H" "Scheduled Task"
+                               entry ( id "79c8de14-8039-4d8c-b87e-f8c499860694")
+                               "* SCHED %?\nSCHEDULED: %t")
+                              ("d" "Design Examples"
+                               entry (id  "756f3a10-f323-409b-b418-00074ba93de9")
+                               "* %? :GoodDesign:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("D" "Task with a deadline"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* TODO %?\nDEADLINE: %t\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("h" "Habbit"
+                               entry ( id "b8e8b020-2772-4028-b209-1a52d3cb2fe6")
+                               "* HABIT %?\n:PROPERTIES:\n:STYLE: habit\n:END:")
+                              ("j" "Datetree entry"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("J" "Clocked entry"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* %?\n%U"
+                               :clock-in t
+                               :clock-keep t)
+                              ("k" "Book to read"
+                               entry ( id "31b8afb4-8d11-4334-a12a-5f4490a77f3a")
+                               "* SOMEDAY %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("m" "Good Song"
+                               table-line (id "b3a14888-312d-432e-8062-4ed352866729")
+                               " | %^{Title} | %^{Artist} |"
+                               :immediate-finish t)
+                              ;; ("n" "Task - Next"
+                              ;;  entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                              ;;  "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("n" "Task - Next"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("N" "Non-profit"
+                               entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")
+                               "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("o" "Toodledo Task"
+                               entry ( id "dd307243-992b-4454-86b7-929dbdc59f99")
+                               "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("p" "Person"
+                               entry ( id "fbefa010-a0a4-4915-bc7e-ce1844a5e3a5")
+                               "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("P" "Personal"
+                               entry ( id "5baf8be5-b956-421a-950c-6e39c8e6d52e")
+                               "* %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("s" "Scratch"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* %? :SCRATCH:\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("S" "Sent to Kindle"
+                               entry ( id "baef29b1-40b5-4704-bf28-24b1898c41c9")
+                               "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("t" "Task"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("T" "Task (with link annotation)"
+                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               "* TODO %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("u" "Quote"
+                               entry (id "67e35685-d8e5-488d-8ab2-ac36a7ee3c9a")
+                               "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("w" "To Watch"
+                               entry ( id "e8e91a3d-d21b-403d-b46e-0be14a3d7c2d")
+                               "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                              ("z" "Journal entry" plain ; From http://sachachua.com/blog/2014/11/using-org-mode-keep-process-journal/
+                               (file+datetree+prompt "~/Documents/OrgMode/journal.org")
+                               "%K - %a\n%i\n%?\n"))
+      ;; org-capture-templates (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
+      ;; "* %^{Title}  :blog:
+      ;;  :PROPERTIES:
+      ;;  :on: %T
+      ;;  :END:
+      ;;  %?
+      ;;  %x"))
+      )
+   #+end_src
 ** org related global keybindings
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (global-set-key "\C-cl" 'org-store-link)
      (global-set-key "\C-cc" 'org-capture)
      (global-set-key "\C-ca" 'org-agenda)
      (global-set-key "\C-cb" 'org-iswitchb)
      (global-set-key (kbd "C-c F") 'oog)
-#+end_src
+   #+end_src
 ** org-publish
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (setq org-publish-project-alist
            '(
              ("org-contents"
@@ -839,9 +836,9 @@ Loads my locally installed org-mode
               :auto-sitemap t
               )
              ("org" :components ("org-contents"))))
-#+end_src
+   #+end_src
 ** org refiling
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      ;; org-refiling - http://kangtu.me/~kangtu/pavilion.html
      ;; Targets include this file
      ;; and any file contributing to the agenda - up to 9 levels deep
@@ -856,16 +853,16 @@ Loads my locally installed org-mode
 
      ;; Allow refile to create parent tasks with confirmation
      (setq org-refile-allow-creating-parent-nodes (quote confirm))
-#+end_src
+   #+end_src
 ** org-expiry
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (require 'org-expiry)
      (org-expiry-insinuate)
-#+end_src
+   #+end_src
 ** Reminders
-From http://doc.norang.ca/org-mode.html#Reminders
-Set up reminders for all upcoming appointments
-#+begin_src emacs-lisp
+   From http://doc.norang.ca/org-mode.html#Reminders
+   Set up reminders for all upcoming appointments
+   #+begin_src emacs-lisp :tangle no
    ;; (defun bh/org-agenda-to-appt ()
    ;;   "Erase all reminders and rebuilt reminders for today from the agenda."
    ;;   (interactive)
@@ -883,10 +880,10 @@ Set up reminders for all upcoming appointments
 
    ;; ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
    ;; (run-at-time "24:01" nil 'bh/org-agenda-to-appt)
-#+end_src
+   #+end_src
 ** org-protocol help
-From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with Org Mode (with refile)]]. I modified it so that org-capture-mode only closes other windows if its called via org-protocol.
-#+begin_src emacs-lisp
+   From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with Org Mode (with refile)]]. I modified it so that org-capture-mode only closes other windows if its called via org-protocol.
+   #+begin_src emacs-lisp
      (require 'org-protocol)
      (setq my-org-protocol-flag nil)
      (defun my-org-protocol-delete-other-windows ()
@@ -911,9 +908,9 @@ From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with O
               (setq my-org-protocol-flag nil)))
      (defadvice org-protocol-capture (before set-org-protocol-flag activate)
        (setq my-org-protocol-flag t))
-#+end_src
+   #+end_src
 ** Hide blocked tasks
-#+begin_src emacs-lisp :tangle no
+   #+begin_src emacs-lisp :tangle no
      (defvar rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
      (defun org-agenda-hide-blocked-tasks ()
        "Toggle dimming/hiding blocked tasks."
@@ -927,12 +924,12 @@ From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with O
            (setq rfnash-hide-blocked-tasks t)
            (org-agenda-dim-blocked-tasks t))))
      (define-key org-agenda-mode-map (kbd "#") 'org-agenda-hide-blocked-tasks)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:42]
   :END:
 ** [[http://www.emacswiki.org/emacs/download/org-occur-goto.el][org-occur-goto]]
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      ;;; org-occur-goto.el -- search open org buffers with an occur interface
 
      ;; This file is free software; you can redistribute it and/or modify
@@ -1069,16 +1066,16 @@ From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with O
            (save-excursion
              (outline-previous-visible-heading 1)
              (org-show-subtree)))))
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:27]
    :END:
 ** org-page (no longer used)
-#+begin_src emacs-lisp :tangle no
+   #+begin_src emacs-lisp :tangle no
      (require 'org-page)
-#+end_src
+   #+end_src
 ** TODO org-registry
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (require 'org-registry)
      (org-registry-initialize)
      ;; (org-registry-insinuate)                ; Calls org-registry-update on save, but slows down org a lot
@@ -1130,13 +1127,13 @@ From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with O
      (defun rfnash-org-registry-show-clipboard (visit)
        (interactive "P")
        (rfnash-org-registry-show visit (x-get-clipboard)))
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-26 Thu 16:00]
    :END:
 ** org-modules
-Require all of the org-mode modules that I use.
-#+begin_src emacs-lisp
+   Require all of the org-mode modules that I use.
+   #+begin_src emacs-lisp
      ;; http://orgmode.org/worg/org-contrib/
      (require 'org-agenda)                      ; add (load-library "org-compat")
      (require 'org-annotate-file)
@@ -1179,8 +1176,8 @@ Require all of the org-mode modules that I use.
      (require 'org-track)                       ; http://orgmode.org/worg/org-contrib/org-track.html
      (require 'org-w3m)
      (require 'remember)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]
    :END:
 ** [[http://orgmode.org/worg/org-contrib/org-velocity.html][org-velocity]]
@@ -1194,43 +1191,43 @@ Require all of the org-mode modules that I use.
    :CREATED:  [2015-04-16 Thu 13:01]
    :END:
 ** TODO OrgBox
-Just trying it out.
-#+begin_src emacs-lisp
+   Just trying it out.
+   #+begin_src emacs-lisp
      (use-package orgbox :ensure t)
      (require 'orgbox)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-10-22 Wed 22:31]
    :END:
 ** [[https://github.com/jplindstrom/emacs-org-transform-tree-table][org-transform-tree-table]]
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package org-transform-tree-table :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-12-29 Mon 19:00]
    :END:
 ** org-cliplink
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
   (use-package org-cliplink :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
   :CREATED:  [2014-11-21 Fri 17:28]
   :END:
 * Networking
-:PROPERTIES:
+  :PROPERTIES:
   :CREATED:  [2014-11-28 Fri 18:50]
   :END:
 ** Twitter
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (setq twittering-use-master-password t)
      (use-package twittering-mode :ensure t)
      ;; (twit)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-11-18 Tue 15:12]
    :END:
 ** BBDB
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package bbdb :ensure t)
      (setq bbdb-file "~/.emacs.d/prelude/savefile/bbdb")
      (require 'bbdb)
@@ -1239,39 +1236,39 @@ Just trying it out.
      (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
      (add-hook 'kill-emacs-hook 'bbdb-save)
      ;;(use-package bbdb-vcard :ensure t)
-#+end_src
+   #+end_src
 ** helm-mu
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (add-to-list 'load-path (expand-file-name "helm-mu" prelude-vendor-dir))
      ;;(require 'helm-mu)
-#+end_src
+   #+end_src
 ** EWW
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package eww-lnum :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-10-29 Wed 18:37]
    :END:
 ** Default browser
-Set the default browser to vimb.
-#+begin_src emacs-lisp
+   Set the default browser to vimb.
+   #+begin_src emacs-lisp
      (setq browse-url-browser-function
            'browse-url-generic browse-url-generic-program "firefox")
-#+end_src
+   #+end_src
 ** TODO set-browser
-A function to easily interactively change the default browser.
-TODO: include a list of browsers to choose from.
-#+begin_src emacs-lisp
+   A function to easily interactively change the default browser.
+   TODO: include a list of browsers to choose from.
+   #+begin_src emacs-lisp
      (defun set-browser (browser)
        "Prompt for BROWSER to set as default."
        (interactive "sBrowser: ")
        (setq browse-url-browser-function
              'browse-url-generic browse-url-generic-program browser))
-#+end_src
+   #+end_src
 ** ERC
-My personal ERC config.
-From emacswiki.org/emacs/ERC.
-#+begin_src emacs-lisp
+   My personal ERC config.
+   From emacswiki.org/emacs/ERC.
+   #+begin_src emacs-lisp
      ;; (setq erc-echo-notices-in-minibuffer-flag t)
 
      ;; (require 'erc-match)
@@ -1316,9 +1313,9 @@ From emacswiki.org/emacs/ERC.
        "Minor mode that calls `erc-nick-notify-cmd' when his nick gets
      mentioned in an erc channel" t)
      ;; (eval-after-load 'erc '(erc-nick-notify-mode t))
-#+end_src
+   #+end_src
 ** Circe
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package circe :ensure t)
      (require 'circe)
      (setq circe-network-options
@@ -1328,13 +1325,13 @@ From emacswiki.org/emacs/ERC.
              :nick "Niki"
              :realname "22 F Female Bi MI USA"
              :nickserv-password "***REMOVED***")))
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-20 Fri 22:25]
    :END:
 ** mu4e
-My personal mu4e config.
-#+begin_src emacs-lisp
+   My personal mu4e config.
+   #+begin_src emacs-lisp
      (add-to-list 'load-path (expand-file-name "mu/mu4e" prelude-vendor-dir))
      (require 'mu4e)
      (setq mu4e-mu-binary "~/.local/bin/mu"   ;; use local version of mu
@@ -1348,12 +1345,12 @@ My personal mu4e config.
                                              ; Open message in external browser with 'x' as the shortcut
                   '("xview in browser" . mu4e-action-view-in-browser) t)
      (add-hook 'mu4e-view-mode-hook 'wrap-to-fill-column-mode)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:41]
    :END:
 ** newsticker
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (require 'newsticker)
      (global-set-key (kbd "C-c r") 'newsticker-treeview)
      (setq newsticker-html-renderer 'w3m-region)
@@ -1424,28 +1421,28 @@ My personal mu4e config.
          ("Zack Shapiro" "http://zackshapiro.com/rss" nil nil nil)
          ("Zack Shapiro" "http://feeds.feedburner.com/zackshapiro/glGU" nil nil nil)
          ("Send More Paramedics" "http://blog.fogus.me/feed/" nil nil nil))))
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:41]
    :END:
 ** Gnus
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
     (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir))
     (require 'rfnash-gnus)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
 * Emacs
 ** Misc Prelude settings
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (setq prelude-clean-whitespace-on-save nil)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-07 Sat 22:40]
    :END:
 ** Load [[http://batsov.com/prelude/][Emacs Prelude]] modules
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      ;;; Uncomment the modules you'd like to use and restart Prelude afterwards
      (require 'prelude-erc)                  ; Emacs IRC client
      (require 'prelude-ido)                  ; Super charges Emacs completion for C-x C-f and more
@@ -1461,13 +1458,13 @@ My personal mu4e config.
      (require 'prelude-shell)
      (require 'prelude-clojure)
      (require 'prelude-haskell)
-#+end_src
+   #+end_src
 ** Set the default directory to HOME
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (setq default-directory "~")
-#+end_src
+   #+end_src
 ** smart-tab and hippie-expand
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package smart-tab
        :ensure t
        :diminish smart-tab-mode
@@ -1475,18 +1472,18 @@ My personal mu4e config.
        (add-to-list 'smart-tab-disabled-major-modes 'agda2-mode)
        (global-smart-tab-mode 1)
        (define-key read-expression-map [(tab)] 'hippie-expand))
-#+end_src
+   #+end_src
 ** elscreen
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (prelude-require-package 'elscreen)
-#+end_src
+   #+end_src
 ** switch-window
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package switch-window :ensure t)
      (global-set-key (kbd "C-x o") 'switch-window)
-#+end_src
+   #+end_src
 ** Require various packages
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package helm-orgcard :ensure t)
      (use-package helm-descbinds :ensure t)
      (use-package helm-backup :ensure t)
@@ -1498,13 +1495,13 @@ My personal mu4e config.
      (use-package graphviz-dot-mode :ensure t)
      (use-package elnode :ensure t)
      (use-package unbound :ensure t)
-#+end_src
+   #+end_src
 ** Default Font
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
-#+end_src
+   #+end_src
 ** Term Mode
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (require 'term)
      (setq term-scroll-to-bottom-on-output t)
 
@@ -1539,10 +1536,10 @@ My personal mu4e config.
      ;;  '(term-color-red ((t (:background "#002b36" :foreground "#dc322f"))))
      ;;  '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
      ;;  '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))
-#+end_src
+   #+end_src
 ** Color Theme
-My settings to use the solarized light color theme.
-#+begin_src emacs-lisp
+   My settings to use the solarized light color theme.
+   #+begin_src emacs-lisp
      ;; Set up the old-fashioned Solarized color theme
      ;; and set ansi-term to use solarized dark colors
 
@@ -1558,63 +1555,63 @@ My settings to use the solarized light color theme.
      ;;  (load-theme 'solarized-dark t))
 
   (disable-theme 'zenburn)
-  (use-package color-theme
-    :ensure t
-    :config
-    (use-package color-theme-solarized
-      :ensure t
-      :config
-      (set-frame-parameter nil 'background-mode 'dark)
-      (load-theme 'solarized t)
+     (use-package color-theme
+       :ensure t
+       :config
+       (use-package color-theme-solarized
+         :ensure t
+         :config
+         (set-frame-parameter nil 'background-mode 'dark)
+         (load-theme 'solarized t)
 
-      (defun rfnash-solarized-light ()
-        (interactive)
-        (disable-theme 'zenburn)
-        (set-frame-parameter nil 'background-mode 'light)
-        (enable-theme 'solarized)
-        (set-face-attribute 'org-scheduled-today nil :foreground "darkgreen" :weight 'normal :slant 'normal) ; orginal color
-        (set-face-attribute 'org-warning nil :weight 'bold)
-        (set-face-attribute 'org-todo nil :inherit 'org-todo))
+         (defun rfnash-solarized-light ()
+           (interactive)
+           (disable-theme 'zenburn)
+           (set-frame-parameter nil 'background-mode 'light)
+           (enable-theme 'solarized)
+           (set-face-attribute 'org-scheduled-today nil :foreground "darkgreen" :weight 'normal :slant 'normal) ; orginal color
+           (set-face-attribute 'org-warning nil :weight 'bold)
+           (set-face-attribute 'org-todo nil :inherit 'org-todo))
 
-      (defun rfnash-solarized-dark ()
-        (interactive)
-        (disable-theme 'zenburn)
-        (set-frame-parameter nil 'background-mode 'dark)
-        (enable-theme 'solarized)
-        (set-face-attribute 'org-scheduled-today nil :foreground "#4df946" :weight 'normal :slant 'normal)
-        (set-face-attribute 'org-warning nil :weight 'bold)
-        ;; TODO: Doesn't show up while highlighted (point is on same line)
-        (set-face-attribute 'org-todo nil :inverse-video t))
+         (defun rfnash-solarized-dark ()
+           (interactive)
+           (disable-theme 'zenburn)
+           (set-frame-parameter nil 'background-mode 'dark)
+           (enable-theme 'solarized)
+           (set-face-attribute 'org-scheduled-today nil :foreground "#4df946" :weight 'normal :slant 'normal)
+           (set-face-attribute 'org-warning nil :weight 'bold)
+           ;; TODO: Doesn't show up while highlighted (point is on same line)
+           (set-face-attribute 'org-todo nil :inverse-video t))
 
-      (defun rfnash-zenburn ()
-        (interactive)
-        (disable-theme 'solarized)
-        (enable-theme 'zenburn)
-        ;; Colors from habit grid
-        (set-face-attribute 'org-warning nil :foreground "firebrick" :weight 'bold)
-        (set-face-attribute 'org-upcoming-deadline nil :foreground "darkgoldenrod"))
+         (defun rfnash-zenburn ()
+           (interactive)
+           (disable-theme 'solarized)
+           (enable-theme 'zenburn)
+           ;; Colors from habit grid
+           (set-face-attribute 'org-warning nil :foreground "firebrick" :weight 'bold)
+           (set-face-attribute 'org-upcoming-deadline nil :foreground "darkgoldenrod"))
 
-      (defun rfnash-helm-theme ()
-        "helm interface to let my chose one of my customized themes"
-        (interactive)
-        (helm :sources `(
-                         ((name . "My colorthemes")
-                          (candidates . (("zenburn" . rfnash-zenburn)
-                                         ("solarized-light" . rfnash-solarized-light)
-                                         ("solarized-dark" . rfnash-solarized-dark)))
-                          (action . (("Apply Theme" . (lambda (x) (apply x ())))))))))
+         (defun rfnash-helm-theme ()
+           "helm interface to let my chose one of my customized themes"
+           (interactive)
+           (helm :sources `(
+                            ((name . "My colorthemes")
+                             (candidates . (("zenburn" . rfnash-zenburn)
+                                            ("solarized-light" . rfnash-solarized-light)
+                                            ("solarized-dark" . rfnash-solarized-dark)))
+                             (action . (("Apply Theme" . (lambda (x) (apply x ())))))))))))
 
-      (global-set-key (kbd "C-x c t") #'rfnash-helm-theme)))
+         (global-set-key (kbd "C-x c t") #'rfnash-helm-theme)))
 
-     ;; (require 'color-theme)
-     ;; (color-theme-solarized-light)
-#+end_src
-:PROPERTIES:
+         ;; (require 'color-theme)
+         ;; (color-theme-solarized-light)
+   #+end_src
+   :PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:41]
    :END:
 ** El-get
-Install and configure various packages through el-get.
-#+begin_src emacs-lisp
+   Install and configure various packages through el-get.
+   #+begin_src emacs-lisp
      (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
      (require 'el-get nil t)                       ; to appease flycheck
@@ -1658,13 +1655,13 @@ Install and configure various packages through el-get.
      ;; install new packages and init already installed packages
      (el-get 'sync my:el-get-packages)
 
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:41]
    :END:
 ** Helm
-My personal customization to helm.
-#+begin_src emacs-lisp
+   My personal customization to helm.
+   #+begin_src emacs-lisp
      (require 'helm)
      (require 'helm-config)
 
@@ -1704,132 +1701,132 @@ My personal customization to helm.
      (setq ido-everywhere t)
      (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
      (ido-mode 1)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
 ** rfnash-switch-buffer
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
   ;; Based on http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/
 
-  (defun rfnash-switch-buffer (buffer)
-    "Switch to BUFFER using elscreen if possible;
-            if not, use 'switch-to-buffer-other-window'"
-    (if (fboundp 'elscreen-find-and-goto-by-buffer)
-        (elscreen-find-and-goto-by-buffer buffer t)
-      (switch-to-buffer buffer)))
+     (defun rfnash-switch-buffer (buffer)
+       "Switch to BUFFER using elscreen if possible;
+               if not, use 'switch-to-buffer-other-window'"
+       (if (fboundp 'elscreen-find-and-goto-by-buffer)
+           (elscreen-find-and-goto-by-buffer buffer t)
+         (switch-to-buffer buffer)))
 
-  (defun rfnash-visit-org-notes-buffer ()
-    "Visit my notes.org buffer."
-    (interactive)
-    (if (get-buffer "notes.org")
-        (rfnash-switch-buffer "notes.org")))
+     (defun rfnash-visit-org-notes-buffer ()
+       "Visit my notes.org buffer."
+       (interactive)
+       (if (get-buffer "notes.org")
+           (rfnash-switch-buffer "notes.org")))
 
-  (defun rfnash-visit-org-agenda-buffer ()
-    "Create or visit 'org-mode' agenda buffer."
-    (interactive)
-    (if (get-buffer "*Org Agenda*")
-        (rfnash-switch-buffer "*Org Agenda(n)*")
-      (org-agenda nil "n")))
+     (defun rfnash-visit-org-agenda-buffer ()
+       "Create or visit 'org-mode' agenda buffer."
+       (interactive)
+       (if (get-buffer "*Org Agenda*")
+           (rfnash-switch-buffer "*Org Agenda(n)*")
+         (org-agenda nil "n")))
 
-  (defun rfnash-visit-term-buffer ()
-    "Create or visit term buffer."
-    (interactive)
-    (if (get-buffer "*ansi-term*")
-        (rfnash-switch-buffer "*ansi-term*")
-      (ansi-term "tmux-attach")))
+     (defun rfnash-visit-term-buffer ()
+       "Create or visit term buffer."
+       (interactive)
+       (if (get-buffer "*ansi-term*")
+           (rfnash-switch-buffer "*ansi-term*")
+         (ansi-term "tmux-attach")))
 
-  (defun rfnash-visit-eshell-buffer ()
-    "Create or visit an eshell buffer."
-    (interactive)
-    (if (get-buffer "*eshell*")
-        (rfnash-switch-buffer "*eshell*")
-      (eshell)))
+     (defun rfnash-visit-eshell-buffer ()
+       "Create or visit an eshell buffer."
+       (interactive)
+       (if (get-buffer "*eshell*")
+           (rfnash-switch-buffer "*eshell*")
+         (eshell)))
 
-  (defun rfnash-visit-gnus-buffer ()
-    "Create or visit GNUS's group buffer."
-    (interactive)
-    (if (get-buffer "*Group*")
-        (rfnash-switch-buffer "*Group*")
-      (gnus)))
+     (defun rfnash-visit-gnus-buffer ()
+       "Create or visit GNUS's group buffer."
+       (interactive)
+       (if (get-buffer "*Group*")
+           (rfnash-switch-buffer "*Group*")
+         (gnus)))
 
-  (defun rfnash-visit-mu4e-buffer ()
-    "Create or visit mu4e's main buffer."
-    (interactive)
-    (if (get-buffer "*mu4e-main*")
-        (rfnash-switch-buffer "*mu4e-main*")
-      (mu4e)))
+     (defun rfnash-visit-mu4e-buffer ()
+       "Create or visit mu4e's main buffer."
+       (interactive)
+       (if (get-buffer "*mu4e-main*")
+           (rfnash-switch-buffer "*mu4e-main*")
+         (mu4e)))
 
-  (defun rfnash-visit-scratch-buffer ()
-    "Visit *scratch* buffer."
-    (interactive)
-    (if (get-buffer "*scratch*")
-        (rfnash-switch-buffer "*scratch*")
-      (if (fboundp 'elscreen-create)
-          (elscreen-create)
-        (progn
-          (switch-to-buffer (get-buffer-create "*scratch*"))
-          (lisp-interaction-mode)))))
+     (defun rfnash-visit-scratch-buffer ()
+       "Visit *scratch* buffer."
+       (interactive)
+       (if (get-buffer "*scratch*")
+           (rfnash-switch-buffer "*scratch*")
+         (if (fboundp 'elscreen-create)
+             (elscreen-create)
+           (progn
+             (switch-to-buffer (get-buffer-create "*scratch*"))
+             (lisp-interaction-mode)))))
 
-  (defun rfnash-visit-packages-buffer ()
-    "Visit buffer of package.el packages"
-    (interactive)
-    (if (get-buffer "*Packages*")
-        (rfnash-switch-buffer "*Packages*")
-      (paradox-list-packages nil)))
-#+end_src
-:PROPERTIES:
+     (defun rfnash-visit-packages-buffer ()
+       "Visit buffer of package.el packages"
+       (interactive)
+       (if (get-buffer "*Packages*")
+           (rfnash-switch-buffer "*Packages*")
+         (paradox-list-packages nil)))
+   #+end_src
+   :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 20:32]
 :END:
 ** rfnash-horizontal-recenter
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
   ;; From http://stackoverflow.com/a/1249665
-  (defun rfnash-horizontal-recenter ()
-    "Make the point horizontally centered in the window."
-    (interactive)
-    (let ((mid (/ (window-width) 2))
-          (line-len (save-excursion (end-of-line) (current-column)))
-          (cur (current-column)))
-      (if (< mid cur)
-          (set-window-hscroll (selected-window)
-                              (- cur mid)))))
-#+end_src
-:PROPERTIES:
+     (defun rfnash-horizontal-recenter ()
+       "Make the point horizontally centered in the window."
+       (interactive)
+       (let ((mid (/ (window-width) 2))
+             (line-len (save-excursion (end-of-line) (current-column)))
+             (cur (current-column)))
+         (if (< mid cur)
+             (set-window-hscroll (selected-window)
+                                 (- cur mid)))))
+   #+end_src
+   :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 20:35]
 :END:
 ** rfnash-scroll-left-edge
-#+begin_src emacs-lisp
-  (defun rfnash-scroll-left-edge ()
-    "Like `my-horizontal-recenter', but place point at the left edge of the window."
-    (interactive)
-    (set-window-hscroll (selected-window) (current-column)))
-#+end_src
-:PROPERTIES:
+   #+begin_src emacs-lisp
+     (defun rfnash-scroll-left-edge ()
+       "Like `my-horizontal-recenter', but place point at the left edge of the window."
+       (interactive)
+       (set-window-hscroll (selected-window) (current-column)))
+   #+end_src
+   :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 20:36]
 :END:
 ** browse-weather
-#+begin_src emacs-lisp
-  (defun browse-weather ()
-    "Look up the current weather on forecast.io."
-    (interactive)
-    (browse-url "http://forecast.io/"))
-#+end_src
-:PROPERTIES:
+   #+begin_src emacs-lisp
+     (defun browse-weather ()
+       "Look up the current weather on forecast.io."
+       (interactive)
+       (browse-url "http://forecast.io/"))
+   #+end_src
+   :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 20:37]
 :END:
 ** rfnash-helm-org-swoop
-#+begin_src emacs-lisp
-  (defun rfnash-helm-org-swoop ()
-    "Run `'helm-multi-swoop' with `org-buffer-list'"
-    (interactive)
-    (helm-multi-swoop nil (mapcar #'buffer-name (org-buffer-list))))
-#+end_src
-:PROPERTIES:
+   #+begin_src emacs-lisp
+     (defun rfnash-helm-org-swoop ()
+       "Run `'helm-multi-swoop' with `org-buffer-list'"
+       (interactive)
+       (helm-multi-swoop nil (mapcar #'buffer-name (org-buffer-list))))
+   #+end_src
+   :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 20:38]
 :END:
 ** prelude mode
-Emacs Prelude: minor mode.
-#+begin_src emacs-lisp
+   Emacs Prelude: minor mode.
+   #+begin_src emacs-lisp
      (use-package prelude-mode
        :diminish prelude-mode
        :config
@@ -1877,90 +1874,90 @@ Emacs Prelude: minor mode.
 
        (define-key org-mode-map (kbd "C-c C-w") #'rfnash-org-refile)
        (define-key org-agenda-mode-map (kbd "C-c C-w") #'rfnash-org-refile))
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]
    :END:
 ** paradox
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package paradox :ensure t)
      '(setq paradox-automatically-star t)
-#+end_src
+   #+end_src
 ** Faces
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (set-face-attribute 'org-agenda-clocking nil :inherit 'org-scheduled :background "#268bd2")
      (set-face-attribute 'org-agenda-current-time nil :inherit 'org-time-grid :background "light green")
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-07 Sat 22:46]
    :END:
 ** Mode Line
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package smart-mode-line :ensure t)
      (setq sml/no-confirm-load-theme t)
      (sml/setup)
      (sml/apply-theme 'respectful)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-23 Mon 11:38]
    :END:
 * Misc
 ** Info additional directory list
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (setq Info-additional-directory-list (quote ("~/.local/share/info/")))
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-07 Sat 22:42]
    :END:
 ** emagician-fix-spell-memory
-#+begin_src emacs-lisp
-   (use-package emagician-fix-spell-memory :ensure t)
-   (require 'emagician-fix-spell-memory)
-#+end_src
+   #+begin_src emacs-lisp
+     (use-package emagician-fix-spell-memory :ensure t)
+     (require 'emagician-fix-spell-memory)
+   #+end_src
 ** elip
-#+begin_src emacs-lisp :tangle no
+   #+begin_src emacs-lisp :tangle no
      (add-to-list 'load-path "~/.local/share/emacs/site-lisp")
      (add-to-list 'load-path "~/.local/share/emacs/site-lisp/edb")
      (require 'elip)
-#+end_src
+   #+end_src
 ** Volume
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package volume :ensure t)
      (setq volume-backend 'volume-amixer-backend)
      (setq volume-amixer-program "samixer")
      (require 'volume)
      (global-set-key (kbd "C-c v") #'volume)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-11-12 Wed 19:21]
    :END:
 ** [[https://github.com/kiwanami/emacs-calfw][calfw]] ([[http://www.emacswiki.org/emacs/Calfw][emacswiki]])
-#+begin_src emacs-lisp
-         (use-package calfw :ensure t)
-         (use-package calfw-gcal :ensure t)
+   #+begin_src emacs-lisp
+     (use-package calfw :ensure t)
+     (use-package calfw-gcal :ensure t)
 
-         (require 'calfw-gcal)
-         (require 'calfw-org)
-         (require 'calfw-cal)
-         (require 'calfw-ical)
-         (require 'calfw-howm)
-         (require 'calfw-org)
+     (require 'calfw-gcal)
+     (require 'calfw-org)
+     (require 'calfw-cal)
+     (require 'calfw-ical)
+     (require 'calfw-howm)
+     (require 'calfw-org)
 
-         (defun rfnash-open-calendar ()
-           (interactive)
-           (cfw:open-calendar-buffer
-            :contents-sources
-            (list
-             (cfw:org-create-source "Green")  ; orgmode source
-             (cfw:howm-create-source "Blue") ; howm source
-             (cfw:cal-create-source "Orange") ; diary source
-             (cfw:ical-create-source "gcal - Main Calendar"
-                                     "https://www.google.com/calendar/ical/musicmaker1118%40gmail.com/private-e760c860d242661263a68f8e42dfe0bd/basic.ics"
-                                     "IndianRed") ; google calendar ICS. Doesn't support repeating events (only shows them on day of first repeat)
-             )))
-#+end_src
+     (defun rfnash-open-calendar ()
+       (interactive)
+       (cfw:open-calendar-buffer
+        :contents-sources
+        (list
+         (cfw:org-create-source "Green")  ; orgmode source
+         (cfw:howm-create-source "Blue") ; howm source
+         (cfw:cal-create-source "Orange") ; diary source
+         (cfw:ical-create-source "gcal - Main Calendar"
+                                 "https://www.google.com/calendar/ical/musicmaker1118%40gmail.com/private-e760c860d242661263a68f8e42dfe0bd/basic.ics"
+                                 "IndianRed") ; google calendar ICS. Doesn't support repeating events (only shows them on day of first repeat)
+         )))
+   #+end_src
 ** TODO [[http://howm.sourceforge.jp/README.html][howm]] ([[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?e.FrontPage][wiki]], [[http://www.emacswiki.org/emacs/HowmMode][emacswiki]], [[http://www.emacswiki.org/emacs/HowmAndCalendar][Howm and calendar]], [[http://howm.sourceforge.jp/README.html][tutorial]] [[[file:~/.emacs.d/el-get/howm/doc/README.html][local]]], [[http://sourceforge.jp/projects/howm/lists/archive/eng/2008/000038.html][integrating with org-mode]].) :NEXT:
-#+begin_src text
+   #+begin_src text
      `howm-mode' Minor Mode Bindings:
      key             binding
      ---             -------
@@ -2007,11 +2004,11 @@ Emacs Prelude: minor mode.
      C-c , w         howm-random-walk
      C-c , x         howm-list-mark-ring
      C-c , y         howm-list-schedule
-#+end_src
-#+begin_src emacs-lisp
+   #+end_src
+   #+begin_src emacs-lisp
      (require 'howm)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-13 Fri 16:22]
    :END:
 *** TODO [#B] Howm-related
@@ -2030,43 +2027,43 @@ Emacs Prelude: minor mode.
    :Hash:     62b08258a1adeb06ffb4426679d7f3e4
    :END:
 *** TODO http://howm.sourceforge.jp/a/
-:PROPERTIES:
+    :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:49]
 :END:
 *** TODO http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?ExternalTool
-:PROPERTIES:
+    :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:49]
 :END:
 *** TODO http://sourceforge.jp/projects/howm/lists/archive/eng/
-:PROPERTIES:
+    :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:51]
 :END:
 *** TODO http://howm.sourceforge.jp/a/rich-title/
-:PROPERTIES:
+    :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:49]
 :END:
 ** babel
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package babel :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-07-24 Thu 10:09]
    :END:
 ** ledger-mode
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package ledger-mode :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-07-24 Thu 10:09]
    :END:
 ** nix-mode
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package nix-mode :ensure t)
      (require 'nix-mode)
-#+end_src
+   #+end_src
 ** remem
-My rememberance agent configuration.
-#+begin_src emacs-lisp
+   My rememberance agent configuration.
+   #+begin_src emacs-lisp
      (require 'prelude-mode)
      (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
      (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
@@ -2076,36 +2073,36 @@ My rememberance agent configuration.
      ;;                           ("notes" 2 5 500)))
      (setq remem-scopes-list '(("mail" 6 5 500)))
      ;;(load "remem")
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]
    :END:
 ** Sauron
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package sauron :ensure t)
      ;; (sauron-start)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2014-10-25 Sat 19:35]
    :END:
 ** anchored-transpose
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package anchored-transpose :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-01-04 Sun 23:55]
    :END:
 ** [[https://github.com/vspinu/zotelo][Zotelo]]
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package zotelo :ensure t)
      (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
      (add-hook 'org-mode-hook 'zotelo-minor-mode)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-01-08 Thu 11:56]
    :END:
 ** RFC
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package w3 :ensure t)
      (setq rfc-url-save-directory (expand-file-name  "RFC" user-emacs-directory))
      (setq rfc-index-url "http://www.ietf.org/iesg/1rfc_index.txt")
@@ -2113,83 +2110,83 @@ My rememberance agent configuration.
                                    rfc-url-save-directory
                                    "http://www.ietf.org/rfc/"))
      (setq rfc-insert-content-url-hook '(rfc-url-save))
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-01-13 Tue 11:14]
    :END:
 ** [[https://github.com/tam17aki/ace-isearch][ace-isearch]] -- See [[http://sachachua.com/blog/2015/01/emacs-kaizen-ace-isearch-combines-ace-jump-mode-helm-swoop/][Sachachua's article]].
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package ace-isearch :ensure t)
      (global-ace-isearch-mode)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-01-16 Fri 14:15]
    :END:
 ** [[http://elpa.gnu.org/packages/poker.html][poker]]
-Texas Hold'em Poker
-#+begin_src emacs-lisp
+   Texas Hold'em Poker
+   #+begin_src emacs-lisp
      (use-package poker :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-07 Sat 15:06]
    :END:
 ** [[https://github.com/agrif/pianobar.el][pianobar.el]]
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package pianobar :ensure t)
      (require 'pianobar)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-07 Sat 15:41]
    :END:
 ** [[https://github.com/julienXX/helm-lobste.rs][helm-lobsters]]
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (use-package helm-lobsters :ensure t)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-11 Wed 23:34]
    :END:
 ** [[https://github.com/dacap/keyfreq][keyfreq]]
-Track Emacs commands frequency
-#+begin_src emacs-lisp
+   Track Emacs commands frequency
+   #+begin_src emacs-lisp
      (use-package keyfreq :ensure t)
      (setq keyfreq-file (expand-file-name "keyfreq" prelude-savefile-dir))
      (keyfreq-mode 1)
      (keyfreq-autosave-mode 1)
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-13 Fri 14:12]
    :END:
 ** Diary ([[http://www.emacswiki.org/emacs/DiaryMode][emacswiki]], [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Diary.html][manual]])
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (setq diary-file (expand-file-name "diary" prelude-savefile-dir))
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-02-13 Fri 16:07]
    :END:
 ** Alert
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (setq alert-default-style 'libnotify) ; libnotify uses notify-send; notifications uses dbus
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-03-03 Tue 00:06]
    :END:
 ** Temporary Directory
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
      (setq temporary-file-directory "/home/rfnash/tmp")
-#+end_src
-:PROPERTIES:
+   #+end_src
+   :PROPERTIES:
    :CREATED:  [2015-03-03 Tue 00:07]
    :END:
 ** [[https://github.com/sachac/artbollocks-mode][artbollacks-mode]]
-#+begin_src emacs-lisp
-  (use-package artbollocks-mode
-    :load-path (lambda () (expand-file-name "artbollocks-mode" prelude-vendor-dir))
-    :commands artbollocks-mode
-    :init
-    (add-hook 'text-mode-hook 'artbollocks-mode)
-    (add-hook 'org-mode-hook 'artbollocks-mode))
-#+end_src
-:PROPERTIES:
+   #+begin_src emacs-lisp
+     (use-package artbollocks-mode
+       :load-path (lambda () (expand-file-name "artbollocks-mode" prelude-vendor-dir))
+       :commands artbollocks-mode
+       :init
+       (add-hook 'text-mode-hook 'artbollocks-mode)
+       (add-hook 'org-mode-hook 'artbollocks-mode))
+   #+end_src
+   :PROPERTIES:
 :CREATED:  [2015-04-10 Fri 19:09]
 :END:
 ** [[http://bnbeckwith.com/code/writegood-mode.html][Writegood-mode]] ([[https://github.com/bnbeckwith/writegood-mode][github]])
@@ -2205,30 +2202,30 @@ Track Emacs commands frequency
    :CREATED:  [2015-04-16 Thu 14:44]
    :END:
 ** Magit
-#+begin_src emacs-lisp
-  (setq magit-last-seen-setup-instructions "1.4.0")
-#+end_src
-:PROPERTIES:
+   #+begin_src emacs-lisp
+     (setq magit-last-seen-setup-instructions "1.4.0")
+   #+end_src
+   :PROPERTIES:
 :CREATED:  [2015-04-15 Wed 19:24]
 :END:
 ** [[http://jblevins.org/projects/deft/][Deft]] ([[http://www.emacswiki.org/emacs/DeftMode][Emacswiki]])
-#+begin_src emacs-lisp
-  (use-package deft
-    :ensure t
-    :commands deft
-    :bind "C-x c d" [f8]
-    :config
-    ;; (setq deft-use-filename-as-title t)
-    (setq deft-extension "org")
-    (setq deft-text-mode 'org-mode)
-    (setq deft-directory "~/Dropbox/notes"))
-#+end_src
-:PROPERTIES:
+   #+begin_src emacs-lisp
+     (use-package deft
+       :ensure t
+       :commands deft
+       :bind "C-x c d" [f8]
+       :config
+      ;; (setq deft-use-filename-as-title t)
+      (setq deft-extension "org")
+      (setq deft-text-mode 'org-mode)
+      (setq deft-directory "~/Dropbox/notes"))
+   #+end_src
+   :PROPERTIES:
 :CREATED:  [2015-04-15 Wed 22:51]
 :END:
 * Emacs Server
-Start the Emacs server if it isn't already running
-#+begin_src emacs-lisp
+  Start the Emacs server if it isn't already running
+  #+begin_src emacs-lisp
     (require 'server)
     (if (not (server-running-p server-name)) (server-start))
-#+end_src
+  #+end_src

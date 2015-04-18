@@ -431,10 +431,12 @@
 
 *** Geiser
     #+begin_src emacs-lisp
-      (use-package geiser :ensure t)
-      (require 'geiser)
-      (setq geiser-racket-binary "/usr/local/racket/bin/racket")
-      (setq geiser-racket-gracket-binary "/usr/local/racket/bin/gracket-text")
+      (use-package geiser
+        :ensure t
+        :config
+        (setq geiser-racket-binary "/usr/local/racket/bin/racket"
+              geiser-racket-gracket-binary "/usr/local/racket/bin/gracket-text"))
+
     #+end_src
     :PROPERTIES:
     :CREATED:  [2015-02-13 Fri 23:48]

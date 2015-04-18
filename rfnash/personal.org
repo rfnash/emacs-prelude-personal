@@ -601,6 +601,8 @@
       org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("@phone" . ?p) ("@computer" . ?c) ("@tofile" . ?t)
                       ("READING" . ?r) ("GoodDesign" . ?d) ("7plus" . ?s) ("SCRATCH" . ?e) ("NEXT" . ?n) ("anki" . ?a))
       org-startup-folded t
+      ;; org-startup-indented t                 ; Appears to slow down org-mode
+      org-hide-leading-stars t               ; Looks a bit funny without indent
       org-log-into-drawer t
       org-refile-use-cache t
       org-return-follows-link t

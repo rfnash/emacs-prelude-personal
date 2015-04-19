@@ -1619,11 +1619,20 @@
      (use-package switch-window :ensure t)
      (global-set-key (kbd "C-x o") 'switch-window)
    #+end_src
-** Require various packages
+** caskxy
    #+begin_src emacs-lisp
      (use-package caskxy :ensure t)
+   #+end_src
+** graphviz-dot-mode
+   #+begin_src emacs-lisp
      (use-package graphviz-dot-mode :ensure t)
+   #+end_src
+** elnode
+   #+begin_src emacs-lisp
      (use-package elnode :ensure t)
+   #+end_src
+** unbound
+   #+begin_src emacs-lisp
      (use-package unbound :ensure t)
    #+end_src
 ** Default Font

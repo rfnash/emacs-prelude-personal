@@ -1595,7 +1595,8 @@
    :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
-* Emacs
+* NEXT Misc
+  Various settings that should be reorganized.
 ** Set the default directory to HOME
    #+begin_src emacs-lisp
      (setq default-directory "~")
@@ -2000,7 +2001,6 @@
    :PROPERTIES:
    :CREATED:  [2015-02-23 Mon 11:38]
    :END:
-* Misc
 ** Info additional directory list
    #+begin_src emacs-lisp
      (setq Info-additional-directory-list (quote ("~/.local/share/info/")))
@@ -2349,9 +2349,9 @@
    :PROPERTIES:
    :CREATED:  [2015-04-18 Sat 10:35]
    :END:
-* Emacs Server
-  Start the Emacs server if it isn't already running
-  #+begin_src emacs-lisp
-    (require 'server)
-    (if (not (server-running-p server-name)) (server-start))
-  #+end_src
+** Emacs Server
+   Start the Emacs server if it isn't already running
+   #+begin_src emacs-lisp
+     (require 'server)
+     (if (not (server-running-p server-name)) (server-start))
+   #+end_src

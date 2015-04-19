@@ -330,7 +330,7 @@
    :PROPERTIES:
   :CREATED:  [2015-04-17 Fri 17:23]
   :END:
-** Ido
+** NEXT Ido
    Super charges Emacs completion for C-x C-f and more
    #+begin_src emacs-lisp
   (use-package prelude-ido)
@@ -338,13 +338,58 @@
    :PROPERTIES:
   :CREATED:  [2015-04-17 Fri 16:57]
   :END:
-** Helm
+** NEXT Helm
    Interface for narrowing and search
    #+begin_src emacs-lisp
-  (use-package prelude-helm)
+     (use-package prelude-helm)
+
+     (require 'helm)
+     (require 'helm-config)
+
+     ;; Doesn't override ido for find files, but does for C-h f, so perfect
+     (helm-mode 1)
+
+     ;; I prefer helm over smex
+     (global-set-key (kbd "M-x") 'helm-M-x)
+
+     ;; not sure if I really want to enable or not
+     ;; (add-hook 'eshell-mode-hook
+     ;;           #'(lambda ()
+     ;;               (define-key eshell-mode-map
+     ;;                 [remap eshell-pcomplete]
+     ;;                 'helm-esh-pcomplete)))
+
+     (global-set-key (kbd "C-x c o") 'helm-occur)
+
+     ;; Doesn't play well with gnus
+     ;;(setq helm-split-window-in-side-p t)
+
+
+     ;; added (find-file . ido) as I prefer ido's find-file interface to helm's,
+     ;; but prefer helm for everything else.
+     (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
+     (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
+
+     ;; Increased from 0.1 to 0.5 (the value used by org-occur-goto)
+     ;; because of the long time it takes to search
+     (setq helm-m-occur-idle-delay 0.5)
+
+     ;; https://github.com/emacs-helm/helm-descbinds
+     (use-package helm-descbinds :ensure t)
+     (helm-descbinds-mode)
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-04-17 Fri 16:57]
+   :END:
+** NEXT Ido Again
+   #+begin_src emacs-lisp
+     (require 'ido)
+     (setq ido-everywhere t)
+     (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
+     (ido-mode 1)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-18 Sat 22:17]
    :END:
 ** Company
    #+begin_src emacs-lisp
@@ -1731,52 +1776,6 @@
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:41]
-   :END:
-** Helm
-   My personal customization to helm.
-   #+begin_src emacs-lisp
-     (require 'helm)
-     (require 'helm-config)
-
-     ;; Doesn't override ido for find files, but does for C-h f, so perfect
-     (helm-mode 1)
-
-     ;; I prefer helm over smex
-     (global-set-key (kbd "M-x") 'helm-M-x)
-
-     ;; not sure if I really want to enable or not
-     ;; (add-hook 'eshell-mode-hook
-     ;;           #'(lambda ()
-     ;;               (define-key eshell-mode-map
-     ;;                 [remap eshell-pcomplete]
-     ;;                 'helm-esh-pcomplete)))
-
-     (global-set-key (kbd "C-x c o") 'helm-occur)
-
-     ;; Doesn't play well with gnus
-     ;;(setq helm-split-window-in-side-p t)
-
-
-     ;; added (find-file . ido) as I prefer ido's find-file interface to helm's,
-     ;; but prefer helm for everything else.
-     (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
-     (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
-
-     ;; Increased from 0.1 to 0.5 (the value used by org-occur-goto)
-     ;; because of the long time it takes to search
-     (setq helm-m-occur-idle-delay 0.5)
-
-     ;; https://github.com/emacs-helm/helm-descbinds
-     (use-package helm-descbinds :ensure t)
-     (helm-descbinds-mode)
-
-     (require 'ido)
-     (setq ido-everywhere t)
-     (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
-     (ido-mode 1)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-09-03 Wed 16:54]
    :END:
 ** rfnash-switch-buffer
    Based on [[http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/][terminal at your fingertips]].

@@ -377,6 +377,13 @@
      ;; https://github.com/emacs-helm/helm-descbinds
      (use-package helm-descbinds :ensure t)
      (helm-descbinds-mode)
+     (use-package helm-orgcard :ensure t)
+     (use-package helm-descbinds :ensure t)
+     (use-package helm-backup :ensure t)
+     (use-package helm-helm-commands :ensure t)
+     (use-package ag :ensure t)
+     (use-package helm-ag :ensure t)
+     (use-package helm-ag-r :ensure t)
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-04-17 Fri 16:57]
@@ -1614,13 +1621,6 @@
    #+end_src
 ** Require various packages
    #+begin_src emacs-lisp
-     (use-package helm-orgcard :ensure t)
-     (use-package helm-descbinds :ensure t)
-     (use-package helm-backup :ensure t)
-     (use-package helm-helm-commands :ensure t)
-     (use-package ag :ensure t)
-     (use-package helm-ag :ensure t)
-     (use-package helm-ag-r :ensure t)
      (use-package caskxy :ensure t)
      (use-package graphviz-dot-mode :ensure t)
      (use-package elnode :ensure t)

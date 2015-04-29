@@ -1300,10 +1300,6 @@
    :PROPERTIES:
    :CREATED:  [2014-07-01 Tue 14:27]
    :END:
-** org-page (no longer used)
-   #+begin_src emacs-lisp :tangle no
-     (require 'org-page)
-   #+end_src
 ** TODO org-registry
    #+begin_src emacs-lisp
      (require 'org-registry)

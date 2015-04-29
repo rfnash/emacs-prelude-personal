@@ -350,7 +350,7 @@
      ;;                 [remap eshell-pcomplete]
      ;;                 'helm-esh-pcomplete)))
 
-     (global-set-key (kbd "C-x c o") 'helm-occur)
+     (bind-key* "C-x c o" 'helm-occur)
 
      ;; Doesn't play well with gnus
      ;;(setq helm-split-window-in-side-p t)
@@ -1943,7 +1943,6 @@
                ("C-x c s" . helm-surfraw)
                ("C-x R" . rename-buffer)
                ("C-c H" . helm-mini)
-               ("C-x c o" . helm-multi-occur)
                ("C-x c t" . rfnash-helm-theme)
                ("C-x c h" . helm-command-prefix))
        :config

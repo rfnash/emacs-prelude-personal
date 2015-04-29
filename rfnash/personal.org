@@ -733,7 +733,6 @@
      (require 'org-expiry)
      (require 'org-git-link)
      (require 'org-gnus)
-     (require 'org-habit)
      (require 'org-id)
      ;; (require org-index)                  ; http://orgmode.org/worg/org-contrib/org-index.html
      (require 'org-info)
@@ -941,19 +940,20 @@
     :PROPERTIES:
     :CREATED:  [2015-02-17 Tue 16:08]
     :END:
-*** org-habits
-    #+begin_src emacs-lisp
-      (setq
-       org-habit-graph-column 65
-       org-habit-following-days 1
-       org-habit-graph-column 64
-       org-habit-preceding-days 14
-       org-habit-show-all-today nil
-       org-habit-show-done-always-green t)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-02-17 Tue 16:06]
-    :END:
+** org-habits
+   #+begin_src emacs-lisp
+     (use-package org-habit
+       :config
+       (setq org-habit-graph-column 65
+             org-habit-following-days 1
+             org-habit-graph-column 64
+             org-habit-preceding-days 14
+             org-habit-show-all-today nil
+             org-habit-show-done-always-green t))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-02-17 Tue 16:06]
+   :END:
 ** org-capture-templates
    #+begin_src emacs-lisp
      (setq

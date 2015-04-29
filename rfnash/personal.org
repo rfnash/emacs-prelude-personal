@@ -741,7 +741,6 @@
      ;;(require 'org-json)
      (require 'org-learn)
      (require 'org-man)
-     (require 'org-mobile)
      (require 'org-mouse)
      ;;(require 'org-mtags)
      ;; (require org-occur-goto)             ; http://www.emacswiki.org/emacs/org-search-goto.el
@@ -770,6 +769,17 @@
        ;; (setq org-drill-optimal-factor-matrix nil)
        )
    #+end_src
+** org-mobile
+   #+begin_src emacs-lisp
+     (use-package org-mobile
+       :config
+       (setq org-mobile-directory "~/Dropbox/MobileOrg"
+             ;; org-mobile-use-encryption t
+             org-mobile-inbox-for-pull (concat org-directory "from-mobile.org")))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-28 Tue 23:19]
+   :END:
 ** org-toodledo
    #+begin_src emacs-lisp
      ;; org-toodledo is installed via git
@@ -840,9 +850,6 @@
       org-journal-dir "~/Documents/OrgMode/journal/"
       org-directory "~/Documents/OrgMode"
       org-default-notes-file (concat org-directory "/notes.org")
-      ;; org-mobile-use-encryption t
-      org-mobile-directory "~/Dropbox/MobileOrg"
-      org-mobile-inbox-for-pull (concat org-directory "from-mobile.org")
       org-refile-use-cache t
       org-return-follows-link t
       org-enforce-todo-dependencies t

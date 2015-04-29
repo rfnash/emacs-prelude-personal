@@ -856,12 +856,10 @@
       ;; org-startup-indented t                 ; Appears to slow down org-mode
       org-hide-leading-stars t               ; Looks a bit funny without indent
       org-log-into-drawer t
-      org-refile-use-cache t
       org-return-follows-link t
       org-journal-dir "~/Documents/OrgMode/journal/"
       org-directory "~/Documents/OrgMode"
       org-default-notes-file (concat org-directory "/notes.org")
-      org-refile-use-cache t
       org-return-follows-link t
       org-enforce-todo-dependencies t
       org-blank-before-new-entry '((heading) (plain-list-item))
@@ -1065,21 +1063,15 @@
              ("org" :components ("org-contents"))))
    #+end_src
 ** org refiling
+   See http://kangtu.me/~kangtu/pavilion.html and http://doc.norang.ca/org-mode.html#RefileSetup.
+   Targets include this file and any file contributing to the agenda - up to 9 levels deep.
    #+begin_src emacs-lisp
-     ;; org-refiling - http://kangtu.me/~kangtu/pavilion.html
-     ;; Targets include this file
-     ;; and any file contributing to the agenda - up to 9 levels deep
-     ;; See also http://doc.norang.ca/org-mode.html#RefileSetup
-     (setq org-refile-targets (quote ((nil :maxlevel . 9)
-                                      (org-agenda-files :maxlevel . 9))))
-     ;; Use full outline paths for refile targets - we file directly with IDO
-     (setq org-refile-use-outline-path t)
-
-     ;; Targets complete directly with IDO / Helm
-     (setq org-outline-path-complete-in-steps nil)
-
-     ;; Allow refile to create parent tasks with confirmation
-     (setq org-refile-allow-creating-parent-nodes (quote confirm))
+     (setq org-refile-targets '((nil :maxlevel . 9)
+                                (org-agenda-files :maxlevel . 9))
+           org-refile-use-outline-path t                    ; Use full outline paths for refile targets (for use with IDO/Helm)
+           org-outline-path-complete-in-steps nil           ; Targets complete directly with IDO / Helm
+           org-refile-allow-creating-parent-nodes 'confirm  ; Allow refile to create parent tasks with confirmation
+           org-refile-use-cache t)
    #+end_src
 ** org-expiry
    #+begin_src emacs-lisp

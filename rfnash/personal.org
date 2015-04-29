@@ -831,11 +831,27 @@
    :PROPERTIES:
    :CREATED:  [2015-04-28 Tue 23:09]
    :END:
+** org-tag-alist
+   #+begin_src emacs-lisp
+     (setq org-tag-alist
+           '(("@work"      . ?w)
+             ("@home"      . ?h)
+             ("@phone"     . ?p)
+             ("@computer"  . ?c)
+             ("@tofile"    . ?t)
+             ("READING"    . ?r)
+             ("GoodDesign" . ?d)
+             ("7plus"      . ?s)
+             ("SCRATCH"    . ?e)
+             ("NEXT"       . ?n)
+             ("anki"       . ?a)))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-28 Tue 23:11]
+   :END:
 ** Various org settings
    #+begin_src emacs-lisp
      (setq
-      org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("@phone" . ?p) ("@computer" . ?c) ("@tofile" . ?t)
-                      ("READING" . ?r) ("GoodDesign" . ?d) ("7plus" . ?s) ("SCRATCH" . ?e) ("NEXT" . ?n) ("anki" . ?a))
       org-startup-folded t
       ;; org-startup-indented t                 ; Appears to slow down org-mode
       org-hide-leading-stars t               ; Looks a bit funny without indent

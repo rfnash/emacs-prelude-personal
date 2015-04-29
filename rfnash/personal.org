@@ -721,7 +721,6 @@
      (require 'org-checklist)
      (require 'org-choose)                   ; http://orgmode.org/worg/org-contrib/org-choose.html
      (require 'org-collector)                ; http://orgmode.org/worg/org-contrib/org-collector.html
-     (require 'org-contacts)
      (require 'org-ctags)
      ;; (require org-depend)                 ; http://orgmode.org/worg/org-contrib/org-depend.html
      (require 'org-elisp-symbol)
@@ -862,7 +861,6 @@
       org-return-follows-link t
       org-enforce-todo-dependencies t
       org-blank-before-new-entry '((heading) (plain-list-item))
-      org-contacts-birthday-format "Birthday: %h (%Y)"
       )
    #+end_src
 ** org-extend-today-until
@@ -1078,6 +1076,15 @@
        (setq org-expiry-inactive-timestamps t)
        (org-expiry-insinuate))
    #+end_src
+** org-contacts
+   #+begin_src emacs-lisp
+     (use-package org-contacts
+       :config
+       (setq org-contacts-birthday-format "Birthday: %h (%Y)"))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-28 Tue 23:08]
+   :END:
 ** Reminders
    From http://doc.norang.ca/org-mode.html#Reminders
    Set up reminders for all upcoming appointments

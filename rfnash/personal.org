@@ -890,13 +890,13 @@
                                entry (id "1c5d07ad-8ba3-4db9-b3ae-3f4441cf51ca")
                                "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("b" "Bookmarks to file"
-                               entry ( id "3693c528-9bfb-43c4-91e3-d68550fc4799" )
+                               entry (file "~/Documents/OrgMode/Tasks.org")
                                "* FILE %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("B" "Bookmarks to file (with link annotation)"
-                               entry ( id "3693c528-9bfb-43c4-91e3-d68550fc4799" )
+                               entry (file "~/Documents/OrgMode/Tasks.org")
                                "* FILE %?%a -- \"%i\"\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("H" "Scheduled Task"
-                               entry ( id "79c8de14-8039-4d8c-b87e-f8c499860694")
+                               entry (file "~/Documents/OrgMode/Tasks.org")
                                "* SCHED %?\nSCHEDULED: %t")
                               ("d" "Design Examples"
                                entry (id  "756f3a10-f323-409b-b418-00074ba93de9")
@@ -926,7 +926,7 @@
                               ;;  entry ( file+datetree "~/Documents/OrgMode/agenda.org")
                               ;;  "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("n" "Task - Next"
-                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               entry (file "~/Documents/OrgMode/Tasks.org")
                                "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("N" "Non-profit"
                                entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")
@@ -947,10 +947,10 @@
                                entry ( id "baef29b1-40b5-4704-bf28-24b1898c41c9")
                                "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("t" "Task"
-                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               entry (file "~/Documents/OrgMode/Tasks.org")
                                "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("T" "Task (with link annotation)"
-                               entry ( file+datetree "~/Documents/OrgMode/agenda.org")
+                               entry (file "~/Documents/OrgMode/Tasks.org")
                                "* TODO %?%a\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("u" "Quote"
                                entry (id "67e35685-d8e5-488d-8ab2-ac36a7ee3c9a")

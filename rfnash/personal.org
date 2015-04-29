@@ -714,7 +714,6 @@
 ** [[http://orgmode.org/worg/org-contrib/][org-contrib]]
    Require all of the org-mode modules that I use.
    #+begin_src emacs-lisp
-     (require 'org-agenda)                   ; add (load-library "org-compat")
      (require 'org-annotate-file)
      (require 'org-bbdb)
      (require 'org-bibtex)                   ; export bibtex fragments(require '
@@ -861,84 +860,52 @@
       org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
       )
    #+end_src
-** Org Agenda Settings
+** Org Agenda
+   #+begin_src emacs-lisp
+     (use-package org-agenda
+       :config
+       (setq org-agenda-sticky t
+             org-agenda-window-setup 'current-window
+             org-agenda-skip-deadline-if-done t
+             org-agenda-skip-scheduled-if-deadline-is-shown nil
+             org-agenda-sorting-strategy
+             '((agenda time-up habit-down timestamp-up priority-down category-keep)
+               ;; (agenda time-up habit-down priority-down)
+               (todo priority-down category-keep)
+               (tags priority-down category-keep)
+               (search category-keep))
+             org-agenda-dim-blocked-tasks t
+             org-agenda-skip-scheduled-if-deadline-is-shown t
+             org-agenda-skip-scheduled-if-done t
+             org-agenda-span 'day
+             org-sort-agenda-notime-is-late nil
+             org-agenda-columns-add-appointments-to-effort-sum t
+             org-agenda-files (list     ; Can be set using C-c [ and C-c ] in org-mode
+                               org-directory
+                               "~/Dropbox/notes"
+                               "~/Dropbox/Projects/learning.org"
+                               (concat prelude-personal-dir "/rfnash/personal.org"))
+             org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"
+                                           ((agenda "")
+                                            (todo "NEXT" nil)))
+                                          ("v" "Videos to watch"
+                                           tags "CATEGORY=\"ToWatch\"" nil)
+                                          ;; TODO: consider only including those not under the appropriate level 1 heading
+                                          ("f" "Bookmarks to file"
+                                           ((todo "FILE")))
+                                          ("u" "Upcoming next tasks"
+                                           tags-todo "NEXT" nil)
+                                          ("p" "Next actions of my projects"
+                                           tags-todo "project" nil))
+             org-agenda-time-grid '((daily today require-timed)
+                                    #("----------------" 0 16
+                                      (org-heading t))
+                                    (800 1000 1200 1400 1600 1800 2000))))
+
+   #+end_src
    :PROPERTIES:
    :CREATED:  [2015-02-17 Tue 16:03]
    :END:
-*** Misc
-    #+begin_src emacs-lisp
-      (setq
-       org-agenda-sticky t
-       org-agenda-window-setup 'current-window
-       org-agenda-skip-deadline-if-done t
-       org-agenda-skip-scheduled-if-deadline-is-shown nil
-       org-agenda-sorting-strategy (quote ((agenda time-up habit-down priority-down) (todo priority-down category-keep) (tags priority-down category-keep) (search category-keep)))
-       org-agenda-dim-blocked-tasks t
-       org-agenda-skip-scheduled-if-deadline-is-shown t
-       org-agenda-skip-scheduled-if-done t
-       org-agenda-span 'day
-       org-sort-agenda-notime-is-late nil
-       org-agenda-columns-add-appointments-to-effort-sum t
-       org-columns-default-format "%40ITEM(Task) %TODO %3PRIORITY %TAGS %17Effort(Estimated Effort){:} %5CLOCKSUM"
-       ;; org-global-properties '(("Effort_ALL" . "0 0:02 0:05 0:10 0:15 0:20 0:30 0:45 1:00 2:00"))
-       )
-    #+end_src
-    :PROPERTIES:
-   :CREATED:  [2015-02-17 Tue 16:06]
-   :END:
-*** org-agenda-files
-    #+begin_src emacs-lisp
-      (setq
-       org-agenda-files (list     ; Can be set using C-c [ and C-c ] in org-mode
-                         org-directory
-                         "~/Dropbox/notes"
-                         "~/Dropbox/Projects/learning.org"
-                         (concat prelude-personal-dir "/rfnash/personal.org")))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-02-17 Tue 16:08]
-    :END:
-*** org-agenda-sorting-strategy
-    #+begin_src emacs-lisp
-      (setq org-agenda-sorting-strategy
-            '((agenda time-up habit-down timestamp-up priority-down category-keep)
-              (todo priority-down category-keep)
-              (tags priority-down category-keep)
-              (search category-keep)))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-02-17 Tue 16:08]
-    :END:
-*** org-agenda-custom-commands
-    #+begin_src emacs-lisp
-      (setq
-       org-agenda-custom-commands '(("n" "Agenda and all NEXT actions"
-                                     ((agenda "")
-                                      (todo "NEXT" nil)))
-                                    ("v" "Videos to watch"
-                                     tags "CATEGORY=\"ToWatch\"" nil)
-                                    ;; TODO: consider only including those not under the appropriate level 1 heading
-                                    ("f" "Bookmarks to file"
-                                     ((todo "FILE")))
-                                    ("u" "Upcoming next tasks"
-                                     tags-todo "NEXT" nil)
-                                    ("p" "Next actions of my projects"
-                                     tags-todo "project" nil)))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-02-17 Tue 16:08]
-    :END:
-*** org-agenda-time-grid
-    #+begin_src emacs-lisp
-      (setq org-agenda-time-grid
-            '((daily today require-timed)
-              #("----------------" 0 16
-                (org-heading t))
-              (800 1000 1200 1400 1600 1800 2000)))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-02-17 Tue 16:08]
-    :END:
 ** org-habits
    #+begin_src emacs-lisp
      (use-package org-habit

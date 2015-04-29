@@ -853,13 +853,19 @@
       org-blank-before-new-entry '((heading) (plain-list-item))
       org-contacts-birthday-format "Birthday: %h (%Y)"
       org-expiry-inactive-timestamps t
-      ;; I had this set at 5, but setting Emac's timezone off by a few hours works better in practice,
-      ;; because using this method, the completion day of habits is still recorded as when I actually did them,
-      ;; not yesterday at 23:59
-      org-extend-today-until 0
       org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
       )
    #+end_src
+** org-extend-today-until
+   I had this set at 5, but setting Emac's timezone off by a few hours works better in practice,
+   because using this method, the completion day of habits is still recorded as when I actually did them,
+   not yesterday at 23:59
+   #+begin_src emacs-lisp
+     (setq org-extend-today-until 0)
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-28 Tue 23:16]
+   :END:
 ** Org Agenda
    #+begin_src emacs-lisp
      (use-package org-agenda

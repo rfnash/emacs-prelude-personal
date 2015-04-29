@@ -726,7 +726,6 @@
      (require 'org-contacts)
      (require 'org-ctags)
      ;; (require org-depend)                 ; http://orgmode.org/worg/org-contrib/org-depend.html
-     (require 'org-drill)
      (require 'org-elisp-symbol)
      (require 'org-eshell)
      (require 'org-eval)
@@ -763,6 +762,13 @@
    Flycheck interferes with the keybinding for org-time-stamp-inactive in org-mode.
    #+begin_src emacs-lisp
      (setq flycheck-global-modes '(not org-mode))
+   #+end_src
+** org-drill
+   #+begin_src emacs-lisp
+     (use-package org-drill
+       :config
+       ;; (setq org-drill-optimal-factor-matrix nil)
+       )
    #+end_src
 ** org-toodledo
    #+begin_src emacs-lisp
@@ -842,7 +848,6 @@
       org-enforce-todo-dependencies t
       org-blank-before-new-entry '((heading) (plain-list-item))
       org-contacts-birthday-format "Birthday: %h (%Y)"
-      ;; org-drill-optimal-factor-matrix nil
       org-expiry-inactive-timestamps t
       ;; I had this set at 5, but setting Emac's timezone off by a few hours works better in practice,
       ;; because using this method, the completion day of habits is still recorded as when I actually did them,

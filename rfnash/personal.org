@@ -818,23 +818,22 @@
              op/site-main-title "Robert Nash's Blog"
              op/site-sub-title "A sedomly updated blog"))
    #+end_src
+** org-todo-keywords
+   #+begin_src emacs-lisp
+     (setq org-todo-keywords
+           '((sequence "NEXT(n)" "TODO(t)" "DELEGATED(g@)" "SOMEDAY(s)" "WAITING(w@)"
+                       "|" "DONE(d!)" "CANCELLED(C@)" "REFERENCE(r)")
+             (sequence "SCHED(c)" "|" "DONE(d!)")
+             (sequence "HABIT(h)" "|" "DONE(d!)")
+             (sequence "FILE(f)" "|")
+             (sequence "IDEA(i)" "|")))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-28 Tue 23:09]
+   :END:
 ** Various org settings
    #+begin_src emacs-lisp
      (setq
-      org-todo-keywords '((sequence
-                           "NEXT(n)"
-                           "TODO(t)"
-                           "DELEGATED(g@)"
-                           "SOMEDAY(s)"
-                           "WAITING(w@)"
-                           "|"
-                           "DONE(d!)"
-                           "CANCELLED(C@)"
-                           "REFERENCE(r)")
-                          (sequence "SCHED(c)" "|" "DONE(d!)")
-                          (sequence "HABIT(h)" "|" "DONE(d!)")
-                          (sequence "FILE(f)" "|")
-                          (sequence "IDEA(i)" "|"))
       org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("@phone" . ?p) ("@computer" . ?c) ("@tofile" . ?t)
                       ("READING" . ?r) ("GoodDesign" . ?d) ("7plus" . ?s) ("SCRATCH" . ?e) ("NEXT" . ?n) ("anki" . ?a))
       org-startup-folded t

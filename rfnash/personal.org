@@ -731,7 +731,6 @@
      (require 'org-expiry)
      (require 'org-git-link)
      (require 'org-gnus)
-     (require 'org-id)
      ;; (require org-index)                  ; http://orgmode.org/worg/org-contrib/org-index.html
      (require 'org-info)
      (require 'org-inlinetask)
@@ -853,7 +852,6 @@
       org-blank-before-new-entry '((heading) (plain-list-item))
       org-contacts-birthday-format "Birthday: %h (%Y)"
       org-expiry-inactive-timestamps t
-      org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
       )
    #+end_src
 ** org-extend-today-until
@@ -865,6 +863,15 @@
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-04-28 Tue 23:16]
+   :END:
+** org-id
+   #+begin_src emacs-lisp
+     (use-package org-id
+       :config
+       (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-04-28 Tue 23:06]
    :END:
 ** Org Agenda
    #+begin_src emacs-lisp

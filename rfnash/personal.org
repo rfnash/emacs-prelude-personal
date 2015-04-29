@@ -716,14 +716,14 @@
        :config
        (use-package http-post-simple :ensure t)
        (setq org-toodledo-preserve-drawers t
-             org-toodledo-sync-new-completed-tasks nil
+             org-toodledo-sync-new-completed-tasks t
              org-toodledo-userid "td52fa891b12039"
              org-toodledo-sync-on-save 'no
-             org-toodledo-archive-completed-tasks t
-             org-toodledo-archive-deleted-tasks t)
-       (setq org-toodledo-status-to-org-map
+             org-toodledo-archive-completed-tasks nil ; Conflicts with sync-new-completed-tasks
+             org-toodledo-archive-deleted-tasks t
+             org-toodledo-status-to-org-map
              '(("Active" . "TODO")
-               ("None" . "TODO")
+               ("None" . "HABIT")
                ("Next Action" . "NEXT")
                ("Planning" . "TODO")
                ("Delegated" . "DELEGATED")

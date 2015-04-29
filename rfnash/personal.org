@@ -697,12 +697,10 @@
 ** Load org-mode
    #+begin_src emacs-lisp
      (require 'prelude-org)
-
-     ;; TODO: org-mobile-sync requires unavailable package emacs 24.3.50
+     (use-package org-mobile-sync :ensure t)
      (use-package org-pomodoro :ensure t)
      (use-package org-trello :ensure t)
      (use-package org-plus-contrib :ensure t)
-
      (require 'org)
 
      ;;; Flycheck interferes with org-time-stamp-inactive in org-mode

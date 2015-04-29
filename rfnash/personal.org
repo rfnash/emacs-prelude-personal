@@ -203,15 +203,6 @@
                                     bbdb-popup-target-lines  1)))
                            ;;(bbdb-vcard)
                            (emms)
-                           (deft
-                             (progn
-                               ;; deft: homepage: http://jblevins.org/projects/deft/
-                               ;; also http://www.emacswiki.org/emacs/DeftMode
-                               (setq deft-extension "org")
-                               (setq deft-text-mode 'org-mode)
-                               (setq deft-directory "~/Dropbox/notes")
-                               (global-set-key [f8] 'deft) ; (setq deft-use-filename-as-title t)
-                               ))
                            (evil)
                            (linum-off
                             (require 'linum-off))          ; linum slows down org-mode

@@ -803,7 +803,7 @@
        org-agenda-skip-deadline-if-done t
        org-agenda-skip-scheduled-if-deadline-is-shown nil
        org-agenda-sorting-strategy (quote ((agenda time-up habit-down priority-down) (todo priority-down category-keep) (tags priority-down category-keep) (search category-keep)))
-       org-agenda-dim-blocked-tasks 'invisible
+       org-agenda-dim-blocked-tasks t
        org-agenda-skip-scheduled-if-deadline-is-shown t
        org-agenda-skip-scheduled-if-done t
        org-agenda-span 'day
@@ -1069,10 +1069,13 @@
      (defadvice org-protocol-capture (before set-org-protocol-flag activate)
        (setq my-org-protocol-flag t))
    #+end_src
-** Hide blocked tasks
+** TODO org-agenda-toggle-blocked-tasks
+   Agenda starts with the tasks dimmed. Find a way to update value of
+   rfnash-hide-blocked-tasks to reflect this each time the Agenda is
+   refreshed.
    #+begin_src emacs-lisp :tangle no
      (defvar rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
-     (defun org-agenda-hide-blocked-tasks ()
+     (defun org-agenda-toggle-blocked-tasks ()
        "Toggle dimming/hiding blocked tasks."
        (interactive)
        (if rfnash-hide-blocked-tasks
@@ -1080,7 +1083,7 @@
                   (org-agenda-dim-blocked-tasks))
          (progn (setq rfnash-hide-blocked-tasks t)
                 (org-agenda-dim-blocked-tasks t))))
-     (define-key org-agenda-mode-map (kbd "#") 'org-agenda-hide-blocked-tasks)
+     (bind-key "#" #'org-agenda-toggle-blocked-tasks org-agenda-mode-map)
    #+end_src
    :PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:42]

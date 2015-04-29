@@ -728,7 +728,6 @@
      (require 'org-eshell)
      (require 'org-eval)
      (require 'org-eval-light)
-     (require 'org-expiry)
      (require 'org-git-link)
      (require 'org-gnus)
      ;; (require org-index)                  ; http://orgmode.org/worg/org-contrib/org-index.html
@@ -864,7 +863,6 @@
       org-enforce-todo-dependencies t
       org-blank-before-new-entry '((heading) (plain-list-item))
       org-contacts-birthday-format "Birthday: %h (%Y)"
-      org-expiry-inactive-timestamps t
       )
    #+end_src
 ** org-extend-today-until
@@ -1075,8 +1073,10 @@
    #+end_src
 ** org-expiry
    #+begin_src emacs-lisp
-     (require 'org-expiry)
-     (org-expiry-insinuate)
+     (use-package org-expiry
+       :config
+       (setq org-expiry-inactive-timestamps t)
+       (org-expiry-insinuate))
    #+end_src
 ** Reminders
    From http://doc.norang.ca/org-mode.html#Reminders

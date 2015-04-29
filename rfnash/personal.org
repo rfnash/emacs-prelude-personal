@@ -932,8 +932,9 @@
                                entry ( id "9e1cc358-cbc6-4b72-af68-c16017986720")
                                "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                               ("o" "Toodledo Task"
-                               entry ( id "dd307243-992b-4454-86b7-929dbdc59f99")
-                               "* NEXT %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                               entry (id "cc694bc0-77e0-4a17-bb64-0fb33d166aec")
+                               "* TODO %? %^g %^{ToodledoFolder||chores|health|work|fun}p"
+                               :prepend t)
                               ("p" "Person"
                                entry ( id "fbefa010-a0a4-4915-bc7e-ce1844a5e3a5")
                                "* %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")

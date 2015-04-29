@@ -794,15 +794,17 @@
    #+end_src
 ** org-page
    #+begin_src emacs-lisp
-     (setq
-      op/personal-disqus-shortname "rfnash"
-      op/personal-github-link "https://github.com/rfnash"
-      op/repository-directory "~/git/blog.git/"
-      op/repository-html-branch "gh-pages"
-      op/repository-org-branch "source"
-      op/site-domain "http://robertnash.net/"
-      op/site-main-title "Robert Nash's Blog"
-      op/site-sub-title "A sedomly updated blog")
+     (use-package org-page
+       :ensure t
+       :config
+       (setq op/personal-disqus-shortname "rfnash"
+             op/personal-github-link "https://github.com/rfnash"
+             op/repository-directory "~/git/blog.git/"
+             op/repository-html-branch "gh-pages"
+             op/repository-org-branch "source"
+             op/site-domain "http://robertnash.net/"
+             op/site-main-title "Robert Nash's Blog"
+             op/site-sub-title "A sedomly updated blog"))
    #+end_src
 ** Various org settings
    #+begin_src emacs-lisp

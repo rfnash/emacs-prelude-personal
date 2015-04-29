@@ -810,7 +810,7 @@
        org-sort-agenda-notime-is-late nil
        org-agenda-columns-add-appointments-to-effort-sum t
        org-columns-default-format "%40ITEM(Task) %TODO %3PRIORITY %TAGS %17Effort(Estimated Effort){:} %5CLOCKSUM"
-       org-global-properties '(("Effort_ALL" . "0 0:02 0:05 0:10 0:15 0:20 0:30 0:45 1:00 2:00"))
+       ;; org-global-properties '(("Effort_ALL" . "0 0:02 0:05 0:10 0:15 0:20 0:30 0:45 1:00 2:00"))
        )
     #+end_src
     :PROPERTIES:

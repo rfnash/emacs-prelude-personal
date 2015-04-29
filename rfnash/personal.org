@@ -697,13 +697,24 @@
 ** Load org-mode
    #+begin_src emacs-lisp
      (require 'prelude-org)
+     (use-package org-plus-contrib :ensure t)
+     (use-package org
+       :bind (("C-c l" . org-store-link)
+              ("C-c c" . org-capture)
+              ("C-c a" . org-agenda)
+              ("C-c b" . org-iswitchb)
+              ("C-c F" . oog)))
+   #+end_src
+** Load org-related MELPA packages
+   #+begin_src emacs-lisp
      (use-package org-mobile-sync :ensure t)
      (use-package org-pomodoro :ensure t)
      (use-package org-trello :ensure t)
-     (use-package org-plus-contrib :ensure t)
-     (require 'org)
+   #+end_src
 
-     ;;; Flycheck interferes with org-time-stamp-inactive in org-mode
+** Flycheck
+   Flycheck interferes with the keybinding for org-time-stamp-inactive in org-mode.
+   #+begin_src emacs-lisp
      (setq flycheck-global-modes '(not org-mode))
    #+end_src
 ** org-toodledo

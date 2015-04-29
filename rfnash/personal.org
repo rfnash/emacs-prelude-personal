@@ -739,7 +739,6 @@
      ;;(require 'org-mtags)
      ;; (require org-occur-goto)             ; http://www.emacswiki.org/emacs/org-search-goto.el
      ;;(require 'org-panal)
-     (require 'org-protocol)
      ;; (require org-search-goto)            ; http://www.emacswiki.org/emacs/org-search-goto.el
      ;;(require org-search-goto-ml)          ;  http://www.emacswiki.org/emacs/org-search-goto-ml.el
      (require 'org-secretary)                ; http://juanreyero.com/article/emacs/org-teams.html
@@ -1107,33 +1106,40 @@
      ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
      (run-at-time "24:01" nil 'bh/org-agenda-to-appt)
    #+end_src
-** org-protocol help
+** org-protocol
    From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with Org Mode (with refile)]]. I modified it so that org-capture-mode only closes other windows if its called via org-protocol.
    #+begin_src emacs-lisp
-     (require 'org-protocol)
-     (setq my-org-protocol-flag nil)
-     (defun my-org-protocol-delete-other-windows ()
-       (if my-org-protocol-flag (delete-other-windows)))
-     (add-hook 'org-capture-mode-hook 'my-org-protocol-delete-other-windows)
-     (defadvice org-capture-finalize (after delete-frame-at-end activate)
-       "Delete frame at remember finalization"
-       (progn (if my-org-protocol-flag (delete-frame))
-              (setq my-org-protocol-flag nil)))
-     (defadvice org-capture-refile (around delete-frame-after-refile activate)
-       "Delete frame at remember refile"
-       (if my-org-protocol-flag
-           (progn
-             (setq my-org-protocol-flag nil)
-             ad-do-it
-             (delete-frame))
-         ad-do-it)
-       )
-     (defadvice org-capture-kill (after delete-frame-at-end activate)
-       "Delete frame at remember abort"
-       (progn (if my-org-protocol-flag (delete-frame))
-              (setq my-org-protocol-flag nil)))
-     (defadvice org-protocol-capture (before set-org-protocol-flag activate)
-       (setq my-org-protocol-flag t))
+     (use-package org-protocol
+       :config
+       (setq my-org-protocol-flag nil)
+
+       (defun my-org-protocol-delete-other-windows ()
+         (if my-org-protocol-flag (delete-other-windows)))
+
+       (add-hook 'org-capture-mode-hook 'my-org-protocol-delete-other-windows)
+
+       (defadvice org-capture-finalize (after delete-frame-at-end activate)
+         "Delete frame at remember finalization"
+         (progn (if my-org-protocol-flag (delete-frame))
+                (setq my-org-protocol-flag nil)))
+
+       (defadvice org-capture-refile (around delete-frame-after-refile activate)
+         "Delete frame at remember refile"
+         (if my-org-protocol-flag
+             (progn
+               (setq my-org-protocol-flag nil)
+               ad-do-it
+               (delete-frame))
+           ad-do-it)
+         )
+
+       (defadvice org-capture-kill (after delete-frame-at-end activate)
+         "Delete frame at remember abort"
+         (progn (if my-org-protocol-flag (delete-frame))
+                (setq my-org-protocol-flag nil)))
+
+       (defadvice org-protocol-capture (before set-org-protocol-flag activate)
+         (setq my-org-protocol-flag t)))
    #+end_src
 ** TODO org-agenda-toggle-blocked-tasks
    Agenda starts with the tasks dimmed. Find a way to update value of

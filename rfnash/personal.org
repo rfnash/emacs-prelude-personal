@@ -330,7 +330,7 @@
    :PROPERTIES:
   :CREATED:  [2015-04-17 Fri 17:23]
   :END:
-** NEXT Ido
+** TODO Ido
    Super charges Emacs completion for C-x C-f and more
    #+begin_src emacs-lisp
   (use-package prelude-ido)
@@ -338,7 +338,7 @@
    :PROPERTIES:
   :CREATED:  [2015-04-17 Fri 16:57]
   :END:
-** NEXT Helm
+** TODO Helm
    Interface for narrowing and search
    #+begin_src emacs-lisp
      (use-package prelude-helm)
@@ -388,7 +388,7 @@
    :PROPERTIES:
    :CREATED:  [2015-04-17 Fri 16:57]
    :END:
-** NEXT Ido Again
+** TODO [#A] Ido Again                                                 :NEXT:
    #+begin_src emacs-lisp
      (require 'ido)
      (setq ido-everywhere t)
@@ -1592,7 +1592,10 @@
    :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:54]
    :END:
-* NEXT Misc
+* TODO Misc
+  :PROPERTIES:
+  :CREATED:  [2015-04-22 Wed 20:38]
+  :END:
   Various settings that should be reorganized.
 ** Set the default directory to HOME
    #+begin_src emacs-lisp
@@ -2308,7 +2311,8 @@
    :PROPERTIES:
 :CREATED:  [2015-04-15 Wed 19:24]
 :END:
-** [[http://jblevins.org/projects/deft/][Deft]] ([[http://www.emacswiki.org/emacs/DeftMode][Emacswiki]])
+** NEXT [[http://jblevins.org/projects/deft/][Deft]] ([[http://www.emacswiki.org/emacs/DeftMode][Emacswiki]])
+   Go through and take notes on the documentation on its homepage.
    #+begin_src emacs-lisp
      (use-package deft
        :ensure t

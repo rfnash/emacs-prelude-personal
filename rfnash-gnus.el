@@ -88,5 +88,8 @@
 
 (add-hook 'kill-emacs-hook 'gnus-group-exit)
 
+(setq gnus-buttonized-mime-types '("multipart/alternative"))
+;; (setq mm-discouraged-alternatives '("text/html" "text/richtext"))
+
 (provide 'rfnash-gnus)
 ;;; rfnash-gnus.el ends here

@@ -1144,11 +1144,8 @@
        (defadvice org-protocol-capture (before set-org-protocol-flag activate)
          (setq my-org-protocol-flag t)))
    #+end_src
-** TODO org-agenda-toggle-blocked-tasks
-   Agenda starts with the tasks dimmed. Find a way to update value of
-   rfnash-hide-blocked-tasks to reflect this each time the Agenda is
-   refreshed.
-   #+begin_src emacs-lisp :tangle no
+** org-agenda-toggle-blocked-tasks
+   #+begin_src emacs-lisp
      (defvar rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
      (defun org-agenda-toggle-blocked-tasks ()
        "Toggle dimming/hiding blocked tasks."
@@ -1158,7 +1155,16 @@
                   (org-agenda-dim-blocked-tasks))
          (progn (setq rfnash-hide-blocked-tasks t)
                 (org-agenda-dim-blocked-tasks t))))
+
+     (defun rfnash-org-agenda-redo (&optional all)
+       "Rebuild possibly ALL agenda view(s) in the current buffer, hiding blocked tasks"
+       (interactive "P")
+       (org-agenda-redo all)
+       (org-agenda-dim-blocked-tasks t)
+       (setq rfnash-hide-blocked-tasks t))
+
      (bind-key "#" #'org-agenda-toggle-blocked-tasks org-agenda-mode-map)
+     (bind-key "r" #'rfnash-org-agenda-redo org-agenda-mode-map)
    #+end_src
    :PROPERTIES:
   :CREATED:  [2014-09-03 Wed 16:42]

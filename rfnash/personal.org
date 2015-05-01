@@ -1457,6 +1457,18 @@
             (lambda (server nick)
               (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
    #+end_src
+*** ido-erc-buffer
+    #+begin_src emacs-lisp
+      (defun ido-erc-buffer ()
+        (interactive)
+        (switch-to-buffer
+         (ido-completing-read "Channel: " (mapcar #'buffer-name (erc-buffer-list)))))
+
+      (bind-key "C-c C-b" #'ido-erc-buffer erc-mode-map)
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-05-01 Fri 12:15]
+    :END:
 *** Znc
     #+begin_src emacs-lisp
       (use-package znc :ensure t)

@@ -404,7 +404,7 @@
    :PROPERTIES:
    :CREATED:  [2015-04-17 Fri 17:08]
    :END:
-* NEXT Diminished Modes
+* NEXT [#B] Diminished Modes
   #+begin_src emacs-lisp
     (eval-after-load 'guru-mode '(diminish 'guru-mode))
     ;; (eval-after-load 'helm '(diminish 'helm-mode))
@@ -2353,7 +2353,7 @@
    :PROPERTIES:
 :CREATED:  [2015-04-15 Wed 19:24]
 :END:
-** NEXT [[http://jblevins.org/projects/deft/][Deft]] ([[http://www.emacswiki.org/emacs/DeftMode][Emacswiki]])
+** NEXT [#B] [[http://jblevins.org/projects/deft/][Deft]] ([[http://www.emacswiki.org/emacs/DeftMode][Emacswiki]])
    Go through and take notes on the documentation on its homepage.
    #+begin_src emacs-lisp
      (use-package deft

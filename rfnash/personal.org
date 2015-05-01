@@ -2350,17 +2350,21 @@
        (defun helm-beeminder-add-data ()
          "helm interface to add data to a Beeminder goal"
          (interactive)
-         (helm :sources
-               `(((name . "My beeminder goals")
-                  (candidates . ,(mapcar
-                                  (lambda (goal)
-                                    (cons (assoc-default 'title goal)
-                                          (assoc-default 'slug goal)))
-                                  (beeminder-fetch-goals beeminder-username)))
-                  (action . (("Send data" . (lambda (goal)
-                                              (beeminder-add-data goal
-                                                                  (read-string "Value: ")
-                                                                  (read-string "Comment: ")))))))))))
+         (helm :sources `(((name ."My beeminder goals")
+                           (candidates . ,(let ((beeminder-goals (beeminder-fetch-goals beeminder-username)))
+                                           (mapcar (lambda (goal)
+                                                     (cons (format (format "%%-%ds    %%s"
+                                                                           (apply #'max
+                                                                                  (mapcar (lambda (goal)
+                                                                                            (length (assoc-default 'title goal)))
+                                                                                          beeminder-goals)))
+                                                                   (assoc-default 'title goal)
+                                                                   (assoc-default 'delta_text goal)) (assoc-default 'slug goal)))
+                                                   beeminder-goals)))
+                           (action . (("Send data" . (lambda (goal)
+                                                     (beeminder-add-data goal
+                                                                         (read-string "Value: ")
+                                                                         (read-string "Comment: ")))))))))))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-04-18 Sat 10:35]

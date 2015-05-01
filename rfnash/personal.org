@@ -696,14 +696,25 @@
   :END:
 ** Load org-mode
    #+begin_src emacs-lisp
-     (require 'prelude-org)
      (use-package org-plus-contrib :ensure t)
      (use-package org
+       :mode ("\\.org\\'" . org-mode)
        :bind (("C-c l" . org-store-link)
               ("C-c c" . org-capture)
               ("C-c a" . org-agenda)
               ("C-c b" . org-iswitchb)
-              ("C-c F" . oog)))
+              ("C-c F" . oog))
+       :config
+       (defun prelude-org-mode-hook ()
+         (let ((oldmap (cdr (assoc 'prelude-mode minor-mode-map-alist)))
+               (newmap (make-sparse-keymap)))
+           (set-keymap-parent newmap oldmap)
+           (define-key newmap (kbd "C-c +") nil)
+           (define-key newmap (kbd "C-c -") nil)
+           (make-local-variable 'minor-mode-overriding-map-alist)
+           (push `(prelude-mode . ,newmap) minor-mode-overriding-map-alist)))
+
+       (add-hook 'org-mode-hook #'prelude-org-mode-hook))
    #+end_src
 ** Load org-related MELPA packages
    #+begin_src emacs-lisp
@@ -853,6 +864,7 @@
            ;; org-global-properties '(("Effort_ALL" . "0 0:02 0:05 0:10 0:15 0:20 0:30 0:45 1:00 2:00"))
            ;; org-startup-indented t              ; Appears to slow down org-mode
            org-hide-leading-stars t               ; Looks a bit funny without indent
+           org-log-done t
            org-log-into-drawer t
            org-return-follows-link t
            org-journal-dir "~/Documents/OrgMode/journal/"

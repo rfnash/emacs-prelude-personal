@@ -1459,16 +1459,7 @@
    #+end_src
 *** Znc
     #+begin_src emacs-lisp
-     (use-package znc
-       :ensure t
-       :config
-       (setq znc-servers
-             '(("localhost" 1666 t
-                ((efnet "rfnash/efnet" "***REMOVED***")
-                 (freenode "rfnash/freenode" "***REMOVED***")
-                 (mozilla "rfnash/mozilla" "***REMOVED***")
-                 (bitlbee "rfnash/bitlbee" "***REMOVED***")
-                 (***REMOVED*** "rfnash/***REMOVED***" "***REMOVED***"))))))
+      (use-package znc :ensure t)
     #+end_src
     :PROPERTIES:
     :CREATED:  [2015-04-18 Sat 17:46]
@@ -1485,13 +1476,6 @@
    #+begin_src emacs-lisp
      (use-package circe :ensure t)
      (require 'circe)
-     (setq circe-network-options
-           '(("***REMOVED***"
-             :host "***REMOVED***.com"
-             :service "6667"
-             :nick "Niki"
-             :realname "22 F Female Bi MI USA"
-             :nickserv-password "***REMOVED***")))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-02-20 Fri 22:25]

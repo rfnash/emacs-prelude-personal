@@ -1482,31 +1482,22 @@
    #+end_src
 ** ERC
    Emacs IRC client.
-   :PROPERTIES:
-   :CREATED:  [2015-04-18 Sat 17:45]
-   :END:
-*** Query in new buffer
-    Creates new buffer each time someone pm's me,
-    opens second window and shows buffer in non-focused window.
-    This happens even on different screen in elscreen
-   #+begin_src emacs-lisp :tangle no
-     (setq erc-auto-query 'buffer)
-     (add-hook 'erc-after-connect
-            (lambda (server nick)
-              (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
-   #+end_src
-*** ido-erc-buffer
-    #+begin_src emacs-lisp
-      (defun ido-erc-buffer ()
-        (interactive)
-        (switch-to-buffer
-         (ido-completing-read "Channel: " (mapcar #'buffer-name (erc-buffer-list)))))
+   #+begin_src emacs-lisp
+     (use-package erc
+       :config
+       (setq erc-auto-query 'bury
+             erc-join-buffer 'window
+             erc-query-display 'window)
+       (add-hook 'erc-after-connect
+                 (lambda (server nick)
+                   (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
+       (defun ido-erc-buffer ()
+         (interactive)
+         (switch-to-buffer
+          (ido-completing-read "Channel: " (mapcar #'buffer-name (erc-buffer-list)))))
 
-      (bind-key "C-c C-b" #'ido-erc-buffer erc-mode-map)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-05-01 Fri 12:15]
-    :END:
+       (bind-key "C-c C-b" #'ido-erc-buffer erc-mode-map))
+   #+end_src
 *** Znc
     #+begin_src emacs-lisp
       (use-package znc :ensure t)

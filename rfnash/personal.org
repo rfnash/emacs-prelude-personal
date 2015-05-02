@@ -1508,7 +1508,18 @@
    #+end_src
 *** Znc
     #+begin_src emacs-lisp
-      (use-package znc :ensure t)
+      (use-package znc
+        :commands (znc-all znc-erc)
+        :ensure t
+        :config
+        (defun stop-znc ()
+          "Disconnects znc from all irc servers, then disconnect from znc"
+          (interactive)
+          (dolist (buffer (filter-server-buffers))
+            (message "Server buffer: %s" (buffer-name buffer))
+            (with-current-buffer buffer
+              (erc-server-send "znc disconnect")))
+          (stop-irc)))
     #+end_src
     :PROPERTIES:
     :CREATED:  [2015-04-18 Sat 17:46]

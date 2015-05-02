@@ -927,6 +927,13 @@
                   "~/Dropbox/Projects/learning.org"
                   (concat prelude-personal-dir "/rfnash/personal.org")))
     #+end_src
+*** Org Agenda Stuck Projects
+    #+begin_src emacs-lisp
+      (setq org-stuck-projects '("+project/-DONE" ("TODO" "NEXT") nil ""))
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-05-01 Fri 22:09]
+    :END:
 *** Org Agenda Custom Commands
     #+begin_src emacs-lisp
       (setq org-agenda-custom-commands

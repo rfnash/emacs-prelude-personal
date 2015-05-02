@@ -1484,10 +1484,14 @@
        (setq browse-url-browser-function
              'browse-url-generic browse-url-generic-program browser))
    #+end_src
-** ERC
+** NEXT [#B] ERC
+   :PROPERTIES:
+   :CREATED:  [2015-05-01 Fri 22:33]
+   :END:
    Emacs IRC client.
+   TODO: ido-erc-buffer does not list buffers where the most recent action occured first.
    #+begin_src emacs-lisp
-     (use-package erc
+     (use-package prelude-erc
        :config
        (setq erc-auto-query 'bury
              erc-join-buffer 'window

@@ -872,6 +872,7 @@
            org-default-notes-file (concat org-directory "/notes.org")
            org-return-follows-link t
            org-enforce-todo-dependencies t
+           org-tags-exclude-from-inheritance '("project")
            org-columns-default-format "%40ITEM(Task) %TODO %3PRIORITY %TAGS %17Effort(Estimated Effort){:} %5CLOCKSUM")
    #+end_src
 ** org-extend-today-until

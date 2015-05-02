@@ -753,7 +753,9 @@
               ("u" "Upcoming next tasks"
                tags-todo "NEXT" nil)
               ("p" "Next actions of my projects"
-               tags-todo "project" nil)))
+               tags-todo "project" nil)
+              ("i" "Ideas"
+               ((todo "IDEA")))))
     #+end_src
     :PROPERTIES:
     :CREATED:  [2015-05-01 Fri 15:33]

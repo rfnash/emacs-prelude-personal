@@ -2201,22 +2201,20 @@
    - http://sachachua.com/blog/2004/01/emacs-wiki-sites/
    :PROPERTIES:
    :CREATED:  [2015-02-18 Wed 00:00]
-   :ToodledoID: 48996451
-   :Hash:     62b08258a1adeb06ffb4426679d7f3e4
    :END:
-*** TODO http://howm.sourceforge.jp/a/
+*** TODO [[http://howm.sourceforge.jp/a/][Index of /a]]                                                   :NEXT:
     :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:49]
 :END:
-*** TODO http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?ExternalTool
+*** TODO [[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?ExternalTool][External Tools]]                                                :NEXT:
     :PROPERTIES:
-:CREATED:  [2015-04-14 Tue 17:49]
-:END:
-*** TODO http://sourceforge.jp/projects/howm/lists/archive/eng/
+    :CREATED:  [2015-04-14 Tue 17:49]
+    :END:
+*** TODO [[http://sourceforge.jp/projects/howm/lists/archive/eng/][Howm English Mailinglist]]                                      :NEXT:
     :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:51]
 :END:
-*** TODO http://howm.sourceforge.jp/a/rich-title/
+*** TODO [[http://howm.sourceforge.jp/a/rich-title/][rich-title.jl]] -- Show everything on the title bar             :NEXT:
     :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:49]
 :END:

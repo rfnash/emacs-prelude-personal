@@ -890,7 +890,18 @@
     :PROPERTIES:
    :CREATED:  [2014-09-03 Wed 16:42]
    :END:
-
+*** Org Agenda Property
+    #+begin_src emacs-lisp
+      (use-package org-agenda-property
+        :ensure t
+        :config
+        ;; (setq org-agenda-property-list '("Effort"))
+        (setq org-agenda-property-list nil)
+        )
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-05-19 Tue 15:40]
+    :END:
 ** Org Capture
    #+begin_src emacs-lisp
      (use-package org-capture

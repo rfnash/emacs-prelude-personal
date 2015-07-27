@@ -680,6 +680,21 @@
     #+begin_src emacs-lisp
       (use-package prelude-haskell)
     #+end_src
+*** haskell-cleanup-buffer-or-region
+    #+begin_src emacs-lisp
+      (defun haskell-cleanup-buffer-or-region (begin end)
+        "Cleanup a region if selected, otherwise the whole buffer."
+        (interactive "r")
+        (call-interactively 'untabify)
+        (unless (member major-mode prelude-indent-sensitive-modes)
+          (call-interactively 'indent-according-to-mode))
+        (whitespace-cleanup))
+
+      ;; (bind-key "C-c N" #'haskell-cleanup-buffer-or-region haskell-mode-map)
+    #+end_src
+    :PROPERTIES:
+    :CREATED:  [2015-05-15 Fri 19:50]
+    :END:
 *** structured-haskell-mode
     #+begin_src emacs-lisp
       (use-package shm

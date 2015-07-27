@@ -707,6 +707,21 @@
   :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:37]
   :END:
+** rfnash-show-all
+   #+begin_src emacs-lisp
+     (defun rfnash-show-all ()
+       "Unfold all headings and show everything except drawers and archived subtrees"
+       (interactive)
+       (show-all)
+       (if org-hide-block-startup (org-hide-block-all))
+       (org-set-visibility-according-to-property 'no-cleanup)
+       (org-cycle-hide-archived-subtrees 'all)
+       (org-cycle-hide-drawers 'all)
+       (org-cycle-show-empty-lines t))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-05-03 Sun 20:04]
+   :END:
 ** Org Agenda
 *** Org Agenda Misc Settings
     #+begin_src emacs-lisp

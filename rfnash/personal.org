@@ -2424,6 +2424,26 @@
    :PROPERTIES:
    :CREATED:  [2015-05-07 Thu 17:17]
    :END:
+** helm-default-face
+   #+begin_src emacs-lisp
+     (defun rfnash-helm-default-face ()
+       "helm interface to let my chose the default font face family"
+       (interactive)
+       (helm :sources `(
+                        ((name . "My faces")
+                         (candidates . (("Liberation" . "Liberation Mono for Powerline")
+                                        ("Source Code Pro" . "Source Code Pro for Powerline")
+                                        ("Fira" . "Fira Mono for Powerline")))
+                         (action . (
+                                    ("Set Default Face" . (lambda (x) (set-face-attribute 'default nil :family x)))))))))
+     (defun rfnash-default-face ()
+       "Display the current default face"
+       (interactive)
+       (message (face-attribute 'default :family t)))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-05-11 Mon 17:19]
+   :END:
 ** Markdown
 Use [[https://joostkremers.github.io/pandoc-mode/][pandoc-mode]] because [[http://pandoc.org/][pandoc]] is awesome.
 #+begin_src emacs-lisp

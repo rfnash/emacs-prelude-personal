@@ -917,7 +917,7 @@
              org-toodledo-archive-completed-tasks nil ; Conflicts with sync-new-completed-tasks
              org-toodledo-archive-deleted-tasks t
              org-toodledo-status-to-org-map
-             '(("Active" . "TODO")
+             '(("Active" . "TOODLDO")
                ("None" . "HABIT")
                ("Next Action" . "NEXT")
                ("Planning" . "TODO")
@@ -946,7 +946,7 @@
 ** org-todo-keywords
    #+begin_src emacs-lisp
      (setq org-todo-keywords
-           '((sequence "NEXT(n)" "TODO(t)" "DELEGATED(g@)" "SOMEDAY(s)" "WAITING(w@)"
+           '((sequence "NEXT(n)" "TODO(t)" "TOODLDO(o)" "DELEGATED(g@)" "SOMEDAY(s)" "WAITING(w@)"
                        "|" "DONE(d!)" "CANCELLED(C@)" "REFERENCE(r)")
              (sequence "SCHED(c)" "|" "DONE(d!)")
              (sequence "HABIT(h)" "|" "DONE(d!)")

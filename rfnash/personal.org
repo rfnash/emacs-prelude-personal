@@ -864,7 +864,7 @@
      (require 'org-eshell)
      (require 'org-eval)
      (require 'org-eval-light)
-     (require 'org-git-link)
+     ;; (require 'org-git-link)
      (require 'org-gnus)
      ;; (require org-index)                  ; http://orgmode.org/worg/org-contrib/org-index.html
      (require 'org-info)

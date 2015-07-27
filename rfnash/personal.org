@@ -805,7 +805,8 @@
       (setq org-agenda-custom-commands
             '(("n" "Agenda and all NEXT actions"
                ((agenda "")
-                (todo "NEXT" nil)))
+                (todo "NEXT" nil))
+               ((org-agenda-regexp-filter-preset '("-SOMEDAY" "-TOODLDO"))))
               ("d" "Upcoming deadlines"
                agenda ""
                ((org-agenda-time-grid nil)
@@ -821,7 +822,15 @@
               ("p" "Next actions of my projects"
                tags-todo "project" nil)
               ("i" "Ideas"
-               ((todo "IDEA")))))
+               ((todo "IDEA")))
+              ("r" . "Review Toodledo Tasks")
+              ("rt" "Review Toodledo Active tasks"
+               ((todo "TOODLDO"))
+               ((org-agenda-files '("~/Documents/OrgMode/Toodledo.org"))))
+              ("rs" "Review Toodledo Someday tasks"
+               ((todo "SOMEDAY"))
+               ((org-agenda-files '("~/Documents/OrgMode/Toodledo.org"))))
+              ))
     #+end_src
     :PROPERTIES:
     :CREATED:  [2015-05-01 Fri 15:33]

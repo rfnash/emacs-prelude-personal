@@ -1685,7 +1685,9 @@
        :config
        (add-to-list 'smart-tab-disabled-major-modes 'agda2-mode)
        (global-smart-tab-mode 1)
-       (define-key read-expression-map [(tab)] 'hippie-expand))
+       (define-key read-expression-map [(tab)] 'hippie-expand)
+       (add-to-list 'hippie-expand-try-functions-list #'yas-hippie-try-expand)
+       (setq smart-tab-using-hippie-expand t))
    #+end_src
 ** elscreen
    #+begin_src emacs-lisp

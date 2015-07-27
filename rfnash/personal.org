@@ -1224,8 +1224,8 @@
    See http://kangtu.me/~kangtu/pavilion.html and http://doc.norang.ca/org-mode.html#RefileSetup.
    Targets include this file and any file contributing to the agenda - up to 9 levels deep.
    #+begin_src emacs-lisp
-     (setq org-refile-targets '((nil :maxlevel . 9)
-                                (org-agenda-files :maxlevel . 9))
+     (setq org-refile-targets '((nil :maxlevel . 2)
+                                (org-agenda-files :maxlevel . 2))
            org-refile-use-outline-path t                    ; Use full outline paths for refile targets (for use with IDO/Helm)
            org-outline-path-complete-in-steps nil           ; Targets complete directly with IDO / Helm
            org-refile-allow-creating-parent-nodes 'confirm  ; Allow refile to create parent tasks with confirmation

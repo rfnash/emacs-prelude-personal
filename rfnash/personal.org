@@ -543,7 +543,7 @@
     :CREATED:  [2015-03-05 Thu 16:06]
     :END:
 *** Picolisp
-    #+begin_src emacs-lisp
+    #+begin_src emacs-lisp :tangle no
       (use-package picolisp
         :load-path "~/.local/opt/picolisp/lib/el"
         :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
@@ -666,8 +666,9 @@
    :PROPERTIES:
    :CREATED:  [2014-12-29 Mon 19:02]
    :END:
-** Agda
-   #+begin_src emacs-lisp
+** TODO Agda
+   TODO: Should only run load-file if adga-mode command exists.
+   #+begin_src emacs-lisp :tangle no
      (load-file (let ((coding-system-for-read 'utf-8))
                   (shell-command-to-string "agda-mode locate")))
    #+end_src

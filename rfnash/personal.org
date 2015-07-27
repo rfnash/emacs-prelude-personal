@@ -318,6 +318,7 @@
    #+begin_src emacs-lisp
      (setq prelude-clean-whitespace-on-save nil)
      (set-face-attribute 'whitespace-line nil :foreground nil :background "#ffe0e0")
+     (setq global-whitespace-mode t)
    #+end_src
    #+begin_src emacs-lisp :tangle no
      ;; (setq whitespace-style '(face tabs empty trailing lines-tail)) ; Default Prelude value

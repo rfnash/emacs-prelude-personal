@@ -2412,6 +2412,18 @@
    :PROPERTIES:
 :CREATED:  [2015-04-15 Wed 22:51]
 :END:
+** [[https://github.com/pidu/git-timemachine][git-timemachine]]
+   Step through historic versions of a git controlled file.
+   See also [[http://blog.binchen.org/posts/use-git-timemachine-with-evil.html][use git-timemachine with evil]].
+   #+begin_src emacs-lisp
+     (use-package git-timemachine
+       :ensure t
+       :commands (git-timemachine
+                  git-timemachine-toggle))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-05-07 Thu 17:17]
+   :END:
 ** Beeminder
    #+begin_src emacs-lisp
      (use-package beeminder

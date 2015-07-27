@@ -2481,6 +2481,23 @@
    :PROPERTIES:
 :CREATED:  [2015-04-15 Wed 19:24]
 :END:
+** [[https://github.com/alpha22jp/simplenote2.el][simplenote2]]
+   #+begin_src emacs-lisp :tangle no
+     (use-package simplenote2
+       :ensure t
+       :commands (simplenote2-browse                     ; Opens simplenote2 buffer with all notes
+                  simplenote2-sync-notes                 ; Syncs notes with the server
+                  simplenote2-create-note-from-buffer    ; Create new note from the current file, move it to notes dir
+                  simplenote2-push-buffer                ; Pushes mods to server, or if in new note directory, act as simplenote2-create-note-from-buffer
+                  simplenote2-pull-buffer                ; pulls mods, pushes local mods if they exist
+                  )
+       :config
+       (setq simplenote2-markdown-notes-mode 'markdown-mode)
+       (simplenote2-setup))
+   #+end_src
+   :PROPERTIES:
+   :CREATED:  [2015-05-02 Sat 16:24]
+   :END:
 ** TODO [#B] [[http://jblevins.org/projects/deft/][Deft]] ([[http://www.emacswiki.org/emacs/DeftMode][Emacswiki]]) :NEXT:
    Go through and take notes on the documentation on its homepage.
    Nvpy uses markdown and stores its notes as .txt files.

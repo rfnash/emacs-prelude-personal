@@ -2390,6 +2390,14 @@
 :END:
 ** TODO [#B] [[http://jblevins.org/projects/deft/][Deft]] ([[http://www.emacswiki.org/emacs/DeftMode][Emacswiki]]) :NEXT:
    Go through and take notes on the documentation on its homepage.
+   Nvpy uses markdown and stores its notes as .txt files.
+   It uses the first line as a title, and syncs the filename with the title,
+   but replaces spaces with underscores,
+   so setting Deft to use the first line as a title is the best option.
+
+   I could make Deft work with [[https://github.com/alpha22jp/simplenote2.el][simplenote2]] if I could tell it to create new notes in a different dir
+   than where it searches for notes in. Simplenote2 won't make a new note from a file that is in its notes dir
+   where it keeps existing files.
    #+begin_src emacs-lisp
      (use-package deft
        :ensure t

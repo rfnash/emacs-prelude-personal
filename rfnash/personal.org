@@ -836,7 +836,16 @@
 ** Load org-related MELPA packages
    #+begin_src emacs-lisp
      (use-package org-mobile-sync :ensure t)
-     (use-package org-pomodoro :ensure t)
+     (use-package org-pomodoro
+       :ensure t
+       :config
+       (setq org-pomodoro-audio-player "mplayer"
+             org-pomodoro-killed-sound-args "-volume 10"
+             org-pomodoro-long-break-sound-args "-volume 10"
+             org-pomodoro-short-break-sound-args "-volume 10"
+             org-pomodoro-sound-args "-volume 10"
+             org-pomodoro-start-sound-args "-volume 10"
+             org-pomodoro-ticking-sound-args "-volume 10"))
      (use-package org-trello :ensure t)
    #+end_src
 ** [[http://orgmode.org/worg/org-contrib/][org-contrib]]

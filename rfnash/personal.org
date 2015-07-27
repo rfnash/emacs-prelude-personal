@@ -915,7 +915,7 @@
                 "* FILE %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                ("B" "Bookmarks to file (with link annotation)"
                 entry (id "cc694bc0-77e0-4a17-bb64-0fb33d166aec")
-                "* FILE %?%a -- \"%i\"\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                "* TODO %?%a :@tofile:\n:PROPERTIES:\n:CREATED:  %U\n:Effort:  0:05\n:END:"
                 :immediate-finish t)
                ("H" "Scheduled Task"
                 entry (file "~/Documents/OrgMode/Tasks.org")

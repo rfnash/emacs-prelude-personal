@@ -317,6 +317,18 @@
 ** Whitespace
    #+begin_src emacs-lisp
      (setq prelude-clean-whitespace-on-save nil)
+     (set-face-attribute 'whitespace-line nil :foreground nil :background "#ffe0e0")
+   #+end_src
+   #+begin_src emacs-lisp :tangle no
+     ;; (setq whitespace-style '(face tabs empty trailing lines-tail)) ; Default Prelude value
+     ;; (setq whitespace-style '(face tabs spaces trailing lines space-before-tab newline indentation empty space-after-tab space-mark tab-mark newline-mark)) ; Original value
+     (setq whitespace-style '(face tabs spaces trailing lines-tail space-before-tab newline indentation empty space-after-tab space-mark tab-mark newline-mark))
+
+     (set-face-attribute 'whitespace-indentation nil :foreground "lightgray")
+     (set-face-attribute 'whitespace-newline nil :foreground "lightgray")
+     (set-face-attribute 'whitespace-space nil :foreground "lightgray")
+     (set-face-attribute 'whitespace-tab nil :foreground "lightgray")
+     (set-face-attribute 'whitespace-trailing nil :inverse-video t)
    #+end_src
    :PROPERTIES:
   :CREATED:  [2015-04-17 Fri 17:23]

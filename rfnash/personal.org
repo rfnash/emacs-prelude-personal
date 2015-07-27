@@ -1829,6 +1829,17 @@
      ;; now either el-get is `require'd already, or have been `load'ed by the
      ;; el-get installer.
 
+     ;;; Otherwise howm can't use it as a prefix key
+     (global-unset-key "\C-z")
+
+     ;;; At least howm-view-title-header has to be set before howm is loaded
+     (setq howm-view-title-header "*"
+           ;; howm-content-from-region t
+           ;; howm-content-from-region 1
+           howm-prefix "\C-z"
+           howm-file-name-format "%Y/%m/%Y-%m-%d-%H%M%S.org"
+           howm-view-use-grep t)
+
      ;; set local recipes
      (setq
       el-get-sources

@@ -681,7 +681,7 @@
       (use-package prelude-haskell)
     #+end_src
 *** structured-haskell-mode
-    #+begin_src emacs-lisp :tangle no
+    #+begin_src emacs-lisp
       (use-package shm
         :ensure t
         :commands structured-haskell-mode
@@ -690,7 +690,9 @@
           (require 'haskell-indent)
           (turn-off-haskell-indent)
           (structured-haskell-mode t))
-        (add-hook 'haskell-mode-hook #'turn-on-structured-haskell-mode))
+        (add-hook 'haskell-mode-hook #'turn-on-structured-haskell-mode)
+        :config
+        (set-face-attribute 'shm-current-face nil :weight 'semibold :background nil))
     #+end_src
     :PROPERTIES:
 :CREATED:  [2015-04-10 Fri 19:49]

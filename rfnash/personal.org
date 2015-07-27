@@ -916,6 +916,7 @@
                ("B" "Bookmarks to file (with link annotation)"
                 entry (file "~/Documents/OrgMode/Tasks.org")
                 "* FILE %?%a -- \"%i\"\n:PROPERTIES:\n:CREATED:  %U\n:END:")
+                :immediate-finish t)
                ("H" "Scheduled Task"
                 entry (file "~/Documents/OrgMode/Tasks.org")
                 "* SCHED %?\nSCHEDULED: %t")

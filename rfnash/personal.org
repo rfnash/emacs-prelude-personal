@@ -919,7 +919,7 @@
        :bind ("C-c x t" . org-toodledo-sync)
        :config
        (use-package http-post-simple :ensure t)
-       (setq org-toodledo-preserve-drawers t
+       (setq org-toodledo-preserve-drawers nil        ; Since I no longer sync habits, I don't need drawers synced
              org-toodledo-sync-new-completed-tasks t
              org-toodledo-userid "td52fa891b12039"
              org-toodledo-sync-on-save 'no

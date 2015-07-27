@@ -416,7 +416,7 @@
    :PROPERTIES:
    :CREATED:  [2015-04-17 Fri 17:08]
    :END:
-* NEXT [#B] Diminished Modes
+* TODO [#B] Diminished Modes                                           :NEXT:
   #+begin_src emacs-lisp
     (eval-after-load 'guru-mode '(diminish 'guru-mode))
     ;; (eval-after-load 'helm '(diminish 'helm-mode))
@@ -1506,7 +1506,7 @@
        (setq browse-url-browser-function
              'browse-url-generic browse-url-generic-program browser))
    #+end_src
-** NEXT [#B] ERC
+** TODO [#B] ERC                                                       :NEXT:
    :PROPERTIES:
    :CREATED:  [2015-05-01 Fri 22:33]
    :END:
@@ -2128,63 +2128,67 @@
                                  "IndianRed") ; google calendar ICS. Doesn't support repeating events (only shows them on day of first repeat)
          )))
    #+end_src
-** TODO [[http://howm.sourceforge.jp/README.html][howm]] ([[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?e.FrontPage][wiki]], [[http://www.emacswiki.org/emacs/HowmMode][emacswiki]], [[http://www.emacswiki.org/emacs/HowmAndCalendar][Howm and calendar]], [[http://howm.sourceforge.jp/README.html][tutorial]] [[[file:~/.emacs.d/el-get/howm/doc/README.html][local]]], [[http://sourceforge.jp/projects/howm/lists/archive/eng/2008/000038.html][integrating with org-mode]].) :NEXT:
-   #+begin_src text
-     `howm-mode' Minor Mode Bindings:
-     key             binding
-     ---             -------
-
-     C-c             Prefix Command
-     C-x             Prefix Command
-
-     C-x C-s         howm-save-buffer
-
-     C-c ,           Prefix Command
-
-     C-c , SPC       howm-toggle-buffer
-     C-c , ,         howm-menu
-     C-c , .         howm-find-today
-     C-c , :         howm-find-yesterday
-     C-c , A         howm-list-around
-     C-c , C         howm-create-here
-     C-c , D         howm-dup
-     C-c , H         howm-first-memo
-     C-c , I         howm-create-interactively
-     C-c , K         howm-keyword-to-kill-ring
-     C-c , L         howm-last-memo
-     C-c , M         howm-open-named-file
-     C-c , N         howm-next-memo
-     C-c , P         howm-previous-memo
-     C-c , Q         howm-kill-all
-     C-c , T         howm-insert-dtime
-     C-c , a         howm-list-all
-     C-c , b         howm-list-buffers
-     C-c , c         howm-create
-     C-c , d         howm-insert-date
-     C-c , e         howm-remember
-     C-c , g         howm-list-grep
-     C-c , h         howm-history
-     C-c , i         howm-insert-keyword
-     C-c , l         howm-list-recent
-     C-c , m         howm-list-migemo
-     C-c , n         action-lock-goto-next-link
-     C-c , o         howm-occur
-     C-c , p         action-lock-goto-previous-link
-     C-c , r         howm-refresh
-     C-c , s         howm-list-grep-fixed
-     C-c , t         howm-list-todo
-     C-c , w         howm-random-walk
-     C-c , x         howm-list-mark-ring
-     C-c , y         howm-list-schedule
-   #+end_src
+** [[http://howm.sourceforge.jp/README.html][howm]]
+   - Documentation
+     - [[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?e.FrontPage][wiki]]
+     - [[http://www.emacswiki.org/emacs/HowmMode][emacswiki]]
+     - [[http://www.emacswiki.org/emacs/HowmAndCalendar][Howm and calendar]]
+     - [[http://howm.sourceforge.jp/README.html][tutorial]] [[[file:~/.emacs.d/el-get/howm/doc/README.html][local]]]
+     - [[http://sourceforge.jp/projects/howm/lists/archive/eng/2008/000038.html][integrating with org-mode]]
+     - [[http://sourceforge.jp/projects/howm/lists/archive/eng/2005/000014.html][using with rd-mode]]
+   - `howm-mode' Minor Mode Bindings:
+      | key     | binding                        |
+      |---------+--------------------------------|
+      | C-c     | Prefix Command                 |
+      | C-x     | Prefix Command                 |
+      | C-x C-s | howm-save-buffer               |
+      | C-z     | Prefix Command                 |
+      | C-z SPC | howm-toggle-buffer             |
+      | C-z ,   | howm-menu                      |
+      | C-z .   | howm-find-today                |
+      | C-z :   | howm-find-yesterday            |
+      | C-z A   | howm-list-around               |
+      | C-z C   | howm-create-here               |
+      | C-z D   | howm-dup                       |
+      | C-z H   | howm-first-memo                |
+      | C-z I   | howm-create-interactively      |
+      | C-z K   | howm-keyword-to-kill-ring      |
+      | C-z L   | howm-last-memo                 |
+      | C-z M   | howm-open-named-file           |
+      | C-z N   | howm-next-memo                 |
+      | C-z P   | howm-previous-memo             |
+      | C-z Q   | howm-kill-all                  |
+      | C-z T   | howm-insert-dtime              |
+      | C-z a   | howm-list-all                  |
+      | C-z b   | howm-list-buffers              |
+      | C-z c   | howm-create                    |
+      | C-z d   | howm-insert-date               |
+      | C-z e   | howm-remember                  |
+      | C-z g   | howm-list-grep                 |
+      | C-z h   | howm-history                   |
+      | C-z i   | howm-insert-keyword            |
+      | C-z l   | howm-list-recent               |
+      | C-z m   | howm-list-migemo               |
+      | C-z n   | action-lock-goto-next-link     |
+      | C-z o   | howm-occur                     |
+      | C-z p   | action-lock-goto-previous-link |
+      | C-z r   | howm-refresh                   |
+      | C-z s   | howm-list-grep-fixed           |
+      | C-z t   | howm-list-todo                 |
+      | C-z w   | howm-random-walk               |
+      | C-z x   | howm-list-mark-ring            |
+      | C-z y   | howm-list-schedule             |
    #+begin_src emacs-lisp
-     (require 'howm)
-     (global-set-key (kbd "C-x ,") (key-binding (kbd "C-c ,")))
+     (use-package howm
+       :config
+       ;; (add-to-list 'auto-mode-alist '("\\.howm$" . org-mode))
+       ;; (add-hook 'org-mode-hook 'howm-mode)
+       )
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-02-13 Fri 16:22]
    :END:
-*** TODO [#B] Howm-related
+*** TODO [#B] Howm-related                                             :NEXT:
    - http://angg.twu.net/e/howm.e.html
    - http://www.emacswiki.org/emacs/PlannerAndHowmComparison
    - http://pages.sachachua.com/sharing/blog.html
@@ -2385,7 +2389,7 @@
    :PROPERTIES:
 :CREATED:  [2015-04-15 Wed 19:24]
 :END:
-** NEXT [#B] [[http://jblevins.org/projects/deft/][Deft]] ([[http://www.emacswiki.org/emacs/DeftMode][Emacswiki]])
+** TODO [#B] [[http://jblevins.org/projects/deft/][Deft]] ([[http://www.emacswiki.org/emacs/DeftMode][Emacswiki]]) :NEXT:
    Go through and take notes on the documentation on its homepage.
    #+begin_src emacs-lisp
      (use-package deft

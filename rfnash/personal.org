@@ -1084,7 +1084,7 @@
      (use-package org-drill
        :config
        ;; (setq org-drill-optimal-factor-matrix nil)
-       )
+       (setq org-drill-scope 'agenda))
    #+end_src
 ** org-mobile
    #+begin_src emacs-lisp

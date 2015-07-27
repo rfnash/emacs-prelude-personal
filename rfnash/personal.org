@@ -982,10 +982,10 @@
                 entry ( id "e8e91a3d-d21b-403d-b46e-0be14a3d7c2d")
                 "* TODO %?\n:PROPERTIES:\n:CREATED:  %U\n:END:")
                ;; From http://sachachua.com/blog/2014/11/using-org-mode-keep-process-journal/
-               ("z" "Journal entry" plain
-                (file+datetree+prompt "~/Documents/OrgMode/journal.org")
-                "%K - %a\n%i\n%?\n"))
-             ))
+               ;; ("z" "Journal entry" plain
+               ;;  (file+datetree+prompt "~/Documents/OrgMode/journal.org")
+               ;;  "%K - %a\n%i\n%?\n")
+               )))
    #+end_src
    An example
    #+begin_src emacs-lisp :tangle no

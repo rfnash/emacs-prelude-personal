@@ -19,157 +19,166 @@
   :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:22]
   :END:
-** init.el
-   For historical reference
-   #+begin_src emacs-lisp :tangle no
-     (mapc 'load (directory-files "~/.emacs.d/conf.d/" t "^[^#!].*\.el$"))
-     (server-start)
-     (custom-set-variables
-     custom-set-variables was added by Custom.
-     If you edit it by hand, you could mess it up, so be careful.
-     Your init file should contain only one such instance.
-     If there is more than one, they won't work right.
-     '(helm-adaptative-mode t nil (helm-adaptative))
-     '(helm-adaptive-history-length 1000)
-     '(helm-ff-file-name-history-use-recentf t)
-     (custom-set-faces
-     custom-set-faces was added by Custom.
-     If you edit it by hand, you could mess it up, so be careful.
-     Your init file should contain only one such instance.
-     If there is more than one, they won't work right.
-     '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
-     '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
+** Old init.el for Historical Reference
+*** Custom Set
+Custom set variables
+#+begin_src emacs-lisp :tangle no
+  (custom-set-variables
+   '(helm-adaptative-mode t nil (helm-adaptative))
+   '(helm-adaptive-history-length 1000)
+   '(helm-ff-file-name-history-use-recentf t))
+#+end_src
+Custom set faces
+#+begin_src emacs-lisp :tangle no
+  (custom-set-faces
+   '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
+   '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
+#+end_src
+*** From [[https://github.com/dimitri/emacs-kicker][Emacs Kicker]]
+Visual Settings
+#+begin_src emacs-lisp :tangle no
+  (setq inhibit-splash-screen t)       ; no splash screen, thanks
+  (line-number-mode t)                 ; have line numbers and
+  (column-number-mode t)               ; column numbers in the mode line
 
-     ;; Various settings from emacs kicker
-     ;; (https://github.com/dimitri/emacs-kicker)
+  (tool-bar-mode -1)                   ; no tool bar with icons
+  (scroll-bar-mode -1)                 ; no scroll bars
+  (menu-bar-mode -1)                   ; no menu bar
 
-     ;; on to the visual settings
-
-
-     (setq inhibit-splash-screen t)               ; no splash screen, thanks
-     (line-number-mode t)                 ; have line numbers and
-     (column-number-mode t)                       ; column numbers in the mode line
-
-     (tool-bar-mode -1)                           ; no tool bar with icons
-     (scroll-bar-mode -1)                 ; no scroll bars
-     (menu-bar-mode -1)                      ; no menu bar
-
-     (global-hl-line-mode)                        ; highlight current line
-     (global-linum-mode 1)                        ; add line numbers on the left
-
-     ;; full screen
-     (defun fullscreen ()
-       (interactive)
-       (set-frame-parameter nil 'fullscreen
+  (global-hl-line-mode)                ; highlight current line
+  (global-linum-mode 1)                ; add line numbers on the left
+#+end_src
+Full Screen
+#+begin_src emacs-lisp :tangle no
+  (defun fullscreen ()
+    (interactive)
+    (set-frame-parameter nil 'fullscreen
                          (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
-     (global-set-key [f11] 'fullscreen)
-
-     ;; Use the clipboard, pretty please, so that copy/paste "works"
-     (setq x-select-enable-clipboard t)
-
-     ;; Navigate currently visible windows with M-<arrows>
-     (windmove-default-keybindings 'meta)
-     (setq windmove-wrap-around t)
-
-     ;; winner-mode provides C-<left> to get back to previous window layout
-     (winner-mode 1)
-
-     ;; whenever an external process changes a file underneath emacs, and there
-     ;; was no unsaved changes in the corresponding buffer, just revert its
-     ;; content to reflect what's on-disk.
-     (global-auto-revert-mode 1)
-
-     ;; C-x C-j opens dired with the cursor right on the file you're editing
-     (require 'dired-x)
-
-     (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
-
-
-     ;; From emacsredux
-     (defun eval-and-replace ()
-       "Replace the preceding sexp with its value."
-       (interactive)
-       (backward-kill-sexp)
-       (condition-case nil
-           (prin1 (eval (read (current-kill 0)))
+#+end_src
+Use the clipboard, pretty please, so that copy/paste "works"
+#+begin_src emacs-lisp :tangle no
+  (setq x-select-enable-clipboard t)
+#+end_src
+Navigate currently visible windows with M-<arrows>
+#+begin_src emacs-lisp :tangle no
+  (windmove-default-keybindings 'meta)
+  (setq windmove-wrap-around t)
+#+end_src
+winner-mode provides C-<left> to get back to previous window layout
+#+begin_src emacs-lisp :tangle no
+  (winner-mode 1)
+#+end_src
+whenever an external process changes a file underneath emacs, and there
+was no unsaved changes in the corresponding buffer, just revert its
+content to reflect what's on-disk.
+#+begin_src emacs-lisp :tangle no
+  (global-auto-revert-mode 1)
+#+end_src
+C-x C-j opens dired with the cursor right on the file you're editing
+#+begin_src emacs-lisp :tangle no
+  (require 'dired-x)
+#+end_src
+Set default font
+#+begin_src emacs-lisp :tangle no
+  (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
+#+end_src
+*** From Emacsredux
+#+begin_src emacs-lisp :tangle no
+  (defun eval-and-replace ()
+    "Replace the preceding sexp with its value."
+    (interactive)
+    (backward-kill-sexp)
+    (condition-case nil
+        (prin1 (eval (read (current-kill 0)))
                (current-buffer))
-         (error (message "Invalid expression")
+      (error (message "Invalid expression")
              (insert (current-kill 0)))))
-     (global-set-key (kbd "C-c e") 'eval-end-replace)
-
-     ;; from whattheemacsd.com
-
-     ;; Write backup files to own directory
-     (setq backup-directory-alist
-           `(("." . ,(expand-file-name
+  (global-set-key (kbd "C-c e") 'eval-end-replace)
+#+end_src
+*** From whattheemacsd.com
+Write backup files to own directory
+#+begin_src emacs-lisp :tangle no
+  (setq backup-directory-alist
+        `(("." . ,(expand-file-name
                    (concat user-emacs-directory "backups")))))
+#+end_src
+Make backups of files, even when they're in version control
+#+begin_src emacs-lisp :tangle no
+  (setq vc-make-backup-files t)
+#+end_src
+Save point position between sessions
+#+begin_src emacs-lisp :tangle no
+  (require 'saveplace)
+  (setq-default save-place t)
+  (setq save-place-file (expand-file-name ".places" user-emacs-directory))
+#+end_src
+Cleanup buffer
+#+begin_src emacs-lisp :tangle no
+  (defun cleanup-buffer-safe ()
+    "Perform a bunch of safe operations on the whitespace content of a buffer.
+  Does not indent buffer, because it is used for a before-save-hook, and that
+  might be bad.
+  TODO: Will screw up makefiles by changing tabs to whitespace."
+    (interactive)
+    ;; (untabify (point-min) (point-max))
+    (delete-trailing-whitespace)
+    (set-buffer-file-coding-system 'utf-8))
+#+end_src
+Various superfluous white-space. Just say no.
+#+begin_src emacs-lisp :tangle no
+  (add-hook 'before-save-hook 'cleanup-buffer-safe)
+  (defun cleanup-buffer ()
+    "Perform a bunch of operations on the whitespace content of a buffer.
+  Including indent-buffer, which should not be called automatically on save."
+    (interactive)
+    (cleanup-buffer-safe)
+    (indent-region (point-min) (point-max)))
 
-     ;; Make backups of files, even when they're in version control
-     (setq vc-make-backup-files t)
-
-     ;; Save point position between sessions
-     (require 'saveplace)
-     (setq-default save-place t)
-     (setq save-place-file (expand-file-name ".places" user-emacs-directory))
-
-     (defun cleanup-buffer-safe ()
-       "Perform a bunch of safe operations on the whitespace content of a buffer.
-     Does not indent buffer, because it is used for a before-save-hook, and that
-     might be bad.
-     TODO: Will screw up makefiles by changing tabs to whitespace."
-       (interactive)
-       ;; (untabify (point-min) (point-max))
-       (delete-trailing-whitespace)
-       (set-buffer-file-coding-system 'utf-8))
-
-     ;; Various superfluous white-space. Just say no.
-     (add-hook 'before-save-hook 'cleanup-buffer-safe)
-
-     (defun cleanup-buffer ()
-       "Perform a bunch of operations on the whitespace content of a buffer.
-     Including indent-buffer, which should not be called automatically on save."
-       (interactive)
-       (cleanup-buffer-safe)
-       (indent-region (point-min) (point-max)))
-
-     (global-set-key (kbd "C-c n") 'cleanup-buffer)
-
-     (global-set-key (kbd "M-j")
+  (global-set-key (kbd "C-c n") 'cleanup-buffer)
+#+end_src
+Join line
+#+begin_src emacs-lisp :tangle no
+  (global-set-key (kbd "M-j")
                   (lambda ()
                     (interactive)
                     (join-line -1)))
-
-     (require 'recentf)
-     (setq recentf-save-file "~/.emacs.d/.recentf"
-           recentf-max-saved-items 200)
-     (recentf-mode +1)
-
-     ;; Enables paredit in the minibuffer when it is used to eval a lisp
-     ;; expression with M-:
-     (defun conditionally-enable-paredit-mode ()
-       "Enable `paredit-mode' in the minibuffer, during `eval-expression'."
-       (if (eq this-command 'eval-expression)
-           (paredit-mode 1)))
-
-     (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)
-
-     ;; treat CamelCase words as seperate words for eg. deletion
-     (add-hook 'prog-mode-hook 'subword-mode)
-
-     (setq whitespace-global-modes '(not org-mode))
-     ;;(global-whitespace-mode)
-     (setq show-trailing-whitespace t)
-
-     (defun htop ()
-       "Start htop in its own buffer."
-       (interactive)
-       (ansi-term "htop" "htop"))
-
-     (defun mixer ()
-       "Start alsamixer in its own buffer"
-       (interactive)
-       (ansi-term "alsamixer" "mixer"))
-   #+end_src
+#+end_src
+Recent Files
+(require 'recentf)
+#+begin_src emacs-lisp :tangle no
+  (setq recentf-save-file "~/.emacs.d/.recentf"
+        recentf-max-saved-items 200)
+  (recentf-mode +1)
+#+end_src
+Enables paredit in the minibuffer when it is used to eval a lisp expression with M-:
+#+begin_src emacs-lisp :tangle no
+  (defun conditionally-enable-paredit-mode ()
+    "Enable `paredit-mode' in the minibuffer, during `eval-expression'."
+    (if (eq this-command 'eval-expression)
+        (paredit-mode 1)))
+  (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)
+#+end_src
+Treat CamelCase words as seperate words for eg. deletion
+#+begin_src emacs-lisp :tangle no
+  (add-hook 'prog-mode-hook 'subword-mode)
+#+end_src
+Whitespace Mode
+#+begin_src emacs-lisp :tangle no
+  (setq whitespace-global-modes '(not org-mode))
+  ;;(global-whitespace-mode)
+  (setq show-trailing-whitespace t)
+#+end_src
+Open certain terminal programs in their own buffer
+#+begin_src emacs-lisp :tangle no
+  (defun htop ()
+    "Start htop in its own buffer."
+    (interactive)
+    (ansi-term "htop" "htop"))
+  (defun mixer ()
+    "Start alsamixer in its own buffer"
+    (interactive)
+    (ansi-term "alsamixer" "mixer"))
+#+end_src
 ** package.el
    old ELPA package config for historical interest
    #+begin_src emacs-lisp :tangle no

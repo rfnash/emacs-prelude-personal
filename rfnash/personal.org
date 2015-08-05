@@ -2171,8 +2171,7 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
 
      ;;; At least howm-view-title-header has to be set before howm is loaded
      (setq howm-view-title-header "*"
-           ;; howm-content-from-region t
-           ;; howm-content-from-region 1
+           howm-content-from-region t
            howm-prefix "\C-z"
            howm-file-name-format "%Y/%m/%Y-%m-%d-%H%M%S.org"
            howm-view-use-grep t)

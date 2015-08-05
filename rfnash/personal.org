@@ -348,90 +348,82 @@ Open certain terminal programs in their own buffer
    :PROPERTIES:
   :CREATED:  [2015-04-17 Fri 17:23]
   :END:
-** TODO Ido
-   Super charges Emacs completion for C-x C-f and more
-   #+begin_src emacs-lisp
+** Completion
+Ido: Super charges Emacs completion for C-x C-f and more
+#+begin_src emacs-lisp
   (use-package prelude-ido)
-   #+end_src
-   :PROPERTIES:
-  :CREATED:  [2015-04-17 Fri 16:57]
-  :END:
-** TODO Helm
-   Interface for narrowing and search
-   #+begin_src emacs-lisp
-     (use-package prelude-helm)
-
-     (require 'helm)
-     (require 'helm-config)
-
-     ;; Doesn't override ido for find files, but does for C-h f, so perfect
-     (helm-mode 1)
-
-     ;; I prefer helm over smex
-     (global-set-key (kbd "M-x") 'helm-M-x)
-
-     ;; not sure if I really want to enable or not
-     ;; (add-hook 'eshell-mode-hook
-     ;;           #'(lambda ()
-     ;;               (define-key eshell-mode-map
-     ;;                 [remap eshell-pcomplete]
-     ;;                 'helm-esh-pcomplete)))
-
-     (bind-key* "C-x c o" 'helm-occur)
-
-     ;; Doesn't play well with gnus
-     ;;(setq helm-split-window-in-side-p t)
-
-
-     ;; added (find-file . ido) as I prefer ido's find-file interface to helm's,
-     ;; but prefer helm for everything else.
-     (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
-     (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
-
-     ;; Increased from 0.1 to 0.5 (the value used by org-occur-goto)
-     ;; because of the long time it takes to search
-     (setq helm-m-occur-idle-delay 0.5)
-
-     ;; https://github.com/emacs-helm/helm-descbinds
-     (use-package helm-descbinds :ensure t)
-     (helm-descbinds-mode)
-     (use-package helm-orgcard :ensure t)
-     (use-package helm-descbinds :ensure t)
-     (use-package helm-backup :ensure t)
-     (use-package helm-helm-commands :ensure t)
-     (use-package ag :ensure t)
-     (use-package helm-ag :ensure t)
-     (use-package helm-ag-r :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-17 Fri 16:57]
-   :END:
-** TODO [#A] Ido Again                                                 :NEXT:
-   #+begin_src emacs-lisp
-     (require 'ido)
-     (setq ido-everywhere t)
-     (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
-     (ido-mode 1)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-18 Sat 22:17]
-   :END:
-** Company
-   #+begin_src emacs-lisp
+#+end_src
+Helm: Interface for narrowing and search
+#+begin_src emacs-lisp
+  (use-package prelude-helm)
+  (require 'helm)
+  (require 'helm-config)
+#+end_src
+Doesn't override ido for find files, but does for C-h f, so perfect
+#+begin_src emacs-lisp
+  (helm-mode 1)
+#+end_src
+I prefer heml ovel smex
+#+begin_src emacs-lisp
+  (global-set-key (kbd "M-x") 'helm-M-x)
+#+end_src
+Use helm for eshell completion
+#+begin_src emacs-lisp :tangle no
+  (add-hook 'eshell-mode-hook
+            #'(lambda ()
+                (define-key eshell-mode-map
+                  [remap eshell-pcomplete]
+                  'helm-esh-pcomplete)))
+#+end_src
+helm-occur
+#+begin_src emacs-lisp
+  (bind-key* "C-x c o" 'helm-occur)
+#+end_src
+helm-split-window-in-side-p doesn't play well with gnus
+#+begin_src emacs-lisp :tangle no
+  (setq helm-split-window-in-side-p t)
+#+end_src
+Use ido for find-file and switch-to-buffer
+#+begin_src emacs-lisp
+  (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
+  (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
+#+end_src
+Increased idle delay from 0.1 to 0.5 (the value used by org-occur-goto) because of the long time it takes to search
+#+begin_src emacs-lisp
+  (setq helm-m-occur-idle-delay 0.5)
+#+end_src
+[[https://github.com/emacs-helm/helm-descbinds][helm-descbinds]]
+#+begin_src emacs-lisp
+  (use-package helm-descbinds :ensure t)
+  (helm-descbinds-mode)
+#+end_src
+Various helm packages
+#+begin_src emacs-lisp
+  (use-package helm-orgcard :ensure t)
+  (use-package helm-descbinds :ensure t)
+  (use-package helm-backup :ensure t)
+  (use-package helm-helm-commands :ensure t)
+  (use-package ag :ensure t)
+  (use-package helm-ag :ensure t)
+  (use-package helm-ag-r :ensure t)
+#+end_src
+Ido Again                                                  :NEXT:
+#+begin_src emacs-lisp
+  (require 'ido)
+  (setq ido-everywhere t)
+  (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
+  (ido-mode 1)
+#+end_src
+Company
+#+begin_src emacs-lisp
   (use-package prelude-company :diminish company-mode)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-17 Fri 16:59]
-   :END:
+#+end_src
 ** prelude-key-chord
-   Binds useful features to key combinations
-   #+begin_src emacs-lisp
+Binds useful features to key combinations
+#+begin_src emacs-lisp
   (use-package prelude-key-chord)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-17 Fri 17:08]
-   :END:
-* TODO [#B] Diminished Modes                                           :NEXT:
+#+end_src
+* TODO Diminished Modes
   #+begin_src emacs-lisp
     (eval-after-load 'guru-mode '(diminish 'guru-mode))
     ;; (eval-after-load 'helm '(diminish 'helm-mode))

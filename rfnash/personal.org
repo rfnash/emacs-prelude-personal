@@ -794,26 +794,205 @@ Binds useful features to key combinations
    :CREATED:  [2015-04-17 Fri 17:21]
    :END:
 ** Ocaml
-   =-=- tuareg.2.0.9 installed successfully =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-   => If you have not yet done so, please add in ~/.emacs.d/init.el or
-   in ~/.emacs to following line:
-   #+begin_src emacs-lisp :tange no
-     (load "/home/rfnash/.opam/4.02.1/share/emacs/site-lisp/tuareg-site-file")
-   #+end_src
+:PROPERTIES:
+:CREATED:  [2015-07-30 Thu 15:17]
+:END:
+*** opam
+Manual steps to prepare opam:
+#+begin_src sh :tangle no
+  opam init
+  opam switch list
+  opam switch VERSION
 
-   =-=- caml-mode.4.02 installed successfully =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-   => If you have not yet done so, please add in ~/.emacs.d/init.el or
-   in ~/.emacs to following line:
-   #+begin_src emacs-lisp :tange no
-     (add-to-list 'load-path "/home/rfnash/.opam/4.02.1/share/emacs/site-lisp/")
-   #+end_src
+  # From prelude's recommended setup
+  opam install core merlin ocp-indent tuareg utop
 
-   #+begin_src emacs-lisp
-     (use-package prelude-ocaml)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-05-03 Sun 20:08]
-   :END:
+  # Needed by RealWordOcaml scripts
+  opam install cow ezxmlm xmlm
+
+  # Needed by RealWordOcaml examples
+  opam install -j 4 --yes \
+       core \
+       core_extended \
+       cryptokit \
+       core_bench \
+       atdgen \
+       async \
+       yojson \
+       textwrap \
+       cohttp \
+       async_graphics \
+       menhir \
+       utop \
+       cmdliner \
+       cow \
+       ocp-indent \
+       ctypes \
+       ocp-index
+#+end_src
+Set Emacs to use opam:
+#+begin_src emacs-lisp
+  ;; Setup environment variables using opam
+  (dolist
+      (var (car (read-from-string
+                 (shell-command-to-string "opam config env --sexp"))))
+    (setenv (car var) (cadr var)))
+
+  ;; Update the emacs path
+  ;; Might not need to append (list exec-directory)
+  (setq exec-path (append (parse-colon-path (getenv "PATH"))
+                          (list exec-directory)))
+
+  ;; Setup some useful variables
+  (setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
+  (setq opam-site-lisp (concat opam-share "/emacs/site-lisp"))
+
+  ;; Add opam to load path
+  (add-to-list 'load-path opam-site-lisp)
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-07-30 Thu 13:46]
+:END:
+*** [[https://github.com/ocaml/tuareg][tuareg]]
+#+begin_src emacs-lisp
+  (use-package tuareg
+    :init (load (concat opam-site-lisp "/tuareg-site-file"))
+    :mode (("\\.ml[ily]?$" . tuareg-mode)
+           ("\\.topml\\'" . tuareg-mode))
+    :config
+    ;; From prelude-ocaml
+    (add-hook 'tuareg-mode-hook (lambda ()
+                                  (progn
+                                    (define-key tuareg-mode-map (kbd "C-c C-s")
+                                      'utop)
+                                    (setq compile-command
+                                          "opam config exec corebuild ")))))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-07-30 Thu 13:38]
+:END:
+*** [[https://github.com/the-lambda-church/merlin][merlin]]
+#+begin_src emacs-lisp
+  (use-package merlin
+    :commands merlin-mode
+    :config
+    ;; Disable merlin's error checker, use flycheck instead
+    (with-eval-after-load 'merlin
+      (setq merlin-error-after-save nil)
+      (flycheck-ocaml-setup))
+    (add-to-list 'company-backends 'merlin-company-backend)
+    (add-hook 'tuareg-mode-hook #'merlin-mode)
+    (add-hook 'caml-mode-hook 'merlin-mode t)
+    (setq merlin-use-auto-complete-mode 'easy)
+    (setq merlin-command 'opam))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-07-30 Thu 13:40]
+:END:
+*** [[https://github.com/diml/utop][utop]]
+#+begin_src emacs-lisp
+  (use-package utop
+    :commands (utop utop-setup-ocaml-buffer)
+    :config (add-hook 'tuareg-mode-hook #'utop-minor-mode))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-07-30 Thu 13:42]
+:END:      
+*** [[http://www.typerex.org/ocp-indent.html][ocp-indent]] ([[https://github.com/OCamlPro/ocp-indent][github]])
+#+begin_src emacs-lisp
+  (use-package ocp-indent)
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-07-30 Thu 13:41]
+:END:
+*** [[http://www.typerex.org/ocp-index.html][ocp-index]] ([[https://github.com/OCamlPro/ocp-index][github]])
+#+begin_src emacs-lisp
+  (use-package ocp-index)
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-07-30 Thu 16:55]
+:END:
+*** flycheck-ocmal
+#+begin_src emacs-lisp
+  (use-package flycheck-ocaml)
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-07-30 Thu 15:17]
+:END:
+** [[http://elpa.gnu.org/packages/ediprolog.html][Ediprolog]]
+#+BEGIN_QUOTE
+These definitions let you interact with SWI-Prolog in all buffers.
+You can consult Prolog programs and evaluate embedded queries.
+
+Installation
+============
+
+Copy ediprolog.el to your load-path and add to your .emacs:
+
+    (require 'ediprolog)
+    (global-set-key [f10] 'ediprolog-dwim)
+
+Restart Emacs and customize ediprolog with
+
+    M-x customize-group RET ediprolog RET
+
+
+Usage
+=====
+
+The central function is `ediprolog-dwim' (Do What I Mean), which is
+bound to F10 by the snippet above. Depending on the content at
+point, `ediprolog-dwim' does the "appropriate" thing: If point is
+on a query, F10 sends the query to a Prolog process, and you
+interact with the process in the current buffer as on a terminal.
+Queries start with "?-" or ":-", possibly preceded by "%" and
+whitespace. An example of a query is (without leading ";;"):
+
+  %?- member(X, [a,b,c]).
+
+If you press F10 when point is on that query, you get:
+
+  %?- member(X, [a,b,c]).
+  %@ X = a ;
+  %@ X = b ;
+  %@ X = c ;
+  %@ false.
+
+When waiting for output of the Prolog process, you can press C-g to
+unblock Emacs and continue with other work. To resume interaction
+with the Prolog process, use M-x ediprolog-toplevel RET.
+
+If you press F10 when point is NOT on a query, the buffer content
+is consulted in the Prolog process, and point is moved to the first
+error (if any).
+
+For convenience, the most recent interactions with the Prolog
+process are logged in the buffer "*ediprolog-history*".
+
+Use M-x ediprolog-localize RET to make any Prolog process started
+in the current buffer buffer-local. This way, you can run distinct
+processes simultaneously. Revert with M-x ediprolog-unlocalize RET.
+
+`ediprolog-dwim' with prefix arguments has special meanings:
+
+  C-0 F10       kill Prolog process
+  C-1 F10       always consult buffer (even when point is on a query)
+  C-2 F10       always consult buffer, using a new process
+  C-7 F10       equivalent to `ediprolog-toplevel'
+  C-u F10       first consult buffer, then evaluate query (if any)
+  C-u C-u F10   like C-u F10, with a new process
+
+Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
+#+END_QUOTE
+#+begin_src emacs-lisp
+  (use-package ediprolog
+    :commands ediprolog-dwim
+    :bind ("<f10>" . ediprolog-dwim)
+    :ensure t)
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-07-31 Fri 21:46]
+:END:
 * Org Mode
   Org-mode helps you keep TODO lists, notes and more
   :PROPERTIES:

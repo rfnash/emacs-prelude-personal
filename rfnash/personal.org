@@ -1060,6 +1060,7 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
     #+begin_src emacs-lisp
       (setq org-agenda-files
             (list org-directory
+                  (concat org-directory "/backlog")
                   "~/Dropbox/notes"
                   "~/Dropbox/Projects/learning.org"
                   (concat prelude-personal-dir "/rfnash/personal.org")))

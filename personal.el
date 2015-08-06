@@ -12,7 +12,7 @@
 ;;; Code:
 
 ;;(setq prelude-whitespace nil)
-(prelude-require-package 'org)
+;;(prelude-require-package 'org)
 (require 'org-install)
 (require 'ob-tangle)
 (org-babel-load-file (expand-file-name

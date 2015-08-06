@@ -1,20 +1,5 @@
 #+TITLE: rfnash's Emacs configuration
 #+OPTIONS: toc:4 h:4
-* About this file
-  <<babel-init>>
-  #+begin_src emacs-lisp
-    (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-    (package-refresh-contents)
-    (unless (package-installed-p 'use-package)
-      (package-install 'use-package))
-    (unless (package-installed-p 'diminish)
-      (package-install 'diminish))
-    (eval-when-compile
-      (require 'use-package))
-    (require 'diminish)                     ; if you use :diminish
-    (require 'bind-key)                     ; if you use any :bind variant
-  #+end_src
-  TODO: write something about this file.
 * Historical
   :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:22]
@@ -35,52 +20,12 @@ Custom set faces
    '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
 #+end_src
 *** From [[https://github.com/dimitri/emacs-kicker][Emacs Kicker]]
-Visual Settings
-#+begin_src emacs-lisp :tangle no
-  (setq inhibit-splash-screen t)       ; no splash screen, thanks
-  (line-number-mode t)                 ; have line numbers and
-  (column-number-mode t)               ; column numbers in the mode line
-
-  (tool-bar-mode -1)                   ; no tool bar with icons
-  (scroll-bar-mode -1)                 ; no scroll bars
-  (menu-bar-mode -1)                   ; no menu bar
-
-  (global-hl-line-mode)                ; highlight current line
-  (global-linum-mode 1)                ; add line numbers on the left
-#+end_src
 Full Screen
 #+begin_src emacs-lisp :tangle no
   (defun fullscreen ()
     (interactive)
     (set-frame-parameter nil 'fullscreen
                          (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
-#+end_src
-Use the clipboard, pretty please, so that copy/paste "works"
-#+begin_src emacs-lisp :tangle no
-  (setq x-select-enable-clipboard t)
-#+end_src
-Navigate currently visible windows with M-<arrows>
-#+begin_src emacs-lisp :tangle no
-  (windmove-default-keybindings 'meta)
-  (setq windmove-wrap-around t)
-#+end_src
-winner-mode provides C-<left> to get back to previous window layout
-#+begin_src emacs-lisp :tangle no
-  (winner-mode 1)
-#+end_src
-whenever an external process changes a file underneath emacs, and there
-was no unsaved changes in the corresponding buffer, just revert its
-content to reflect what's on-disk.
-#+begin_src emacs-lisp :tangle no
-  (global-auto-revert-mode 1)
-#+end_src
-C-x C-j opens dired with the cursor right on the file you're editing
-#+begin_src emacs-lisp :tangle no
-  (require 'dired-x)
-#+end_src
-Set default font
-#+begin_src emacs-lisp :tangle no
-  (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
 #+end_src
 *** From Emacsredux
 #+begin_src emacs-lisp :tangle no
@@ -348,127 +293,15 @@ Open certain terminal programs in their own buffer
    :PROPERTIES:
   :CREATED:  [2015-04-17 Fri 17:23]
   :END:
-** Completion
-Ido: Super charges Emacs completion for C-x C-f and more
-#+begin_src emacs-lisp
-  (use-package prelude-ido)
-#+end_src
-Helm: Interface for narrowing and search
-#+begin_src emacs-lisp
-  (use-package prelude-helm)
-  (require 'helm)
-  (require 'helm-config)
-#+end_src
-Doesn't override ido for find files, but does for C-h f, so perfect
-#+begin_src emacs-lisp
-  (helm-mode 1)
-#+end_src
-I prefer heml ovel smex
-#+begin_src emacs-lisp
-  (global-set-key (kbd "M-x") 'helm-M-x)
-#+end_src
-Use helm for eshell completion
-#+begin_src emacs-lisp :tangle no
-  (add-hook 'eshell-mode-hook
-            #'(lambda ()
-                (define-key eshell-mode-map
-                  [remap eshell-pcomplete]
-                  'helm-esh-pcomplete)))
-#+end_src
-helm-occur
-#+begin_src emacs-lisp
-  (bind-key* "C-x c o" 'helm-occur)
-#+end_src
-helm-split-window-in-side-p doesn't play well with gnus
-#+begin_src emacs-lisp :tangle no
-  (setq helm-split-window-in-side-p t)
-#+end_src
-Use ido for find-file and switch-to-buffer
-#+begin_src emacs-lisp
-  (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
-  (add-to-list 'helm-completing-read-handlers-alist '(switch-to-buffer . ido))
-#+end_src
-Increased idle delay from 0.1 to 0.5 (the value used by org-occur-goto) because of the long time it takes to search
-#+begin_src emacs-lisp
-  (setq helm-m-occur-idle-delay 0.5)
-#+end_src
-[[https://github.com/emacs-helm/helm-descbinds][helm-descbinds]]
-#+begin_src emacs-lisp
-  (use-package helm-descbinds :ensure t)
-  (helm-descbinds-mode)
-#+end_src
-Various helm packages
-#+begin_src emacs-lisp
-  (use-package helm-orgcard :ensure t)
-  (use-package helm-descbinds :ensure t)
-  (use-package helm-backup :ensure t)
-  (use-package helm-helm-commands :ensure t)
-  (use-package ag :ensure t)
-  (use-package helm-ag :ensure t)
-  (use-package helm-ag-r :ensure t)
-#+end_src
-Ido Again                                                  :NEXT:
-#+begin_src emacs-lisp
-  (require 'ido)
-  (setq ido-everywhere t)
-  (setq ido-ignore-buffers helm-boring-buffer-regexp-list)
-  (ido-mode 1)
-#+end_src
-Company
-#+begin_src emacs-lisp
-  (use-package prelude-company :diminish company-mode)
-#+end_src
 ** prelude-key-chord
 Binds useful features to key combinations
 #+begin_src emacs-lisp
   (use-package prelude-key-chord)
 #+end_src
-* TODO Diminished Modes
-  #+begin_src emacs-lisp
-    (eval-after-load 'guru-mode '(diminish 'guru-mode))
-    ;; (eval-after-load 'helm '(diminish 'helm-mode))
-    (eval-after-load 'flycheck '(diminish 'flycheck-mode))
-    (eval-after-load 'flyspell '(diminish 'flyspell-mode))
-  #+end_src
-  :PROPERTIES:
-:CREATED:  [2015-04-09 Thu 15:09]
-:END:
 * Programming
   :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:24]
   :END:
-** fill-column-indicator
-   #+begin_src emacs-lisp
-     (use-package fill-column-indicator
-       :ensure t
-       :commands fci-mode)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-18 Sat 11:20]
-   :END:
-** srefactor
-   #+begin_src emacs-lisp
-     (use-package srefactor
-       :ensure t
-       :commands srefactor-refactor-at-point
-       :config
-       (semantic-mode 1)
-       (bind-key "M-RET" #'srefactor-refactor-at-point c-mode-map)
-       (bind-key "M-RET" #'srefactor-refactor-at-point c++-mode-map))
-     (use-package srefactor-lisp
-       :bind (("M-RET o" . srefactor-lisp-one-line)
-              ("M-RET m" . srefactor-lisp-format-sexp)
-              ("M-RET d" . srefactor-lisp-format-defun)
-              ("M-RET b" . srefactor-lisp-format-buffer))
-       :commands (srefactor-lisp-one-line
-                  srefactor-lisp-format-sexp
-                  srefactor-lisp-format-defun
-                  srefactor-lisp-format-buffer))
-
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-18 Sat 11:54]
-   :END:
 ** Lisp
    :PROPERTIES:
    :CREATED:  [2015-04-18 Sat 16:47]
@@ -688,19 +521,6 @@ Binds useful features to key combinations
    :PROPERTIES:
    :CREATED:  [2014-10-09 Thu 23:42]
    :END:
-** Yasnippet
-   #+begin_src emacs-lisp
-     (use-package yasnippet
-       :ensure t
-       :diminish yas-minor-mode
-       :config
-       (yas-global-mode 1))
-     (use-package helm-c-yasnippet
-       :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-11-12 Wed 19:35]
-   :END:
 ** SmartParens
    #+begin_src emacs-lisp
      (use-package smartparens
@@ -708,7 +528,6 @@ Binds useful features to key combinations
        :diminish smartparens-mode
        :config
        (smartparens-global-mode 1))
-
    #+end_src
    :PROPERTIES:
    :CREATED:  [2014-12-04 Thu 18:36]
@@ -998,24 +817,6 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
   :PROPERTIES:
   :CREATED:  [2014-10-07 Tue 13:37]
   :END:
-** Various org settings
-   #+begin_src emacs-lisp
-     (setq org-startup-folded t
-           ;; org-blank-before-new-entry
-           ;; org-global-properties '(("Effort_ALL" . "0 0:02 0:05 0:10 0:15 0:20 0:30 0:45 1:00 2:00"))
-           org-startup-indented t        ; Appears to slow down org-mode
-           org-hide-leading-stars t      ; Looks a bit funny without indent
-           org-log-done t
-           org-log-into-drawer t
-           org-return-follows-link t
-           org-journal-dir "~/Documents/OrgMode/journal/"
-           org-directory "~/Documents/OrgMode"
-           org-default-notes-file (concat org-directory "/notes.org")
-           org-return-follows-link t
-           org-enforce-todo-dependencies t
-           org-tags-exclude-from-inheritance '("project")
-           org-columns-default-format "%40ITEM(Task) %TODO %3PRIORITY %TAGS %17Effort(Estimated Effort){:} %5CLOCKSUM")
-   #+end_src
 ** rfnash-show-all
    #+begin_src emacs-lisp
      (defun rfnash-show-all ()
@@ -1031,120 +832,7 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
    :PROPERTIES:
    :CREATED:  [2015-05-03 Sun 20:04]
    :END:
-** Org Agenda
-*** Org Agenda Misc Settings
-    #+begin_src emacs-lisp
-      (use-package org-agenda
-        :config
-        (setq org-agenda-columns-add-appointments-to-effort-sum t
-              org-agenda-dim-blocked-tasks t
-              org-agenda-skip-deadline-if-done t
-              org-agenda-skip-scheduled-if-deadline-is-shown nil
-              org-agenda-skip-scheduled-if-done t
-              org-agenda-span 'day
-              org-agenda-sticky t
-              org-agenda-window-setup 'current-window))
-    #+end_src
-*** Org Agenda Sorting
-    #+begin_src emacs-lisp
-      (setq org-sort-agenda-notime-is-late nil
-            org-agenda-sorting-strategy
-            '((agenda time-up habit-down timestamp-up priority-down category-keep)
-              ;; (agenda time-up habit-down priority-down)
-              (todo priority-down category-keep)
-              (tags priority-down category-keep)
-              (search category-keep)))
-    #+end_src
-*** Org Agenda Files
-    Can be set using C-c [ and C-c ] in org-mode.
-    #+begin_src emacs-lisp
-      (setq org-agenda-files
-            (list org-directory
-                  (concat org-directory "/backlog")
-                  "~/Dropbox/notes"
-                  "~/Dropbox/Projects/learning.org"
-                  (concat prelude-personal-dir "/rfnash/personal.org")))
-    #+end_src
-*** Org Agenda Stuck Projects
-    #+begin_src emacs-lisp
-      (setq org-stuck-projects '("+project/-DONE" ("TODO" "NEXT") nil ""))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-05-01 Fri 22:09]
-    :END:
-*** Org Agenda Custom Commands
-    #+begin_src emacs-lisp
-      (setq org-agenda-custom-commands
-            '(("n" "Agenda and all NEXT actions"
-               ((agenda "")
-                (todo "NEXT" nil))
-               ((org-agenda-regexp-filter-preset '("-SOMEDAY" "-TOODLDO"))))
-              ("d" "Upcoming deadlines"
-               agenda ""
-               ((org-agenda-time-grid nil)
-                (org-deadline-warning-days 36500)
-                (org-agenda-entry-types '(:deadline))))
-              ("v" "Videos to watch"
-               tags "CATEGORY=\"ToWatch\"" nil)
-              ;; TODO: consider only including those not under the appropriate level 1 heading
-              ("f" "Bookmarks to file"
-               ((todo "FILE")))
-              ("u" "Upcoming next tasks"
-               tags-todo "NEXT" nil)
-              ("p" "Next actions of my projects"
-               tags-todo "project" nil)
-              ("i" "Ideas"
-               ((todo "IDEA")))
-              ("r" . "Review Toodledo Tasks")
-              ("rt" "Review Toodledo Active tasks"
-               ((todo "TOODLDO"))
-               ((org-agenda-files '("~/Documents/OrgMode/Toodledo.org"))))
-              ("rs" "Review Toodledo Someday tasks"
-               ((todo "SOMEDAY"))
-               ((org-agenda-files '("~/Documents/OrgMode/Toodledo.org"))))
-              ))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-05-01 Fri 15:33]
-    :END:
-*** Org Agenda Time Grid
-    #+begin_src emacs-lisp
-      (setq org-agenda-time-grid
-            '((daily today require-timed)
-              #("----------------" 0 16
-                (org-heading t))
-              (800 1000 1200 1400 1600 1800 2000)))
-    #+end_src
-*** Org Agenda Toggle Blocked Tasks
-    #+begin_src emacs-lisp
-      (defvar-local rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
-      (defun org-agenda-toggle-blocked-tasks ()
-        "Toggle dimming/hiding blocked tasks."
-        (interactive)
-        (if rfnash-hide-blocked-tasks
-            (progn (setq-local rfnash-hide-blocked-tasks nil)
-                   (org-agenda-dim-blocked-tasks))
-          (progn (setq-local rfnash-hide-blocked-tasks t)
-                 (org-agenda-dim-blocked-tasks t))))
-
-      ;;; org-agenda-redo resets the value of rfnash-hide-blocked-tasks,
-      ;;; thus its value has to be saved before its called, and restored afterwards
-      (defun rfnash-org-agenda-redo (&optional all)
-        "Rebuild possibly ALL agenda view(s) in the current buffer, hiding blocked tasks"
-        (interactive "P")
-        (let ((old-rfnash-hide-blocked-tasks rfnash-hide-blocked-tasks))
-          (org-agenda-redo all)
-          (setq-local rfnash-hide-blocked-tasks old-rfnash-hide-blocked-tasks)
-          (if rfnash-hide-blocked-tasks
-              (org-agenda-dim-blocked-tasks t))))
-
-      (bind-key "#" #'org-agenda-toggle-blocked-tasks org-agenda-mode-map)
-      (bind-key "r" #'rfnash-org-agenda-redo org-agenda-mode-map)
-    #+end_src
-    :PROPERTIES:
-   :CREATED:  [2014-09-03 Wed 16:42]
-   :END:
-*** Org Agenda Property
+** Org Agenda Property
     #+begin_src emacs-lisp
       (use-package org-agenda-property
         :ensure t
@@ -1441,20 +1129,6 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-04-28 Tue 23:06]
-   :END:
-** org-habits
-   #+begin_src emacs-lisp
-     (use-package org-habit
-       :config
-       (setq org-habit-graph-column 65
-             org-habit-following-days 1
-             org-habit-graph-column 64
-             org-habit-preceding-days 14
-             org-habit-show-all-today nil
-             org-habit-show-done-always-green t))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-17 Tue 16:06]
    :END:
 ** org-publish
    #+begin_src emacs-lisp

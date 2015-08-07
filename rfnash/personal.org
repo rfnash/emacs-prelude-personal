@@ -1345,7 +1345,7 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
        :config
        (setq org-mobile-directory "~/Dropbox/MobileOrg"
              ;; org-mobile-use-encryption t
-             org-mobile-inbox-for-pull (concat org-directory "from-mobile.org")))
+             org-mobile-inbox-for-pull (concat org-directory "/from-mobile.org")))
    #+end_src
    :PROPERTIES:
    :CREATED:  [2015-04-28 Tue 23:19]

@@ -2782,7 +2782,31 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
              deft-text-mode 'org-mode
              deft-use-filename-as-title nil
              deft-directory "~/Dropbox/notes"
-             deft-strip-title-regexp "\\(?:^%+\\|^[#* ]+\\|:\\([^: ]*:\\)+$\\|-\\*-[[:alpha:]]+-\\*-\\|#+$\\)"))
+             deft-strip-title-regexp (rx (or
+                                       (seq bol
+                                            (+ "%"))
+                                       (seq bol "#+TITLE:"
+                                            (* " "))
+                                       (seq bol
+                                            (+
+                                             (any " " "#" "*")))
+                                       (seq ":"
+                                            (+
+                                             (submatch
+                                              (*
+                                               (not
+                                                (any " " ":")))
+                                              ":"))
+                                            eol)
+                                       (seq "-*-"
+                                            (+ alpha)
+                                            "-*-")
+                                       (seq bol "Title:"
+                                            (*
+                                             (any "\t" " ")))
+                                       (seq
+                                        (+ "#")
+                                        eol)))))
    #+end_src
    :PROPERTIES:
 :CREATED:  [2015-04-15 Wed 22:51]

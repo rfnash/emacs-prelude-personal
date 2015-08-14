@@ -5,6 +5,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(paradox-automatically-star t)
+ '(helm-ag-command-option "-f")
  '(org-drill-optimal-factor-matrix
    (quote
     ((4

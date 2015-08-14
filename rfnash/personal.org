@@ -1123,35 +1123,6 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
                 (org-heading t))
               (800 1000 1200 1400 1600 1800 2000)))
     #+end_src
-*** Org Agenda Toggle Blocked Tasks
-    #+begin_src emacs-lisp
-      (defvar-local rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
-      (defun org-agenda-toggle-blocked-tasks ()
-        "Toggle dimming/hiding blocked tasks."
-        (interactive)
-        (if rfnash-hide-blocked-tasks
-            (progn (setq-local rfnash-hide-blocked-tasks nil)
-                   (org-agenda-dim-blocked-tasks))
-          (progn (setq-local rfnash-hide-blocked-tasks t)
-                 (org-agenda-dim-blocked-tasks t))))
-
-      ;;; org-agenda-redo resets the value of rfnash-hide-blocked-tasks,
-      ;;; thus its value has to be saved before its called, and restored afterwards
-      (defun rfnash-org-agenda-redo (&optional all)
-        "Rebuild possibly ALL agenda view(s) in the current buffer, hiding blocked tasks"
-        (interactive "P")
-        (let ((old-rfnash-hide-blocked-tasks rfnash-hide-blocked-tasks))
-          (org-agenda-redo all)
-          (setq-local rfnash-hide-blocked-tasks old-rfnash-hide-blocked-tasks)
-          (if rfnash-hide-blocked-tasks
-              (org-agenda-dim-blocked-tasks t))))
-
-      (bind-key "#" #'org-agenda-toggle-blocked-tasks org-agenda-mode-map)
-      (bind-key "r" #'rfnash-org-agenda-redo org-agenda-mode-map)
-    #+end_src
-    :PROPERTIES:
-   :CREATED:  [2014-09-03 Wed 16:42]
-   :END:
 *** Org Agenda Property
     #+begin_src emacs-lisp
       (use-package org-agenda-property
@@ -1808,6 +1779,35 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
 :CREATED:  [2015-08-06 Thu 14:48]
 :END:
 
+** Org Agenda Toggle Blocked Tasks
+    #+begin_src emacs-lisp
+      (defvar-local rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
+      (defun org-agenda-toggle-blocked-tasks ()
+        "Toggle dimming/hiding blocked tasks."
+        (interactive)
+        (if rfnash-hide-blocked-tasks
+            (progn (setq-local rfnash-hide-blocked-tasks nil)
+                   (org-agenda-dim-blocked-tasks))
+          (progn (setq-local rfnash-hide-blocked-tasks t)
+                 (org-agenda-dim-blocked-tasks t))))
+
+      ;;; org-agenda-redo resets the value of rfnash-hide-blocked-tasks,
+      ;;; thus its value has to be saved before its called, and restored afterwards
+      (defun rfnash-org-agenda-redo (&optional all)
+        "Rebuild possibly ALL agenda view(s) in the current buffer, hiding blocked tasks"
+        (interactive "P")
+        (let ((old-rfnash-hide-blocked-tasks rfnash-hide-blocked-tasks))
+          (org-agenda-redo all)
+          (setq-local rfnash-hide-blocked-tasks old-rfnash-hide-blocked-tasks)
+          (if rfnash-hide-blocked-tasks
+              (org-agenda-dim-blocked-tasks t))))
+
+      (bind-key "#" #'org-agenda-toggle-blocked-tasks org-agenda-mode-map)
+      (bind-key "r" #'rfnash-org-agenda-redo org-agenda-mode-map)
+    #+end_src
+    :PROPERTIES:
+   :CREATED:  [2014-09-03 Wed 16:42]
+   :END:
 * Networking
   :PROPERTIES:
   :CREATED:  [2014-11-28 Fri 18:50]

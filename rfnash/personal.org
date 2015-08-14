@@ -645,6 +645,14 @@ Binds useful features to key combinations
     :PROPERTIES:
     :CREATED:  [2014-11-21 Fri 17:28]
     :END:
+*** shen
+#+begin_src emacs-lisp
+  (use-package shen-mode
+    :ensure t)
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-08-07 Fri 19:49]
+:END:
 *** prelude-scheme
     #+begin_src emacs-lisp
       (use-package prelude-scheme)

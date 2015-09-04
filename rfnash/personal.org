@@ -1001,6 +1001,14 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
 :PROPERTIES:
 :CREATED:  [2015-07-31 Fri 21:46]
 :END:
+** APL
+#+begin_src emacs-lisp
+  (use-package gnu-apl-mode
+    :ensure t)
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-08-25 Tue 15:49]
+:END:
 * Org Mode
   Org-mode helps you keep TODO lists, notes and more
   :PROPERTIES:

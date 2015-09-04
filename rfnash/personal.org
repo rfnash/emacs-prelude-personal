@@ -1855,7 +1855,7 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
    Set the default browser to vimb.
    #+begin_src emacs-lisp
      (setq browse-url-browser-function
-           'browse-url-generic browse-url-generic-program "firefox")
+           'browse-url-generic browse-url-generic-program "palemoon")
    #+end_src
 ** TODO set-browser
    A function to easily interactively change the default browser.

@@ -1433,10 +1433,9 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
    #+begin_src emacs-lisp
      (use-package org-habit
        :config
-       (setq org-habit-graph-column 65
-             org-habit-following-days 1
-             org-habit-graph-column 64
-             org-habit-preceding-days 14
+       (setq org-habit-following-days 1
+             org-habit-graph-column 71
+             org-habit-preceding-days 7
              org-habit-show-all-today nil
              org-habit-show-done-always-green t))
    #+end_src

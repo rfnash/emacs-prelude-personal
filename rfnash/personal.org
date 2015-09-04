@@ -1779,10 +1779,10 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
   :END:
 ** Org Mode Use older version
 #+begin_src emacs-lisp
-(add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
-(add-to-list 'load-path "~/.emacs.d/org-mode/contrib/lisp")
-(require 'org)
-(org-reload)
+  (add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
+  (add-to-list 'load-path "~/.emacs.d/org-mode/contrib/lisp")
+  (require 'org)
+  (org-reload)
 #+end_src
 :CREATED:  [2015-08-06 Thu 14:48]
 :END:

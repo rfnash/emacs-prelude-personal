@@ -2877,6 +2877,14 @@ Use [[https://joostkremers.github.io/pandoc-mode/][pandoc-mode]] because [[http:
 :PROPERTIES:
 :CREATED:  [2015-08-23 Sun 01:44]
 :END:
+** ace-popup-menu
+#+begin_src emacs-lisp
+  (use-package ace-popup-menu
+    :ensure t)
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-08-23 Sun 01:44]
+:END:
 ** Beeminder
    #+begin_src emacs-lisp
      (use-package beeminder

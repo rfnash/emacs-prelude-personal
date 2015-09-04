@@ -2076,7 +2076,7 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
    #+end_src
 ** Default Font
    #+begin_src emacs-lisp
-     (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 120)
+     (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 140)
    #+end_src
 ** Term Mode
    #+begin_src emacs-lisp
@@ -2140,6 +2140,7 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
            (disable-theme 'zenburn)
            (set-frame-parameter nil 'background-mode 'light)
            (enable-theme 'solarized)
+           (set-face-attribute 'default nil :height 140)
            (set-face-attribute 'org-scheduled-today nil :foreground "darkgreen" :weight 'normal :slant 'normal) ; orginal color
            (set-face-attribute 'org-warning nil :weight 'bold)
            (set-face-attribute 'org-todo nil :inherit 'org-todo))
@@ -2149,6 +2150,7 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
            (disable-theme 'zenburn)
            (set-frame-parameter nil 'background-mode 'dark)
            (enable-theme 'solarized)
+           (set-face-attribute 'default nil :height 170)
            (set-face-attribute 'org-scheduled-today nil :foreground "#4df946" :weight 'normal :slant 'normal)
            (set-face-attribute 'org-warning nil :weight 'bold)
            ;; TODO: Doesn't show up while highlighted (point is on same line)
@@ -2158,6 +2160,7 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
            (interactive)
            (disable-theme 'solarized)
            (enable-theme 'zenburn)
+           (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 140)
            ;; Colors from habit grid
            (set-face-attribute 'org-warning nil :foreground "firebrick" :weight 'bold)
            (set-face-attribute 'org-upcoming-deadline nil :foreground "darkgoldenrod"))
@@ -2841,7 +2844,8 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
                         ((name . "My faces")
                          (candidates . (("Liberation" . "Liberation Mono for Powerline")
                                         ("Source Code Pro" . "Source Code Pro for Powerline")
-                                        ("Fira" . "Fira Mono for Powerline")))
+                                        ("Fira" . "Fira Mono for Powerline")
+                                        ("Iosevka" . "Iosevka")))
                          (action . (
                                     ("Set Default Face" . (lambda (x) (set-face-attribute 'default nil :family x)))))))))
      (defun rfnash-default-face ()

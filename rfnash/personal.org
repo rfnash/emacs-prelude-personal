@@ -1063,7 +1063,7 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
     #+end_src
 *** Org Agenda Sorting
     #+begin_src emacs-lisp
-      (setq org-sort-agenda-notime-is-late nil
+      (setq org-sort-agenda-notime-is-late t
             org-agenda-sorting-strategy
             '((agenda time-up habit-down timestamp-up priority-down category-keep)
               ;; (agenda time-up habit-down priority-down)

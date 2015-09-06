@@ -55,7 +55,7 @@
 (defun my-fmt-width ()
   "Find the width of the current window in the current font size."
   (interactive)
-  (ceiling (/ (window-width) (expt text-scale-mode-step text-scale-mode-amount))))
+  (- (floor (/ (window-width) (expt text-scale-mode-step text-scale-mode-amount))) 1))
 ;; TODO: make interative, and allow entering a width,
 ;; still defaulting to calculated one
 (defun my-fmt ()

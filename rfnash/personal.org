@@ -1240,8 +1240,10 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
    #+end_src
 ** Load org-mode
    #+begin_src emacs-lisp
+     (use-package quelpa-use-package)
+
      (use-package org
-       :ensure org-plus-contrib
+       :quelpa (org-plus-contrib :url "git://orgmode.org/org-mode.git" :fetcher git :files ("lisp/*.el" "contrib/lisp/*.el" "doc/dir" "doc/*.texi"))
        :mode ("\\.org\\'" . org-mode)
        :bind (("C-c l" . org-store-link)
               ("C-c c" . org-capture)
@@ -1257,7 +1259,6 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
            (define-key newmap (kbd "C-c -") nil)
            (make-local-variable 'minor-mode-overriding-map-alist)
            (push `(prelude-mode . ,newmap) minor-mode-overriding-map-alist)))
-
        (add-hook 'org-mode-hook #'prelude-org-mode-hook))
    #+end_src
 ** Load org-related MELPA packages
@@ -1776,16 +1777,6 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
    :PROPERTIES:
   :CREATED:  [2014-11-21 Fri 17:28]
   :END:
-** Org Mode Use older version
-#+begin_src emacs-lisp
-  (add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
-  (add-to-list 'load-path "~/.emacs.d/org-mode/contrib/lisp")
-  (require 'org)
-  (org-reload)
-#+end_src
-:CREATED:  [2015-08-06 Thu 14:48]
-:END:
-
 ** Org Agenda Toggle Blocked Tasks
     #+begin_src emacs-lisp
       (defvar-local rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")

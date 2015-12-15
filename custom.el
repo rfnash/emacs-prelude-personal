@@ -67,6 +67,20 @@
      (output-dvi "xdvi")
      (output-pdf "xdg-open")
      (output-html "xdg-open")))))
+ '(vc-annotate-very-old-color "#DC8CC3")
+ '(znc-servers
+   (quote
+    (("localhost" 1666 t
+      ((efnet "rfnash/efnet" "sunnyboy")
+       (freenode "rfnash/freenode" "sunnyboy")
+       (mozilla "rfnash/mozilla" "sunnyboy")
+       (bitlbee "rfnash/bitlbee" "sunnyboy")
+       (freeshells "rfnash/freeshells" "sunnyboy")
+       (fewona "rfnash/fewona" "sunnyboy")))
+     ("elite.bshellz.net" 20964 t
+      ((bondage "rfnash/bondage" "ikD0O7Dphya2")
+       (cuff-link "rfnash/cuff-link" "ikD0O7Dphya2")
+       (xxxchatters "rfnash/xxxchatters" "ikD0O7Dphya2")))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -2977,6 +2977,17 @@ Use [[https://joostkremers.github.io/pandoc-mode/][pandoc-mode]] because [[http:
 :PROPERTIES:
 :CREATED:  [2015-04-18 Sat 10:35]
 :END:
+** mingus
+#+begin_src emacs-lisp
+  (use-package mingus
+    :ensure t
+    :commands mingus
+    :bind ("C-x c m" . mingus))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-12-10 Thu 14:32]
+:END:
+
 ** Emacs Server
 Start the Emacs server if it isn't already running
 #+begin_src emacs-lisp

@@ -1,8 +1,8 @@
 #+TITLE: rfnash's Emacs configuration
 #+OPTIONS: toc:4 h:4
 * About this file
-  <<babel-init>>
-  #+begin_src emacs-lisp
+<<babel-init>>
+#+begin_src emacs-lisp
     (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
     (package-refresh-contents)
     (unless (package-installed-p 'use-package)
@@ -13,12 +13,12 @@
       (require 'use-package))
     (require 'diminish)                     ; if you use :diminish
     (require 'bind-key)                     ; if you use any :bind variant
-  #+end_src
-  TODO: write something about this file.
+#+end_src
+TODO: write something about this file.
 * Historical
-  :PROPERTIES:
-  :CREATED:  [2014-10-07 Tue 13:22]
-  :END:
+:PROPERTIES:
+:CREATED:  [2014-10-07 Tue 13:22]
+:END:
 ** Old init.el for Historical Reference
 *** Custom Set
 Custom set variables
@@ -180,8 +180,8 @@ Open certain terminal programs in their own buffer
     (ansi-term "alsamixer" "mixer"))
 #+end_src
 ** package.el
-   old ELPA package config for historical interest
-   #+begin_src emacs-lisp :tangle no
+old ELPA package config for historical interest
+#+begin_src emacs-lisp :tangle no
      (require 'package)
      (add-to-list 'package-archives
                   '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -265,13 +265,13 @@ Open certain terminal programs in their own buffer
      (custom-set-faces
       '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
       '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-07-01 Tue 14:21]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-07-01 Tue 14:21]
+:END:
 ** ido.el
-   old ido config for historical reference
-   #+begin_src emacs-lisp :tangle no
+old ido config for historical reference
+#+begin_src emacs-lisp :tangle no
      use ido for minibuffer completion
      (require 'ido)
      (ido-mode t)
@@ -319,22 +319,22 @@ Open certain terminal programs in their own buffer
      (ido-mode (quote both))
 
      (load-file "/usr/share/emacs/24.3/lisp/ido.el.gz")
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-07-01 Tue 14:30]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-07-01 Tue 14:30]
+:END:
 * [[http://batsov.com/prelude/][Prelude]]
-  :PROPERTIES:
-  :CREATED:  [2015-04-17 Fri 16:57]
-  :END:
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 16:57]
+:END:
 ** Whitespace
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq prelude-clean-whitespace-on-save nil)
      (set-face-attribute 'whitespace-line nil :foreground nil :background "#ffe0e0")
      (setq global-whitespace-mode t)
      (eval-after-load 'whitespace '(diminish 'whitespace-mode))
-   #+end_src
-   #+begin_src emacs-lisp :tangle no
+#+end_src
+#+begin_src emacs-lisp :tangle no
      ;; (setq whitespace-style '(face tabs empty trailing lines-tail)) ; Default Prelude value
      ;; (setq whitespace-style '(face tabs spaces trailing lines space-before-tab newline indentation empty space-after-tab space-mark tab-mark newline-mark)) ; Original value
      (setq whitespace-style '(face tabs spaces trailing lines-tail space-before-tab newline indentation empty space-after-tab space-mark tab-mark newline-mark))
@@ -344,10 +344,10 @@ Open certain terminal programs in their own buffer
      (set-face-attribute 'whitespace-space nil :foreground "lightgray")
      (set-face-attribute 'whitespace-tab nil :foreground "lightgray")
      (set-face-attribute 'whitespace-trailing nil :inverse-video t)
-   #+end_src
-   :PROPERTIES:
-  :CREATED:  [2015-04-17 Fri 17:23]
-  :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 17:23]
+:END:
 ** Completion
 Ido: Super charges Emacs completion for C-x C-f and more
 #+begin_src emacs-lisp
@@ -424,30 +424,30 @@ Binds useful features to key combinations
   (use-package prelude-key-chord)
 #+end_src
 * TODO Diminished Modes
-  #+begin_src emacs-lisp
+#+begin_src emacs-lisp
     (eval-after-load 'guru-mode '(diminish 'guru-mode))
     ;; (eval-after-load 'helm '(diminish 'helm-mode))
     (eval-after-load 'flycheck '(diminish 'flycheck-mode))
     (eval-after-load 'flyspell '(diminish 'flyspell-mode))
-  #+end_src
-  :PROPERTIES:
+#+end_src
+:PROPERTIES:
 :CREATED:  [2015-04-09 Thu 15:09]
 :END:
 * Programming
-  :PROPERTIES:
-  :CREATED:  [2014-10-07 Tue 13:24]
-  :END:
+:PROPERTIES:
+:CREATED:  [2014-10-07 Tue 13:24]
+:END:
 ** fill-column-indicator
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package fill-column-indicator
        :ensure t
        :commands fci-mode)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-18 Sat 11:20]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-18 Sat 11:20]
+:END:
 ** srefactor
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package srefactor
        :ensure t
        :commands srefactor-refactor-at-point
@@ -465,14 +465,14 @@ Binds useful features to key combinations
                   srefactor-lisp-format-defun
                   srefactor-lisp-format-buffer))
 
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-18 Sat 11:54]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-18 Sat 11:54]
+:END:
 ** Lisp
-   :PROPERTIES:
-   :CREATED:  [2015-04-18 Sat 16:47]
-   :END:
+:PROPERTIES:
+:CREATED:  [2015-04-18 Sat 16:47]
+:END:
 *** Paredit-Paxedit Keybindings
 | keybinding    | Paxedit                    | Paredit                              |
 |---------------+----------------------------+--------------------------------------|
@@ -542,16 +542,16 @@ Binds useful features to key combinations
 :CREATED:  [2015-07-30 Thu 22:57]
 :END:
 *** Paredit
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
     (use-package paredit
       :ensure t
       :diminish paredit-mode)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-04-17 Fri 17:11]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 17:11]
+:END:
 *** paxedit-mode
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package paxedit
         :commands paxedit-mode
         :diminish paxedit-mode
@@ -575,36 +575,36 @@ Binds useful features to key combinations
         (bind-key "M-u" #'paxedit-symbol-change-case paxedit-mode-map)
         (bind-key "C-@" #'paxedit-symbol-copy paxedit-mode-map)
         (bind-key "C-#" #'paxedit-symbol-kill paxedit-mode-map))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-01-23 Fri 14:55]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-01-23 Fri 14:55]
+:END:
 
 *** Quicklisp
-    Added manually as per quicklisp instructed after running ~(ql:quickload "quicklisp-slime-helper")~ in sbcl
-    #+begin_src emacs-lisp
+Added manually as per quicklisp instructed after running ~(ql:quickload "quicklisp-slime-helper")~ in sbcl
+#+begin_src emacs-lisp
       (load (expand-file-name "~/quicklisp/slime-helper.el"))
       (setq inferior-lisp-program "sbcl")
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-07-01 Tue 14:35]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-07-01 Tue 14:35]
+:END:
 *** prelude-lisp
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
  (use-package prelude-lisp)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-04-17 Fri 17:10]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 17:10]
+:END:
 *** prelude-emacs-lisp
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package prelude-emacs-lisp)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-04-17 Fri 17:16]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 17:16]
+:END:
 *** [[https://github.com/Bruce-Connor/speed-of-thought-lisp][speed-of-thought-lisp]]
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package sotlisp
         :ensure t
         :diminish sotlisp-mode
@@ -612,12 +612,12 @@ Binds useful features to key combinations
         (speed-of-thought-mode)
         (eval-after-load "abbrev" '(diminish 'abbrev-mode))
         (add-hook 'emacs-lisp-mode-hook 'abbrev-mode))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-03-05 Thu 16:06]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-03-05 Thu 16:06]
+:END:
 *** Picolisp
-    #+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle no
       (use-package picolisp
         :load-path "~/.local/opt/picolisp/lib/el"
         :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +")
@@ -634,17 +634,17 @@ Binds useful features to key combinations
         :load-path "~/.local/opt/picolisp/lib/el"
         :commands run-picolisp
         :init (setq picolisp-program-name "~/.local/opt/picolisp/pil +"))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-10-28 Tue 17:16]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-10-28 Tue 17:16]
+:END:
 *** lfe
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package lfe-mode :ensure t)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2014-11-21 Fri 17:28]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-11-21 Fri 17:28]
+:END:
 *** shen
 #+begin_src emacs-lisp
   (use-package shen-mode
@@ -654,50 +654,50 @@ Binds useful features to key combinations
 :CREATED:  [2015-08-07 Fri 19:49]
 :END:
 *** prelude-scheme
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package prelude-scheme)
-    #+end_src
-    :PROPERTIES:
-   :CREATED:  [2015-04-17 Fri 17:16]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 17:16]
+:END:
 *** Geiser
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package geiser
         :ensure t
         :config
         (setq geiser-racket-binary "/usr/local/racket/bin/racket"
               geiser-racket-gracket-binary "/usr/local/racket/bin/gracket-text"))
 
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-02-13 Fri 23:48]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-13 Fri 23:48]
+:END:
 
 *** clojure
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package prelude-clojure)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-04-17 Fri 17:21]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 17:21]
+:END:
 ** K / Kona
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package k-mode
        :load-path "~/.local/opt/kona/src")
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-08-18 Mon 14:05]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-08-18 Mon 14:05]
+:END:
 ** Rust
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
     (use-package rust-mode :ensure t)
     (use-package flycheck-rust :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-10-09 Thu 23:42]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-10-09 Thu 23:42]
+:END:
 ** Yasnippet
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package yasnippet
        :ensure t
        :diminish yas-minor-mode
@@ -705,65 +705,65 @@ Binds useful features to key combinations
        (yas-global-mode 1))
      (use-package helm-c-yasnippet
        :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-11-12 Wed 19:35]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-11-12 Wed 19:35]
+:END:
 ** SmartParens
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package smartparens
        :ensure t
        :diminish smartparens-mode
        :config
        (smartparens-global-mode 1))
 
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-12-04 Thu 18:36]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-12-04 Thu 18:36]
+:END:
 ** Electric Indent Mode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (electric-indent-mode +1)
-   #+end_src
+#+end_src
 ** EDBI
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package edbi :ensure t)
      (use-package edbi-sqlite :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-10-20 Mon 23:33]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-10-20 Mon 23:33]
+:END:
 ** Debug on error
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq debug-on-error t)
-   #+end_src
+#+end_src
 ** [[https://github.com/swannodette/ob-sml][ob-sml]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package ob-sml :ensure t)
-   #+end_src
+#+end_src
 ** [[https://github.com/ikirill/hl-indent][hl-indent]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package hl-indent :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-12-29 Mon 19:02]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-12-29 Mon 19:02]
+:END:
 ** TODO Agda
-   TODO: Should only run load-file if adga-mode command exists.
-   #+begin_src emacs-lisp :tangle no
+TODO: Should only run load-file if adga-mode command exists.
+#+begin_src emacs-lisp :tangle no
      (load-file (let ((coding-system-for-read 'utf-8))
                   (shell-command-to-string "agda-mode locate")))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-12-04 Thu 17:49]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-12-04 Thu 17:49]
+:END:
 ** Haskell
 *** prelude-haskell
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package prelude-haskell)
-    #+end_src
+#+end_src
 *** haskell-cleanup-buffer-or-region
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (defun haskell-cleanup-buffer-or-region (begin end)
         "Cleanup a region if selected, otherwise the whole buffer."
         (interactive "r")
@@ -773,12 +773,12 @@ Binds useful features to key combinations
         (whitespace-cleanup))
 
       ;; (bind-key "C-c N" #'haskell-cleanup-buffer-or-region haskell-mode-map)
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-05-15 Fri 19:50]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-05-15 Fri 19:50]
+:END:
 *** structured-haskell-mode
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package shm
         :ensure t
         :commands structured-haskell-mode
@@ -790,17 +790,17 @@ Binds useful features to key combinations
         (add-hook 'haskell-mode-hook #'turn-on-structured-haskell-mode)
         :config
         (set-face-attribute 'shm-current-face nil :weight 'semibold :background nil))
-    #+end_src
-    :PROPERTIES:
+#+end_src
+:PROPERTIES:
 :CREATED:  [2015-04-10 Fri 19:49]
 :END:
 ** Shell
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package prelude-shell)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-17 Fri 17:21]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 17:21]
+:END:
 ** Ocaml
 :PROPERTIES:
 :CREATED:  [2015-07-30 Thu 15:17]
@@ -905,7 +905,7 @@ Set Emacs to use opam:
 #+end_src
 :PROPERTIES:
 :CREATED:  [2015-07-30 Thu 13:42]
-:END:      
+:END:
 *** [[http://www.typerex.org/ocp-indent.html][ocp-indent]] ([[https://github.com/OCamlPro/ocp-indent][github]])
 #+begin_src emacs-lisp
   (use-package ocp-indent)
@@ -937,12 +937,12 @@ Installation
 
 Copy ediprolog.el to your load-path and add to your .emacs:
 
-    (require 'ediprolog)
-    (global-set-key [f10] 'ediprolog-dwim)
+(require 'ediprolog)
+(global-set-key [f10] 'ediprolog-dwim)
 
 Restart Emacs and customize ediprolog with
 
-    M-x customize-group RET ediprolog RET
+M-x customize-group RET ediprolog RET
 
 
 Usage
@@ -956,15 +956,15 @@ interact with the process in the current buffer as on a terminal.
 Queries start with "?-" or ":-", possibly preceded by "%" and
 whitespace. An example of a query is (without leading ";;"):
 
-  %?- member(X, [a,b,c]).
+%?- member(X, [a,b,c]).
 
 If you press F10 when point is on that query, you get:
 
-  %?- member(X, [a,b,c]).
-  %@ X = a ;
-  %@ X = b ;
-  %@ X = c ;
-  %@ false.
+%?- member(X, [a,b,c]).
+%@ X = a ;
+%@ X = b ;
+%@ X = c ;
+%@ false.
 
 When waiting for output of the Prolog process, you can press C-g to
 unblock Emacs and continue with other work. To resume interaction
@@ -983,12 +983,12 @@ processes simultaneously. Revert with M-x ediprolog-unlocalize RET.
 
 `ediprolog-dwim' with prefix arguments has special meanings:
 
-  C-0 F10       kill Prolog process
-  C-1 F10       always consult buffer (even when point is on a query)
-  C-2 F10       always consult buffer, using a new process
-  C-7 F10       equivalent to `ediprolog-toplevel'
-  C-u F10       first consult buffer, then evaluate query (if any)
-  C-u C-u F10   like C-u F10, with a new process
+C-0 F10       kill Prolog process
+C-1 F10       always consult buffer (even when point is on a query)
+C-2 F10       always consult buffer, using a new process
+C-7 F10       equivalent to `ediprolog-toplevel'
+C-u F10       first consult buffer, then evaluate query (if any)
+C-u C-u F10   like C-u F10, with a new process
 
 Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
 #+END_QUOTE
@@ -1010,12 +1010,12 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
 :CREATED:  [2015-08-25 Tue 15:49]
 :END:
 * Org Mode
-  Org-mode helps you keep TODO lists, notes and more
-  :PROPERTIES:
-  :CREATED:  [2014-10-07 Tue 13:37]
-  :END:
+Org-mode helps you keep TODO lists, notes and more
+:PROPERTIES:
+:CREATED:  [2014-10-07 Tue 13:37]
+:END:
 ** Various org settings
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq org-startup-folded t
            ;; org-blank-before-new-entry
            ;; org-global-properties '(("Effort_ALL" . "0 0:02 0:05 0:10 0:15 0:20 0:30 0:45 1:00 2:00"))
@@ -1031,9 +1031,9 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
            org-enforce-todo-dependencies t
            org-tags-exclude-from-inheritance '("project")
            org-columns-default-format "%40ITEM(Task) %TODO %3PRIORITY %TAGS %17Effort(Estimated Effort){:} %5CLOCKSUM")
-   #+end_src
+#+end_src
 ** rfnash-show-all
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (defun rfnash-show-all ()
        "Unfold all headings and show everything except drawers and archived subtrees"
        (interactive)
@@ -1043,13 +1043,13 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
        (org-cycle-hide-archived-subtrees 'all)
        (org-cycle-hide-drawers 'all)
        (org-cycle-show-empty-lines t))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-05-03 Sun 20:04]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-05-03 Sun 20:04]
+:END:
 ** Org Agenda
 *** Org Agenda Misc Settings
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package org-agenda
         :config
         (setq org-agenda-columns-add-appointments-to-effort-sum t
@@ -1060,9 +1060,9 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
               org-agenda-span 'day
               org-agenda-sticky t
               org-agenda-window-setup 'current-window))
-    #+end_src
+#+end_src
 *** Org Agenda Sorting
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (setq org-sort-agenda-notime-is-late t
             org-agenda-sorting-strategy
             '((agenda time-up habit-down timestamp-up priority-down category-keep)
@@ -1070,26 +1070,26 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
               (todo priority-down category-keep)
               (tags priority-down category-keep)
               (search category-keep)))
-    #+end_src
+#+end_src
 *** Org Agenda Files
-    Can be set using C-c [ and C-c ] in org-mode.
-    #+begin_src emacs-lisp
+Can be set using C-c [ and C-c ] in org-mode.
+#+begin_src emacs-lisp
       (setq org-agenda-files
             (list org-directory
                   (concat org-directory "/backlog")
                   "~/Dropbox/notes"
                   "~/Dropbox/Projects/learning.org"
                   (concat prelude-personal-dir "/rfnash/personal.org")))
-    #+end_src
+#+end_src
 *** Org Agenda Stuck Projects
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (setq org-stuck-projects '("+project/-DONE" ("TODO" "NEXT") nil ""))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-05-01 Fri 22:09]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-05-01 Fri 22:09]
+:END:
 *** Org Agenda Custom Commands
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (setq org-agenda-custom-commands
             '(("n" "Agenda and all NEXT actions"
                ((agenda "")
@@ -1119,32 +1119,32 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
                ((todo "SOMEDAY"))
                ((org-agenda-files '("~/Documents/OrgMode/Toodledo.org"))))
               ))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-05-01 Fri 15:33]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-05-01 Fri 15:33]
+:END:
 *** Org Agenda Time Grid
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (setq org-agenda-time-grid
             '((daily today require-timed)
               #("----------------" 0 16
                 (org-heading t))
               (800 1000 1200 1400 1600 1800 2000)))
-    #+end_src
+#+end_src
 *** Org Agenda Property
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package org-agenda-property
         :ensure t
         :config
         ;; (setq org-agenda-property-list '("Effort"))
         (setq org-agenda-property-list nil)
         )
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-05-19 Tue 15:40]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-05-19 Tue 15:40]
+:END:
 ** Org Capture
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-capture
        :config
        (setq org-capture-templates
@@ -1226,9 +1226,9 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
                ;;  (file+datetree+prompt "~/Documents/OrgMode/journal.org")
                ;;  "%K - %a\n%i\n%?\n")
                )))
-   #+end_src
-   An example
-   #+begin_src emacs-lisp :tangle no
+#+end_src
+An example
+#+begin_src emacs-lisp :tangle no
      (setq org-capture-templates
            (("c" "Jac" entry (file+datetree "~/cjr/jac/jac.org")
              "* %^{Title}  :blog:
@@ -1237,9 +1237,9 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
       :END:
       %?
       %x")))
-   #+end_src
+#+end_src
 ** Load org-mode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package quelpa-use-package)
 
      (use-package org
@@ -1260,9 +1260,9 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
            (make-local-variable 'minor-mode-overriding-map-alist)
            (push `(prelude-mode . ,newmap) minor-mode-overriding-map-alist)))
        (add-hook 'org-mode-hook #'prelude-org-mode-hook))
-   #+end_src
+#+end_src
 ** Load org-related MELPA packages
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-mobile-sync :ensure t)
      (use-package org-pomodoro
        :ensure t
@@ -1275,10 +1275,10 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
              org-pomodoro-start-sound-args "-volume 10"
              org-pomodoro-ticking-sound-args "-volume 10"))
      (use-package org-trello :ensure t)
-   #+end_src
+#+end_src
 ** [[http://orgmode.org/worg/org-contrib/][org-contrib]]
-   Require all of the org-mode modules that I use.
-   #+begin_src emacs-lisp
+Require all of the org-mode modules that I use.
+#+begin_src emacs-lisp
      (require 'org-annotate-file)
      (require 'org-bbdb)
      (require 'org-bibtex)                   ; export bibtex fragments(require '
@@ -1311,35 +1311,35 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
      (require 'org-track)                    ; http://orgmode.org/worg/org-contrib/org-track.html
      (require 'org-w3m)
      (require 'remember)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-09-03 Wed 16:42]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-09-03 Wed 16:42]
+:END:
 ** Flycheck
-   Flycheck interferes with the keybinding for org-time-stamp-inactive in org-mode.
-   #+begin_src emacs-lisp
+Flycheck interferes with the keybinding for org-time-stamp-inactive in org-mode.
+#+begin_src emacs-lisp
      (setq flycheck-global-modes '(not org-mode))
-   #+end_src
+#+end_src
 ** org-drill
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-drill
        :config
        ;; (setq org-drill-optimal-factor-matrix nil)
        (setq org-drill-scope 'agenda))
-   #+end_src
+#+end_src
 ** org-mobile
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-mobile
        :config
        (setq org-mobile-directory "~/Dropbox/MobileOrg"
              ;; org-mobile-use-encryption t
              org-mobile-inbox-for-pull (concat org-directory "/from-mobile.org")))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-28 Tue 23:19]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-28 Tue 23:19]
+:END:
 ** org-toodledo
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      ;; org-toodledo is installed via git
      (use-package org-toodledo
        :load-path (lambda () (expand-file-name "org-toodledo" prelude-vendor-dir))
@@ -1365,9 +1365,9 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
                ("Postponed" . "SOMEDAY")
                ("Canceled" . "CANCELED")
                ("Reference" . "REFERENCE"))))
-   #+end_src
+#+end_src
 ** org-page
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-page
        :ensure t
        :config
@@ -1379,9 +1379,9 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
              op/site-domain "http://robertnash.net/"
              op/site-main-title "Robert Nash's Blog"
              op/site-sub-title "A sedomly updated blog"))
-   #+end_src
+#+end_src
 ** org-todo-keywords
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq org-todo-keywords
            '((sequence "NEXT(n)" "TODO(t)" "TOODLDO(o)" "DELEGATED(g@)" "SOMEDAY(s)" "WAITING(w@)"
                        "|" "DONE(d!)" "CANCELLED(C@)" "REFERENCE(r)")
@@ -1389,12 +1389,12 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
              (sequence "HABIT(h)" "|" "DONE(d!)")
              (sequence "FILE(f)" "|")
              (sequence "IDEA(i)" "|")))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-28 Tue 23:09]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-28 Tue 23:09]
+:END:
 ** org-tag-alist
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq org-tag-alist
            '(("@work"      . ?w)
              ("@home"      . ?h)
@@ -1407,31 +1407,31 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
              ("SCRATCH"    . ?e)
              ("NEXT"       . ?n)
              ("anki"       . ?a)))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-28 Tue 23:11]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-28 Tue 23:11]
+:END:
 ** org-extend-today-until
-   I had this set at 5, but setting Emac's timezone off by a few hours works better in practice,
-   because using this method, the completion day of habits is still recorded as when I actually did them,
-   not yesterday at 23:59
-   #+begin_src emacs-lisp
+I had this set at 5, but setting Emac's timezone off by a few hours works better in practice,
+because using this method, the completion day of habits is still recorded as when I actually did them,
+not yesterday at 23:59
+#+begin_src emacs-lisp
      (setq org-extend-today-until 0)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-28 Tue 23:16]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-28 Tue 23:16]
+:END:
 ** org-id
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-id
        :config
        (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-28 Tue 23:06]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-28 Tue 23:06]
+:END:
 ** org-habits
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-habit
        :config
        (setq org-habit-following-days 1
@@ -1439,12 +1439,12 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
              org-habit-preceding-days 7
              org-habit-show-all-today nil
              org-habit-show-done-always-green t))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-17 Tue 16:06]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-17 Tue 16:06]
+:END:
 ** org-publish
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq org-publish-project-alist
            '(("org-contents"
               :base-directory "~/org/"
@@ -1459,38 +1459,38 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
               :html-postamble nil
               :auto-sitemap t)
              ("org" :components ("org-contents"))))
-   #+end_src
+#+end_src
 ** org refiling
-   See http://kangtu.me/~kangtu/pavilion.html and http://doc.norang.ca/org-mode.html#RefileSetup.
-   Targets include this file and any file contributing to the agenda - up to 9 levels deep.
-   #+begin_src emacs-lisp
+See http://kangtu.me/~kangtu/pavilion.html and http://doc.norang.ca/org-mode.html#RefileSetup.
+Targets include this file and any file contributing to the agenda - up to 9 levels deep.
+#+begin_src emacs-lisp
      (setq org-refile-targets '((nil :maxlevel . 2)
                                 (org-agenda-files :maxlevel . 2))
            org-refile-use-outline-path t                    ; Use full outline paths for refile targets (for use with IDO/Helm)
            org-outline-path-complete-in-steps nil           ; Targets complete directly with IDO / Helm
            org-refile-allow-creating-parent-nodes 'confirm  ; Allow refile to create parent tasks with confirmation
            org-refile-use-cache t)
-   #+end_src
+#+end_src
 ** org-expiry
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-expiry
        :config
        (setq org-expiry-inactive-timestamps t)
        (org-expiry-insinuate))
-   #+end_src
+#+end_src
 ** org-contacts
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-contacts
        :config
        (setq org-contacts-birthday-format "Birthday: %h (%Y)"))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-28 Tue 23:08]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-28 Tue 23:08]
+:END:
 ** Reminders
-   From http://doc.norang.ca/org-mode.html#Reminders
-   Set up reminders for all upcoming appointments
-   #+begin_src emacs-lisp :tangle no
+From http://doc.norang.ca/org-mode.html#Reminders
+Set up reminders for all upcoming appointments
+#+begin_src emacs-lisp :tangle no
      (defun bh/org-agenda-to-appt ()
        "Erase all reminders and rebuilt reminders for today from the agenda."
        (interactive)
@@ -1508,10 +1508,10 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
 
      ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
      (run-at-time "24:01" nil 'bh/org-agenda-to-appt)
-   #+end_src
+#+end_src
 ** org-protocol
-   From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with Org Mode (with refile)]]. I modified it so that org-capture-mode only closes other windows if its called via org-protocol.
-   #+begin_src emacs-lisp
+From [[http://donarmstrong.com/posts/org_mode_mutt_capture:2F][Using Mutt with Org Mode (with refile)]]. I modified it so that org-capture-mode only closes other windows if its called via org-protocol.
+#+begin_src emacs-lisp
      (use-package org-protocol
        :config
        (setq my-org-protocol-flag nil)
@@ -1543,9 +1543,9 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
 
        (defadvice org-protocol-capture (before set-org-protocol-flag activate)
          (setq my-org-protocol-flag t)))
-   #+end_src
+#+end_src
 ** [[http://www.emacswiki.org/emacs/download/org-occur-goto.el][org-occur-goto]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      ;;; org-occur-goto.el -- search open org buffers with an occur interface
 
      ;; This file is free software; you can redistribute it and/or modify
@@ -1682,12 +1682,12 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
            (save-excursion
              (outline-previous-visible-heading 1)
              (org-show-subtree)))))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-07-01 Tue 14:27]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-07-01 Tue 14:27]
+:END:
 ** TODO org-registry
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (require 'org-registry)
      (org-registry-initialize)
      ;; (org-registry-insinuate)                ; Calls org-registry-update on save, but slows down org a lot
@@ -1739,88 +1739,88 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
      (defun rfnash-org-registry-show-clipboard (visit)
        (interactive "P")
        (rfnash-org-registry-show visit (x-get-clipboard)))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-26 Thu 16:00]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-26 Thu 16:00]
+:END:
 ** [[http://orgmode.org/worg/org-contrib/org-velocity.html][org-velocity]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-velocity
        :load-path "~/.emacs.d/prelude/vendor/org-velocity/org-velocity.el"
        :commands org-velocity-read
        :bind "C-x c v"
        :config (setq org-velocity-bucket "~/Documents/OrgMode/reference.org"))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-16 Thu 13:01]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-16 Thu 13:01]
+:END:
 ** TODO OrgBox
-   Just trying it out.
-   #+begin_src emacs-lisp :tangle no
+Just trying it out.
+#+begin_src emacs-lisp :tangle no
      (use-package orgbox :ensure t)
      (require 'orgbox)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-10-22 Wed 22:31]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-10-22 Wed 22:31]
+:END:
 ** [[https://github.com/jplindstrom/emacs-org-transform-tree-table][org-transform-tree-table]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-transform-tree-table :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-12-29 Mon 19:00]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-12-29 Mon 19:00]
+:END:
 ** org-cliplink
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package org-cliplink :ensure t)
-   #+end_src
-   :PROPERTIES:
-  :CREATED:  [2014-11-21 Fri 17:28]
-  :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-11-21 Fri 17:28]
+:END:
 ** Org Agenda Toggle Blocked Tasks
-    #+begin_src emacs-lisp
-      (defvar-local rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
-      (defun org-agenda-toggle-blocked-tasks ()
-        "Toggle dimming/hiding blocked tasks."
-        (interactive)
-        (if rfnash-hide-blocked-tasks
-            (progn (setq-local rfnash-hide-blocked-tasks nil)
-                   (org-agenda-dim-blocked-tasks))
-          (progn (setq-local rfnash-hide-blocked-tasks t)
-                 (org-agenda-dim-blocked-tasks t))))
+#+begin_src emacs-lisp
+  (defvar-local rfnash-hide-blocked-tasks nil "If non-nil, hide blocked tasks, else dim them.")
+  (defun org-agenda-toggle-blocked-tasks ()
+    "Toggle dimming/hiding blocked tasks."
+    (interactive)
+    (if rfnash-hide-blocked-tasks
+        (progn (setq-local rfnash-hide-blocked-tasks nil)
+               (org-agenda-dim-blocked-tasks))
+      (progn (setq-local rfnash-hide-blocked-tasks t)
+             (org-agenda-dim-blocked-tasks t))))
 
-      ;;; org-agenda-redo resets the value of rfnash-hide-blocked-tasks,
-      ;;; thus its value has to be saved before its called, and restored afterwards
-      (defun rfnash-org-agenda-redo (&optional all)
-        "Rebuild possibly ALL agenda view(s) in the current buffer, hiding blocked tasks"
-        (interactive "P")
-        (let ((old-rfnash-hide-blocked-tasks rfnash-hide-blocked-tasks))
-          (org-agenda-redo all)
-          (setq-local rfnash-hide-blocked-tasks old-rfnash-hide-blocked-tasks)
-          (if rfnash-hide-blocked-tasks
-              (org-agenda-dim-blocked-tasks t))))
+  ;;; org-agenda-redo resets the value of rfnash-hide-blocked-tasks,
+  ;;; thus its value has to be saved before its called, and restored afterwards
+  (defun rfnash-org-agenda-redo (&optional all)
+    "Rebuild possibly ALL agenda view(s) in the current buffer, hiding blocked tasks"
+    (interactive "P")
+    (let ((old-rfnash-hide-blocked-tasks rfnash-hide-blocked-tasks))
+      (org-agenda-redo all)
+      (setq-local rfnash-hide-blocked-tasks old-rfnash-hide-blocked-tasks)
+      (if rfnash-hide-blocked-tasks
+          (org-agenda-dim-blocked-tasks t))))
 
-      (bind-key "#" #'org-agenda-toggle-blocked-tasks org-agenda-mode-map)
-      (bind-key "r" #'rfnash-org-agenda-redo org-agenda-mode-map)
-    #+end_src
-    :PROPERTIES:
-   :CREATED:  [2014-09-03 Wed 16:42]
-   :END:
+  (bind-key "#" #'org-agenda-toggle-blocked-tasks org-agenda-mode-map)
+  (bind-key "r" #'rfnash-org-agenda-redo org-agenda-mode-map)
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-09-03 Wed 16:42]
+:END:
 * Networking
-  :PROPERTIES:
-  :CREATED:  [2014-11-28 Fri 18:50]
-  :END:
+:PROPERTIES:
+:CREATED:  [2014-11-28 Fri 18:50]
+:END:
 ** Twitter
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq twittering-use-master-password t)
      (use-package twittering-mode :ensure t)
      ;; (twit)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-11-18 Tue 15:12]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-11-18 Tue 15:12]
+:END:
 ** BBDB
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package bbdb :ensure t)
      (setq bbdb-file "~/.emacs.d/prelude/savefile/bbdb")
      (require 'bbdb)
@@ -1829,59 +1829,59 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
      (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
      (add-hook 'kill-emacs-hook 'bbdb-save)
      ;;(use-package bbdb-vcard :ensure t)
-   #+end_src
+#+end_src
 ** helm-mu
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (add-to-list 'load-path (expand-file-name "helm-mu" prelude-vendor-dir))
      ;;(require 'helm-mu)
-   #+end_src
+#+end_src
 ** EWW
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package eww-lnum :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-10-29 Wed 18:37]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-10-29 Wed 18:37]
+:END:
 ** Default browser
-   Set the default browser to vimb.
-   #+begin_src emacs-lisp
+Set the default browser to vimb.
+#+begin_src emacs-lisp
      (setq browse-url-browser-function
            'browse-url-generic browse-url-generic-program "palemoon")
-   #+end_src
+#+end_src
 ** TODO set-browser
-   A function to easily interactively change the default browser.
-   TODO: include a list of browsers to choose from.
-   #+begin_src emacs-lisp
+A function to easily interactively change the default browser.
+TODO: include a list of browsers to choose from.
+#+begin_src emacs-lisp
      (defun set-browser (browser)
        "Prompt for BROWSER to set as default."
        (interactive "sBrowser: ")
        (setq browse-url-browser-function
              'browse-url-generic browse-url-generic-program browser))
-   #+end_src
+#+end_src
 ** TODO [#B] ERC                                                       :NEXT:
-   :PROPERTIES:
-   :CREATED:  [2015-05-01 Fri 22:33]
-   :END:
-   Emacs IRC client.
-   TODO: ido-erc-buffer does not list buffers where the most recent action occured first.
-   #+begin_src emacs-lisp
-     (use-package prelude-erc
-       :config
-       (setq erc-auto-query 'bury
-             erc-join-buffer 'window
-             erc-query-display 'window)
-       (add-hook 'erc-after-connect
-                 (lambda (server nick)
-                   (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
-       (defun ido-erc-buffer ()
-         (interactive)
-         (switch-to-buffer
-          (ido-completing-read "Channel: " (mapcar #'buffer-name (erc-buffer-list)))))
+:PROPERTIES:
+:CREATED:  [2015-05-01 Fri 22:33]
+:END:
+Emacs IRC client.
+TODO: ido-erc-buffer does not list buffers where the most recent action occured first.
+#+begin_src emacs-lisp
+  (use-package prelude-erc
+    :config
+    (setq erc-auto-query 'bury
+          erc-join-buffer 'window
+          erc-query-display 'window)
+    (add-hook 'erc-after-connect
+              (lambda (server nick)
+                (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
+    (defun ido-erc-buffer ()
+      (interactive)
+      (switch-to-buffer
+       (ido-completing-read "Channel: " (mapcar #'buffer-name (erc-buffer-list)))))
 
-       (bind-key "C-c C-b" #'ido-erc-buffer erc-mode-map))
-   #+end_src
+    (bind-key "C-c C-b" #'ido-erc-buffer erc-mode-map))
+#+end_src
 *** Znc
-    #+begin_src emacs-lisp
+#+begin_src emacs-lisp
       (use-package znc
         :commands (znc-all znc-erc)
         :ensure t
@@ -1894,29 +1894,29 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
             (with-current-buffer buffer
               (erc-server-send "znc disconnect")))
           (stop-irc)))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-04-18 Sat 17:46]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-18 Sat 17:46]
+:END:
 *** erc-nicklist
-    #+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle no
       (use-package erc-nicklist
         :config (setq erc-nicklist-voiced-position 'top))
-    #+end_src
-    :PROPERTIES:
-    :CREATED:  [2015-04-18 Sat 17:47]
-    :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-18 Sat 17:47]
+:END:
 ** Circe
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package circe :ensure t)
      (require 'circe)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-20 Fri 22:25]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-20 Fri 22:25]
+:END:
 ** mu4e
-   My personal mu4e config.
-   #+begin_src emacs-lisp
+My personal mu4e config.
+#+begin_src emacs-lisp
      (add-to-list 'load-path (expand-file-name "mu/mu4e" prelude-vendor-dir))
      (require 'mu4e)
      (setq mu4e-mu-binary "~/.local/bin/mu"   ;; use local version of mu
@@ -1930,12 +1930,12 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
                                              ; Open message in external browser with 'x' as the shortcut
                   '("xview in browser" . mu4e-action-view-in-browser) t)
      (add-hook 'mu4e-view-mode-hook 'wrap-to-fill-column-mode)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-09-03 Wed 16:41]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-09-03 Wed 16:41]
+:END:
 ** newsticker
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (require 'newsticker)
      (global-set-key (kbd "C-c r") 'newsticker-treeview)
      (setq newsticker-html-renderer 'w3m-region)
@@ -2006,30 +2006,30 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
          ("Zack Shapiro" "http://zackshapiro.com/rss" nil nil nil)
          ("Zack Shapiro" "http://feeds.feedburner.com/zackshapiro/glGU" nil nil nil)
          ("Send More Paramedics" "http://blog.fogus.me/feed/" nil nil nil))))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-09-03 Wed 16:41]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-09-03 Wed 16:41]
+:END:
 ** Gnus
-   #+begin_src emacs-lisp
-     (use-package rfnash-gnus
-       :load-path prelude-personal-dir
-       :config (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir)))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-09-03 Wed 16:54]
-   :END:
+#+begin_src emacs-lisp
+  (use-package rfnash-gnus
+    :load-path prelude-personal-dir
+    :config (setq gnus-init-file (expand-file-name "rfnash-gnus.el" prelude-personal-dir)))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-09-03 Wed 16:54]
+:END:
 * TODO Misc
-  :PROPERTIES:
-  :CREATED:  [2015-04-22 Wed 20:38]
-  :END:
-  Various settings that should be reorganized.
+:PROPERTIES:
+:CREATED:  [2015-04-22 Wed 20:38]
+:END:
+Various settings that should be reorganized.
 ** Set the default directory to HOME
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq default-directory "~")
-   #+end_src
+#+end_src
 ** smart-tab and hippie-expand
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package smart-tab
        :ensure t
        :diminish smart-tab-mode
@@ -2039,44 +2039,44 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
        (define-key read-expression-map [(tab)] 'hippie-expand)
        (add-to-list 'hippie-expand-try-functions-list #'yas-hippie-try-expand)
        (setq smart-tab-using-hippie-expand t))
-   #+end_src
+#+end_src
 ** elscreen
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (prelude-require-package 'elscreen)
-   #+end_src
+#+end_src
 ** switch-window
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package switch-window :ensure t)
      (global-set-key (kbd "C-x o") 'switch-window)
-   #+end_src
+#+end_src
 ** caskxy
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package caskxy :ensure t)
-   #+end_src
+#+end_src
 ** graphviz-dot-mode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package graphviz-dot-mode :ensure t)
-   #+end_src
+#+end_src
 ** elnode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package elnode :ensure t)
-   #+end_src
+#+end_src
 ** unbound
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package unbound :ensure t)
-   #+end_src
+#+end_src
 ** Default Font
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (set-face-attribute 'default nil :family "Liberation Mono for Powerline" :height 140)
-   #+end_src
+#+end_src
 ** Term Mode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package term
        :config
        (setq term-scroll-to-bottom-on-output t))
-   #+end_src
+#+end_src
 ** Term Colorscheme
-   #+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle no
      (setq term-mode-hook
            '((lambda nil
                ;; To use new deftheme instead of color-theme
@@ -2109,13 +2109,13 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
       '(term-color-red ((t (:background "#002b36" :foreground "#dc322f"))))
       '(term-color-white ((t (:background "#002b36" :foreground "#eee8d5"))))
       '(term-color-yellow ((t (:background "#002b36" :foreground "#b58900")))))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-17 Fri 18:23]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 18:23]
+:END:
 ** Color Theme
-   My settings to use the solarized light color theme.
-   #+begin_src emacs-lisp
+My settings to use the solarized light color theme.
+#+begin_src emacs-lisp
   (disable-theme 'zenburn)
      (use-package color-theme
        :ensure t
@@ -2165,13 +2165,13 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
                                             ("solarized-light" . rfnash-solarized-light)
                                             ("solarized-dark" . rfnash-solarized-dark)))
                              (action . (("Apply Theme" . (lambda (x) (apply x ())))))))))))
-   #+end_src
-   :PROPERTIES:
-  :CREATED:  [2014-09-03 Wed 16:41]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-09-03 Wed 16:41]
+:END:
 ** El-get
-   Install and configure various packages through el-get.
-   #+begin_src emacs-lisp
+Install and configure various packages through el-get.
+#+begin_src emacs-lisp
      (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
      (require 'el-get nil t)                       ; to appease flycheck
@@ -2225,13 +2225,13 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
      ;; install new packages and init already installed packages
      (el-get 'sync my:el-get-packages)
 
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-09-03 Wed 16:41]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-09-03 Wed 16:41]
+:END:
 ** rfnash-switch-buffer
-   Based on [[http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/][terminal at your fingertips]].
-   #+begin_src emacs-lisp
+Based on [[http://emacsredux.com/blog/2013/03/29/terminal-at-your-fingertips/][terminal at your fingertips]].
+#+begin_src emacs-lisp
      (defun rfnash-switch-buffer (buffer)
        "Switch to BUFFER using elscreen if possible;
                if not, use 'switch-to-buffer-other-window'"
@@ -2297,13 +2297,13 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
        (if (get-buffer "*Packages*")
            (rfnash-switch-buffer "*Packages*")
          (paradox-list-packages nil)))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
 :CREATED:  [2015-04-14 Tue 20:32]
 :END:
 ** rfnash-horizontal-recenter
-   From http://stackoverflow.com/a/1249665
-   #+begin_src emacs-lisp
+From http://stackoverflow.com/a/1249665
+#+begin_src emacs-lisp
      (defun rfnash-horizontal-recenter ()
        "Make the point horizontally centered in the window."
        (interactive)
@@ -2313,70 +2313,70 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
          (if (< mid cur)
              (set-window-hscroll (selected-window)
                                  (- cur mid)))))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
 :CREATED:  [2015-04-14 Tue 20:35]
 :END:
 ** rfnash-scroll-left-edge
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (defun rfnash-scroll-left-edge ()
        "Like `my-horizontal-recenter', but place point at the left edge of the window."
        (interactive)
        (set-window-hscroll (selected-window) (current-column)))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
 :CREATED:  [2015-04-14 Tue 20:36]
 :END:
 ** browse-weather
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (defun browse-weather ()
        "Look up the current weather on forecast.io."
        (interactive)
        (browse-url "http://forecast.io/"))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
 :CREATED:  [2015-04-14 Tue 20:37]
 :END:
 ** rfnash-helm-org-swoop
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (defun rfnash-helm-org-swoop ()
        "Run `'helm-multi-swoop' with `org-buffer-list'"
        (interactive)
        (helm-multi-swoop nil (mapcar #'buffer-name (org-buffer-list))))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
 :CREATED:  [2015-04-14 Tue 20:38]
 :END:
 ** helm-multi-org-occur
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (defun helm-multi-org-occur ()
        (interactive)
        (helm-multi-occur (org-buffer-list)))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-17 Fri 18:27]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 18:27]
+:END:
 ** rfnash-org-refile
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (defun rfnash-org-refile (&rest args)
        (interactive)
        (let ((helm-candidate-number-limit nil)) (apply #'org-refile args)))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-17 Fri 18:27]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 18:27]
+:END:
 ** Use shell-like backspace C-h, rebind help to F1
-   From [[https://github.com/magnars/hardcore-mode.el][hardcore-mode]]
-   #+begin_src emacs-lisp
+From [[https://github.com/magnars/hardcore-mode.el][hardcore-mode]]
+#+begin_src emacs-lisp
      (define-key key-translation-map [?\C-h] [?\C-?])
      (bind-key "<f1>" #'help-command)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-17 Fri 18:28]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-17 Fri 18:28]
+:END:
 ** prelude mode
-   Emacs Prelude: minor mode.
-   #+begin_src emacs-lisp
+Emacs Prelude: minor mode.
+#+begin_src emacs-lisp
      (use-package prelude-mode
        :diminish prelude-mode
        :bind* (("C-c x l" . rfnash-scroll-left-edge)
@@ -2415,63 +2415,63 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
 
        (bind-key "C-c C-w" #'rfnash-org-refile org-mode-map)
        (bind-key "C-c C-w" #'rfnash-org-refile org-agenda-mode-map))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-09-03 Wed 16:42]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-09-03 Wed 16:42]
+:END:
 ** paradox
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package paradox :ensure t)
      '(setq paradox-automatically-star t)
-   #+end_src
+#+end_src
 ** Faces
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (set-face-attribute 'org-agenda-clocking nil :inherit 'org-scheduled :background "#268bd2")
      (set-face-attribute 'org-agenda-current-time nil :inherit 'org-time-grid :background "light green")
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-07 Sat 22:46]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-07 Sat 22:46]
+:END:
 ** Mode Line
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package smart-mode-line :ensure t)
      (setq sml/no-confirm-load-theme t)
      (sml/setup)
      (sml/apply-theme 'respectful)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-23 Mon 11:38]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-23 Mon 11:38]
+:END:
 ** Info additional directory list
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq Info-additional-directory-list (quote ("~/.local/share/info/")))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-07 Sat 22:42]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-07 Sat 22:42]
+:END:
 ** emagician-fix-spell-memory
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package emagician-fix-spell-memory :ensure t)
-   #+end_src
+#+end_src
 ** elip
-   #+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle no
      (add-to-list 'load-path "~/.local/share/emacs/site-lisp")
      (add-to-list 'load-path "~/.local/share/emacs/site-lisp/edb")
      (require 'elip)
-   #+end_src
+#+end_src
 ** Volume
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package volume :ensure t)
      (setq volume-backend 'volume-amixer-backend)
      (setq volume-amixer-program "samixer")
      (require 'volume)
      (global-set-key (kbd "C-c v") #'volume)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-11-12 Wed 19:21]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-11-12 Wed 19:21]
+:END:
 ** [[https://github.com/kiwanami/emacs-calfw][calfw]] ([[http://www.emacswiki.org/emacs/Calfw][emacswiki]])
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package calfw :ensure t)
      (use-package calfw-gcal :ensure t)
 
@@ -2494,117 +2494,117 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
                                  "https://www.google.com/calendar/ical/musicmaker1118%40gmail.com/private-e760c860d242661263a68f8e42dfe0bd/basic.ics"
                                  "IndianRed") ; google calendar ICS. Doesn't support repeating events (only shows them on day of first repeat)
          )))
-   #+end_src
+#+end_src
 ** [[http://howm.sourceforge.jp/README.html][howm]]
-   - Documentation
-     - [[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?e.FrontPage][wiki]]
-     - [[http://www.emacswiki.org/emacs/HowmMode][emacswiki]]
-     - [[http://www.emacswiki.org/emacs/HowmAndCalendar][Howm and calendar]]
-     - [[http://howm.sourceforge.jp/README.html][tutorial]] [[[file:~/.emacs.d/el-get/howm/doc/README.html][local]]]
-     - [[http://sourceforge.jp/projects/howm/lists/archive/eng/2008/000038.html][integrating with org-mode]]
-     - [[http://sourceforge.jp/projects/howm/lists/archive/eng/2005/000014.html][using with rd-mode]]
-   - `howm-mode' Minor Mode Bindings:
-      | key     | binding                        |
-      |---------+--------------------------------|
-      | C-c     | Prefix Command                 |
-      | C-x     | Prefix Command                 |
-      | C-x C-s | howm-save-buffer               |
-      | C-z     | Prefix Command                 |
-      | C-z SPC | howm-toggle-buffer             |
-      | C-z ,   | howm-menu                      |
-      | C-z .   | howm-find-today                |
-      | C-z :   | howm-find-yesterday            |
-      | C-z A   | howm-list-around               |
-      | C-z C   | howm-create-here               |
-      | C-z D   | howm-dup                       |
-      | C-z H   | howm-first-memo                |
-      | C-z I   | howm-create-interactively      |
-      | C-z K   | howm-keyword-to-kill-ring      |
-      | C-z L   | howm-last-memo                 |
-      | C-z M   | howm-open-named-file           |
-      | C-z N   | howm-next-memo                 |
-      | C-z P   | howm-previous-memo             |
-      | C-z Q   | howm-kill-all                  |
-      | C-z T   | howm-insert-dtime              |
-      | C-z a   | howm-list-all                  |
-      | C-z b   | howm-list-buffers              |
-      | C-z c   | howm-create                    |
-      | C-z d   | howm-insert-date               |
-      | C-z e   | howm-remember                  |
-      | C-z g   | howm-list-grep                 |
-      | C-z h   | howm-history                   |
-      | C-z i   | howm-insert-keyword            |
-      | C-z l   | howm-list-recent               |
-      | C-z m   | howm-list-migemo               |
-      | C-z n   | action-lock-goto-next-link     |
-      | C-z o   | howm-occur                     |
-      | C-z p   | action-lock-goto-previous-link |
-      | C-z r   | howm-refresh                   |
-      | C-z s   | howm-list-grep-fixed           |
-      | C-z t   | howm-list-todo                 |
-      | C-z w   | howm-random-walk               |
-      | C-z x   | howm-list-mark-ring            |
-      | C-z y   | howm-list-schedule             |
-   #+begin_src emacs-lisp
+- Documentation
+  - [[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?e.FrontPage][wiki]]
+  - [[http://www.emacswiki.org/emacs/HowmMode][emacswiki]]
+  - [[http://www.emacswiki.org/emacs/HowmAndCalendar][Howm and calendar]]
+  - [[http://howm.sourceforge.jp/README.html][tutorial]] [[[file:~/.emacs.d/el-get/howm/doc/README.html][local]]]
+  - [[http://sourceforge.jp/projects/howm/lists/archive/eng/2008/000038.html][integrating with org-mode]]
+  - [[http://sourceforge.jp/projects/howm/lists/archive/eng/2005/000014.html][using with rd-mode]]
+- `howm-mode' Minor Mode Bindings:
+  | key     | binding                        |
+  |---------+--------------------------------|
+  | C-c     | Prefix Command                 |
+  | C-x     | Prefix Command                 |
+  | C-x C-s | howm-save-buffer               |
+  | C-z     | Prefix Command                 |
+  | C-z SPC | howm-toggle-buffer             |
+  | C-z ,   | howm-menu                      |
+  | C-z .   | howm-find-today                |
+  | C-z :   | howm-find-yesterday            |
+  | C-z A   | howm-list-around               |
+  | C-z C   | howm-create-here               |
+  | C-z D   | howm-dup                       |
+  | C-z H   | howm-first-memo                |
+  | C-z I   | howm-create-interactively      |
+  | C-z K   | howm-keyword-to-kill-ring      |
+  | C-z L   | howm-last-memo                 |
+  | C-z M   | howm-open-named-file           |
+  | C-z N   | howm-next-memo                 |
+  | C-z P   | howm-previous-memo             |
+  | C-z Q   | howm-kill-all                  |
+  | C-z T   | howm-insert-dtime              |
+  | C-z a   | howm-list-all                  |
+  | C-z b   | howm-list-buffers              |
+  | C-z c   | howm-create                    |
+  | C-z d   | howm-insert-date               |
+  | C-z e   | howm-remember                  |
+  | C-z g   | howm-list-grep                 |
+  | C-z h   | howm-history                   |
+  | C-z i   | howm-insert-keyword            |
+  | C-z l   | howm-list-recent               |
+  | C-z m   | howm-list-migemo               |
+  | C-z n   | action-lock-goto-next-link     |
+  | C-z o   | howm-occur                     |
+  | C-z p   | action-lock-goto-previous-link |
+  | C-z r   | howm-refresh                   |
+  | C-z s   | howm-list-grep-fixed           |
+  | C-z t   | howm-list-todo                 |
+  | C-z w   | howm-random-walk               |
+  | C-z x   | howm-list-mark-ring            |
+  | C-z y   | howm-list-schedule             |
+  #+begin_src emacs-lisp
      (use-package howm
        :config
        ;; (add-to-list 'auto-mode-alist '("\\.howm$" . org-mode))
        ;; (add-hook 'org-mode-hook 'howm-mode)
        )
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-13 Fri 16:22]
-   :END:
+  #+end_src
+  :PROPERTIES:
+  :CREATED:  [2015-02-13 Fri 16:22]
+  :END:
 *** TODO [#B] Howm-related                                             :NEXT:
-   - http://angg.twu.net/e/howm.e.html
-   - http://www.emacswiki.org/emacs/PlannerAndHowmComparison
-   - http://pages.sachachua.com/sharing/blog.html
-   - http://sachachua.com/notebook/wickedcoolemacs/wc-emacs-07-managing-your-notes.pdf
-   - http://sachachua.com/notebook/wickedcoolemacs/wc-emacs-07-managing-your-notes.html
-   - http://sachachua.com/blog/2008/01/note-taking-random-notes-journal-entries-outlines-and-hyperlinks/
-   - http://sachachua.com/blog/2005/09/planning-reflection/
-   - http://sachachua.com/blog/2005/06/planner-support-for-action-lockel/
-   - http://sachachua.com/blog/2004/01/emacs-wiki-sites/
-   :PROPERTIES:
-   :CREATED:  [2015-02-18 Wed 00:00]
-   :END:
+- http://angg.twu.net/e/howm.e.html
+- http://www.emacswiki.org/emacs/PlannerAndHowmComparison
+- http://pages.sachachua.com/sharing/blog.html
+- http://sachachua.com/notebook/wickedcoolemacs/wc-emacs-07-managing-your-notes.pdf
+- http://sachachua.com/notebook/wickedcoolemacs/wc-emacs-07-managing-your-notes.html
+- http://sachachua.com/blog/2008/01/note-taking-random-notes-journal-entries-outlines-and-hyperlinks/
+- http://sachachua.com/blog/2005/09/planning-reflection/
+- http://sachachua.com/blog/2005/06/planner-support-for-action-lockel/
+- http://sachachua.com/blog/2004/01/emacs-wiki-sites/
+  :PROPERTIES:
+  :CREATED:  [2015-02-18 Wed 00:00]
+:END:
 *** TODO [[http://howm.sourceforge.jp/a/][Index of /a]]                                                   :NEXT:
-    :PROPERTIES:
+:PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:49]
 :END:
 *** TODO [[http://howm.sourceforge.jp/cgi-bin/hiki/hiki.cgi?ExternalTool][External Tools]]                                                :NEXT:
-    :PROPERTIES:
-    :CREATED:  [2015-04-14 Tue 17:49]
-    :END:
+:PROPERTIES:
+:CREATED:  [2015-04-14 Tue 17:49]
+:END:
 *** TODO [[http://sourceforge.jp/projects/howm/lists/archive/eng/][Howm English Mailinglist]]                                      :NEXT:
-    :PROPERTIES:
+:PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:51]
 :END:
 *** TODO [[http://howm.sourceforge.jp/a/rich-title/][rich-title.jl]] -- Show everything on the title bar             :NEXT:
-    :PROPERTIES:
+:PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:49]
 :END:
 ** babel
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package babel :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-07-24 Thu 10:09]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-07-24 Thu 10:09]
+:END:
 ** ledger-mode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package ledger-mode :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-07-24 Thu 10:09]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-07-24 Thu 10:09]
+:END:
 ** nix-mode
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package nix-mode :ensure t)
-   #+end_src
+#+end_src
 ** remem
-   My rememberance agent configuration.
-   #+begin_src emacs-lisp
+My rememberance agent configuration.
+#+begin_src emacs-lisp
      (require 'prelude-mode)
      (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
      (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
@@ -2614,38 +2614,38 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
      ;;                           ("notes" 2 5 500)))
      (setq remem-scopes-list '(("mail" 6 5 500)))
      ;;(load "remem")
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-09-03 Wed 16:42]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-09-03 Wed 16:42]
+:END:
 ** Sauron
-   #+begin_src emacs-lisp
-     (use-package sauron :ensure t)
-     ;; (sauron-start)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2014-10-25 Sat 19:35]
-   :END:
+#+begin_src emacs-lisp
+  (use-package sauron :ensure t)
+  ;; (sauron-start)
+#+end_src
+:PROPERTIES:
+:CREATED:  [2014-10-25 Sat 19:35]
+:END:
 ** anchored-transpose
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package anchored-transpose :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-01-04 Sun 23:55]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-01-04 Sun 23:55]
+:END:
 ** [[https://github.com/vspinu/zotelo][Zotelo]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package zotelo :ensure t
        :config
        (add-hook 'TeX-mode-hook 'zotelo-minor-mode)
        (add-hook 'org-mode-hook 'zotelo-minor-mode))
 
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-01-08 Thu 11:56]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-01-08 Thu 11:56]
+:END:
 ** RFC
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package w3 :ensure t)
      (setq rfc-url-save-directory (expand-file-name  "RFC" user-emacs-directory))
      (setq rfc-index-url "http://www.ietf.org/iesg/1rfc_index.txt")
@@ -2653,109 +2653,109 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
                                    rfc-url-save-directory
                                    "http://www.ietf.org/rfc/"))
      (setq rfc-insert-content-url-hook '(rfc-url-save))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-01-13 Tue 11:14]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-01-13 Tue 11:14]
+:END:
 ** [[https://github.com/tam17aki/ace-isearch][ace-isearch]] -- See [[http://sachachua.com/blog/2015/01/emacs-kaizen-ace-isearch-combines-ace-jump-mode-helm-swoop/][Sachachua's article]].
-   #+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle no
      (use-package ace-isearch
        :ensure t
        :config (global-ace-isearch-mode))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-01-16 Fri 14:15]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-01-16 Fri 14:15]
+:END:
 ** [[http://elpa.gnu.org/packages/poker.html][poker]]
-   Texas Hold'em Poker
-   #+begin_src emacs-lisp
+Texas Hold'em Poker
+#+begin_src emacs-lisp
      (use-package poker :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-07 Sat 15:06]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-07 Sat 15:06]
+:END:
 ** [[https://github.com/agrif/pianobar.el][pianobar.el]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package pianobar :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-07 Sat 15:41]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-07 Sat 15:41]
+:END:
 ** [[https://github.com/julienXX/helm-lobste.rs][helm-lobsters]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package helm-lobsters :ensure t)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-11 Wed 23:34]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-11 Wed 23:34]
+:END:
 ** [[https://github.com/dacap/keyfreq][keyfreq]]
-   Track Emacs commands frequency
-   #+begin_src emacs-lisp
+Track Emacs commands frequency
+#+begin_src emacs-lisp
      (use-package keyfreq
        :ensure t
        :config
        (setq keyfreq-file (expand-file-name "keyfreq" prelude-savefile-dir))
        (keyfreq-mode 1)
        (keyfreq-autosave-mode 1))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-13 Fri 14:12]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-13 Fri 14:12]
+:END:
 ** Diary ([[http://www.emacswiki.org/emacs/DiaryMode][emacswiki]], [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Diary.html][manual]])
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq diary-file (expand-file-name "diary" prelude-savefile-dir))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-02-13 Fri 16:07]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-02-13 Fri 16:07]
+:END:
 ** Alert
-   libnotify uses notify-send; notifications uses dbus
-   #+begin_src emacs-lisp
+libnotify uses notify-send; notifications uses dbus
+#+begin_src emacs-lisp
      (setq alert-default-style 'libnotify)
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-03-03 Tue 00:06]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-03-03 Tue 00:06]
+:END:
 ** Temporary Directory
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq temporary-file-directory "/home/rfnash/tmp")
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-03-03 Tue 00:07]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-03-03 Tue 00:07]
+:END:
 ** [[https://github.com/sachac/artbollocks-mode][artbollacks-mode]]
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package artbollocks-mode
        :load-path (lambda () (expand-file-name "artbollocks-mode" prelude-vendor-dir))
        :commands artbollocks-mode
        :init
        (add-hook 'text-mode-hook 'artbollocks-mode)
        (add-hook 'org-mode-hook 'artbollocks-mode))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
 :CREATED:  [2015-04-10 Fri 19:09]
 :END:
 ** [[http://bnbeckwith.com/code/writegood-mode.html][Writegood-mode]] ([[https://github.com/bnbeckwith/writegood-mode][github]])
-   Minor mode for Emacs to improve English writing, inspired by [[id:76d76618-af13-4b63-94fa-3d2862161aa3][Matt Might's scripts]].
-   #+begin_src emacs-lisp :tangle no
+Minor mode for Emacs to improve English writing, inspired by [[id:76d76618-af13-4b63-94fa-3d2862161aa3][Matt Might's scripts]].
+#+begin_src emacs-lisp :tangle no
      (use-package writegood-mode
        :ensure t
        :commands writegood-mode
        ;; :bind "C-c g"
        )
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-16 Thu 14:44]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-16 Thu 14:44]
+:END:
 ** Magit
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (setq magit-last-seen-setup-instructions "1.4.0")
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
 :CREATED:  [2015-04-15 Wed 19:24]
 :END:
 ** [[https://github.com/alpha22jp/simplenote2.el][simplenote2]]
-   #+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle no
      (use-package simplenote2
        :ensure t
        :commands (simplenote2-browse                     ; Opens simplenote2 buffer with all notes
@@ -2767,21 +2767,21 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
        :config
        (setq simplenote2-markdown-notes-mode 'markdown-mode)
        (simplenote2-setup))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-05-02 Sat 16:24]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-05-02 Sat 16:24]
+:END:
 ** TODO [#B] [[http://jblevins.org/projects/deft/][Deft]] ([[http://www.emacswiki.org/emacs/DeftMode][Emacswiki]]) :NEXT:
-   Go through and take notes on the documentation on its homepage.
-   Nvpy uses markdown and stores its notes as .txt files.
-   It uses the first line as a title, and syncs the filename with the title,
-   but replaces spaces with underscores,
-   so setting Deft to use the first line as a title is the best option.
+Go through and take notes on the documentation on its homepage.
+Nvpy uses markdown and stores its notes as .txt files.
+It uses the first line as a title, and syncs the filename with the title,
+but replaces spaces with underscores,
+so setting Deft to use the first line as a title is the best option.
 
-   I could make Deft work with [[https://github.com/alpha22jp/simplenote2.el][simplenote2]] if I could tell it to create new notes in a different dir
-   than where it searches for notes in. Simplenote2 won't make a new note from a file that is in its notes dir
-   where it keeps existing files.
-   #+begin_src emacs-lisp
+I could make Deft work with [[https://github.com/alpha22jp/simplenote2.el][simplenote2]] if I could tell it to create new notes in a different dir
+than where it searches for notes in. Simplenote2 won't make a new note from a file that is in its notes dir
+where it keeps existing files.
+#+begin_src emacs-lisp
      (use-package deft
        :ensure t
        :commands deft
@@ -2810,24 +2810,24 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
                                                   (* (any "\t" " ")))
                                              (seq (+ "#")
                                                   eol)))))
-   #+end_src
-   :PROPERTIES:
+#+end_src
+:PROPERTIES:
 :CREATED:  [2015-04-15 Wed 22:51]
 :END:
 ** [[https://github.com/pidu/git-timemachine][git-timemachine]]
-   Step through historic versions of a git controlled file.
-   See also [[http://blog.binchen.org/posts/use-git-timemachine-with-evil.html][use git-timemachine with evil]].
-   #+begin_src emacs-lisp
+Step through historic versions of a git controlled file.
+See also [[http://blog.binchen.org/posts/use-git-timemachine-with-evil.html][use git-timemachine with evil]].
+#+begin_src emacs-lisp
      (use-package git-timemachine
        :ensure t
        :commands (git-timemachine
                   git-timemachine-toggle))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-05-07 Thu 17:17]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-05-07 Thu 17:17]
+:END:
 ** helm-default-face
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (defun rfnash-helm-default-face ()
        "helm interface to let my chose the default font face family"
        (interactive)
@@ -2843,10 +2843,10 @@ Tested with SWI-Prolog 5.6.55 + Emacs 21.2, 22.3 and 23.0.92.2.
        "Display the current default face"
        (interactive)
        (message (face-attribute 'default :family t)))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-05-11 Mon 17:19]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-05-11 Mon 17:19]
+:END:
 ** Markdown
 Use [[https://joostkremers.github.io/pandoc-mode/][pandoc-mode]] because [[http://pandoc.org/][pandoc]] is awesome.
 #+begin_src emacs-lisp
@@ -2877,7 +2877,7 @@ Use [[https://joostkremers.github.io/pandoc-mode/][pandoc-mode]] because [[http:
 :CREATED:  [2015-08-23 Sun 01:44]
 :END:
 ** Beeminder
-   #+begin_src emacs-lisp
+#+begin_src emacs-lisp
      (use-package beeminder
        :ensure t
        :bind ("C-x c b" . helm-beeminder-add-data)
@@ -2918,13 +2918,13 @@ Use [[https://joostkremers.github.io/pandoc-mode/][pandoc-mode]] because [[http:
                                                      (beeminder-add-data goal
                                                                          (read-string "Value: ")
                                                                          (read-string "Comment: ")))))))))))
-   #+end_src
-   :PROPERTIES:
-   :CREATED:  [2015-04-18 Sat 10:35]
-   :END:
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-04-18 Sat 10:35]
+:END:
 ** Emacs Server
-   Start the Emacs server if it isn't already running
-   #+begin_src emacs-lisp
+Start the Emacs server if it isn't already running
+#+begin_src emacs-lisp
      (require 'server)
      (if (not (server-running-p server-name)) (server-start))
-   #+end_src
+#+end_src

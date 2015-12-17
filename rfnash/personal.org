@@ -2921,6 +2921,16 @@ Use [[https://joostkremers.github.io/pandoc-mode/][pandoc-mode]] because [[http:
 :PROPERTIES:
 :CREATED:  [2015-09-09 Wed 21:20]
 :END:
+** popwin
+#+begin_src emacs-lisp
+  (use-package popwin
+    :ensure t
+    :config
+    (popwin-mode 1))
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-09-15 Tue 21:51]
+:END:
 ** Beeminder
 #+begin_src emacs-lisp
      (use-package beeminder

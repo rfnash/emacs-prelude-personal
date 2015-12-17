@@ -437,6 +437,21 @@ Binds useful features to key combinations
 :PROPERTIES:
 :CREATED:  [2014-10-07 Tue 13:24]
 :END:
+** [[https://github.com/zk-phi/indent-guide][indent-guide]]
+#+begin_src emacs-lisp
+  (use-package indent-guide
+    :ensure t
+    :commands (indent-guide-mode indent-guide-global-mode)
+    :config
+    ;; (indent-guide-global-mode)
+    ;; (set-face-background 'indent-guide-face "dimgray")
+    ;; (setq indent-guide-recursive nil)
+    ;; (setq indent-guide-char "|")
+    )
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-09-13 Sun 15:16]
+:END:
 ** fill-column-indicator
 #+begin_src emacs-lisp
      (use-package fill-column-indicator

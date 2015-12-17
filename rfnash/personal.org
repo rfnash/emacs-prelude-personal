@@ -2891,6 +2891,36 @@ Use [[https://joostkremers.github.io/pandoc-mode/][pandoc-mode]] because [[http:
 :PROPERTIES:
 :CREATED:  [2015-08-23 Sun 01:44]
 :END:
+** Distraction Free Writing
+#+begin_src emacs-lisp
+  ;;; https://github.com/idomagal/Tabula-Rasa/
+  (use-package tabula-rasa
+    :ensure t
+    :commands tabula-rasa-mode
+    :config
+    (defun tabula-rasa-text-scale-increase ()
+      (text-scale-increase 2))
+    (defun tabula-rasa-text-scale-decrease (arg)
+      (text-scale-decrease 2))
+    (advice-add #'tabula-rasa-mode-enable :before #'tabula-rasa-text-scale-increase)
+    (advice-add #'tabula-rasa-mode-disable :after #'tabula-rasa-text-scale-increase))
+
+  ;;; https://elpa.gnu.org/packages/darkroom.html
+  (use-package darkroom
+    :ensure t
+    :commands (darkroom-mode darkroom-tentative-mode)
+    :config
+    (setq darkroom-margins 0.15
+          darkroom-text-scale-increase 2))
+
+  ;;; https://github.com/joostkremers/writeroom-mode
+  (use-package writeroom-mode
+    :ensure t
+    :commands writeroom-mode)
+#+end_src
+:PROPERTIES:
+:CREATED:  [2015-09-09 Wed 21:20]
+:END:
 ** Beeminder
 #+begin_src emacs-lisp
      (use-package beeminder

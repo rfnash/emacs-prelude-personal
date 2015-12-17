@@ -2620,15 +2620,16 @@ Emacs Prelude: minor mode.
 ** remem
 My rememberance agent configuration.
 #+begin_src emacs-lisp
-     (require 'prelude-mode)
-     (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
-     (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
-     (define-key prelude-mode-map (kbd "C-c r") nil)
-     (define-key global-map (kbd "C-c r") nil)
-     ;; (setq remem-scopes-list '(("mail" 6 5 500)
-     ;;                           ("notes" 2 5 500)))
-     (setq remem-scopes-list '(("mail" 6 5 500)))
-     ;;(load "remem")
+     (use-package remem
+       :load-path "~/.local/share/emacs/site-lisp/"
+       :init
+       (require 'prelude-mode)
+       (define-key prelude-mode-map (kbd "C-c r") nil)
+       (define-key global-map (kbd "C-c r") nil)
+       :config
+       (setq remem-prog-dir "~/.local/bin"
+             remem-scopes-list '(("mail" 6 5 500)
+                                 ("notes" 2 5 500))))
 #+end_src
 :PROPERTIES:
 :CREATED:  [2014-09-03 Wed 16:42]

@@ -1105,35 +1105,35 @@ Can be set using C-c [ and C-c ] in org-mode.
 :END:
 *** Org Agenda Custom Commands
 #+begin_src emacs-lisp
-      (setq org-agenda-custom-commands
-            '(("n" "Agenda and all NEXT actions"
-               ((agenda "")
-                (todo "NEXT" nil))
-               ((org-agenda-regexp-filter-preset '("-SOMEDAY" "-TOODLDO"))))
-              ("d" "Upcoming deadlines"
-               agenda ""
-               ((org-agenda-time-grid nil)
-                (org-deadline-warning-days 36500)
-                (org-agenda-entry-types '(:deadline))))
-              ("v" "Videos to watch"
-               tags "CATEGORY=\"ToWatch\"" nil)
-              ;; TODO: consider only including those not under the appropriate level 1 heading
-              ("f" "Bookmarks to file"
-               ((todo "FILE")))
-              ("u" "Upcoming next tasks"
-               tags-todo "NEXT" nil)
-              ("p" "Next actions of my projects"
-               tags-todo "project" nil)
-              ("i" "Ideas"
-               ((todo "IDEA")))
-              ("r" . "Review Toodledo Tasks")
-              ("rt" "Review Toodledo Active tasks"
-               ((todo "TOODLDO"))
-               ((org-agenda-files '("~/Documents/OrgMode/Toodledo.org"))))
-              ("rs" "Review Toodledo Someday tasks"
-               ((todo "SOMEDAY"))
-               ((org-agenda-files '("~/Documents/OrgMode/Toodledo.org"))))
-              ))
+  (setq org-agenda-custom-commands
+        '(("n" "Agenda and all NEXT actions"
+           ((agenda "")
+            (todo "NEXT" nil))
+           ((org-agenda-regexp-filter-preset '("-SOMEDAY" "-TOODLDO"))))
+          ("d" "Upcoming deadlines"
+           agenda ""
+           ((org-agenda-time-grid nil)
+            (org-deadline-warning-days 36500)
+            (org-agenda-entry-types '(:deadline))))
+          ("v" "Videos to watch"
+           tags "CATEGORY=\"ToWatch\"" nil)
+          ;; TODO: consider only including those not under the appropriate level 1 heading
+          ("f" "Bookmarks to file"
+           ((todo "FILE")))
+          ("u" "Upcoming next tasks"
+           tags-todo "NEXT" nil)
+          ("p" "Next actions of my projects"
+           tags-todo "project" nil)
+          ("i" "Ideas"
+           ((todo "IDEA")))
+          ("r" . "Review Toodledo Tasks")
+          ("rt" "Review Toodledo Active tasks"
+           ((todo "TOODLDO"))
+           ((org-agenda-files '("~/Documents/OrgMode/Toodledo.org"))))
+          ("rs" "Review Toodledo Someday tasks"
+           ((todo "SOMEDAY"))
+           ((org-agenda-files '("~/Documents/OrgMode/Toodledo.org"))))
+          ))
 #+end_src
 :PROPERTIES:
 :CREATED:  [2015-05-01 Fri 15:33]
@@ -2582,7 +2582,7 @@ Emacs Prelude: minor mode.
 - http://sachachua.com/blog/2004/01/emacs-wiki-sites/
   :PROPERTIES:
   :CREATED:  [2015-02-18 Wed 00:00]
-:END:
+  :END:
 *** TODO [[http://howm.sourceforge.jp/a/][Index of /a]]                                                   :NEXT:
 :PROPERTIES:
 :CREATED:  [2015-04-14 Tue 17:49]

@@ -1877,6 +1877,10 @@ TODO: include a list of browsers to choose from.
 :PROPERTIES:
 :CREATED:  [2015-05-01 Fri 22:33]
 :END:
+*** Prelude ERC
+:PROPERTIES:
+:CREATED:  [2015-12-15 Tue 09:43]
+:END:
 Emacs IRC client.
 TODO: ido-erc-buffer does not list buffers where the most recent action occured first.
 #+begin_src emacs-lisp

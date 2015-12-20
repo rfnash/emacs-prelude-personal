@@ -1109,7 +1109,7 @@ Can be set using C-c [ and C-c ] in org-mode.
         '(("n" "Agenda and all NEXT actions"
            ((agenda "")
             (todo "NEXT" nil))
-           ((org-agenda-regexp-filter-preset '("-SOMEDAY" "-TOODLDO"))))
+           ((org-agenda-tag-filter-preset '("-noagenda" "-drill"))))
           ("d" "Upcoming deadlines"
            agenda ""
            ((org-agenda-time-grid nil)

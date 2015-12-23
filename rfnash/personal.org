@@ -2705,7 +2705,7 @@ Emacs Prelude: minor mode.
 :CREATED:  [2014-07-24 Thu 10:09]
 :END:
 ** nix-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
      (use-package nix-mode :ensure t)
 #+end_src
 ** remem

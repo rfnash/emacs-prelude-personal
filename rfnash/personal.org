@@ -2247,8 +2247,8 @@ My settings to use the solarized light color theme.
            (disable-theme 'zenburn)
            (set-frame-parameter nil 'background-mode 'dark)
            (enable-theme 'solarized)
-           (set-face-attribute 'default nil :height 170)
-           (set-face-attribute 'org-scheduled-today nil :foreground "#4df946" :weight 'normal :slant 'normal)
+           (set-face-attribute 'default nil :height 140)
+           (set-face-attribute 'org-scheduled-today nil :weight 'bold :slant 'normal) ; Consider :foreground "#586e75"
            (set-face-attribute 'org-warning nil :weight 'bold)
            ;; TODO: Doesn't show up while highlighted (point is on same line)
            (set-face-attribute 'org-todo nil :inverse-video t))

@@ -2727,7 +2727,12 @@ My rememberance agent configuration.
 :END:
 ** Sauron
 #+begin_src emacs-lisp
-  (use-package sauron :ensure t)
+  (use-package sauron
+    :ensure t
+    :config
+    (add-hook 'sauron-event-added-functions 'sauron-alert-el-adapter)
+    (setq sauron-watch-patterns '("Suvia" "Suvi" "Suv")
+          sauron-watch-nicks '("Suvia")))
   ;; (sauron-start)
 #+end_src
 :PROPERTIES:
